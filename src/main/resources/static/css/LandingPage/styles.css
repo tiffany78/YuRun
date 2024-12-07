@@ -4,6 +4,7 @@ body {
     min-height: 100vh;
     display: flex;
     flex-direction: column;
+    padding-top: 80px;
 }
 .container{
     display: grid;
@@ -12,20 +13,25 @@ body {
     grid-template-areas: 
     "navbar"
     "frame1"
-    "frame2"
     "frame3"
+    "frame2"
     "footer";
     min-height: 100vh;
     overflow: auto;
     row-gap: 50px;
 }
-.navbar{
-    grid-area: navbar;
-    background: var(--background-color-primary, #ffffff);
+.navbar {
+    position: fixed; /* Tetap di posisi atas */
+    top: 0; /* Pastikan di bagian paling atas */
+    left: 0; /* Mulai dari kiri layar */
+    width: 100%; /* Penuhi lebar layar */
+    z-index: 1000; /* Letakkan di atas elemen lain */
+    background: var(--background-color-primary, #ffffff); /* Pastikan ada warna latar */
     display: flex;
     justify-content: space-around;
     align-items: center;
-    margin-top: 30px;
+    padding: 10px 20px; /* Berikan sedikit padding */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Tambahkan bayangan untuk kesan floating */
 }
 .logo{
     display: flex;
@@ -65,8 +71,7 @@ body {
 .frame1 {
     grid-area: frame1;
     display: flex;
-    position: relative; /* Pastikan posisi relatif */
-    height: 100vh;
+    position: relative;
 }
 .left {
     display: flex;
@@ -213,8 +218,8 @@ body {
     border-color: #a30d11;
     border-radius: 10px;
     align-items: center;
-    width: 60%; /* Membatasi lebar menjadi 60% dari container */
-    margin: 0 auto; /* Untuk menempatkan elemen di tengah secara horizontal */
+    width: 60%;
+    margin: 0 auto; 
 }
 .right3-item1{
     color: var(--primary-primary1000, #651800);
@@ -244,10 +249,15 @@ body {
     padding-right: 15px;
     padding-top: 15px;
 }
+.image-3 {
+    object-fit: cover;
+    padding-left: 5px;
+  }
 .footer{
     grid-area: footer;
     background: var(--background-color-primary, #ffffff);
-    padding: 50px 100px 50px 100px;
+    padding: 10px 20px; /* Berikan sedikit padding */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Tambahkan bayangan untuk kesan floating */
     display: flex;
     flex-direction: column;
 }
@@ -392,6 +402,7 @@ body {
     position: absolute;
     top: 400px;
     filter: blur(446.5px);
+    z-index: -10;
 }
 @keyframes slideInFromLeft {
     from {
@@ -416,13 +427,6 @@ body {
 }
 
 .left2, .right2 {
-    opacity: 0;
-    transform: translateX(100%);
-    transition: transform 1s, opacity 1s;
-}
-
-/* Aktifkan animasi ketika elemen terlihat di viewport */
-.left2.animate, .right2.animate {
-    opacity: 1;
-    transform: translateX(0);
+    opacity: 0; /* Mulai tersembunyi */
+    animation-fill-mode: forwards; /* Tetap dalam kondisi akhir */
 }
