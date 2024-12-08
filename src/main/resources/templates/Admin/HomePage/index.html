@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home Page Admin</title>
+    <link rel="stylesheet" href="/css/Admin/HomePage/styles.css">
+    <link rel="stylesheet" href="/css/Admin/HomePage/vars.css">
+</head>
+<body class="container">
+    <nav class="navbar">
+        <div class="logo">
+            <img src="/css/LandingPage/logo1.svg">
+            <a class="yurun">YuRun</a>
+        </div>
+        <div class="textNavbar">
+            <a class="home">Home</a>
+            <a>User Information</a>
+            <a>Race</a>
+        </div>
+        <div class="button">
+            <img src="/css/Admin/HomePage/account-circle0.svg"/>
+            <img src="/css/Admin/HomePage/logout.svg"/>
+        </div>
+    </nav>
+    <div class="frame1">frame1</div>
+    <div class="frame2">frame2</div>
+    <div class="frame3">
+        <div class="text3">
+            <a href="#">Time Line Race</a>
+            <a href="#">Show All</a>
+        </div>
+        <hr>
+        <table class="table_race">
+            <thead>
+                <tr>
+                  <th>Title</th>
+                  <th>Start Date</th>
+                  <th>Time</th>
+                  <th>Distance</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr th:each="race : ${race}">
+                    <td th:text="${race.title}"></td>
+                    <td th:text="${#dates.format(race.start_date, 'dd/MM/yyyy')}"></td>
+                    <td th:text="${race.time}"></td>
+                    <td th:text="${race.distance} + ' km'"></td>
+                </tr>                
+            </tbody>
+        </table>
+    </div>
+    <footer class="footer">
+        <div class="content2">
+            <div class="logo">
+              <img class="logo3" src="/css/LandingPage/logo3.svg" />
+              <div class="fit-life-studio">FitLife Studio</div>
+            </div>
+            <div class="links">
+              <div class="about2">About</div>
+              <div class="contact">Contact</div>
+            </div>
+            <img class="social" src="/css/LandingPage/social0.svg" />
+        </div>
+        <div class="divider"></div>
+        <div class="credits">
+            <div class="row">
+              <div class="text-1">© 2024 Shipon. All rights reserved.</div>
+              <div class="text-2">Privacy Policy</div>
+              <div class="text-3">Terms of Service</div>
+              <div class="text-4">Cookies Settings</div>
+            </div>
+          </div>
+    </footer>
+</body>
+</html>
