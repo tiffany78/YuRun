@@ -1,3 +1,8 @@
+DROP TABLE JoinRace;
+DROP TABLE Activity;
+DROP TABLE Race;
+DROP TABLE Users;
+
 CREATE TABLE Users (
     id_user SERIAL PRIMARY KEY,
     name VARCHAR(50) NOT NULL,
@@ -11,10 +16,8 @@ CREATE TABLE Race (
     id_race SERIAL PRIMARY KEY, 
     title VARCHAR(50) NOT NULL,
     start_date DATE NOT NULL,
-    end_date DATE NOT NULL,
     time TIME NOT NULL,
-    distance DECIMAL (10,2) NOT NULL,
-    status INT
+    distance DECIMAL (10,2) NOT NULL
 );
 
 CREATE TABLE Activity (
@@ -34,9 +37,9 @@ CREATE TABLE Activity (
 CREATE TABLE JoinRace (
     id_race INT, 
     id_user INT,
-    time TIME NOT NULL,
+    time TIME,
     image_path VARCHAR(255),
-    status INT, 
+    status BOOLEAN, 
     FOREIGN KEY (id_race) REFERENCES Race (id_race), 
     FOREIGN KEY (id_user) REFERENCES Users (id_user)
 );

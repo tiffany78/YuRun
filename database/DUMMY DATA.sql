@@ -1,5 +1,3 @@
-DUMMY DATA 
-
 -- Dummy data for Users
 INSERT INTO Users (name, email, password, isAdmin, status) VALUES
 -- Admins
@@ -19,15 +17,12 @@ INSERT INTO Users (name, email, password, isAdmin, status) VALUES
 
 
 -- Dummy data for Race (with end_date removed)
-INSERT INTO Race (title, start_date, time, distance, status) VALUES
-('Sunrise Marathon', '2024-12-10', '06:00:00', 42.20, 1), -- Upcoming
-('Twilight Run', '2024-12-08', '18:00:00', 21.10, 2),     -- Ongoing
-('Night Owl Sprint', '2024-12-06', '22:00:00', 5.00, 3), -- Finished
-('City Lights Race', '2024-12-12', '20:00:00', 10.00, 1), -- Upcoming
-('Beachside Dash', '2024-12-07', '07:30:00', 15.50, 2);   -- Ongoing
-
-
-
+INSERT INTO Race (title, start_date, time, distance) VALUES
+('Sunrise Marathon', '2024-12-10', '06:00:00', 40.00),
+('Twilight Run', '2024-12-08', '18:00:00', 20.00),
+('Night Owl Sprint', '2024-12-06', '22:00:00', 5.00),
+('City Lights Race', '2024-12-12', '20:00:00', 10.00),
+('Beachside Dash', '2024-12-07', '07:30:00', 15.50); 
 
 -- Dummy data for Activity
 INSERT INTO Activity (id_user, title, kind, distance, duration, date, time, description, image_path) VALUES
@@ -56,7 +51,6 @@ INSERT INTO Activity (id_user, title, kind, distance, duration, date, time, desc
 (1, 'Weekend Half-Marathon', 'Half-marathon', 21.10, '02:00:00', '2024-12-04', '08:00:00', 'A weekend half-marathon for endurance training.', '-'),
 (1, 'Evening Marathon', 'Marathon', 42.20, '03:30:00', '2024-12-06', '18:00:00', 'An evening marathon around the city.', '-'),
 
-
 -- Activities for Member 2 (id_user = 2)
 (2, 'Morning Walk', 'Fun-run', 4.00, '00:25:00', '2024-12-02', '07:00:00', 'A light walk to start the day.', '-'),
 (2, 'City Marathon', 'Marathon', 42.20, '03:15:00', '2024-12-05', '16:00:00', 'A marathon through the bustling city streets.', '-'),
@@ -83,24 +77,26 @@ INSERT INTO Activity (id_user, title, kind, distance, duration, date, time, desc
 (10, 'Morning Half-Marathon', 'Half-marathon', 21.10, '02:00:00', '2024-12-06', '06:30:00', 'A morning half-marathon with scenic views of the city.', '-');
 
 -- Dummy data for JoinRace
-INSERT INTO JoinRace (id_race, id_user, time, image_path, status) VALUES
+INSERT INTO JoinRace (id_race, id_user) VALUES
 -- Sunrise Marathon (Upcoming)
-(1, 1, '00:00:00', '-', TRUE),
-(1, 2, '00:00:00', '-', TRUE),
-(1, 3, '00:00:00', '-', TRUE),
+(1, 1),
+(1, 2),
+(1, 3),
 -- Twilight Run (Ongoing)
-(2, 4, '18:00:00', '-', TRUE),
-(2, 5, '18:00:00', '-', TRUE),
-(2, 6, '18:00:00', '-', TRUE),
+(2, 4),
+(2, 5),
+(2, 6),
+-- City Lights Race (Upcoming)
+(4, 10),
+(4, 1),
+(4, 2),
+-- Beachside Dash (Ongoing)
+(5, 3),
+(5, 4),
+(5, 5);
+
+INSERT INTO JoinRace (id_race, id_user, time, image_path, status) VALUES
 -- Night Owl Sprint (Finished)
 (3, 7, '22:00:00', '-', FALSE),
 (3, 8, '22:00:00', '-', FALSE),
-(3, 9, '22:00:00', '-', FALSE),
--- City Lights Race (Upcoming)
-(4, 10, '00:00:00', '-', TRUE),
-(4, 1, '00:00:00', '-', TRUE),
-(4, 2, '00:00:00', '-', TRUE),
--- Beachside Dash (Ongoing)
-(5, 3, '07:30:00', '-', TRUE),
-(5, 4, '07:30:00', '-', TRUE),
-(5, 5, '07:30:00', '-', TRUE);
+(3, 9, '22:00:00', '-', FALSE);
