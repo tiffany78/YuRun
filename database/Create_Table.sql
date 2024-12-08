@@ -10,10 +10,11 @@ CREATE TABLE Users (
 CREATE TABLE Race (
     id_race SERIAL PRIMARY KEY, 
     title VARCHAR(50) NOT NULL,
-    date DATE NOT NULL,
+    start_date DATE NOT NULL,
+    end_date DATE NOT NULL,
     time TIME NOT NULL,
     distance DECIMAL (10,2) NOT NULL,
-    status VARCHAR(20) NOT NULL
+    status INT
 );
 
 CREATE TABLE Activity (
@@ -35,7 +36,7 @@ CREATE TABLE JoinRace (
     id_user INT,
     time TIME NOT NULL,
     image_path VARCHAR(255),
-    status VARCHAR(20) NOT NULL, 
+    status INT, 
     FOREIGN KEY (id_race) REFERENCES Race (id_race), 
     FOREIGN KEY (id_user) REFERENCES Users (id_user)
 );
