@@ -4,8 +4,8 @@
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href="./vars.css">
-  <link rel="stylesheet" href="./style.css">
+  <link rel="stylesheet" href="/css/Admin/UserInformation/vars.css">
+  <link rel="stylesheet" href="/css/Admin/UserInformation/style.css">
   
   
   <style>
@@ -43,7 +43,7 @@
       <div class="container">
         <div class="content">
           <div class="logo">
-            <img class="logo2" src="logo1.svg" />
+            <img class="logo2" src="/css/Admin/UserInformation/logo1.svg" />
             <div class="yu-run">YuRun</div>
           </div>
         </div>
@@ -53,17 +53,17 @@
           <button class="race"  th:onclick="'window.location.href=\'/RaceAdmin\''">Race</button>
         </div>
         <div class="icon">
-          <img class="account-circle" src="/css/Admin/UserInformationAdmin/account-circle0.svg" />
+          <img class="account-circle" src="/css/Admin/UserInformation/account-circle0.svg" />
           <img
             class="material-symbols-logout"
-            src="/css/Admin/UserInformationAdmin/material-symbols-logout0.svg"
+            src="/css/Admin/UserInformation/material-symbols-logout0.svg"
           />
         </div>
       </div>
     </div>
-    <form method="GET" action="/UserInformation" id="filterForm" class="fitur">
+    <form id="filterForm" class="fitur">
       <div class="search-bar">
-        <img class="search" src="/css/Admin/UserInformationAdmin/akar-icons-search0" />
+        <img class="search" src="/css/Admin/UserInformation/akar-icons-search0.svg" />
         <!-- Search nama member -->
         <input id="filterInput" type="text" name="filter" class="frame" th:value="${filter}" placeholder="Cari Nama Member" />
       </div>
@@ -86,7 +86,7 @@
           <td th:text="${user.status}"></td>
           <td>
             <button class="edit-button" th:data-id="${setoran.id}">
-              <img class="edit-icon" src="/css/UserInformationAdmin/vaadin-ban0" alt="Ban">
+              <img class="edit-icon" src="/css/Admin/UserInformation/vaadin-ban0.svg" alt="Ban">
             </button>
           </td>
         </tr>
