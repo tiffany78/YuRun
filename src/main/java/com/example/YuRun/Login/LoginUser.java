@@ -9,6 +9,6 @@ public class LoginUser {
     private String name;
     private String email;
     private String password;
-    private boolean isadmin;
+    private String isadmin;
     private boolean status;
 }
