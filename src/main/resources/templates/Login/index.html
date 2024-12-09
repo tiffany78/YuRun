@@ -9,20 +9,32 @@
 </head>
 <body>
     <div class="header">Welcome Back</div>
-    <form class="form">
+    <form class="form" action="/login" method="post">
         <div class="email">
             <div class="label">Email</div>
-            <div class="input"></div>
+            <div class="input">
+                <input type="email" name="email" placeholder="Enter your email" required>
+            </div>
         </div>
         <div class="password">
             <div class="label">Password</div>
-            <div class="input"></div>
+            <div class="input">
+                <input type="password" name="password" placeholder="Enter your password" required>
+            </div>
         </div>
-        <div class="button">Sign In</div>
+        <div class="button">
+            <button type="submit">Sign In</button>
+        </div>
+        <!-- Error message section -->
+        <div class="error-message">
+            <p style="color: red; font-size: 14px; text-align: center;">
+                <span th:text="${error}"></span>
+            </p>
+        </div>
     </form>
     <div class="signup">
-        <span class="you-don-t-have-an-account-sign-up-span"> You don't have an account? </span>
-        <span class="text2">Sign Up</span>
+        <span class="you-don-t-have-an-account-sign-up-span">You don't have an account?</span>
+        <a href="/register" class="text2">Sign Up</a>
     </div>
 </body>
 </html>
