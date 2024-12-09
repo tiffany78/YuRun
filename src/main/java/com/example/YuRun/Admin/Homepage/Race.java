@@ -14,4 +14,5 @@ public class Race {
     private Date start_date; 
     private Time time;  
     private Double distance;
+    private String description;
 }
