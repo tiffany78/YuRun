@@ -1,6 +1,8 @@
 package com.example.YuRun.Admin.Homepage;
 
+import java.util.LinkedHashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -17,8 +19,21 @@ public class HomeController {
     @GetMapping
     public String index(Model model){
         List<Race> list = this.repo.findRace();
-        System.out.println(list);
         model.addAttribute("race", list);
+
+        List<JoinRace> list2 = this.repo.countRace();
+        Map<String, Integer> mapJoin = new LinkedHashMap<>();
+        for(JoinRace currRace : list2){
+            mapJoin.put(currRace.getTitle(), currRace.getCount());
+        }
+        model.addAttribute("surveyMap", mapJoin);
+
+        // Map<String, Integer> surveyMap = new LinkedHashMap<>();
+		// surveyMap.put("Java", 40);
+		// surveyMap.put("Dev oops", 25);
+		// surveyMap.put("Python", 20);
+		// surveyMap.put(".Net", 15);
+		// model.addAttribute("surveyMap", surveyMap);
         return "Admin/HomePage/index";
     }
 }

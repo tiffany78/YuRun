@@ -5,6 +5,7 @@ import java.sql.SQLException;
 import java.time.LocalDate;
 import java.util.List;
 
+import org.hibernate.mapping.Join;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
@@ -27,6 +28,18 @@ public class JDBCHomeImplementation implements HomeRepository {
             resultSet.getDate("start_date"),
             resultSet.getTime("time"),
             resultSet.getDouble("distance")
+        );
+    }
+
+    public List<JoinRace> countRace(){
+        String sql = "SELECT race.title, COUNT(id_user) FROM joinrace JOIN race ON race.id_race = joinrace.id_race GROUP BY race.id_race ORDER BY race.id_race";
+        return jdbcTemplate.query(sql, this::mapRowToRace);
+    }
+
+    private JoinRace mapRowToRace(ResultSet resultSet, int rowNum) throws SQLException {
+        return new JoinRace(
+            resultSet.getString("title"),
+            resultSet.getInt("count")
         );
     }
 }

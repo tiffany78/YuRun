@@ -6,7 +6,7 @@ body {
     flex-direction: column;
     background-color: #F5F5F5;
 }
-.container{
+.containerBody{
     display: grid;
     grid-template-rows: auto auto auto auto;
     grid-template-columns: 1fr 1fr;
@@ -71,15 +71,21 @@ body {
 /* BAGIAN FRAME 1 */
 .frame1 {
     grid-area: frame1;
-    background-color: #ffc8a8;
     border-radius: 10px;
+    margin-top: 90px;
 }
-
 /* BAGIAN FRAME 2 */
 .frame2 {
     grid-area: frame2;
     background-color: #603c26;
     border-radius: 10px;
+    margin-top: 90px;
+}
+
+#container {
+  width: 500px; 
+  height: 400px; 
+  margin: 10px auto;
 }
 
 /* BAGIAN FRAME 3 */
