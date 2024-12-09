@@ -71,14 +71,16 @@
             </thead>
             <tbody>
                 <tr th:each="race : ${raceList}">
-                    <td th:text="bla"></td>
+                    <td th:text="${race.idRace}"></td>
                     <td th:text="${race.title}"></td>
                     <td th:text="${#dates.format(race.start_date, 'dd/MM/yyyy')}"></td>
                     <td th:text="${#dates.format(race.time, 'HH:mm:ss')}"></td>
                     <td th:text="${race.distance} + ' km'"></td>
                     <td>bla</td>
                     <td>
-                        <img class="edit" src="/css/Admin/Race/edit-1-20.svg" alt="Edit"/>
+                        <a th:href="@{/admin/editRace/{idRace}(idRace=${race.idRace})}">
+                            <img class="edit" src="/css/Admin/Race/edit-1-20.svg" alt="Edit"/>
+                        </a>
                         <img class="delete" src="/css/Admin/Race/trash-2-20.svg" alt="Delete"/>
                     </td>
                 </tr>               

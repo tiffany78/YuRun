@@ -17,7 +17,8 @@ CREATE TABLE Race (
     title VARCHAR(50) NOT NULL,
     start_date DATE NOT NULL,
     time TIME NOT NULL,
-    distance DECIMAL (10,2) NOT NULL
+    distance DECIMAL (10,2) NOT NULL,
+    description VARCHAR(300)
 );
 
 CREATE TABLE Activity (
