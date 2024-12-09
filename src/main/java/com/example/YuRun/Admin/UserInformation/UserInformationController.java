@@ -28,12 +28,7 @@ public class UserInformationController {
     //     return "/Admin/UserInformationAdmin/index"; 
     // }
 
-    @GetMapping("/info1")
-    public String getSetoranMembers() {
-        return "/Admin/UserInformation/index2"; 
-    }
-
-    @GetMapping("/info2")
+    @GetMapping("/userInfo")
     public String index() {
         return "/Admin/UserInformation/index"; 
     }
