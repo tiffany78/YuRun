@@ -8,20 +8,21 @@ body {
 }
 .containerBody{
     display: grid;
-    grid-template-rows: auto auto auto auto;
-    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 100px 60px auto;
+    grid-template-columns: 1fr;
     grid-template-areas: 
-        "navbar navbar"
-        "frame1 frame2"
-        "frame3 frame3"
-        "footer footer";
+        "navbar"
+        "header"
+        "content";
     min-height: 100vh;
     min-width: 100vw;
     overflow: auto;
-    justify-content: center;
-    align-items: center;
+    justify-content: flex-start;
+    align-items: flex-start;
+    row-gap: 20px;
 }    
 .navbar {
+    grid-area: navbar;
     position: fixed; /* Tetap di posisi atas */
     top: 0; /* Pastikan di bagian paling atas */
     left: 0; /* Mulai dari kiri layar */
@@ -56,7 +57,7 @@ body {
     font-size: 16px;
     font-weight: 500;
 }
-.home{
+.page{
     color: var(--primary-color-500, #ff5722);
     font-weight: 1000;
 }
@@ -70,31 +71,102 @@ body {
     font-weight: 600;
     column-gap: 20px;
 }
-/* BAGIAN FRAME 1 */
-.frame1 {
-    grid-area: frame1;
-    border-radius: 10px;
-    margin-top: 90px;
-}
-/* BAGIAN FRAME 2 */
-.frame2 {
-    grid-area: frame2;
-    border-radius: 10px;
-    margin-top: 90px;
-}
-
-#container {
-  width: 500px; 
-  height: 400px; 
-  margin: 10px auto;
+.add {
+    background: #ff5722;
+    border-radius: 16px;
+    width: 179px;
+    height: 50px;
+    color: #ffffff;
+    text-align: left;
+    font-family: "Roboto-Regular", sans-serif;
+    font-size: 20px;
+    line-height: 16px;
+    font-weight: 400;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
-/* BAGIAN FRAME 3 */
-.frame3 {
-    grid-area: frame3;
-    padding: 20px;
-    width: 100%;
-    box-sizing: border-box;
+/* BAGIAN HEADER */
+.header{
+    grid-area: header;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    width: 95%;
+}
+.filter{
+    display: flex;
+    flex-direction: row;
+    justify-content: left;
+    align-items: center;
+}
+.pagination {
+  display: inline-block;
+}
+.pagination a {
+  color: black;
+  float: left;
+  padding: 8px 16px;
+  text-decoration: none;
+}
+.pagination a.active {
+  background-color: #4CAF50;
+  color: white;
+}
+.pagination a:hover:not(.active) {background-color: #ddd;}
+
+.search{
+    padding-right: 10px;
+    display: flex;
+    flex-direction: row;
+    gap: 10px;
+    align-items: center;
+    justify-content: flex-start;
+    flex-shrink: 0;
+    position: relative;
+    overflow: hidden;
+}
+.search-bar {
+    flex-shrink: 0;
+    width: 24px;
+    height: 24px;
+    position: relative;
+    overflow: visible;
+}
+.search-race{
+    border-radius: 10px;
+    border-style: solid;
+    border-color: var(--grey-40, #d0d0d0);
+    border-width: 1px;
+    flex-shrink: 0;
+    width: 350px;
+    height: 30px;
+    position: relative;
+    padding-left: 10px;
+    padding-right: 20px;
+    background: none;
+}
+.dropdown{
+    border-radius: 10px;
+    border-style: solid;
+    border-color: var(--grey-40, #d0d0d0);
+    border-width: 1px;
+    flex-shrink: 0;
+    width: 200px;
+    height: 30px;
+    position: relative;
+    padding-left: 10px;
+    padding-right: 20px;
+    background: none;
+}
+
+/* BAGIAN CONTENT */
+.content{
+    grid-area: content;
+    width: 95%;
+    justify-self: center;
 }
 .text3 {
     color: var(--primary-color-500, #ff5722);
@@ -123,12 +195,11 @@ body {
     border-radius: 10px;
 }
 thead th {
-    background-color: #f02e06;
-    border: 1.5px solid #ffe6d4;
+    background-color: #ffffff;
     padding: 10px;
     text-align: center;
     font-weight: bold;
-    color: #fff4ed;
+    color: #ff5722;
 }
 thead th:first-child {
     border-radius: 10px 0 0 10px;
@@ -141,11 +212,18 @@ thead th:last-child {
     padding: 10px;
     text-align: center;
     font-weight: bold;
-    border: 1.5px solid #ffc8a8;
+    border: 1px solid #ffffff;
+    background-color: #ffc8a8;
 }
 .table_race tbody td:first-child {
     border-radius: 10px 0 0 10px; 
 }
 .table_race tbody td:last-child {
     border-radius: 0 10px 10px 0;
+}
+th a img {
+    width: 16px; /* Ubah sesuai kebutuhan */
+    height: 16px;
+    vertical-align: middle; /* Agar sejajar dengan teks */
+    margin-left: 5px; /* Memberi jarak antara teks dan gambar */
 }

@@ -27,13 +27,11 @@ public class HomeController {
             mapJoin.put(currRace.getTitle(), currRace.getCount());
         }
         model.addAttribute("surveyMap", mapJoin);
-
-        // Map<String, Integer> surveyMap = new LinkedHashMap<>();
-		// surveyMap.put("Java", 40);
-		// surveyMap.put("Dev oops", 25);
-		// surveyMap.put("Python", 20);
-		// surveyMap.put(".Net", 15);
-		// model.addAttribute("surveyMap", surveyMap);
         return "Admin/HomePage/index";
+    }
+
+    @GetMapping("/displayLineGraph")
+    public String lineChart(){
+        return "Admin/HomePage/lineGraph";
     }
 }
