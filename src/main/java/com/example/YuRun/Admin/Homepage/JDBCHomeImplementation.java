@@ -17,10 +17,10 @@ public class JDBCHomeImplementation implements HomeRepository {
     public List<Race> findRace() {
         LocalDate currDate = LocalDate.now();
         String sql = "SELECT * FROM race WHERE start_date > ? ORDER BY start_date LIMIT 3";
-        return jdbcTemplate.query(sql, this::mapRowToMember, currDate);
+        return jdbcTemplate.query(sql, this::mapRowToRaceHome, currDate);
     } 
 
-    private Race mapRowToMember(ResultSet resultSet, int rowNum) throws SQLException {
+    private Race mapRowToRaceHome(ResultSet resultSet, int rowNum) throws SQLException {
         return new Race(
             resultSet.getInt("id_race"),
             resultSet.getString("title"),

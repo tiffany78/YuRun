@@ -80,7 +80,36 @@
         });
         </script>   
     </div>
-    <div class="frame2">frame2</div>
+    <div class="frame2">
+        <script src="https://code.highcharts.com/highcharts.js"></script>
+        <script src="https://code.highcharts.com/highcharts-3d.js"></script>
+        <script src="https://code.highcharts.com/modules/exporting.js"></script>
+        <div id="container2" style="height: 400px"></div>
+        <script th:inline="javascript">
+        Highcharts.chart('container2',{
+        chart: {
+            type: 'line',
+            width: 500,
+            backgroundColor: null
+        },
+        title: {
+            text: 'Line chart'
+        },
+        xAxix: {
+            categories: ["C","Python","Java","C#"]
+        },
+        tooltip: {
+            formatter: function(){
+                console.log(this);
+            }
+        },
+        series: [{
+            data: [40,80,50,40]
+        }]
+        });
+        </script>
+        <script src="https://canvasjs.com/assets/script/canvasjs.min.js"></script>
+    </div>
     <div class="frame3">
         <div class="text3">
             <a href="#">Time Line Race</a>
@@ -106,27 +135,5 @@
             </tbody>
         </table>
     </div>
-    <footer class="footer">
-        <div class="content2">
-            <div class="logo">
-              <img class="logo3" src="/css/LandingPage/logo3.svg" />
-              <div class="fit-life-studio">FitLife Studio</div>
-            </div>
-            <div class="links">
-              <div class="about2">About</div>
-              <div class="contact">Contact</div>
-            </div>
-            <img class="social" src="/css/LandingPage/social0.svg" />
-        </div>
-        <div class="divider"></div>
-        <div class="credits">
-            <div class="row">
-              <div class="text-1">© 2024 Shipon. All rights reserved.</div>
-              <div class="text-2">Privacy Policy</div>
-              <div class="text-3">Terms of Service</div>
-              <div class="text-4">Cookies Settings</div>
-            </div>
-          </div>
-    </footer>
 </body>
 </html>
