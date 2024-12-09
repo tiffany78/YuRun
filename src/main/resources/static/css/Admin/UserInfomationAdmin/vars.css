@@ -1,0 +1,120 @@
+/* Figma Styles of your File */
+:root {
+  /* Colors */
+  --primary-color-50: #fff4ed;
+  --primary-color-100: #ffe6d4;
+  --primary-color-200: #ffc8a8;
+  --primary-color-300: #ffa270;
+  --primary-color-400: #ff6f37;
+  --primary-color-500: #ff5722;
+  --primary-color-600: #f02e06;
+  --primary-color-700: #c71e07;
+  --primary-color-800: #9e1a0e;
+  --primary-color-900: #7f190f;
+  --primary-color-950: #450805;
+  --neutral-colors-50: #f6f6f6;
+  --neutral-colors-100: #e7e7e7;
+  --neutral-colors-200: #d1d1d1;
+  --neutral-colors-300: #b0b0b0;
+  --neutral-colors-400: #888888;
+  --neutral-colors-500: #6d6d6d;
+  --neutral-colors-600: #5d5d5d;
+  --neutral-colors-700: #4f4f4f;
+  --neutral-colors-800: #454545;
+  --neutral-colors-900: #3d3d3d;
+  --neutral-colors-950: #141414;
+
+  /* Fonts */
+  --text-style-desktop-headings-display-1-font-family: Roboto-Bold, sans-serif;
+  --text-style-desktop-headings-display-1-font-size: 60px;
+  --text-style-desktop-headings-display-1-line-height: 100%;
+  --text-style-desktop-headings-display-1-font-weight: 700;
+  --text-style-desktop-headings-display-1-font-style: normal;
+  --text-style-desktop-headings-heading-1-font-family: Roboto-Bold, sans-serif;
+  --text-style-desktop-headings-heading-1-font-size: 48px;
+  --text-style-desktop-headings-heading-1-line-height: 100%;
+  --text-style-desktop-headings-heading-1-font-weight: 700;
+  --text-style-desktop-headings-heading-1-font-style: normal;
+  --text-style-desktop-headings-heading-2-font-family: Roboto-Bold, sans-serif;
+  --text-style-desktop-headings-heading-2-font-size: 38px;
+  --text-style-desktop-headings-heading-2-line-height: 100%;
+  --text-style-desktop-headings-heading-2-font-weight: 700;
+  --text-style-desktop-headings-heading-2-font-style: normal;
+  --text-style-desktop-headings-heading-3-font-family: Roboto-SemiBold,
+    sans-serif;
+  --text-style-desktop-headings-heading-3-font-size: 30px;
+  --text-style-desktop-headings-heading-3-line-height: 100%;
+  --text-style-desktop-headings-heading-3-font-weight: 600;
+  --text-style-desktop-headings-heading-3-font-style: normal;
+  --text-style-desktop-headings-heading-4-font-family: Roboto-Medium, sans-serif;
+  --text-style-desktop-headings-heading-4-font-size: 24px;
+  --text-style-desktop-headings-heading-4-line-height: 100%;
+  --text-style-desktop-headings-heading-4-font-weight: 500;
+  --text-style-desktop-headings-heading-4-font-style: normal;
+  --text-style-desktop-headings-lead-paragraph-font-family: Lora-Medium,
+    sans-serif;
+  --text-style-desktop-headings-lead-paragraph-font-size: 20px;
+  --text-style-desktop-headings-lead-paragraph-line-height: 100%;
+  --text-style-desktop-headings-lead-paragraph-font-weight: 500;
+  --text-style-desktop-headings-lead-paragraph-font-style: normal;
+  --text-style-desktop-headings-button-link-font-family: Lora-SemiBold,
+    sans-serif;
+  --text-style-desktop-headings-button-link-font-size: 16px;
+  --text-style-desktop-headings-button-link-line-height: 100%;
+  --text-style-desktop-headings-button-link-font-weight: 600;
+  --text-style-desktop-headings-button-link-font-style: normal;
+  --text-style-desktop-headings-paragraph-font-family: Lora-Regular, sans-serif;
+  --text-style-desktop-headings-paragraph-font-size: 16px;
+  --text-style-desktop-headings-paragraph-line-height: 100%;
+  --text-style-desktop-headings-paragraph-font-weight: 400;
+  --text-style-desktop-headings-paragraph-font-style: normal;
+  --text-style-desktop-headings-footnote-font-family: Lora-Regular, sans-serif;
+  --text-style-desktop-headings-footnote-font-size: 12px;
+  --text-style-desktop-headings-footnote-line-height: 100%;
+  --text-style-desktop-headings-footnote-font-weight: 400;
+  --text-style-desktop-headings-footnote-font-style: normal;
+  --text-style-mobile-headings-display-1-font-family: Roboto-Bold, sans-serif;
+  --text-style-mobile-headings-display-1-font-size: 48px;
+  --text-style-mobile-headings-display-1-line-height: 100%;
+  --text-style-mobile-headings-display-1-font-weight: 700;
+  --text-style-mobile-headings-display-1-font-style: normal;
+  --text-style-mobile-headings-heading-1-font-family: Roboto-Bold, sans-serif;
+  --text-style-mobile-headings-heading-1-font-size: 38px;
+  --text-style-mobile-headings-heading-1-line-height: 100%;
+  --text-style-mobile-headings-heading-1-font-weight: 700;
+  --text-style-mobile-headings-heading-1-font-style: normal;
+  --text-style-mobile-headings-heading-2-font-family: Roboto-SemiBold,
+    sans-serif;
+  --text-style-mobile-headings-heading-2-font-size: 30px;
+  --text-style-mobile-headings-heading-2-line-height: 100%;
+  --text-style-mobile-headings-heading-2-font-weight: 600;
+  --text-style-mobile-headings-heading-2-font-style: normal;
+  --text-style-mobile-headings-heading-3-font-family: Roboto-Medium, sans-serif;
+  --text-style-mobile-headings-heading-3-font-size: 24px;
+  --text-style-mobile-headings-heading-3-line-height: 100%;
+  --text-style-mobile-headings-heading-3-font-weight: 500;
+  --text-style-mobile-headings-heading-3-font-style: normal;
+  --text-style-mobile-headings-heading-4-font-family: Roboto-Medium, sans-serif;
+  --text-style-mobile-headings-heading-4-font-size: 20px;
+  --text-style-mobile-headings-heading-4-line-height: 120%;
+  --text-style-mobile-headings-heading-4-font-weight: 500;
+  --text-style-mobile-headings-heading-4-font-style: normal;
+  --text-style-mobile-headings-button-link-font-family: Lora-SemiBold,
+    sans-serif;
+  --text-style-mobile-headings-button-link-font-size: 16px;
+  --text-style-mobile-headings-button-link-line-height: 100%;
+  --text-style-mobile-headings-button-link-font-weight: 600;
+  --text-style-mobile-headings-button-link-font-style: normal;
+  --text-style-mobile-headings-paragraph-font-family: Lora-Regular, sans-serif;
+  --text-style-mobile-headings-paragraph-font-size: 16px;
+  --text-style-mobile-headings-paragraph-line-height: 100%;
+  --text-style-mobile-headings-paragraph-font-weight: 400;
+  --text-style-mobile-headings-paragraph-font-style: normal;
+  --text-style-mobile-headings-footnote-font-family: Lora-Regular, sans-serif;
+  --text-style-mobile-headings-footnote-font-size: 12px;
+  --text-style-mobile-headings-footnote-line-height: 100%;
+  --text-style-mobile-headings-footnote-font-weight: 400;
+  --text-style-mobile-headings-footnote-font-style: normal;
+
+  /* Effects */
+}
