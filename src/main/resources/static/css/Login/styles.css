@@ -1,0 +1,105 @@
+body {
+    margin: 0;
+    padding: 0;
+    min-height: 100vh;
+    min-width: 100vw;
+    display: flex;
+    align-items: center; /* Center secara vertikal jika dibutuhkan */
+    justify-content: center; /* Center secara horizontal jika dibutuhkan */
+    grid-template-rows: auto auto auto;
+    grid-template-columns: auto;
+    grid-template-areas: 
+    "header"
+    "form"
+    "signup";
+    flex-direction: column;
+    row-gap: 20px;
+    background-image: url("/images/login.png");
+}
+
+.header {
+    grid-area: header;
+    color: var(--primary-primary900, #8a2100);
+    text-align: center;
+    font-family: "Poppins-SemiBold", sans-serif;
+    font-size: 32px;
+    line-height: 100%;
+    letter-spacing: 0.01em;
+    font-weight: 600;
+}
+
+.form {
+    grid-area: form;
+    display: flex;
+    align-items: center; /* Center secara vertikal jika dibutuhkan */
+    justify-content: center; /* Center secara horizontal jika dibutuhkan */
+    grid-template-rows: auto auto auto;
+    grid-template-columns: auto;
+    grid-template-areas: 
+    "email"
+    "password"
+    "button";
+    flex-direction: column;
+    row-gap: 30px;
+}
+.email {
+    grid-area: email;
+}
+.password {
+    grid-area: password;
+}
+.label {
+  color: var(--primary-primary900, #8a2100);
+  text-align: left;
+  font-family: "Roboto-Regular", sans-serif;
+  font-size: 16px;
+  line-height: 100%;
+  letter-spacing: 0.01em;
+  font-weight: 400;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+}
+.input {
+  background: var(--secondary-secondary100, #e7ebef);
+  border-radius: 12px;
+  border-style: solid;
+  border-color: var(--secondary-secondary100, #e7ebef);
+  border-width: 1px;
+  flex-shrink: 0;
+  width: 400px;
+  height: 48px;
+  position: relative;
+}
+.button {
+    grid-area: button;
+    background: var(--primary-primary, #ff5722);
+    border-radius: 12px;
+    padding: 16px 0px 16px 0px;
+    align-self: stretch;
+    flex-shrink: 0;
+    color: var(--secondary-secondary100, #e7ebef);
+    text-align: center;
+    font-family: "Poppins-Regular", sans-serif;
+    font-size: 20px;
+    line-height: 100%;
+    letter-spacing: 0.01em;
+    font-weight: 400;
+}
+
+.signup {
+    grid-area: signup;
+    color: var(--secondary-secondary1000, #323f49);
+    font-family: "Roboto-Regular", sans-serif;
+    font-size: 18px;
+    line-height: 160%;
+    letter-spacing: 0.01em;
+    font-weight: 400;
+}
+.text2 {
+    color: var(--primary-primary1000, #651800);
+    font-family: "Roboto-Bold", sans-serif;
+    font-weight: 700;
+    text-decoration: underline;
+}
