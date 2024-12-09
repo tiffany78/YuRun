@@ -58,7 +58,7 @@ public class LoginController {
             if (realPassword.equals(password)) { // Password benar
                 session.setAttribute("username", pengguna.get(0).getName());
                 if (pengguna.get(0).getIsadmin().equals("1")) { // Jika admin
-                    return "redirect:/";
+                    return "redirect:/admin";
                 } else { // User biasa
                     return "redirect:/user/home";
                 }

@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -21,7 +21,7 @@
             <a>Race</a>
         </div>
         <button class="button">
-            <div class="buttonText">Join Now</div>
+            <a class="buttonText" th:href="@{/login}">Join Now</a>
         </button>
     </nav>
     <div class="frame1">
@@ -32,7 +32,7 @@
                 Their guidelines recommend 150 minutes of moderate-intensity aerobic
                 physical activity each week or vigorous-intensity aerobic
             </div>
-            <button class="getStarted">Get Started <img class="chevron-right" src="/css/LandingPage/chevron-right0.svg" /></button>
+            <a class="getStarted" th:href="@{/login}">Get Started <img class="chevron-right" src="/css/LandingPage/chevron-right0.svg" /></a>
         </div>
         <div class="right">
             <img class="image" src="/images/image-10.png"/>
