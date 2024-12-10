@@ -8,18 +8,17 @@ body {
 }
 .containerBody{
     display: grid;
-    grid-template-rows: 100px 60px auto;
+    grid-template-rows: 60px 103px auto;
     grid-template-columns: 1fr;
     grid-template-areas: 
         "navbar"
         "header"
-        "content";
+        "contentBody";
     min-height: 100vh;
     min-width: 100vw;
     overflow: auto;
     justify-content: flex-start;
     align-items: flex-start;
-    row-gap: 20px;
 }    
 .navbar {
     grid-area: navbar;
@@ -57,10 +56,15 @@ body {
     font-size: 16px;
     font-weight: 500;
 }
-.page{
-    color: var(--primary-color-500, #ff5722);
-    font-weight: 1000;
+.textNavbar a {
+  text-decoration: none;
+  color: var(--neutral-colors-950, #141414);
 }
+a.page{
+  color: var(--primary-color-500, #ff5722);
+  font-weight: 1000;
+}
+
 .button{
     display: flex;
     align-items: center;
@@ -96,6 +100,7 @@ body {
     justify-content: space-between;
     align-items: center;
     width: 95%;
+    height: 103px;
 }
 .filter{
     display: flex;
@@ -164,8 +169,8 @@ body {
 }
 
 /* BAGIAN CONTENT */
-.content{
-    grid-area: content;
+.contentBody{
+    grid-area: contentBody;
     width: 95%;
     justify-self: center;
 }
@@ -188,7 +193,7 @@ body {
 
 .table_race {
     width: 100%;
-    margin: 20px auto;
+    /* margin: 20px auto; */
     text-align: center;
     font-family: "Roboto-Medium", sans-serif;
     border-spacing: 0;

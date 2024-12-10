@@ -19,8 +19,12 @@
             <a class="page">Race</a>
         </div>
         <div class="button">
-            <img src="/css/Admin/HomePage/account-circle0.svg"/>
-            <img src="/css/Admin/HomePage/logout.svg"/>
+            <a>
+                <img src="/css/Admin/HomePage/account-circle0.svg"/>
+            </a>
+            <a th:href="@{/login/logout}">
+                <img src="/css/Admin/HomePage/logout.svg"/>
+            </a>
         </div>
     </nav>
     <div class="content">

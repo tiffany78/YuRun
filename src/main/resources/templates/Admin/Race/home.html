@@ -14,13 +14,17 @@
             <a class="yurun">YuRun</a>
         </div>
         <div class="textNavbar">
-            <a>Home</a>
-            <a>User Information</a>
-            <a class="page">Race</a>
+            <a th:href="@{/admin}">Home</a>
+            <a th:href="@{/admin/userInfo}">User Information</a>
+            <a th:href="@{/admin/race}" class="page">Race</a>
         </div>
         <div class="button">
-            <img src="/css/Admin/HomePage/account-circle0.svg"/>
-            <img src="/css/Admin/HomePage/logout.svg"/>
+            <a>
+                <img src="/css/Admin/HomePage/account-circle0.svg"/>
+            </a>
+            <a th:href="@{/login/logout}">
+                <img src="/css/Admin/HomePage/logout.svg"/>
+            </a>
         </div>
     </nav>
     <div class="header">
@@ -51,10 +55,9 @@
         </div>
         <a class="add" th:href="@{/admin/addRace}">+ Add Race</a>
     </div>
-    <div class="content">
+    <div class="contentBody">
         <div class="text3">
             <a href="#">Time Line Race</a>
-            <a href="#">Show All</a>
         </div>
         <hr>
         <table class="table_race">

@@ -37,7 +37,7 @@ public class LoginController {
                 resultSet.getString("name"),
                 resultSet.getString("email"),
                 resultSet.getString("password"),
-                resultSet.getBoolean("isadmin"),
+                resultSet.getInt("isadmin"),
                 resultSet.getBoolean("status")
         );
     }
@@ -57,7 +57,7 @@ public class LoginController {
             String realPassword = pengguna.get(0).getPassword();
             if (realPassword.equals(password)) { // Password benar
                 session.setAttribute("username", pengguna.get(0).getName());
-                if (pengguna.get(0).getIsadmin().equals("1")) { // Jika admin
+                if (pengguna.get(0).getIsadmin() == 1) { // Jika admin
                     return "redirect:/admin";
                 } else { // User biasa
                     return "redirect:/member";
@@ -67,5 +67,11 @@ public class LoginController {
                 return "Login/index";
             }
         }
+    }
+
+    @GetMapping("/logout")
+    public String logout(HttpSession session){
+        session.invalidate();
+        return "redirect:/login";
     }
 }
