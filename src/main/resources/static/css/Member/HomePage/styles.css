@@ -1,0 +1,372 @@
+/* CSS MEMBER */
+html, body {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+}
+
+.containerBody {
+  height: 100vh;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  grid-template-rows: 50px auto auto auto;
+  grid-template-columns: auto auto auto;
+  grid-template-areas: 
+      ". . addActivity"
+      "graph1 graph2 yourRace"
+      "activity activity upRace"
+      "footer footer footer";
+  padding-top: 80px; /* Jika tetap diperlukan */
+}
+
+/* BAGIAN NAVBAR */
+.navbar {
+  position: fixed; /* Tetap di posisi atas */
+  top: 0; /* Pastikan di bagian paling atas */
+  left: 0; /* Mulai dari kiri layar */
+  width: 100%; /* Penuhi lebar layar */
+  z-index: 1000; /* Letakkan di atas elemen lain */
+  background: var(--background-color-primary, #ffffff); /* Pastikan ada warna latar */
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  padding: 10px 20px; /* Berikan sedikit padding */
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Tambahkan bayangan untuk kesan floating */
+  height: 40px;
+}
+.logo{
+  display: flex;
+  width: 220px;
+}
+.yurun{
+  display: flex;
+  color: var(--neutral-colors-950, #141414);
+  font-family: "Roboto-Medium", sans-serif;
+  font-size: 21px;
+  line-height: 120%;
+  font-weight: 500;
+  align-items: center;
+}
+.textNavbar{
+  display: flex;
+  gap: 30px;
+  color: var(--neutral-colors-950, #141414);
+  font-family: "Roboto-Medium", sans-serif;
+  font-size: 16px;
+  font-weight: 500;
+}
+.page{
+  color: var(--primary-color-500, #ff5722);
+  font-weight: 1000;
+}
+.button{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: "Roboto-SemiBold", sans-serif;
+  font-size: 16px;
+  line-height: 150%;
+  font-weight: 600;
+  column-gap: 20px;
+}
+/* BUTTON ADD ACTIVITY */
+.addActivity {
+  grid-area: addActivity;
+  display: flex;
+  justify-content: flex-end;
+  margin-right: 20px;
+}
+.buttonAdd{
+  background: var(--primary-color-500, #ff5722);
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  padding: 8px 24px 8px 24px;
+  font-family: "Roboto-SemiBold", sans-serif;
+  font-size: 16px;
+  line-height: 150%;
+  font-weight: 600;
+  border-color: #ff5722;
+}
+.buttonText {
+  text-decoration: none;
+  color: white;
+}
+.graph1 {
+  grid-area: graph1;
+  border-radius: 10px;
+}
+#container {
+  width: 500px; 
+  height: 400px; 
+  margin: 10px auto;
+}
+.graph2 {
+  grid-area: graph2;
+}
+.graph2Header {
+  color: #130f26;
+  font-family: "Roboto-Bold", sans-serif;
+  font-size: 20px;
+  font-weight: 700;
+}
+.listInfo {
+  padding-top: 5px;
+  display: flex;
+  column-gap: 10px;
+}
+.info1{
+  background: var(--warning-warning200, #eda145);
+  border-radius: 91.49px;
+  padding: 23.79px 21.96px 23.79px 21.96px;
+  display: flex;
+  flex-direction: column;
+  gap: 9.15px;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  width: 100.64px;
+  position: relative;
+  box-shadow: 0px 21.04px 38.42px 0px rgba(0, 0, 0, 0.15);
+  transform-origin: 0 0;
+  transform: rotate(0deg) scale(1, 1);
+}
+.info1Text{
+  color: #ffffff;
+  font-family: "Roboto-Bold", sans-serif;
+  line-height: 140%;
+  font-weight: 400;
+  position: relative;
+  transform-origin: 0 0;
+  transform: rotate(0deg) scale(1, 1);
+  letter-spacing: 3px;
+}
+.info2{
+  background: var(--warning-warning200, #28816e);
+  border-radius: 91.49px;
+  padding: 23.79px 21.96px 23.79px 21.96px;
+  display: flex;
+  flex-direction: column;
+  gap: 9.15px;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  width: 100.64px;
+  position: relative;
+  box-shadow: 0px 21.04px 38.42px 0px rgba(0, 0, 0, 0.15);
+  transform-origin: 0 0;
+  transform: rotate(0deg) scale(1, 1);
+}
+.yourRace {
+  grid-area: yourRace;
+}
+.activity{
+  grid-area: activity;
+  padding: 20px;
+  width: 100%;
+  box-sizing: border-box;
+}
+.text3 {
+  color: var(--primary-color-500, #ff5722);
+  text-align: left;
+  font-family: "Roboto-SemiBold", sans-serif;
+  font-size: 21px;
+  line-height: 120%;
+  font-weight: 600;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+}
+.text3 a {
+  text-decoration: none;
+  color: inherit;
+}
+
+.table_race {
+  width: 100%;
+  margin: 20px auto;
+  text-align: center;
+  font-family: "Roboto-Medium", sans-serif;
+  border-spacing: 0;
+  border-collapse: separate; 
+  border-radius: 10px;
+}
+thead th {
+  background-color: #f02e06;
+  border: 1.5px solid #ffe6d4;
+  padding: 10px;
+  text-align: center;
+  font-weight: bold;
+  color: #fff4ed;
+}
+thead th:first-child {
+  border-radius: 10px 0 0 10px;
+}
+
+thead th:last-child {
+  border-radius: 0 10px 10px 0;
+}
+.table_race td {
+  padding: 10px;
+  text-align: center;
+  font-weight: bold;
+  border: 1.5px solid #ffc8a8;
+}
+.table_race tbody td:first-child {
+  border-radius: 10px 0 0 10px; 
+}
+.table_race tbody td:last-child {
+  border-radius: 0 10px 10px 0;
+}
+
+.upRace {
+  grid-area: upRace;
+}
+
+/* BAGIAN FOOTER */
+.footer{
+    grid-area: footer;
+    background: var(--background-color-primary, #ffffff);
+    padding: 10px 20px; /* Berikan sedikit padding */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Tambahkan bayangan untuk kesan floating */
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+.content2 {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  align-self: stretch;
+  flex-shrink: 0;
+  position: relative;
+}
+.logo3 {
+  flex-shrink: 0;
+  width: 22.48px;
+  height: 25px;
+  position: relative;
+  overflow: visible;
+}
+.fit-life-studio {
+  color: var(--primary-color-500, #ff5722);
+  text-align: left;
+  font-family: "Roboto-SemiBold", sans-serif;
+  font-size: 21px;
+  line-height: 120%;
+  font-weight: 600;
+  position: relative;
+  width: 200px;
+}
+.links {
+  display: flex;
+  flex-direction: row;
+  gap: 40px;
+  align-items: flex-start;
+  justify-content: flex-start;
+  flex-shrink: 0;
+  position: relative;
+}
+.about2 {
+  color: var(--neutral-colors-900, #3d3d3d);
+  text-align: left;
+  font-family: "Roboto-Medium", sans-serif;
+  font-size: 16px;
+  line-height: 150%;
+  font-weight: 500;
+  position: relative;
+}
+.contact {
+  color: var(--neutral-colors-900, #3d3d3d);
+  text-align: left;
+  font-family: "Roboto-Medium", sans-serif;
+  font-size: 16px;
+  line-height: 150%;
+  font-weight: 500;
+  position: relative;
+}
+.social {
+  display: flex;
+  flex-direction: row;
+  gap: 12px;
+  align-items: center;
+  justify-content: flex-end;
+  flex-shrink: 0;
+  width: 171px;
+  height: auto;
+  position: relative;
+  overflow: visible;
+}
+.divider {
+  background: var(--neutral-colors-500, #6d6d6d);
+  border-style: solid;
+  border-color: var(--neutral-colors-800, #454545);
+  border-width: 1px;
+  align-self: stretch;
+  flex-shrink: 0;
+  height: 1px;
+  margin: 20px 0;
+} 
+.credits {
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+  align-items: center;
+  justify-content: flex-start;
+  align-self: stretch;
+  flex-shrink: 0;
+  position: relative;
+}
+.row {
+  display: flex;
+  flex-direction: row;
+  gap: 24px;
+  align-items: flex-start;
+  justify-content: flex-start;
+  flex-shrink: 0;
+  position: relative;
+}
+.text-1 {
+  color: var(--neutral-colors-900, #3d3d3d);
+  text-align: left;
+  font-family: "Roboto-Regular", sans-serif;
+  font-size: 14px;
+  line-height: 150%;
+  font-weight: 400;
+  position: relative;
+}
+.text-2 {
+  color: var(--neutral-colors-900, #3d3d3d);
+  text-align: left;
+  font-family: var(--text-small-link-font-family, "Roboto-Regular", sans-serif);
+  font-size: var(--text-small-link-font-size, 14px);
+  line-height: var(--text-small-link-line-height, 150%);
+  font-weight: var(--text-small-link-font-weight, 400);
+  text-decoration: underline;
+  position: relative;
+}
+.text-3 {
+  color: var(--neutral-colors-900, #3d3d3d);
+  text-align: left;
+  font-family: var(--text-small-link-font-family, "Roboto-Regular", sans-serif);
+  font-size: var(--text-small-link-font-size, 14px);
+  line-height: var(--text-small-link-line-height, 150%);
+  font-weight: var(--text-small-link-font-weight, 400);
+  text-decoration: underline;
+  position: relative;
+}
+.text-4 {
+  color: var(--neutral-colors-900, #3d3d3d);
+  text-align: left;
+  font-family: var(--text-small-link-font-family, "Roboto-Regular", sans-serif);
+  font-size: var(--text-small-link-font-size, 14px);
+  line-height: var(--text-small-link-line-height, 150%);
+  font-weight: var(--text-small-link-font-weight, 400);
+  text-decoration: underline;
+  position: relative;
+}

@@ -261,7 +261,7 @@ body {
 .image-3 {
     object-fit: cover;
     padding-left: 5px;
-  }
+}
 .footer{
     grid-area: footer;
     background: var(--background-color-primary, #ffffff);

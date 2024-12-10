@@ -60,7 +60,7 @@ public class LoginController {
                 if (pengguna.get(0).getIsadmin().equals("1")) { // Jika admin
                     return "redirect:/admin";
                 } else { // User biasa
-                    return "redirect:/user/home";
+                    return "redirect:/member";
                 }
             } else { // Password salah
                 model.addAttribute("error", "Email or password is wrong");
