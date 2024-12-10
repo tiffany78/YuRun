@@ -1,126 +1,140 @@
-.register,
-.register * {
-  box-sizing: border-box;
+/* body {
+    margin: 0;
+    padding: 0;
+    min-height: 100vh;
+    min-width: 100vw;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    grid-template-rows: auto auto auto;
+    grid-template-columns: auto;
+    grid-template-areas: 
+    "header"
+    "form"
+    "signup";
+    flex-direction: column;
+    row-gap: 20px;
+    background-image: url("/images/register.png") center/cover no-repeat;
+} */
+
+body {
+    margin: 0;
+    padding: 0;
+    min-height: 100vh;
+    min-width: 100vw;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    row-gap: 20px;
+    position: relative; /* Dibutuhkan untuk posisi pseudo-element */
 }
-.register {
-  background: linear-gradient(to left, #cfcece, #cfcece);
-  height: 1024px;
-  position: relative;
-  overflow: hidden;
+
+body::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: url('/images/register.png') center/cover no-repeat;
+    opacity: 0.5; /* Atur transparansi di sini */
+    z-index: -1; /* Agar berada di belakang konten */
 }
-.already-have-an-account-sign-in {
-  text-align: center;
-  font-family: "-", sans-serif;
-  font-size: 18px;
-  line-height: 160%;
-  letter-spacing: 0.01em;
-  font-weight: 400;
-  position: absolute;
-  left: 582px;
-  top: 731px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+.header {
+    grid-area: header;
+    color: var(--primary-primary900, #8a2100);
+    text-align: center;
+    font-family: "Poppins-SemiBold", sans-serif;
+    font-size: 32px;
+    line-height: 100%;
+    letter-spacing: 0.01em;
+    font-weight: 600;
 }
-.already-have-an-account-sign-in-span {
-  color: var(--secondary-secondary800, #637d92);
-  font-family: "Roboto-Regular", sans-serif;
-  font-size: 18px;
-  line-height: 160%;
-  letter-spacing: 0.01em;
-  font-weight: 400;
+.form {
+    grid-area: form;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    grid-template-rows: auto auto auto auto auto;
+    grid-template-columns: auto;
+    grid-template-areas: 
+    "full-name"
+    "email"
+    "password"
+    "confirm-password"
+    "button";
+    flex-direction: column;
+    row-gap: 30px;
 }
-.already-have-an-account-sign-in-span2 {
-  color: var(--primary-primary900, #8a2100);
-  font-family: "Roboto-Bold", sans-serif;
-  font-size: 18px;
-  line-height: 160%;
-  letter-spacing: 0.01em;
-  font-weight: 700;
-  text-decoration: underline;
+.fullname {
+    grid-area: name;
 }
-.fieldset {
-  display: flex;
-  flex-direction: column;
-  gap: 24px;
-  align-items: flex-end;
-  justify-content: center;
-  width: 600px;
-  position: absolute;
-  left: 418px;
-  top: 265px;
+.email {
+    grid-area: email;
 }
-.input {
-  display: flex;
-  flex-direction: column;
-  gap: 8px;
-  align-items: flex-start;
-  justify-content: flex-start;
-  align-self: stretch;
-  flex-shrink: 0;
-  position: relative;
+.password {
+    grid-area: password;
+}
+.confirm-password {
+    grid-area: password;
 }
 .label {
-  color: var(--primary-primary900, #8a2100);
-  text-align: left;
-  font-family: "Poppins-Regular", sans-serif;
-  font-size: 16px;
-  line-height: 100%;
-  letter-spacing: 0.01em;
-  font-weight: 400;
-  position: relative;
-  display: flex;
-  align-items: center;
-  justify-content: flex-start;
+    color: var(--primary-primary900, #8a2100);
+    text-align: left;
+    font-family: "Roboto-Regular", sans-serif;
+    font-size: 16px;
+    line-height: 100%;
+    letter-spacing: 0.01em;
+    font-weight: 400;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    margin-bottom: 10px; /* Tambahkan jarak antara label dan input */
 }
-.input2 {
-  background: var(--secondary-secondary100, #e7ebef);
-  border-radius: 12px;
-  border-style: solid;
-  border-color: var(--secondary-secondary100, #e7ebef);
-  border-width: 1px;
-  flex-shrink: 0;
-  width: 600px;
-  height: 48px;
-  position: relative;
+
+.input input {
+    background: var(--secondary-secondary100, #e7ebef);
+    border-radius: 12px;
+    border: 1px solid var(--secondary-secondary100, #e7ebef);
+    width: 350px;
+    height: 50px;
+    padding: 0 12px;
+    box-sizing: border-box;
+    font-size: 16px;
+    color: #333;
+    outline: none;
 }
-.primary-button {
-  background: var(--primary-primary, #ff5722);
-  border-radius: 12px;
-  padding: 16px 0px 16px 0px;
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  justify-content: space-between;
-  align-self: stretch;
-  flex-shrink: 0;
-  position: relative;
+  
+.input input:focus {
+    border-color: var(--secondary-secondary200, #c3c9cf);
+    background: var(--secondary-secondary50, #ffffff);
 }
-.sign-in {
-  color: var(--secondary-secondary100, #e7ebef);
-  text-align: center;
-  font-family: "Poppins-Regular", sans-serif;
-  font-size: 20px;
-  line-height: 100%;
-  letter-spacing: 0.01em;
-  font-weight: 400;
-  position: relative;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  
+.button button {
+    background: var(--primary-primary, #ff5722);
+    border: 1px solid var(--primary, #333);
+    color: var(--primary, #333);
+    border-radius: 12px;
+    width: 350px;
+    height: 50px;
+    font-size: 16px;
+    cursor: pointer;
+    text-align: center;
 }
-.welcome-to-yu-run {
-  color: var(--primary-primary900, #8a2100);
-  text-align: center;
-  font-family: "Poppins-SemiBold", sans-serif;
-  font-size: 32px;
-  line-height: 100%;
-  letter-spacing: 0.01em;
-  font-weight: 600;
-  position: absolute;
-  left: 418px;
-  top: 203.5px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+.signin {
+    grid-area: signin;
+    color: var(--secondary-secondary1000, #323f49);
+    font-family: "Roboto-Regular", sans-serif;
+    font-size: 18px;
+    line-height: 160%;
+    letter-spacing: 0.01em;
+    font-weight: 400;
+}
+.text2 {
+    color: var(--primary-primary1000, #651800);
+    font-family: "Roboto-Bold", sans-serif;
+    font-weight: 700;
+    text-decoration: underline;
 }
