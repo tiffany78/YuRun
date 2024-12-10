@@ -19,17 +19,17 @@ public class UserInformationController {
         this.userInformationRepository = userInformationRepository;
     }
 
-    // @GetMapping
-    // public String getSetoranMembers(@RequestParam(value = "filter", required = false) String filter, Model model) {
-    //     model.addAttribute("filter", filter);
-    //     List<User> setoranList = userInformationRepository.findAll(filter);
-
-    //     model.addAttribute("setoranList", setoranList);
-    //     return "/Admin/UserInformationAdmin/index"; 
-    // }
-
     @GetMapping("/userInfo")
-    public String index() {
-        return "/Admin/UserInformation/index"; 
+    public String index(@RequestParam(value = "filter", required = false) String filter, Model model) {
+        List<User> userList = userInformationRepository.findAll(filter);
+        model.addAttribute("userList", userList);
+        return "/Admin/UserInformation/index"; // Ganti dengan path sesuai template Anda
+    }
+
+    @GetMapping("/updateStatus")
+    public String updateStatus(@RequestParam("name") String name, Model model) {
+        boolean newStatus = false; // Set to inactive
+        userInformationRepository.updateUserStatusByName(name, newStatus);
+        return "redirect:/admin/userInfo";
     }
 }

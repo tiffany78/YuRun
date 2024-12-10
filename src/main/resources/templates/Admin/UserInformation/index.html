@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,6 +8,7 @@
     <link rel="stylesheet" href="/css/Admin/UserInformation/vars.css">
     <link rel="stylesheet" href="/css/Admin/UserInformation/styles.css">
 </head>
+
 <body class="container">
     <nav class="navbar">
         <div class="logo">
@@ -15,12 +17,12 @@
         </div>
         <div class="textNavbar">
             <a class="home">Home</a>
-            <a>User Information</a>
-            <a>Race</a>
+            <a class="userInformation">User Information</a>
+            <a class="race">Race</a>
         </div>
         <div class="button">
-            <img src="/css/Admin/HomePage/account-circle0.svg"/>
-            <img src="/css/Admin/HomePage/logout.svg"/>
+            <img src="/css/Admin/HomePage/account-circle0.svg" />
+            <img src="/css/Admin/HomePage/logout.svg" />
         </div>
     </nav>
     <div class="content">
@@ -29,33 +31,119 @@
             <div class="search-bar">
                 <img class="search" src="/css/Admin/UserInformation/akar-icons-search0.svg" />
                 <!-- Search nama member -->
-                <input id="filterInput" type="text" name="filter" class="frame" th:value="${filter}" placeholder="Cari Nama Member" />
-              </div>
+                <input id="filterInput" type="text" name="filter" class="frame" th:value="${filter}"
+                    placeholder="Cari Nama Member" />
+            </div>
         </form>
         <!-- ini buat tabel tabel info -->
-        <div class="tabel"></div>
+        <div class="tabel">
+            <table class="member-table">
+                <thead>
+                    <tr>
+                        <th>No</th>
+                        <th>Nama</th>
+                        <th>Email</th>
+                        <th>Status</th>
+                        <th>Aksi</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr th:each="user, stat : ${userList}">
+                        <td th:text="${stat.index + 1}"></td> <!-- Nomor urut -->
+                        <td th:text="${user.name}"></td>
+                        <td th:text="${user.email}"></td>
+                        <td th:text="${user.status ? 'Active' : 'Banned'}"></td>
+                        <td>
+                            <form action="/admin/updateStatus" method="get">
+                                <input type="hidden" name="name" th:value="${user.name}" />
+                                <button type="submit" class="edit-button">
+                                    <img class="edit-icon" src="/css/Admin/UserInformation/vaadin-ban0.svg" alt="Ban">
+                                </button>
+                            </form>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
     </div>
+    <!-- Pop-up Modal -->
+    <div id="confirmModal" class="modal">
+        <div class="modal-content">
+            <p>Are you sure you want to ban <span id="userName"></span>?</p>
+            <div class="modal-buttons">
+                <button id="confirmYes">Yes</button>
+                <button id="confirmNo">No</button>
+            </div>
+        </div>
+    </div>
+
     <footer class="footer">
         <div class="content2">
             <div class="logo">
-              <img class="logo3" src="/css/LandingPage/logo3.svg" />
-              <div class="fit-life-studio">FitLife Studio</div>
+                <img class="logo3" src="/css/LandingPage/logo3.svg" />
+                <div class="fit-life-studio">FitLife Studio</div>
             </div>
             <div class="links">
-              <div class="about2">About</div>
-              <div class="contact">Contact</div>
+                <div class="about2">About</div>
+                <div class="contact">Contact</div>
             </div>
             <img class="social" src="/css/LandingPage/social0.svg" />
         </div>
         <div class="divider"></div>
         <div class="credits">
             <div class="row">
-              <div class="text-1">© 2024 Shipon. All rights reserved.</div>
-              <div class="text-2">Privacy Policy</div>
-              <div class="text-3">Terms of Service</div>
-              <div class="text-4">Cookies Settings</div>
+                <div class="text-1">Â© 2024 Shipon. All rights reserved.</div>
+                <div class="text-2">Privacy Policy</div>
+                <div class="text-3">Terms of Service</div>
+                <div class="text-4">Cookies Settings</div>
             </div>
-          </div>
+        </div>
     </footer>
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            const buttons = document.querySelectorAll(".edit-button");
+
+            buttons.forEach(button => {
+                button.addEventListener("click", (event) => {
+                    // Cegah pengiriman form otomatis
+                    event.preventDefault();
+
+                    const userName = button.closest("tr").querySelector("td:nth-child(2)").textContent;
+
+                    // Update the user name in the modal
+                    document.getElementById("userName").textContent = userName;
+
+                    // Show the modal
+                    const modal = document.getElementById("confirmModal");
+                    modal.style.display = "flex";
+
+                    // If Yes is clicked, send request to update status
+                    document.getElementById("confirmYes").onclick = async () => {
+                        try {
+                            const response = await fetch(`/admin/updateStatus?name=${userName}`, {
+                                method: "GET"
+                            });
+
+                            if (response.ok) {
+                                alert(`User ${userName} is now banned.`);
+                                modal.style.display = "none"; // Hide the modal after action
+                            } else {
+                                alert("Failed to update status.");
+                            }
+                        } catch (error) {
+                            console.error(error);
+                            alert("An error occurred. Please try again.");
+                        }
+                    };
+
+                    // If No is clicked, just hide the modal
+                    document.getElementById("confirmNo").onclick = () => {
+                        modal.style.display = "none";
+                    };
+                });
+            });
+        });
+    </script>
 </body>
+
 </html>
