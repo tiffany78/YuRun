@@ -8,6 +8,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 public class User {
+    private Long id;  // Menambahkan id untuk menyimpan nomor urut
     private String name;
     private String email;
     private String password;
