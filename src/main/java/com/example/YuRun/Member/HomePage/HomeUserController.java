@@ -19,11 +19,19 @@ public class HomeUserController {
     @GetMapping
     public String home(HttpSession session, Model model){
         String user = (String) session.getAttribute("username");
+        if(user == null){
+            user = "Adji Ganteng";
+        }
 
         List<Activity> list = this.repo.getActivity(user);
-        System.out.println(list.size());
         model.addAttribute("activity", list);
-        System.out.println(list.get(0).getDuration());
+        
+        List<RaceUser> list2 = this.repo.getMyRace(user);
+        model.addAttribute("races", list2);
+
+        list2 = this.repo.getUpRace(user);
+        model.addAttribute("upRaces", list2);
+        
         return "Member/HomePage/home";
     }
 }

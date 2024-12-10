@@ -103,7 +103,21 @@
             </div>
         </div>
     </div>
-    <div class="yourRace">yourRace</div>
+    <div class="yourRace">
+        <div class="frame3Header">Your Race</div>
+        <!-- Loop melalui aktivitas -->
+        <div th:each="race : ${races}" class="myRaceList">
+            <div class="headerMyRace" th:text="${race.title}"></div>
+            <div class="infoMyRace">
+                <img src="/css/Member/HomePage/calendar-010.svg">
+                <span th:text="${#dates.format(race.start_date, 'dd/MM/yyyy')}"></span> <!-- Format tanggal -->
+            </div>
+            <div class="infoMyRace">
+                <img src="/css/Member/HomePage/alarm-010.svg">
+                <span th:text="${race.time}"></span> <!-- Format waktu -->
+            </div>
+        </div>
+    </div>    
     <div class="activity">
         <div class="text3">
             <a href="#">Your New Acitvity</a>
@@ -133,7 +147,21 @@
             </tbody>
         </table>
     </div>
-    <div class="upRace">upRace</div>
+    <div class="upRace">
+        <div class="frame3Header">UpComing Race</div>
+        <!-- Loop melalui aktivitas -->
+        <div th:each="upRace : ${upRaces}" class="myRaceList">
+            <div class="headerMyRace" th:text="${upRace.title}"></div>
+            <div class="infoMyRace">
+                <img src="/css/Member/HomePage/calendar-010.svg">
+                <span th:text="${#dates.format(upRace.start_date, 'dd/MM/yyyy')}"></span> <!-- Format tanggal -->
+            </div>
+            <div class="infoMyRace">
+                <img src="/css/Member/HomePage/alarm-010.svg">
+                <span th:text="${upRace.time}"></span> <!-- Format waktu -->
+            </div>
+        </div>
+    </div>
     <footer class="footer">
         <div class="content2">
             <div class="logo">

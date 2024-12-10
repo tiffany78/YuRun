@@ -2,7 +2,8 @@
 html, body {
   margin: 0;
   padding: 0;
-  height: 100%;
+  height: 100vh;
+  width: 100vw;
 }
 
 .containerBody {
@@ -17,7 +18,8 @@ html, body {
       "graph1 graph2 yourRace"
       "activity activity upRace"
       "footer footer footer";
-  padding-top: 80px; /* Jika tetap diperlukan */
+  padding-top: 80px;
+  width: 100%;
 }
 
 /* BAGIAN NAVBAR */
@@ -162,6 +164,45 @@ html, body {
 }
 .yourRace {
   grid-area: yourRace;
+  margin-right: 20px;
+  display: flex;
+  flex-direction: column;
+  row-gap: 5px;
+}
+.frame3Header {
+  color: #ff5722;
+  font-family: "Roboto-Bold", sans-serif;
+  font-size: 20px;
+  font-weight: 700;
+}
+.myRaceList{
+  border-radius: 24px;
+  border-style: solid;
+  border-color: #8a2100;
+  border-width: 3px;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  align-items: flex-start;
+  justify-content: flex-start;
+  align-self: stretch;
+  flex-shrink: 0;
+  position: relative;
+  font-family: "Roboto-SemiBold", sans-serif;
+}
+.headerMyRace{
+  color: #452f02;
+  text-align: left;
+  font-size: 16px;
+  line-height: 16px;
+  font-weight: 400;
+}
+.infoMyRace{
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
 }
 .activity{
   grid-area: activity;
@@ -225,17 +266,21 @@ thead th:last-child {
 
 .upRace {
   grid-area: upRace;
+  margin-right: 20px;
+  display: flex;
+  flex-direction: column;
+  row-gap: 5px;
 }
 
 /* BAGIAN FOOTER */
 .footer{
-    grid-area: footer;
-    background: var(--background-color-primary, #ffffff);
-    padding: 10px 20px; /* Berikan sedikit padding */
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Tambahkan bayangan untuk kesan floating */
-    display: flex;
-    flex-direction: column;
-    width: 100%;
+  grid-area: footer;
+  background: var(--background-color-primary, #ffffff);
+  padding: 10px 20px; /* Berikan sedikit padding */
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Tambahkan bayangan untuk kesan floating */
+  display: flex;
+  flex-direction: column;
+  height: 110px;
 }
 .content2 {
   display: flex;

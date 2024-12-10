@@ -8,14 +8,11 @@ import lombok.Data;
 
 @Data
 @AllArgsConstructor
-public class Activity {
-    private int id_activity;
-    private int id_user;
-    private String title;
-    private String kind;
+public class RaceUser {
+    private int idRace; 
+    private String title;       
+    private Date start_date; 
+    private Time time;  
     private Double distance;
-    private String duration;
-    private Date date;
-    private Time time;
     private String description;
 }
