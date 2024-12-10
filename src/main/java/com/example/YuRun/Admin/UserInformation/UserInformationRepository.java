@@ -20,21 +20,22 @@ public class UserInformationRepository {
 
     public List<User> findAll(String filter) {
         String sql = """
-            SELECT name, email, status
-            FROM User
-            WHERE 1=1 AND isAdmin = '0'
+            SELECT ROW_NUMBER() OVER () AS row_num, name, email, isAdmin, status
+            FROM Users
+            WHERE isAdmin = '0'
         """;
         List<Object> params = new ArrayList<>();
         if (filter != null && !filter.isEmpty()) {
             sql += " AND name ILIKE ?";
             params.add("%" + filter + "%");
         }
-
+    
         return jdbcTemplate.query(sql, this::mapRowToUserInformation, params.toArray());
     }
-
+    
     private User mapRowToUserInformation(ResultSet resultSet, int rowNum) throws SQLException {
         return new User(
+            resultSet.getLong("row_num"),  // ID urut dimulai dari 1
             resultSet.getString("name"),
             resultSet.getString("email"),
             null, // Password tidak diambil dari query
@@ -43,20 +44,8 @@ public class UserInformationRepository {
         );
     }
 
-    public List<User> findByName(String filter) {
-        String sql = """
-            SELECT name, email, status
-            FROM User
-            WHERE 1=1 AND isAdmin = '0' AND name ILIKE ?
-        """;
-
-        return jdbcTemplate.query(sql, (rs, rowNum) -> {
-            User userMember = new User();
-            userMember.setName(rs.getString("name"));
-            userMember.setEmail(rs.getString("email"));
-            userMember.setStatus(rs.getBoolean("status"));
-
-            return userMember;
-        }, "%" + filter + "%");
+    public int updateUserStatusByName(String name, boolean newStatus) {
+        String sql = "UPDATE Users SET status = ? WHERE name = ?";
+        return jdbcTemplate.update(sql, newStatus, name);
     }
 }

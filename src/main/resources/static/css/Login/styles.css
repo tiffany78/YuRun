@@ -1,4 +1,4 @@
-body {
+/* body {
     margin: 0;
     padding: 0;
     min-height: 100vh;
@@ -14,7 +14,20 @@ body {
     "signup";
     flex-direction: column;
     row-gap: 20px;
-    background-image: url("/images/login.png");
+    background-image: url("/images/login.png") center/cover no-repeat;
+} */
+
+body {
+    margin: 0;
+    padding: 0;
+    min-height: 100vh;
+    min-width: 100vw;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    row-gap: 20px;
+    background: url('/images/login.png') center/cover no-repeat;
 }
 
 .header {

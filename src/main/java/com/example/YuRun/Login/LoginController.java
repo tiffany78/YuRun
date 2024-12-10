@@ -37,7 +37,7 @@ public class LoginController {
                 resultSet.getString("name"),
                 resultSet.getString("email"),
                 resultSet.getString("password"),
-                resultSet.getString("isadmin"),
+                resultSet.getBoolean("isadmin"),
                 resultSet.getBoolean("status")
         );
     }
