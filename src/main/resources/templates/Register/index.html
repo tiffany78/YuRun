@@ -3,10 +3,56 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <link rel="stylesheet" href="/css/Register/vars.css">
+    <link rel="stylesheet" href="/css/Register/styles.css">
+    <title>Register</title>
 </head>
 <body>
-    <div class="register"
+    <div class="header">Welcome to YuRun!</div>
+    <form class="form" action="/register" method="post">
+        <div class="full-name">
+            <div class="label">Full Name</div>
+            <div class="input">
+                <input type="name" name="name" placeholder="Enter your full name" required>
+            </div>
+        </div>
+        <div class="email">
+            <div class="label">Email</div>
+            <div class="input">
+                <input type="email" name="email" placeholder="Enter your email" required>
+            </div>
+        </div>
+        <div class="password">
+            <div class="label">Password</div>
+            <div class="input">
+                <input type="password" name="password" placeholder="Enter your password" required>
+            </div>
+        </div>
+        <div class="confirm-password">
+            <div class="label">Confirm Password</div>
+            <div class="input">
+                <input type="password" name="confirmpassword" placeholder="Enter your password again" required>
+            </div>
+        </div>
+        <div class="button">
+            <button type="submit">Sign Up</button>
+        </div>
+        <!-- Error message section -->
+        <div class="error-message">
+            <p style="color: red; font-size: 14px; text-align: center;">
+                <span th:text="${error}"></span>
+            </p>
+        </div>
+    </form>
+    <div class="signin">
+        <span class="already-have-an-account-sign-in">Already have an account?</span>
+        <a href="/login" class="text2">Sign In</a>
+    </div>
+</body>
+</html>
+
+
+<!-- <div class="register"
     style="
         background: url(register.png) center;
         background-size: cover;
@@ -43,7 +89,4 @@
         </div>
     </div>
     <div class="welcome-to-yu-run">Welcome to YuRun!</div>
-    </div>
-
-</body>
-</html>
+    </div> -->

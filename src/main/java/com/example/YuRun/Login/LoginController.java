@@ -37,7 +37,7 @@ public class LoginController {
                 resultSet.getString("name"),
                 resultSet.getString("email"),
                 resultSet.getString("password"),
-                resultSet.getString("isadmin"),
+                resultSet.getBoolean("isadmin"),
                 resultSet.getBoolean("status")
         );
     }
@@ -57,10 +57,10 @@ public class LoginController {
             String realPassword = pengguna.get(0).getPassword();
             if (realPassword.equals(password)) { // Password benar
                 session.setAttribute("username", pengguna.get(0).getName());
-                if (pengguna.get(0).getIsadmin().equals("1")) { // Jika admin
+                if (pengguna.get(0).isIsadmin()) { // Jika admin
                     return "redirect:/";
                 } else { // User biasa
-                    return "redirect:/user/home";
+                    return "redirect:/";
                 }
             } else { // Password salah
                 model.addAttribute("error", "Email or password is wrong");
