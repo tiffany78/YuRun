@@ -63,6 +63,8 @@ public class LoginController {
                     return "redirect:/member";
                 }
             } else { // Password salah
+
+                
                 model.addAttribute("error", "Email or password is wrong");
                 return "Login/index";
             }
