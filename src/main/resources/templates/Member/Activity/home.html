@@ -69,6 +69,7 @@
                   <th>Duration <a href="#"><img src="/css/Admin/Race/bxs-sort-alt.svg" alt="Sort Icon"></th>
                   <th>Date <a href="#"><img src="/css/Admin/Race/bxs-sort-alt.svg" alt="Sort Icon"></a></th>
                   <th>Time <a href="#"><img src="/css/Admin/Race/bxs-sort-alt.svg" alt="Sort Icon"></a></th>
+                  <th>Action</th>
                 </tr>
             </thead>
             <tbody>
@@ -79,6 +80,12 @@
                     <td th:text="${activity.duration}"></td>
                     <td th:text="${#dates.format(activity.date, 'dd/MM/yyyy')}"></td>
                     <td th:text="${activity.time}"></td>
+                    <td>
+                        <a th:href="@{/member/editActivity/{idActivity}(idActivity=${activity.id_activity})}">
+                            <img class="edit" src="/css/Admin/Race/edit-1-20.svg" alt="Edit"/>
+                        </a>
+                        <img class="delete" src="/css/Admin/Race/trash-2-20.svg" alt="Delete"/>
+                    </td>
                 </tr>                
             </tbody>
         </table>
