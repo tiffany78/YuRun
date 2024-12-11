@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home Race</title>
+    <link rel="stylesheet" href="/css/Member/Activity/style1.css">
+    <link rel="stylesheet" href="/css/Admin/HomePage/vars.css">
+</head>
+<body class="containerBody">
+    <nav class="navbar">
+        <div class="logo">
+            <img src="/css/LandingPage/logo1.svg">
+            <a class="yurun">YuRun</a>
+        </div>
+        <div class="textNavbar">
+            <a th:href="@{/member}">Home</a>
+            <a class="page" th:href="@{/member/activity}">My Activity</a>
+            <a>Race</a>
+        </div>
+        <div class="button">
+            <a>
+                <img src="/css/Admin/HomePage/account-circle0.svg"/>
+            </a>
+            <a th:href="@{/login/logout}">
+                <img src="/css/Admin/HomePage/logout.svg"/>
+            </a>
+        </div>
+    </nav>
+    <div class="header">
+        <div class="filter">
+            <div class="pagination">
+                <a href="#">&laquo;</a>
+                <a href="#">1</a>
+                <a class="active" href="#">2</a>
+                <a href="#">3</a>
+                <a href="#">4</a>
+                <a href="#">5</a>
+                <a href="#">6</a>
+                <a href="#">&raquo;</a>
+            </div>
+            <!--FORM FOR SEARCHING-->
+            <div class="search">
+                <img class="search-bar" src="/css/Admin/Race/search0.svg"/>
+                <form method="GET">
+                  <input type="text" name="filter" th:value="${filter}" placeholder="Search Your Activity" class="search-race" input=this.form.submit()/>
+                </form>
+              </div>
+            <select class="dropdown" id="kind" name="kind" required>
+                <option value="" disabled th:if="${kind == null}" selected>Choose Kind of Activity</option>
+                <option th:value="2023" th:selected="${kind == 'Fun Run'}">Fun Run</option>
+                <option th:value="2024" th:selected="${kind == 'Half Marathon'}">Half Marathon</option>
+                <option th:value="2024" th:selected="${kind == 'Marathon'}">Marathon</option>
+            </select>
+        </div>
+        <a class="add" th:href="@{/member/addActivity}">+ Add Activity</a>
+    </div>
+    <div class="contentBody">
+        <div class="text3">
+            <a href="#">Your Activity</a>
+        </div>
+        <hr>
+        <table class="table_race">
+            <thead>
+                <tr>
+                  <th>Title</th>
+                  <th>Kind</th>
+                  <th>Distance <a href="#"><img src="/css/Admin/Race/bxs-sort-alt.svg" alt="Sort Icon"></a></th>
+                  <th>Duration <a href="#"><img src="/css/Admin/Race/bxs-sort-alt.svg" alt="Sort Icon"></th>
+                  <th>Date <a href="#"><img src="/css/Admin/Race/bxs-sort-alt.svg" alt="Sort Icon"></a></th>
+                  <th>Time <a href="#"><img src="/css/Admin/Race/bxs-sort-alt.svg" alt="Sort Icon"></a></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr th:each="activity : ${activity}">
+                    <td th:text="${activity.title}"></td>
+                    <td th:text="${activity.kind}"></td>
+                    <td th:text="${activity.distance} + ' km'"></td>
+                    <td th:text="${activity.duration}"></td>
+                    <td th:text="${#dates.format(activity.date, 'dd/MM/yyyy')}"></td>
+                    <td th:text="${activity.time}"></td>
+                </tr>                
+            </tbody>
+        </table>
+    </div>
+</body>
+</html>

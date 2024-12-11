@@ -14,8 +14,8 @@ public class AddActivityController {
         return "/AddActivity/index2";
     }
 
-    @GetMapping("/addActivity")
-    public String index(){
-        return "/AddActivity/index";
-    }
+    // @GetMapping("/addActivity")
+    // public String index(){
+    //     return "/AddActivity/index";
+    // }
 }

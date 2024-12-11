@@ -31,7 +31,7 @@ CREATE TABLE Activity (
     date DATE NOT NULL,
     time TIME NOT NULL,
     description VARCHAR(300), 
-    image_path VARCHAR(255),
+    picture BYTEA,
     FOREIGN KEY (id_user) REFERENCES Users (id_user)
 );
 
@@ -39,7 +39,7 @@ CREATE TABLE JoinRace (
     id_race INT, 
     id_user INT,
     time TIME,
-    image_path VARCHAR(255),
+    picture BYTEA,
     status BOOLEAN, 
     FOREIGN KEY (id_race) REFERENCES Race (id_race), 
     FOREIGN KEY (id_user) REFERENCES Users (id_user)
