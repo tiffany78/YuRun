@@ -20,10 +20,11 @@ public class UserInformationController {
     }
 
     @GetMapping("/userInfo")
-    public String index(@RequestParam(value = "filter", required = false) String filter, Model model) {
+    public String index(@RequestParam(value = "filter", required = false, defaultValue = "") String filter, Model model) {
         List<User> userList = userInformationRepository.findAll(filter);
         model.addAttribute("userList", userList);
-        return "/Admin/UserInformation/index"; // Ganti dengan path sesuai template Anda
+        model.addAttribute("filter", filter);
+        return "/Admin/UserInformation/index";
     }
 
     @GetMapping("/updateStatus")

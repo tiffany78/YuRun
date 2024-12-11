@@ -22,6 +22,12 @@ public class JDBCHomeMember implements HomeMemberRepo{
         return activities;
     }
     
+    public List<Activity> getActivityAll(String username){
+        String sql = "SELECT activity.id_activity, activity.id_user, activity.title, activity.kind, activity.distance, activity.date, activity.time, activity.description, activity.duration::text AS duration FROM activity JOIN users ON users.id_user = activity.id_user WHERE users.name ILIKE ? ORDER BY activity.date DESC";
+    
+        List<Activity> activities = jdbcTemplate.query(sql, this::mapRowToActivity, username);
+        return activities;
+    }
 
     private Activity mapRowToActivity(ResultSet resultSet, int rowNum) throws SQLException {
         return new Activity(

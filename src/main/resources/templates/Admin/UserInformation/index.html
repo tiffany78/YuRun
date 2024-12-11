@@ -16,54 +16,76 @@
             <a class="yurun">YuRun</a>
         </div>
         <div class="textNavbar">
-            <a class="home">Home</a>
-            <a class="userInformation">User Information</a>
-            <a class="race">Race</a>
+            <a th:href="@{/admin}">Home</a>
+            <a th:href="@{/admin/userInfo}" class="page">User Information</a>
+            <a th:href="@{/admin/race}">Race</a>
         </div>
         <div class="button">
-            <img src="/css/Admin/HomePage/account-circle0.svg" />
-            <img src="/css/Admin/HomePage/logout.svg" />
+            <a>
+                <img src="/css/Admin/HomePage/account-circle0.svg"/>
+            </a>
+            <a th:href="@{/login/logout}">
+                <img src="/css/Admin/HomePage/logout.svg"/>
+            </a>
         </div>
     </nav>
-    <div class="content">
-        <!-- ini buat semua filter -->
-        <form class="filter">
-            <div class="search-bar">
-                <img class="search" src="/css/Admin/UserInformation/akar-icons-search0.svg" />
-                <!-- Search nama member -->
-                <input id="filterInput" type="text" name="filter" class="frame" th:value="${filter}"
-                    placeholder="Cari Nama Member" />
+    <div class="body">
+        <div class="header">
+            <form class="filter">
+                <div class="pagination">
+                    <a href="#">&laquo;</a>
+                    <a href="#">1</a>
+                    <a class="active" href="#">2</a>
+                    <a href="#">3</a>
+                    <a href="#">4</a>
+                    <a href="#">5</a>
+                    <a href="#">6</a>
+                    <a href="#">&raquo;</a>
+                </div>
+                <!--FORM FOR SEARCHING-->
+                <div class="search">
+                    <img class="search-bar" src="/css/Admin/Race/search0.svg"/>
+                    <form method="GET">
+                      <input id="filterInput" type="text" name="filter" class="search-race" th:value="${filter}" placeholder="Cari Nama Member" />
+                    </form>
+                </div>
+                <select class="dropdown" id="kind" name="kind" required>
+                    <option value="" disabled th:if="${kind == null}" selected>Choose Kind of Status Member</option>
+                    <option th:value="Active" th:selected="${kind == 'Active'}">Active</option>
+                    <option th:value="Disable" th:selected="${kind == 'Disable'}">Disable</option>
+                </select>
+            </form>
+        </div>
+        <div class="contentBody">
+            <div class="tabel">
+                <table class="member-table">
+                    <thead>
+                        <tr>
+                            <th>No</th>
+                            <th>Nama</th>
+                            <th>Email</th>
+                            <th>Status</th>
+                            <th>Aksi</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr th:each="user, stat : ${userList}">
+                            <td th:text="${stat.index + 1}"></td> <!-- Nomor urut -->
+                            <td th:text="${user.name}"></td>
+                            <td th:text="${user.email}"></td>
+                            <td th:text="${user.status ? 'Active' : 'Banned'}"></td>
+                            <td>
+                                <form action="/admin/updateStatus" method="get">
+                                    <input type="hidden" name="name" th:value="${user.name}" />
+                                    <button type="submit" class="edit-button">
+                                        <img class="edit-icon" src="/css/Admin/UserInformation/vaadin-ban0.svg" alt="Ban">
+                                    </button>
+                                </form>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
             </div>
-        </form>
-        <!-- ini buat tabel tabel info -->
-        <div class="tabel">
-            <table class="member-table">
-                <thead>
-                    <tr>
-                        <th>No</th>
-                        <th>Nama</th>
-                        <th>Email</th>
-                        <th>Status</th>
-                        <th>Aksi</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr th:each="user, stat : ${userList}">
-                        <td th:text="${stat.index + 1}"></td> <!-- Nomor urut -->
-                        <td th:text="${user.name}"></td>
-                        <td th:text="${user.email}"></td>
-                        <td th:text="${user.status ? 'Active' : 'Banned'}"></td>
-                        <td>
-                            <form action="/admin/updateStatus" method="get">
-                                <input type="hidden" name="name" th:value="${user.name}" />
-                                <button type="submit" class="edit-button">
-                                    <img class="edit-icon" src="/css/Admin/UserInformation/vaadin-ban0.svg" alt="Ban">
-                                </button>
-                            </form>
-                        </td>
-                    </tr>
-                </tbody>
-            </table>
         </div>
     </div>
     <!-- Pop-up Modal -->
@@ -76,29 +98,6 @@
             </div>
         </div>
     </div>
-
-    <footer class="footer">
-        <div class="content2">
-            <div class="logo">
-                <img class="logo3" src="/css/LandingPage/logo3.svg" />
-                <div class="fit-life-studio">FitLife Studio</div>
-            </div>
-            <div class="links">
-                <div class="about2">About</div>
-                <div class="contact">Contact</div>
-            </div>
-            <img class="social" src="/css/LandingPage/social0.svg" />
-        </div>
-        <div class="divider"></div>
-        <div class="credits">
-            <div class="row">
-                <div class="text-1">Â© 2024 Shipon. All rights reserved.</div>
-                <div class="text-2">Privacy Policy</div>
-                <div class="text-3">Terms of Service</div>
-                <div class="text-4">Cookies Settings</div>
-            </div>
-        </div>
-    </footer>
     <script>
         document.addEventListener("DOMContentLoaded", () => {
             const buttons = document.querySelectorAll(".edit-button");
