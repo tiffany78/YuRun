@@ -73,176 +73,197 @@ body {
     grid-area: content;
 }
 .frameinput {
-    grid-template-rows: auto auto auto auto auto;
-    grid-template-columns: auto;
-    grid-template-areas: 
-    "header"
-    "input1"
-    "input2"
-    "input3"
-    "button2";
-    flex-direction: column;
-    gap: 30px;
-    display: flex;
-    align-items: left;
-    justify-content: center;
-    padding-left: 50px;
+  grid-template-rows: auto auto auto auto auto;
+  grid-template-columns: auto;
+  grid-template-areas: 
+  "header"
+  "input1"
+  "input2"
+  "input3"
+  "button2";
+  flex-direction: column;
+  gap: 30px;
+  display: flex;
+  align-items: left;
+  justify-content: center;
+  padding-left: 50px;
+}
+input {
+padding-left: 10px;
+font-size: large;
 }
 .add-new-activity {
-    grid-area: header;
-    color: #130f26;
-    font-family: "Roboto-SemiBold", sans-serif;
-    font-size: 32px;
-    font-weight: 600;
+  grid-area: header;
+  color: #130f26;
+  font-family: "Roboto-SemiBold", sans-serif;
+  font-size: 32px;
+  font-weight: 600;
 }
 .input1{
-    grid-area: input1;
-    display: flex;
-    flex-direction: row;
-    column-gap: 15px;
+  grid-area: input1;
+  display: flex;
+  flex-direction: row;
+  column-gap: 15px;
 }
 .divInput {
-  display: flex;
-  flex-direction: column;
-  gap: 5px;
-  align-items: flex-start;
-  justify-content: flex-start;
+display: flex;
+flex-direction: column;
+gap: 5px;
+align-items: flex-start;
+justify-content: flex-start;
 }
 .headInput {
-  color: #000000;
-  text-align: left;
-  font-family: "Roboto-SemiBold", sans-serif;
-  font-size: 24px;
-  font-weight: 600;
-  position: relative;
-  align-self: stretch;
-  height: 28px;
+color: #000000;
+text-align: left;
+font-family: "Roboto-SemiBold", sans-serif;
+font-size: 24px;
+font-weight: 600;
+position: relative;
+align-self: stretch;
+height: 28px;
 }
 .groupFrame {
-    display: flex;
-    flex-direction: row;
-    column-gap: 10px;
+  display: flex;
+  flex-direction: row;
+  column-gap: 10px;
 }
 .frame1 {
-    border-radius: 6px;
-    border-style: solid;
-    border-color: #ff5722;
-    border-width: 1px;
-    flex-shrink: 0;
-    width: 181px;
-    height: 35px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+  border-radius: 6px;
+  border-style: solid;
+  border-color: #ff5722;
+  border-width: 1px;
+  flex-shrink: 0;
+  width: 181px;
+  height: 35px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 .textFrame{
-    color: #000000;
-    font-family: "Roboto-SemiBold", sans-serif;
-    font-size: 14px;
-    font-weight: 600;
-    align-content: center;
+  color: #000000;
+  font-family: "Roboto-SemiBold", sans-serif;
+  font-size: 14px;
+  font-weight: 600;
+  align-content: center;
 }
 .frame2 {
-    border-radius: 6px;
-    border-style: solid;
-    border-color: #ff5722;
-    border-width: 1px;
-    flex-shrink: 0;
-    width: 100px;
-    height: 35px;
-    position: relative;
+  border-radius: 6px;
+  border-style: solid;
+  border-color: #ff5722;
+  border-width: 1px;
+  flex-shrink: 0;
+  width: 100px;
+  height: 35px;
+  position: relative;
 }
 .input2{
-    grid-area: input2;
-    display: flex;
-    flex-direction: row;
-    column-gap: 15px;
+  grid-area: input2;
+  display: flex;
+  flex-direction: row;
+  column-gap: 15px;
 }
 .frame3 {
-    border-radius: 6px;
-    border-style: solid;
-    border-color: #ff5722;
-    border-width: 1px;
-    flex-shrink: 0;
-    width: 500px;
-    height: 35px;
-    position: relative;
+  border-radius: 6px;
+  border-style: solid;
+  border-color: #ff5722;
+  border-width: 1px;
+  flex-shrink: 0;
+  width: 500px;
+  height: 35px;
+  position: relative;
 }
 .frame4 {
-    border-radius: 6px;
-    border-style: solid;
-    border-color: #ff5722;
-    border-width: 1px;
-    flex-shrink: 0;
-    width: 20px;
-    height: 20px;
-    position: relative;
+  border-radius: 6px;
+  border-style: solid;
+  border-color: #ff5722;
+  border-width: 1px;
+  flex-shrink: 0;
+  width: 20px;
+  height: 20px;
+  position: relative;
 }
 .input3{
-    grid-area: input3;
-    display: flex;
-    flex-direction: row;
-    column-gap: 15px;
+  grid-area: input3;
+  display: flex;
+  flex-direction: row;
+  column-gap: 15px;
 }
-.frame5{
-    border-radius: 6px;
-    border-style: solid;
-    border-color: #ff5722;
-    border-width: 1px;
-    flex-shrink: 0;
-    width: 500px;
-    height: 230px;
-    position: relative;
+.frame5 {
+border-radius: 6px;
+border-style: solid;
+border-color: #ff5722;
+border-width: 1px;
+flex-shrink: 0;
+width: 500px;
+height: 230px;
+text-align: left; /* Menjaga teks rata kiri */
+vertical-align: top; /* Membuat teks rata atas */
+line-height: 1.5;
+}
+.frame6 {
+  width: 500px;
+  height: auto;
+}
+.frame7{
+  width: 500px;
+  height: 30px;
+}
+textarea {
+padding-left: 10px;
+font-size: large;
 }
 .button2{
-    grid-area: button2;
-    display: flex;
-    flex-direction: row;
-    column-gap: 15px;
+  grid-area: button2;
+  display: flex;
+  flex-direction: row;
+  column-gap: 15px;
 }
 .cancel {
-  border-radius: 10px;
-  border-style: solid;
-  border-color: #ff7347;
-  border-width: 3px;
-  flex-shrink: 0;
-  width: 179px;
-  height: 40px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+border-radius: 10px;
+border-style: solid;
+border-color: #ff7347;
+border-width: 3px;
+flex-shrink: 0;
+width: 179px;
+height: 40px;
+display: flex;
+align-items: center;
+justify-content: center;
+text-decoration: none;
 }
 .cancel2 {
-  color: #141414;
-  text-align: left;
-  font-family: "Roboto-Regular", sans-serif;
-  font-size: 20px;
-  line-height: 16px;
-  font-weight: 400;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+color: #141414;
+text-align: left;
+font-family: "Roboto-Regular", sans-serif;
+font-size: 20px;
+line-height: 16px;
+font-weight: 400;
+display: flex;
+align-items: center;
+justify-content: center;
 }
 .save {
-  background: #ff5722;
-  border-radius: 10px;
-  flex-shrink: 0;
-  width: 179px;
-  height: 40px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+border-radius: 10px;
+background-color: #ff7347;
+flex-shrink: 0;
+width: 179px;
+height: 45px;
+display: flex;
+align-items: center;
+justify-content: center;
+text-decoration: none;
+border: none;
 }
 .save2 {
-  color: #ffffff;
-  text-align: left;
-  font-family: "Roboto-Regular", sans-serif;
-  font-size: 20px;
-  line-height: 16px;
-  font-weight: 400;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+color: #ffffff;
+text-align: left;
+font-family: "Roboto-Regular", sans-serif;
+font-size: 20px;
+line-height: 16px;
+font-weight: 400;
+display: flex;
+align-items: center;
+justify-content: center;
 }
 
 

@@ -19,8 +19,12 @@
             <a class="page">Race</a>
         </div>
         <div class="button">
-            <img src="/css/Admin/HomePage/account-circle0.svg"/>
-            <img src="/css/Admin/HomePage/logout.svg"/>
+            <a>
+                <img src="/css/Admin/HomePage/account-circle0.svg"/>
+            </a>
+            <a th:href="@{/login/logout}">
+                <img src="/css/Admin/HomePage/logout.svg"/>
+            </a>
         </div>
     </nav>
     <div class="content">
@@ -37,7 +41,7 @@
                 <div class="divInput">
                     <div class="headInput">Start Date & Time</div>
                     <div class="groupFrame">
-                        <input type="date" class="frame1" name="date" required> 
+                        <input type="date" class="frame1" name="date" th:value="${date}" required> 
                         <input type="time" class="frame1" name="time" th:value="${time}" required> 
                     </div>
                 </div>

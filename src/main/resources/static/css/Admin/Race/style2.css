@@ -234,6 +234,7 @@ textarea {
   align-items: center;
   justify-content: center;
   text-decoration: none;
+  border: none;
 }
 .save2 {
   color: #ffffff;
