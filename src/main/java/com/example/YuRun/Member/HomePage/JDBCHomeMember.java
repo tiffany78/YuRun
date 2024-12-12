@@ -8,7 +8,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
 
-import com.example.YuRun.Admin.Homepage.Race;
 
 @Repository
 public class JDBCHomeMember implements HomeMemberRepo{

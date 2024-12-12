@@ -8,6 +8,8 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import com.example.YuRun.RequiredRole;
+
 import jakarta.servlet.http.HttpSession;
 
 @Controller
@@ -17,6 +19,7 @@ public class HomeUserController {
     private HomeMemberRepo repo;
 
     @GetMapping
+    @RequiredRole("member")
     public String home(HttpSession session, Model model){
         String user = (String) session.getAttribute("username");
         if(user == null){

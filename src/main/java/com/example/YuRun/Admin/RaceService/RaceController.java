@@ -10,19 +10,14 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.multipart.MultipartFile;
 
+import com.example.YuRun.RequiredRole;
 import com.example.YuRun.Admin.Homepage.Race;
-
-import jakarta.validation.Valid;
-
 @Controller
 @RequestMapping("/admin")
 public class RaceController {
@@ -30,6 +25,7 @@ public class RaceController {
     private RaceRepository repo;
 
     @GetMapping("/race")
+    @RequiredRole("admin")
     public String index(Model model){
         List<Race> list = this.repo.findRace();
         model.addAttribute("raceList", list);
@@ -37,11 +33,13 @@ public class RaceController {
     }
 
     @GetMapping("/addRace")
+    @RequiredRole("admin")
     public String index2(){
         return "/Admin/Race/addRace";
     }
 
     @PostMapping("/addRace")
+    @RequiredRole("admin")
     public String addRace(
         @RequestParam("title") String title,
         @RequestParam("time") String time,
@@ -64,6 +62,7 @@ public class RaceController {
     }
 
     @GetMapping("/editRace/{idRace}")
+    @RequiredRole("admin")
     public String editRace(@PathVariable("idRace") int idRace, Model model) {
         Race race = this.repo.getById(idRace);
         model.addAttribute("race", race); // Tambahkan objek race
@@ -71,6 +70,7 @@ public class RaceController {
     }
 
     @PostMapping("/editRace/{idRace}")
+    @RequiredRole("admin")
     public String updateRace(
         @RequestParam("title") String title,
         @RequestParam("time") String time,

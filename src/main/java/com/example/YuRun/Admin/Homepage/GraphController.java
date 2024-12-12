@@ -7,9 +7,12 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 
+// import com.example.YuRun.RequiredRole;
+
 @Controller
 public class GraphController {
     @GetMapping("/displayBarGraph")
+	// @RequiredRole("admin")
 	public String barGraph(Model model) {
 		Map<String, Integer> surveyMap = new LinkedHashMap<>();
 		surveyMap.put("Java", 40);
@@ -21,6 +24,7 @@ public class GraphController {
 	}
 
 	@GetMapping("/displayPieChart")
+	// @RequiredRole("admin")
 	public String pieChart(Model model) {
 		model.addAttribute("pass", 50);
 		model.addAttribute("fail", 50);

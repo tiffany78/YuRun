@@ -10,5 +10,6 @@ public class LoginUser {
     private String email;
     private String password;
     private int isadmin;
-    private boolean status;
+    private boolean isNotBanned;
+    private int id_user;
 }
