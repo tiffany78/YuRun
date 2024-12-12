@@ -27,7 +27,7 @@ CREATE TABLE Activity (
     title VARCHAR(50) NOT NULL,
     kind VARCHAR(20) NOT NULL,
     distance DECIMAL (10,2) NOT NULL, 
-    duration INTERVAL,
+    duration VARCHAR(8),
     date DATE NOT NULL,
     time TIME NOT NULL,
     description VARCHAR(300), 

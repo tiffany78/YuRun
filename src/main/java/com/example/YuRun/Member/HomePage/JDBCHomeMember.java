@@ -8,22 +8,20 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
 
-import com.example.YuRun.Admin.Homepage.Race;
-
 @Repository
 public class JDBCHomeMember implements HomeMemberRepo{
     @Autowired
     JdbcTemplate jdbcTemplate;
 
     public List<Activity> getActivity(String username){
-        String sql = "SELECT activity.id_activity, activity.id_user, activity.title, activity.kind, activity.distance, activity.date, activity.time, activity.description, activity.duration::text AS duration FROM activity JOIN users ON users.id_user = activity.id_user WHERE users.name ILIKE ? ORDER BY activity.date DESC LIMIT 3";
+        String sql = "SELECT activity.id_activity, activity.id_user, activity.title, activity.kind, activity.distance, activity.date, activity.time, activity.description, activity.duration FROM activity JOIN users ON users.id_user = activity.id_user WHERE users.name ILIKE ? ORDER BY activity.date DESC LIMIT 3";
     
         List<Activity> activities = jdbcTemplate.query(sql, this::mapRowToActivity, username);
         return activities;
     }
     
     public List<Activity> getActivityAll(String username){
-        String sql = "SELECT activity.id_activity, activity.id_user, activity.title, activity.kind, activity.distance, activity.date, activity.time, activity.description, activity.duration::text AS duration FROM activity JOIN users ON users.id_user = activity.id_user WHERE users.name ILIKE ? ORDER BY activity.date DESC";
+        String sql = "SELECT activity.id_activity, activity.id_user, activity.title, activity.kind, activity.distance, activity.date, activity.time, activity.description, activity.duration FROM activity JOIN users ON users.id_user = activity.id_user WHERE users.name ILIKE ? ORDER BY activity.date DESC";
     
         List<Activity> activities = jdbcTemplate.query(sql, this::mapRowToActivity, username);
         return activities;
