@@ -24,8 +24,8 @@
         </div>
     </nav>
     <div class="content">
-        <div class="frameinput">
-            <div class="add-new-activity">Add New Activity</div>
+        <form class="frameinput" method="post" th:action="@{/member/addActivity}" enctype="multipart/form-data">
+            <div class="add-new-activity">Add Activity</div>
             <div class="input1">
                 <div class="divInput">
                     <div class="headInput">Distance</div>
@@ -64,8 +64,20 @@
                 </div>
                 <div class="divInput">
                     <div class="headInput">Kind</div>
-                    <!-- UBAH SENDIRI JADI CHECKBOX nya gimana -->
-                    <div class="frame4"></div>
+                    <div class="kindClass">
+                        <label class="kindLabel">
+                            <input type="radio" name="kind" th:value="FunRun">
+                            <span class="textKind">Fun Run</span>
+                        </label>
+                        <label class="kindLabel">
+                            <input type="radio" name="kind" th:value="Half-marathon">
+                            <span class="textKind">Half Marathon</span>
+                        </label>
+                        <label class="kindLabel">
+                            <input type="radio" name="kind" th:value="Marathon">
+                            <span class="textKind">Marathon</span>
+                        </label>
+                    </div>
                 </div>
             </div>
             <div class="input3">
@@ -74,9 +86,8 @@
                     <div class="frame5"></div>
                 </div>
                 <div class="divInput">
-                    <div class="headInput">Upload</div>
-                    <!-- UBAH SENDIRI JADI UPLOAD -->
-                    <div class="frame5"></div>
+                    <div class="headInput">Upload Race Map</div>
+                    <input type="file" class="frame7" name="pict">
                 </div>
             </div>
             <div class="button2">

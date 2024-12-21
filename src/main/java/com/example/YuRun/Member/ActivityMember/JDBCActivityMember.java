@@ -15,11 +15,11 @@ public class JDBCActivityMember implements AddActivityRepo{
     @Autowired
     JdbcTemplate jdbcTemplate;
 
-    public void addActivity(int id_user, String title, String kind, Double distance, Date date, Time time, String description, byte[] picture){
-        String sql = "INSERT INTO Activity(id_user, title, kind, distance, date, time, description, picture) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
+    public void addActivity(int id_user, String title, String kind, Double distance, String duration, Date date, Time time, String description, byte[] picture){
+        String sql = "INSERT INTO Activity(id_user, title, kind, distance, duration, date, time, description, picture) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
 
         jdbcTemplate.update(sql,
-        id_user, title, kind, distance, date, time, description, picture);
+        id_user, title, kind, distance, duration, date, time, description, picture);
     }
 
     public ActivityMember getById(int id_activity){
@@ -37,6 +37,13 @@ public class JDBCActivityMember implements AddActivityRepo{
             resultSet.getDouble("distance"),
             resultSet.getString("duration"), 
             resultSet.getDate("date"),resultSet.getTime("time"), 
-            resultSet.getString("description"), resultSet.getBytes("picture"));
+            resultSet.getString("description"), 
+            resultSet.getBytes("picture"));
+    }
+
+    public void updateActivity(int id_activity, String title, String kind, Double distance, String duration, Date date, Time time, String description, byte[] picture) {
+        String sql = "UPDATE Activity SET title = ?, kind = ?, distance = ?, duration = ?, date = ?, time = ?, description = ?, picture = ? WHERE id_activity = ?";
+
+        jdbcTemplate.update(sql, title, kind, distance, duration, date, time, description, picture, id_activity);
     }
 }

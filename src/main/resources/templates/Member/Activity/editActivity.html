@@ -14,17 +14,19 @@
             <a class="yurun">YuRun</a>
         </div>
         <div class="textNavbar">
-            <a class="home">Home</a>
-            <a>User Information</a>
+            <a th:href="@{/member}">Home</a>
+            <a class="home" th:href="@{/member/activity}">My Activity</a>
             <a>Race</a>
         </div>
-        <div class="button">
+        <a>
             <img src="/css/Admin/HomePage/account-circle0.svg"/>
+        </a>
+        <a th:href="@{/login/logout}">
             <img src="/css/Admin/HomePage/logout.svg"/>
-        </div>
+        </a>
     </nav>
     <div class="content">
-        <form class="frameinput" enctype="multipart/form-data">
+        <form class="frameinput" method="post" th:action="@{/member/editActivity/{idActivity}(idActivity=${activity.id_activity})}" enctype="multipart/form-data">
             <div class="add-new-activity">Edit Race</div>
             <div class="input1">
                 <div class="divInput">
@@ -37,11 +39,11 @@
                 <div class="divInput">
                     <div class="headInput">Duration</div>
                     <div class="groupFrame">
-                        <input type="number" class="frame2" required name="hour">
+                        <input type="number" class="frame2" required name="hour" th:value="${hour}">
                         <span class="textFrame">Hour</span>
-                        <input type="number" class="frame2" required name="minute">
+                        <input type="number" class="frame2" required name="minute" th:value="${minute}">
                         <span class="textFrame">Minute</span>
-                        <input type="number" class="frame2" required name="second">
+                        <input type="number" class="frame2" required name="second" th:value="${second}">
                         <span class="textFrame">Second</span>
                     </div>
                 </div>
@@ -60,8 +62,20 @@
                 </div>
                 <div class="divInput">
                     <div class="headInput">Kind</div>
-                    <!-- UBAH SENDIRI JADI CHECKBOX nya gimana -->
-                    <div class="frame4"></div>
+                    <div class="kindClass">
+                        <label class="kindLabel">
+                            <input type="radio" name="kind" th:value="FunRun" th:checked="${activity.kind == 'Fun Run'}">
+                            <span class="textKind">Fun Run</span>
+                        </label>
+                        <label class="kindLabel">
+                            <input type="radio" name="kind" th:value="Half-marathon" th:checked="${activity.kind == 'Half-marathon'}">
+                            <span class="textKind">Half Marathon</span>
+                        </label>
+                        <label class="kindLabel">
+                            <input type="radio" name="kind" th:value="Marathon" th:checked="${activity.kind == 'Marathon'}">
+                            <span class="textKind">Marathon</span>
+                        </label>
+                    </div>
                 </div>
             </div>
             <div class="input3">
@@ -72,7 +86,7 @@
                 <div class="divInput">
                     <div class="headInput">Change Your Picture</div>
                     <input type="file" class="frame7" name="pict">
-                    <img class="frame6" th:if="${picture != null}" th:src="'data:image/jpeg;base64,' + ${picture}" alt="Picture"/>
+                    <img class="frame6" th:if="${picture != null}" th:src="'data:image/jpeg;base64,' + ${picture}" alt="Picture" name="picture"/>
                 </div>
             </div>
             <div class="button2">

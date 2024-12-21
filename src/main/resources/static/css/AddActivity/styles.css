@@ -53,9 +53,26 @@ body {
     font-size: 16px;
     font-weight: 500;
 }
-.home{
-    color: var(--primary-color-500, #ff5722);
-    font-weight: 1000;
+.textNavbar a {
+  text-decoration: none;
+  color: var(--neutral-colors-950, #141414);
+}
+a.page{
+  color: var(--primary-color-500, #ff5722);
+  font-weight: 1000;
+}
+.kindClass {
+  display: flex;
+  flex-direction: row;
+  margin-top: 10px;
+  column-gap: 5px;
+}
+.textKind {
+  color: #000000;
+  font-family: "Roboto-SemiBold", sans-serif;
+  font-size: 18px;
+  font-weight: 500;
+  align-content: center;
 }
 .button{
     display: flex;
@@ -71,6 +88,7 @@ body {
 /* BAGIAN CONTENT */
 .content{
     grid-area: content;
+    font-family: "Roboto-Medium", sans-serif;
 }
 .frameinput {
   grid-template-rows: auto auto auto auto auto;
@@ -111,6 +129,7 @@ flex-direction: column;
 gap: 5px;
 align-items: flex-start;
 justify-content: flex-start;
+font-family: "Roboto-Medium", sans-serif;
 }
 .headInput {
 color: #000000;
@@ -138,6 +157,7 @@ height: 28px;
   display: flex;
   align-items: center;
   justify-content: center;
+  font-family: "Roboto-Medium", sans-serif;
 }
 .textFrame{
   color: #000000;
@@ -189,16 +209,17 @@ height: 28px;
   column-gap: 15px;
 }
 .frame5 {
-border-radius: 6px;
-border-style: solid;
-border-color: #ff5722;
-border-width: 1px;
-flex-shrink: 0;
-width: 500px;
-height: 230px;
-text-align: left; /* Menjaga teks rata kiri */
-vertical-align: top; /* Membuat teks rata atas */
-line-height: 1.5;
+  border-radius: 6px;
+  border-style: solid;
+  border-color: #ff5722;
+  border-width: 1px;
+  flex-shrink: 0;
+  width: 500px;
+  height: 230px;
+  text-align: left; /* Menjaga teks rata kiri */
+  vertical-align: top; /* Membuat teks rata atas */
+  line-height: 1.5;
+  font-family: "Roboto-Medium", sans-serif;
 }
 .frame6 {
   width: 500px;
