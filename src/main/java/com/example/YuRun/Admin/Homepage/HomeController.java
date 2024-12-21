@@ -10,13 +10,16 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import com.example.YuRun.RequiredRole;
+
 @Controller
 @RequestMapping("/admin")
 public class HomeController {
     @Autowired
     private HomeRepository repo;
     
-    @GetMapping
+    @GetMapping("/home")
+    @RequiredRole("admin")
     public String index(Model model){
         List<Race> list = this.repo.findRace();
         model.addAttribute("race", list);
@@ -31,6 +34,7 @@ public class HomeController {
     }
 
     @GetMapping("/displayLineGraph")
+    @RequiredRole("admin")
     public String lineChart(){
         return "Admin/HomePage/lineGraph";
     }

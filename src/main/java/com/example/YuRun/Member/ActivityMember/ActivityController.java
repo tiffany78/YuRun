@@ -19,6 +19,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 
+import com.example.YuRun.RequiredRole;
 import com.example.YuRun.Member.HomePage.Activity;
 import com.example.YuRun.Member.HomePage.HomeMemberRepo;
 
@@ -33,6 +34,7 @@ public class ActivityController {
     private AddActivityRepo repoAdd;
 
     @GetMapping("/activity")
+    @RequiredRole("member")
     public String home(HttpSession session, Model model){
         String user = (String) session.getAttribute("username");
         if(user == null){
@@ -46,11 +48,13 @@ public class ActivityController {
     }
 
     @GetMapping("/addActivity")
+    @RequiredRole("member")
     public String addActivity(){
         return "Member/Activity/addActivity";
     }
 
     @PostMapping("/addActivity")
+    @RequiredRole("member")
     public String addActivity2(
         @RequestParam("distance") Double distance,
         @RequestParam("hour") Integer hour,
@@ -96,6 +100,7 @@ public class ActivityController {
     }
 
     @GetMapping("/editActivity/{idActivity}")
+    @RequiredRole("member")
     public String editActivity(@PathVariable("idActivity") int idActivity, Model model){
         ActivityMember currAct = this.repoAdd.getById(idActivity);
         model.addAttribute("activity", currAct);
