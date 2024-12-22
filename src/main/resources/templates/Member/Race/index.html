@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home Race</title>
+    <link rel="stylesheet" href="/css/Member/Race/style.css">
+    <link rel="stylesheet" href="/css/Member/Race/vars.css">
+</head>
+<body class="containerBody">
+    <nav class="navbar">
+        <div class="logo">
+            <img src="/css/LandingPage/logo1.svg">
+            <a class="yurun">YuRun</a>
+        </div>
+        <div class="textNavbar">
+            <a th:href="@{/admin}">Home</a>
+            <a th:href="@{/admin/userInfo}">User Information</a>
+            <a th:href="@{/admin/race}" class="page">Race</a>
+        </div>
+        <div class="button">
+            <a>
+                <img src="/css/Admin/HomePage/account-circle0.svg"/>
+            </a>
+            <a th:href="@{/login/logout}">
+                <img src="/css/Admin/HomePage/logout.svg"/>
+            </a>
+        </div>
+    </nav>
+    <div class="contentBody">
+        <hr>
+        <table class="table_race">
+            <thead>
+                <tr>
+                    <th>Kind</th>
+                    <th>Title</th>
+                    <th>Date <a href="#"><img src="/css/Admin/Race/bxs-sort-alt.svg" alt="Sort Icon"></a></th>
+                    <th>Start Time <a href="#"><img src="/css/Admin/Race/bxs-sort-alt.svg" alt="Sort Icon"></a></th>
+                    <th>Distance <a href="#"><img src="/css/Admin/Race/bxs-sort-alt.svg" alt="Sort Icon"></a></th>
+                    <th>Status</th>
+                </tr>                
+            </thead>
+            <tbody>
+                <tr th:each="race : ${raceList}">
+                    <td th:text="${race.idRace}"></td>
+                    <td th:text="${race.title}"></td>
+                    <td th:text="${#dates.format(race.start_date, 'dd/MM/yyyy')}"></td>
+                    <td th:text="${#dates.format(race.time, 'HH:mm:ss')}"></td>
+                    <td th:text="${race.distance} + ' km'"></td>
+                    <td>bla</td>
+                    <td>
+                        <img class="join" src="/css/Member/Race/join.svg" alt="Join Race"/>
+                        <img class="exit" src="/css/Member/Race/exit.svg" alt="Exit Race"/>
+                    </td>
+                </tr>               
+            </tbody>
+        </table>
+    </div>
+    <footer class="footer">
+        <div class="content2">
+            <div class="logo">
+              <img class="logo3" src="/css/LandingPage/logo3.svg" />
+              <div class="fit-life-studio">FitLife Studio</div>
+            </div>
+            <div class="links">
+              <div class="about2">About</div>
+              <div class="contact">Contact</div>
+            </div>
+            <img class="social" src="/css/LandingPage/social0.svg" />
+        </div>
+        <div class="divider"></div>
+        <div class="credits">
+            <div class="row">
+              <div class="text-1">© 2024 Shipon. All rights reserved.</div>
+              <div class="text-2">Privacy Policy</div>
+              <div class="text-3">Terms of Service</div>
+              <div class="text-4">Cookies Settings</div>
+            </div>
+          </div>
+    </footer>
+</body>
+</html>
