@@ -15,12 +15,10 @@ import org.aspectj.lang.JoinPoint;
 @Component
 public class AuthorizationAspect {
     private HttpSession session;
-    private HttpServletResponse response;
 
 
-    public AuthorizationAspect(HttpSession session, HttpServletResponse response){
+    public AuthorizationAspect(HttpSession session){
         this.session = session;
-        this.response = response;
     }
 
     @Before("@annotation(requiredRole)")
