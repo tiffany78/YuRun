@@ -77,7 +77,7 @@
                 <tr th:each="activity : ${activity}">
                     <td th:text="${activity.title}"></td>
                     <td>
-                        <img th:src="${activity.path_pict != null ? '/upload/activity-member/' + activity.path_pict : '/upload/default/null.png'}" alt="Image" style="max-width: 100px; max-height: 100px;">
+                        <img th:src="${activity.path_pict != null ? '/upload/activity-member/' + activity.path_pict : '/upload/activity-member/null.jpg'}" alt="Image" style="max-width: 100px; max-height: 100px;">
                     </td>                    
                     <td th:text="${activity.kind}"></td>
                     <td th:text="${activity.distance} + ' km'"></td>

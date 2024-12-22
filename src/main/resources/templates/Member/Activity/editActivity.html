@@ -6,6 +6,8 @@
     <title>Add Activity</title>
     <link rel="stylesheet" href="/css/AddActivity/vars.css">
     <link rel="stylesheet" href="/css/AddActivity/styles.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="/js/Member/AddActivity.js" defer></script>
 </head>
 <body class="containerBody">
     <nav class="navbar">
@@ -84,9 +86,13 @@
                     <textarea class="frame5" placeholder="Description about the race" name="desc" th:value="${activity.description}" th:text="${activity.description}" required></textarea>
                 </div>
                 <div class="divInput">
-                    <div class="headInput">Change Your Picture</div>
-                    <input type="file" class="frame7" name="pict">
-                    <img class="frame6" th:if="${picture != null}" th:src="'data:image/jpeg;base64,' + ${picture}" alt="Picture" name="picture"/>
+                    <div class="headInput">Your Previous Picture</div>
+                    <img th:src="${activity.path_pict != null ? '/upload/activity-member/' + activity.path_pict : '/upload/activity-member/null.jpg'}" alt="Image" id="prevImage">
+                </div>
+                <div class="divInput">
+                    <div class="headInput">Upload Your New Picture</div>
+                    <input type="file" class="frame7" name="fileImage" id="fileImage" accept="image/*">
+                    <img id="thumbnail" src="" alt="Preview Your Picture">
                 </div>
             </div>
             <div class="button2">

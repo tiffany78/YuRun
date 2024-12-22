@@ -1,6 +1,5 @@
 package com.example.YuRun.Member.ActivityMember;
 
-import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
 import java.nio.file.Files;
@@ -12,7 +11,6 @@ import java.sql.Time;
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
-import java.util.Base64;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -66,7 +64,6 @@ public class ActivityController {
         @RequestParam("title") String title,
         @RequestParam("desc") String desc,
         @RequestParam("kind") String kind,
-        @RequestParam(value = "pict", required = false) MultipartFile pict,
         @RequestParam("fileImage") MultipartFile fileImage,
         HttpSession session) throws IOException{
 
@@ -81,17 +78,6 @@ public class ActivityController {
         formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
         LocalDate localDate = LocalDate.parse(date, formatter);
         Date sqlDate = Date.valueOf(localDate);
-
-        // Convert file gambar ke byte[]
-        byte[] pictBytes = null;
-        if (pict != null && !pict.isEmpty()) {
-            try {
-                pictBytes = pict.getBytes();
-            } catch (IOException e) {
-                e.printStackTrace();
-                // Tangani error
-            }
-        }
 
         String timestamp = String.valueOf(System.currentTimeMillis());
         String fileName = "idUser_" + id_user + "_" + timestamp + ".jpg";
@@ -110,7 +96,7 @@ public class ActivityController {
             throw new IOException("Could not save file: " + fileName, e);
         }
 
-        this.repoAdd.addActivity(id_user, title, kind, distance, duration, sqlDate, sqlTime, desc, pictBytes, fileName);
+        this.repoAdd.addActivity(id_user, title, kind, distance, duration, sqlDate, sqlTime, desc, fileName);
         return "redirect:/member/activity";
     }
 
@@ -129,14 +115,6 @@ public class ActivityController {
         model.addAttribute("minute", minInt);
         model.addAttribute("second", secInt);
 
-        // Mengonversi gambar menjadi base64
-        if (currAct.getPicture() != null) {
-            String base64Picture = Base64.getEncoder().encodeToString(currAct.getPicture());
-            model.addAttribute("picture", base64Picture);
-        } else {
-            model.addAttribute("picture", null);
-        }
-
         return "/Member/Activity/editActivity";
     }
 
@@ -151,10 +129,13 @@ public class ActivityController {
     @RequestParam("title") String title,
     @RequestParam("desc") String desc,
     @RequestParam("kind") String kind,
-    @RequestParam(value = "pict", required = false) MultipartFile pict,
+    @RequestParam("fileImage") MultipartFile fileImage,
     @PathVariable("idActivity") int idActivity,
-    @RequestParam(value = "pictureOld", required = false) String pictureOldBase64) {
+    @RequestParam(value = "pictureOld", required = false) String pictureOldBase64,
+    HttpSession session) throws IOException {
 
+    int id_user = (Integer) session.getAttribute("id_user");
+    session.setAttribute("id_user", id_user);
     String duration = String.format("%02d:%02d:%02d", hour, minute, second);
     
     // Konversi waktu ke SQL Time
@@ -168,24 +149,35 @@ public class ActivityController {
     LocalDate localDate = LocalDate.parse(date, formatter);
     Date sqlDate = Date.valueOf(localDate);
 
-    // Konversi file gambar ke byte[]
-    byte[] pictBytes = null;
+    // Pergantian path
+    String timestamp = String.valueOf(System.currentTimeMillis());
+    String fileName = "idUser_" + id_user + "_" + timestamp + ".jpg";
+    String uploadDir = "upload/activity-member/";
+    Path uploadPath = Paths.get(uploadDir);
 
-    if (pict != null && !pict.isEmpty()) {
-        try {
-            pictBytes = pict.getBytes(); // Ambil gambar baru jika ada
+    // Buat direktori jika belum ada
+    if (!Files.exists(uploadPath)) {
+        Files.createDirectories(uploadPath);
+    }
+
+    if (fileImage != null && !fileImage.isEmpty()) {
+        // Jika ada file baru, simpan file baru
+        fileName = "idUser_" + id_user + "_" + timestamp + ".jpg";
+
+        try (InputStream inputStream = fileImage.getInputStream()) {
+            Path filePath = uploadPath.resolve(fileName);
+            Files.copy(inputStream, filePath, StandardCopyOption.REPLACE_EXISTING);
         } catch (IOException e) {
-            e.printStackTrace();
-            // Tangani error sesuai kebutuhan
+            throw new IOException("Could not save file: " + fileName, e);
         }
     } else {
         ActivityMember currAct = this.repoAdd.getById(idActivity);
-        pictBytes = currAct.getPicture();
+        fileName = currAct.getPath_pict();
     }
 
     // Update database
     this.repoAdd.updateActivity(
-        idActivity, title, kind, distance, duration, sqlDate, sqlTime, desc, pictBytes);
+        idActivity, title, kind, distance, duration, sqlDate, sqlTime, desc, fileName);
 
     return "redirect:/member/activity";
     }

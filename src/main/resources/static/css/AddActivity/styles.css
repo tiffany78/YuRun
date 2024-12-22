@@ -432,8 +432,9 @@ justify-content: center;
   position: relative;
 }
 #thumbnail {
-  max-width: 300px;
+  max-height: 200px;
   display: none;
-  border-radius: 5px;
-  padding: 5px;
+}
+#prevImage, #fileImage{
+  max-height: 200px;
 }
