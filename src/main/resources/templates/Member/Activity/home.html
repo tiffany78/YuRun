@@ -48,9 +48,9 @@
               </div>
             <select class="dropdown" id="kind" name="kind" required>
                 <option value="" disabled th:if="${kind == null}" selected>Choose Kind of Activity</option>
-                <option th:value="2023" th:selected="${kind == 'Fun Run'}">Fun Run</option>
-                <option th:value="2024" th:selected="${kind == 'Half Marathon'}">Half Marathon</option>
-                <option th:value="2024" th:selected="${kind == 'Marathon'}">Marathon</option>
+                <option th:value="Fun-Run" th:selected="${kind == 'Fun-Run'}">Fun-Run</option>
+                <option th:value="Half-Marathon" th:selected="${kind == 'Half-Marathon'}">Half-Marathon</option>
+                <option th:value="Marathon" th:selected="${kind == 'Marathon'}">Marathon</option>
             </select>
         </div>
         <a class="add" th:href="@{/member/addActivity}">+ Add Activity</a>
@@ -64,6 +64,7 @@
             <thead>
                 <tr>
                   <th>Title</th>
+                  <th>Image</th>
                   <th>Kind</th>
                   <th>Distance <a href="#"><img src="/css/Admin/Race/bxs-sort-alt.svg" alt="Sort Icon"></a></th>
                   <th>Duration <a href="#"><img src="/css/Admin/Race/bxs-sort-alt.svg" alt="Sort Icon"></th>
@@ -75,6 +76,9 @@
             <tbody>
                 <tr th:each="activity : ${activity}">
                     <td th:text="${activity.title}"></td>
+                    <td>
+                        <img th:src="${activity.path_pict != null ? '/upload/activity-member/' + activity.path_pict : '/upload/default/null.png'}" alt="Image" style="max-width: 100px; max-height: 100px;">
+                    </td>                    
                     <td th:text="${activity.kind}"></td>
                     <td th:text="${activity.distance} + ' km'"></td>
                     <td th:text="${activity.duration}"></td>

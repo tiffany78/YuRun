@@ -22,9 +22,9 @@ public class HomeUserController {
     @RequiredRole("member")
     public String home(HttpSession session, Model model){
         String user = (String) session.getAttribute("username");
-        if(user == null){
-            user = "Adji Ganteng";
-        }
+        session.setAttribute("username", user);
+        int id_user = (Integer) session.getAttribute("id_user");
+        session.setAttribute("id_user", id_user);
 
         List<Activity> list = this.repo.getActivity(user);
         model.addAttribute("activity", list);

@@ -1,6 +1,12 @@
 package com.example.YuRun.Member.ActivityMember;
 
+import java.io.File;
 import java.io.IOException;
+import java.io.InputStream;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.nio.file.StandardCopyOption;
 import java.sql.Date;
 import java.sql.Time;
 import java.time.LocalDate;
@@ -20,8 +26,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.example.YuRun.RequiredRole;
-import com.example.YuRun.Member.HomePage.Activity;
-import com.example.YuRun.Member.HomePage.HomeMemberRepo;
 
 import jakarta.servlet.http.HttpSession;
 
@@ -29,27 +33,24 @@ import jakarta.servlet.http.HttpSession;
 @RequestMapping("/member")
 public class ActivityController {
     @Autowired
-    private HomeMemberRepo repo;
-    @Autowired
     private AddActivityRepo repoAdd;
 
     @GetMapping("/activity")
     @RequiredRole("member")
     public String home(HttpSession session, Model model){
         String user = (String) session.getAttribute("username");
-        if(user == null){
-            user = "Adji Ganteng";
-            session.setAttribute("id_user", 3);
-        }
+        session.setAttribute("username", user);
+        int id_user = (Integer) session.getAttribute("id_user");
+        session.setAttribute("id_user", id_user);
 
-        List<Activity> list = this.repo.getActivityAll(user);
+        List<ActivityMember> list = this.repoAdd.getAllActivityMember(id_user);
         model.addAttribute("activity", list);
         return "Member/Activity/home";
     }
 
     @GetMapping("/addActivity")
     @RequiredRole("member")
-    public String addActivity(){
+    public String addActivity(HttpSession session){
         return "Member/Activity/addActivity";
     }
 
@@ -66,9 +67,10 @@ public class ActivityController {
         @RequestParam("desc") String desc,
         @RequestParam("kind") String kind,
         @RequestParam(value = "pict", required = false) MultipartFile pict,
-        HttpSession session){
+        @RequestParam("fileImage") MultipartFile fileImage,
+        HttpSession session) throws IOException{
 
-        int id_user = 3;
+        int id_user = (Integer) session.getAttribute("id_user");
         String duration = String.format("%02d:%02d:%02d", hour, minute, second);
         
         time += ":00";
@@ -90,12 +92,25 @@ public class ActivityController {
                 // Tangani error
             }
         }
-        
-        if(kind.equals("FunRun")){
-            kind = "Fun Run";
+
+        String timestamp = String.valueOf(System.currentTimeMillis());
+        String fileName = "idUser_" + id_user + "_" + timestamp + ".jpg";
+        String uploadDir = "upload/activity-member";
+        Path uploadPath = Paths.get(uploadDir);
+
+        // Buat direktori jika belum ada
+        if (!Files.exists(uploadPath)) {
+            Files.createDirectories(uploadPath);
         }
 
-        this.repoAdd.addActivity(id_user, title, kind, distance, duration, sqlDate, sqlTime, desc, pictBytes);
+        try (InputStream inputStream = fileImage.getInputStream()) {
+            Path filePath = uploadPath.resolve(fileName);
+            Files.copy(inputStream, filePath, StandardCopyOption.REPLACE_EXISTING);
+        } catch (IOException e) {
+            throw new IOException("Could not save file: " + fileName, e);
+        }
+
+        this.repoAdd.addActivity(id_user, title, kind, distance, duration, sqlDate, sqlTime, desc, pictBytes, fileName);
         return "redirect:/member/activity";
     }
 
@@ -166,10 +181,6 @@ public class ActivityController {
     } else {
         ActivityMember currAct = this.repoAdd.getById(idActivity);
         pictBytes = currAct.getPicture();
-    }
-
-    if(kind.equals("FunRun")){
-        kind = "Fun Run";
     }
 
     // Update database

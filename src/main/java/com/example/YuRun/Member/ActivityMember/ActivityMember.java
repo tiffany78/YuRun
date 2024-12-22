@@ -19,4 +19,5 @@ public class ActivityMember {
     private Time time;
     private String description;
     private byte[] picture;
+    private String path_pict;
 }

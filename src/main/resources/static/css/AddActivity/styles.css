@@ -431,3 +431,9 @@ justify-content: center;
   text-decoration: underline;
   position: relative;
 }
+#thumbnail {
+  max-width: 300px;
+  display: none;
+  border-radius: 5px;
+  padding: 5px;
+}
