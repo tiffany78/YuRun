@@ -9,7 +9,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-
 import com.example.YuRun.RequiredRole;
 
 @Controller
@@ -20,7 +19,7 @@ public class HomeController {
     
     @GetMapping("/home")
     @RequiredRole("admin")
-    public String index(Model model){
+    public String index(Model model) {
         List<Race> list = this.repo.findRace();
         model.addAttribute("race", list);
 
@@ -30,12 +29,7 @@ public class HomeController {
             mapJoin.put(currRace.getTitle(), currRace.getCount());
         }
         model.addAttribute("surveyMap", mapJoin);
+        // model.addAttribute("surveyMap2", mapJoin);
         return "Admin/HomePage/index";
-    }
-
-    @GetMapping("/displayLineGraph")
-    @RequiredRole("admin")
-    public String lineChart(){
-        return "Admin/HomePage/lineGraph";
     }
 }

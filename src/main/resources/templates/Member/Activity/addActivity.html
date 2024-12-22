@@ -20,7 +20,9 @@
         </div>
         <div class="button">
             <img src="/css/Admin/HomePage/account-circle0.svg"/>
-            <img src="/css/Admin/HomePage/logout.svg"/>
+            <a th:href="@{/logout}">
+                <img src="/css/Admin/HomePage/logout.svg"/>
+            </a>
         </div>
     </nav>
     <div class="content">
@@ -71,7 +73,7 @@
                         </label>
                         <label class="kindLabel">
                             <input type="radio" name="kind" th:value="Half-marathon">
-                            <span class="textKind">Half Marathon</span>
+                            <span class="textKind">Half Maratho n</span>
                         </label>
                         <label class="kindLabel">
                             <input type="radio" name="kind" th:value="Marathon">

@@ -14,15 +14,15 @@
             <a class="yurun">YuRun</a>
         </div>
         <div class="textNavbar">
-            <a>Home</a>
-            <a>User Information</a>
-            <a class="page">Race</a>
+            <a th:href="@{/admin/home}">Home</a>
+            <a th:href="@{/admin/userInfo}">User Information</a>
+            <a th:href="@{/admin/race}" class="page">Race</a>
         </div>
         <div class="button">
             <a>
                 <img src="/css/Admin/HomePage/account-circle0.svg"/>
             </a>
-            <a th:href="@{/login/logout}">
+            <a th:href="@{/logout}">
                 <img src="/css/Admin/HomePage/logout.svg"/>
             </a>
         </div>

@@ -6,8 +6,11 @@
     <title>Home Page Admin</title>
     <link rel="stylesheet" href="/css/Admin/HomePage/styles.css">
     <link rel="stylesheet" href="/css/Admin/HomePage/vars.css">
-    <!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" /> -->
-    <!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" /> -->
+    <script  src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    <script  src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <script  src="https://code.highcharts.com/highcharts.js"></script>
+    <script  src="https://code.highcharts.com/modules/exporting.js"></script>
+    <script src="https://code.highcharts.com/highcharts-3d.js"></script>
 </head>
 <body class="containerBody">
     <nav class="navbar">
@@ -24,7 +27,7 @@
             <a>
                 <img src="/css/Admin/HomePage/account-circle0.svg"/>
             </a>
-            <a th:href="@{/login/logout}">
+            <a th:href="@{/logout}">
                 <img src="/css/Admin/HomePage/logout.svg"/>
             </a>
         </div>
@@ -33,14 +36,7 @@
         <div>
             <div id="container"></div>
         </div>
-        <script
-            src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
-        <!-- Latest compiled and minified JavaScript -->
-        <script
-            src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-        <script src="https://code.highcharts.com/highcharts.js"></script>
-        <script src="https://code.highcharts.com/modules/exporting.js"></script>
-        <script th:inline="javascript">
+        <script defer th:inline="javascript">
         $(function(){
         Highcharts.chart('container', {
             chart: {
@@ -85,11 +81,8 @@
         </script>   
     </div>
     <div class="frame2">
-        <script src="https://code.highcharts.com/highcharts.js"></script>
-        <script src="https://code.highcharts.com/highcharts-3d.js"></script>
-        <script src="https://code.highcharts.com/modules/exporting.js"></script>
         <div id="container2" style="height: 400px"></div>
-        <script th:inline="javascript">
+        <script defer th:inline="javascript">
         Highcharts.chart('container2',{
         chart: {
             type: 'line',
@@ -100,7 +93,7 @@
             text: 'Line chart'
         },
         xAxix: {
-            categories: ["C","Python","Java","C#"]
+            categories: [[${surveyMap.keySet()}]]
         },
         tooltip: {
             formatter: function(){
@@ -108,11 +101,11 @@
             }
         },
         series: [{
-            data: [40,80,50,40]
+            name: 'The Race',
+            data: [[${surveyMap.values()}]]
         }]
         });
         </script>
-        <script src="https://canvasjs.com/assets/script/canvasjs.min.js"></script>
     </div>
     <div class="frame3">
         <div class="text3">
