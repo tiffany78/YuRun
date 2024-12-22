@@ -23,7 +23,7 @@ public class JDBCActivityMember implements AddActivityRepo{
     }
 
     public List<ActivityMember> getAllActivityMember (int id_user){
-        String sql = "SELECT * FROM Activity WHERE id_user = ?";
+        String sql = "SELECT * FROM Activity WHERE id_user = ? ORDER BY date";
         return jdbcTemplate.query(sql, this::maptoRowActivityMember, id_user);
     }
 

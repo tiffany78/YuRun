@@ -56,43 +56,31 @@
         <a class="add" th:href="@{/member/addActivity}">+ Add Activity</a>
     </div>
     <div class="contentBody">
-        <div class="text3">
-            <a href="#">Your Activity</a>
-        </div>
-        <hr>
-        <table class="table_race">
-            <thead>
-                <tr>
-                  <th>Title</th>
-                  <th>Image</th>
-                  <th>Kind</th>
-                  <th>Distance <a href="#"><img src="/css/Admin/Race/bxs-sort-alt.svg" alt="Sort Icon"></a></th>
-                  <th>Duration <a href="#"><img src="/css/Admin/Race/bxs-sort-alt.svg" alt="Sort Icon"></th>
-                  <th>Date <a href="#"><img src="/css/Admin/Race/bxs-sort-alt.svg" alt="Sort Icon"></a></th>
-                  <th>Time <a href="#"><img src="/css/Admin/Race/bxs-sort-alt.svg" alt="Sort Icon"></a></th>
-                  <th>Action</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr th:each="activity : ${activity}">
-                    <td th:text="${activity.title}"></td>
-                    <td>
-                        <img th:src="${activity.path_pict != null ? '/upload/activity-member/' + activity.path_pict : '/upload/activity-member/null.jpg'}" alt="Image" style="max-width: 100px; max-height: 100px;">
-                    </td>                    
-                    <td th:text="${activity.kind}"></td>
-                    <td th:text="${activity.distance} + ' km'"></td>
-                    <td th:text="${activity.duration}"></td>
-                    <td th:text="${#dates.format(activity.date, 'dd/MM/yyyy')}"></td>
-                    <td th:text="${activity.time}"></td>
-                    <td>
-                        <a th:href="@{/member/editActivity/{idActivity}(idActivity=${activity.id_activity})}">
-                            <img class="edit" src="/css/Admin/Race/edit-1-20.svg" alt="Edit"/>
-                        </a>
-                        <img class="delete" src="/css/Admin/Race/trash-2-20.svg" alt="Delete"/>
-                    </td>
-                </tr>                
-            </tbody>
-        </table>
+        <div class="square" th:each="activity : ${activity}">
+            <div class="kindText" th:text="${activity.kind}">Kind</div>
+            <div class="imageContainer">
+                <img th:src="${activity.path_pict != null ? '/upload/activity-member/' + activity.path_pict : '/upload/activity-member/null.jpg'}" 
+                     alt="Image" class="image">
+            </div>
+            <div class="detailText">
+                <a>
+                    <span class="title" th:text="${activity.title}"></span>
+                    <span class="description" th:text="${' - ' + activity.description}"></span>
+                </a>                
+                <a th:text="${'Distance: ' + activity.distance + ' km'}">Distance</a>
+                <a th:text="${'Duration: ' + activity.duration}">Duration</a>
+                <div class="detailTime">
+                    <a th:text="${#dates.format(activity.date, 'dd/MM/yyyy')}">Date</a>
+                    <a th:text="${activity.time}">Time</a>
+                </div>
+            </div>
+            <div class="actionButton">
+                <button class="delete"><img src="/css/Admin/Race/trash-2-20.svg" alt="Delete"/>Delete</button>
+                <a class="edit" th:href="@{/member/editActivity/{idActivity}(idActivity=${activity.id_activity})}">
+                    Edit
+                </a>
+            </div>
+        </div>        
     </div>
 </body>
 </html>
