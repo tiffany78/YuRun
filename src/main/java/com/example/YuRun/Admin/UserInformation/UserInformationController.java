@@ -7,6 +7,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import com.example.YuRun.RequiredRole;
+
 import java.util.List;
 
 @Controller
@@ -20,6 +22,7 @@ public class UserInformationController {
     }
 
     @GetMapping("/userInfo")
+    @RequiredRole("admin")
     public String index(@RequestParam(value = "filter", required = false, defaultValue = "") String filter, Model model) {
         List<User> userList = userInformationRepository.findAll(filter);
         model.addAttribute("userList", userList);
@@ -28,6 +31,7 @@ public class UserInformationController {
     }
 
     @GetMapping("/updateStatus")
+    @RequiredRole("admin")
     public String updateStatus(@RequestParam("name") String name, Model model) {
         boolean newStatus = false; // Set to inactive
         userInformationRepository.updateUserStatusByName(name, newStatus);

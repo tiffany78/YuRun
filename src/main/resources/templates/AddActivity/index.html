@@ -14,95 +14,86 @@
             <a class="yurun">YuRun</a>
         </div>
         <div class="textNavbar">
-            <a th:href="@{/member}">Home</a>
-            <a class="home" th:href="@{/member/activity}">My Activity</a>
+            <a class="home">Home</a>
+            <a>User Information</a>
             <a>Race</a>
         </div>
-        <a>
+        <div class="button">
             <img src="/css/Admin/HomePage/account-circle0.svg"/>
-        </a>
-        <a th:href="@{/login/logout}">
             <img src="/css/Admin/HomePage/logout.svg"/>
-        </a>
+        </div>
     </nav>
     <div class="content">
-        <form class="frameinput" method="post" th:action="@{/member/editActivity/{idActivity}(idActivity=${activity.id_activity})}" enctype="multipart/form-data">
-            <div class="add-new-activity">Edit Race</div>
+        <div class="frameinput"> 
+            <form action="@{}"></form>
+            <div class="add-new-activity">Add New Activity</div>
             <div class="input1">
                 <div class="divInput">
                     <div class="headInput">Distance</div>
                     <div class="groupFrame">
-                        <input type="number" step="0.01" class="frame1" required name="distance" th:value="${activity.distance}" >
+                        <div class="frame1"></div>
                         <div class="frame1"><span class="textFrame">Kilometer</span></div>
                     </div>
                 </div>
                 <div class="divInput">
                     <div class="headInput">Duration</div>
                     <div class="groupFrame">
-                        <input type="number" class="frame2" required name="hour" th:value="${hour}">
+                        <div class="frame2"></div>
                         <span class="textFrame">Hour</span>
-                        <input type="number" class="frame2" required name="minute" th:value="${minute}">
+                        <div class="frame2"></div>
                         <span class="textFrame">Minute</span>
-                        <input type="number" class="frame2" required name="second" th:value="${second}">
+                        <div class="frame2"></div>
                         <span class="textFrame">Second</span>
                     </div>
                 </div>
                 <div class="divInput">
-                    <div class="headInput">Start Date & Time</div>
+                    <div class="headInput">Date & Time</div>
                     <div class="groupFrame">
-                        <input type="date" class="frame1" name="date" th:value="${#dates.format(activity.date, 'yyyy-MM-dd')}" required> 
-                        <input type="time" class="frame1" name="time" th:value="${#dates.format(activity.time, 'HH:mm')}"required> 
+                        <div class="frame1"> 
+                            <input type="date">
+                        </div>
+                        <div class="frame1">
+                            <input type="time">
+                        </div>
                     </div>
                 </div>
             </div>
             <div class="input2">
                 <div class="divInput">
                     <div class="headInput">Title</div>
-                    <input type="text" class="frame3" name="title" th:value="${activity.title}" required>
+                    <div class="frame3"></div>
                 </div>
                 <div class="divInput">
                     <div class="headInput">Kind</div>
-                    <div class="kindClass">
-                        <label class="kindLabel">
-                            <input type="radio" name="kind" th:value="FunRun" th:checked="${activity.kind == 'Fun Run'}">
-                            <span class="textKind">Fun Run</span>
-                        </label>
-                        <label class="kindLabel">
-                            <input type="radio" name="kind" th:value="Half-marathon" th:checked="${activity.kind == 'Half-marathon'}">
-                            <span class="textKind">Half Marathon</span>
-                        </label>
-                        <label class="kindLabel">
-                            <input type="radio" name="kind" th:value="Marathon" th:checked="${activity.kind == 'Marathon'}">
-                            <span class="textKind">Marathon</span>
-                        </label>
-                    </div>
+                    <!-- UBAH SENDIRI JADI CHECKBOX nya gimana -->
+                    <div class="frame4"></div>
                 </div>
             </div>
             <div class="input3">
                 <div class="divInput">
                     <div class="headInput">Description</div>
-                    <textarea class="frame5" placeholder="Description about the race" name="desc" th:value="${activity.description}" th:text="${activity.description}" required></textarea>
+                    <div class="frame5"></div>
                 </div>
                 <div class="divInput">
-                    <div class="headInput">Change Your Picture</div>
-                    <input type="file" class="frame7" name="pict">
-                    <img class="frame6" th:if="${picture != null}" th:src="'data:image/jpeg;base64,' + ${picture}" alt="Picture" name="picture"/>
+                    <div class="headInput">Upload</div>
+                    <!-- UBAH SENDIRI JADI UPLOAD -->
+                    <div class="frame5"></div>
                 </div>
             </div>
             <div class="button2">
-                <a class="cancel" th:href="@{/member/activity}">
+                <div class="cancel">
                     <div class="cancel2">Cancel</div>
-                </a>
-                <button class="save" type="submit">
+                </div>
+                <div class="save">
                     <div class="save2">Save</div>
-                </button>
+                </div>
             </div>
-        </form>
+        </div>
     </div>
     <footer class="footer">
         <div class="content2">
             <div class="logo">
-              <img class="logo3" src="/css/LandingPage/logo3.svg"/>
+              <img class="logo3" src="/css/LandingPage/logo3.svg" />
               <div class="fit-life-studio">FitLife Studio</div>
             </div>
             <div class="links">
