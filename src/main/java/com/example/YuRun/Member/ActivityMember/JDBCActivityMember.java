@@ -15,11 +15,16 @@ public class JDBCActivityMember implements AddActivityRepo{
     @Autowired
     JdbcTemplate jdbcTemplate;
 
-    public void addActivity(int id_user, String title, String kind, Double distance, String duration, Date date, Time time, String description, byte[] picture){
-        String sql = "INSERT INTO Activity(id_user, title, kind, distance, duration, date, time, description, picture) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
+    public void addActivity(int id_user, String title, String kind, Double distance, String duration, Date date, Time time, String description, String path){
+        String sql = "INSERT INTO Activity(id_user, title, kind, distance, duration, date, time, description, path_pict) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
 
         jdbcTemplate.update(sql,
-        id_user, title, kind, distance, duration, date, time, description, picture);
+        id_user, title, kind, distance, duration, date, time, description, path);
+    }
+
+    public List<ActivityMember> getAllActivityMember (int id_user){
+        String sql = "SELECT * FROM Activity WHERE id_user = ? ORDER BY date";
+        return jdbcTemplate.query(sql, this::maptoRowActivityMember, id_user);
     }
 
     public ActivityMember getById(int id_activity){
@@ -37,13 +42,13 @@ public class JDBCActivityMember implements AddActivityRepo{
             resultSet.getDouble("distance"),
             resultSet.getString("duration"), 
             resultSet.getDate("date"),resultSet.getTime("time"), 
-            resultSet.getString("description"), 
-            resultSet.getBytes("picture"));
+            resultSet.getString("description"),
+            resultSet.getString("path_pict"));
     }
 
-    public void updateActivity(int id_activity, String title, String kind, Double distance, String duration, Date date, Time time, String description, byte[] picture) {
-        String sql = "UPDATE Activity SET title = ?, kind = ?, distance = ?, duration = ?, date = ?, time = ?, description = ?, picture = ? WHERE id_activity = ?";
+    public void updateActivity(int id_activity, String title, String kind, Double distance, String duration, Date date, Time time, String description, String path_pict) {
+        String sql = "UPDATE Activity SET title = ?, kind = ?, distance = ?, duration = ?, date = ?, time = ?, description = ?, path_pict = ? WHERE id_activity = ?";
 
-        jdbcTemplate.update(sql, title, kind, distance, duration, date, time, description, picture, id_activity);
+        jdbcTemplate.update(sql, title, kind, distance, duration, date, time, description, path_pict, id_activity);
     }
 }

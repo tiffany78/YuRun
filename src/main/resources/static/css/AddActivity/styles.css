@@ -431,3 +431,10 @@ justify-content: center;
   text-decoration: underline;
   position: relative;
 }
+#thumbnail {
+  max-height: 200px;
+  display: none;
+}
+#prevImage, #fileImage{
+  max-height: 200px;
+}

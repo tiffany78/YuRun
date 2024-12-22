@@ -6,6 +6,8 @@
     <title>Add Activity</title>
     <link rel="stylesheet" href="/css/AddActivity/vars.css">
     <link rel="stylesheet" href="/css/AddActivity/styles.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="/js/Member/AddActivity.js" defer></script>
 </head>
 <body class="containerBody">
     <nav class="navbar">
@@ -32,48 +34,46 @@
                 <div class="divInput">
                     <div class="headInput">Distance</div>
                     <div class="groupFrame">
-                        <div class="frame1"></div>
-                        <div class="frame1"><span class="textFrame">Kilometer</span></div>
+                        <input type="number" class="frame1" min="0.00" max="100.00" step="0.01" required id="distance" name="distance"/>
+                        <div class="frame1">
+                            <span class="textFrame">Kilometer</span>
+                        </div>
                     </div>
                 </div>
                 <div class="divInput">
                     <div class="headInput">Duration</div>
                     <div class="groupFrame">
-                        <div class="frame2"></div>
+                        <input type="number" min="0" max="100" id="hour" name="hour" required class="frame2"/>
                         <span class="textFrame">Hour</span>
-                        <div class="frame2"></div>
+                        <input type="number" min="0" max="59" id="minute" name="minute" required class="frame2"/>
                         <span class="textFrame">Minute</span>
-                        <div class="frame2"></div>
+                        <input type="number" min="0" max="59" id="second" name="second" required class="frame2"/>
                         <span class="textFrame">Second</span>
                     </div>
                 </div>
                 <div class="divInput">
                     <div class="headInput">Date & Time</div>
                     <div class="groupFrame">
-                        <div class="frame1"> 
-                            <input type="date">
-                        </div>
-                        <div class="frame1">
-                            <input type="time">
-                        </div>
+                        <input type="date" id="date" name="date" class="frame1">
+                        <input type="time" id="time" name="time" class="frame1">
                     </div>
                 </div>
             </div>
             <div class="input2">
                 <div class="divInput">
                     <div class="headInput">Title</div>
-                    <div class="frame3"></div>
+                    <input type="text" class="frame3" id="title" name="title"/>
                 </div>
                 <div class="divInput">
                     <div class="headInput">Kind</div>
                     <div class="kindClass">
                         <label class="kindLabel">
-                            <input type="radio" name="kind" th:value="FunRun">
+                            <input type="radio" name="kind" th:value="Fun-Run">
                             <span class="textKind">Fun Run</span>
                         </label>
                         <label class="kindLabel">
-                            <input type="radio" name="kind" th:value="Half-marathon">
-                            <span class="textKind">Half Maratho n</span>
+                            <input type="radio" name="kind" th:value="Half-Marathon">
+                            <span class="textKind">Half-Marathon</span>
                         </label>
                         <label class="kindLabel">
                             <input type="radio" name="kind" th:value="Marathon">
@@ -85,20 +85,21 @@
             <div class="input3">
                 <div class="divInput">
                     <div class="headInput">Description</div>
-                    <div class="frame5"></div>
+                    <textarea type="text" class="frame5" placeholder="Description about your activity" name="desc"></textarea>
                 </div>
                 <div class="divInput">
-                    <div class="headInput">Upload Race Map</div>
-                    <input type="file" class="frame7" name="pict">
+                    <div class="headInput">Upload Your Picture</div>
+                    <input type="file" class="frame7" name="fileImage" id="fileImage" accept="image/*">
+                    <img id="thumbnail" src="" alt="Preview Your Picture">
                 </div>
             </div>
             <div class="button2">
-                <div class="cancel">
+                <a class="cancel" th:href="@{/member/activity}">
                     <div class="cancel2">Cancel</div>
-                </div>
-                <div class="save">
+                </a>
+                <button class="save" type="submit">
                     <div class="save2">Save</div>
-                </div>
+                </button>
             </div>
         </div>
     </div>

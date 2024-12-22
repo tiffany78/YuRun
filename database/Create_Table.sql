@@ -30,8 +30,8 @@ CREATE TABLE Activity (
     duration VARCHAR(8),
     date DATE NOT NULL,
     time TIME NOT NULL,
-    description VARCHAR(300), 
-    picture BYTEA,
+    description VARCHAR(300),
+    path_pict VARCHAR(50),
     FOREIGN KEY (id_user) REFERENCES Users (id_user)
 );
 

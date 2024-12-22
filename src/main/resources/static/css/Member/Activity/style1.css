@@ -168,68 +168,108 @@ a.page{
     background: none;
 }
 
-/* BAGIAN CONTENT */
-.contentBody{
+.contentBody {
     grid-area: contentBody;
-    width: 95%;
+    justify-content: center;
     justify-self: center;
-}
-.text3 {
-    color: var(--primary-color-500, #ff5722);
-    text-align: left;
-    font-family: "Roboto-SemiBold", sans-serif;
-    font-size: 21px;
-    line-height: 120%;
-    font-weight: 600;
     display: flex;
-    justify-content: space-between;
-    align-items: center;
-    width: 100%;
-}
-.text3 a {
-    text-decoration: none;
-    color: inherit;
-}
-
-.table_race {
-    width: 100%;
-    /* margin: 20px auto; */
-    text-align: center;
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 10px;
     font-family: "Roboto-Medium", sans-serif;
-    border-spacing: 0;
-    border-collapse: separate; 
+}
+.square {
+    display: grid;
+    grid-template-rows: auto 150px 1fr auto;
+    grid-template-columns: 1fr; /* Semua elemen dalam satu kolom */
+    gap: 10px; /* Jarak antar elemen */
+    background: #fff4ed;
+    border: #ff5722 3px solid;
+    width: 300px;
+    height: 400px;
     border-radius: 10px;
-}
-thead th {
-    background-color: #ffffff;
-    padding: 10px;
-    text-align: center;
-    font-weight: bold;
-    color: #ff5722;
-}
-thead th:first-child {
-    border-radius: 10px 0 0 10px;
+    padding: 15px;
 }
 
-thead th:last-child {
-    border-radius: 0 10px 10px 0;
+.kindText {
+    font-weight: 600;
+    font-size: larger;
+    text-align: center; /* Lurus di tengah */
 }
-.table_race td {
-    padding: 10px;
-    text-align: center;
-    font-weight: bold;
-    border: 1px solid #ffffff;
-    background-color: #ffc8a8;
+
+.imageContainer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    max-width: 200px;
+    max-height: 150px;
+    margin: 0 auto;
 }
-.table_race tbody td:first-child {
-    border-radius: 10px 0 0 10px; 
+
+.image {
+    max-width: 100%;
+    max-height: 100%;
+    object-fit: contain; /* Pastikan gambar tetap proporsional */
+    border-radius: 5px;
+    border: 1px solid #ccc;
 }
-.table_race tbody td:last-child {
-    border-radius: 0 10px 10px 0;
+
+.detailText {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 5px; /* Jarak antar teks */
+    text-align: left; /* Lurus di kiri */
+    font-weight: 500;
+    font-size: large;
 }
-th a img {
-    width: 16px; /* Ubah sesuai kebutuhan */
-    height: 16px;
-    vertical-align: middle; /* Agar sejajar dengan teks */
-    margin-left: 5px; /* Memberi jarak antara teks dan gambar */
+.title {
+    font-weight: bold; /* Membuat teks title lebih tebal */
+}
+.description {
+    font-weight: normal; /* Membuat teks description normal */
+    color: #666; /* Opsional: Gunakan warna abu-abu untuk membedakan */
+}
+.detailTime {
+    display: flex;
+    flex-direction: row;
+    column-gap: 10px;
+    font-size: small;
+    color: gray;
+}
+.actionButton {
+    display: flex;
+    justify-content: center;
+    gap: 20px; /* Jarak antar tombol */
+    align-items: center;
+    margin-top: auto; /* Dorong ke bawah */
+}
+
+.delete {
+    background: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    column-gap: 10px;
+    border-radius: 10px;
+    font-size: large;
+    color: #c71e07;
+    font-weight: 500;
+    width: 125px;
+    height: 40px;
+}
+
+.edit {
+    border: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #ff5722;
+    column-gap: 10px;
+    color: #ffffff;
+    border-radius: 10px;
+    font-size: large;
+    width: 125px;
+    height: 40px;
+    text-decoration: none;
 }

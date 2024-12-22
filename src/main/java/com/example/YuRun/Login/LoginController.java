@@ -53,6 +53,7 @@ public class LoginController {
                 session.setAttribute("email", pengguna.getEmail());
                 session.setAttribute("id_user", pengguna.getId_user());
                 session.setAttribute("peran", "member");
+                session.setAttribute("username", pengguna.getName());
                 return "redirect:/member";
            }
         }
