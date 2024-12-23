@@ -17,10 +17,27 @@ public class JDBCRace implements RaceRepository{
     @Autowired
     JdbcTemplate jdbcTemplate;
 
-    public List<Race> findRace() {
-        String sql = "SELECT * FROM race ORDER BY start_date";
-        return jdbcTemplate.query(sql, this::mapRowToRace);
+    public List<CountRace> findRace() {
+        String sql = "SELECT * FROM count_race_admin ORDER BY start_date";
+        return jdbcTemplate.query(sql, this::mapRowToCountrace);
     } 
+
+    private CountRace mapRowToCountrace(ResultSet resultSet, int rowNum) throws SQLException {
+        LocalDateTime startDateTime = resultSet.getDate("start_date").toLocalDate()
+            .atTime(resultSet.getTime("race_time").toLocalTime());
+
+        return new CountRace(
+            resultSet.getInt("id_race"),
+            resultSet.getString("title"),
+            resultSet.getDate("start_date"),
+            resultSet.getTime("race_time"),
+            resultSet.getDouble("distance"),
+            resultSet.getString("description"), 
+            resultSet.getInt("count"),
+            resultSet.getBoolean("status"),
+            startDateTime
+        );
+    }
 
     private Race mapRowToRace(ResultSet resultSet, int rowNum) throws SQLException {
         LocalDateTime startDateTime = resultSet.getDate("start_date").toLocalDate()
@@ -63,7 +80,12 @@ public class JDBCRace implements RaceRepository{
     public void updateStatus(int idRace, int idUser, boolean status) {
         String sql = "UPDATE joinrace SET status = ? WHERE id_race = ? AND id_user = ?";
         jdbcTemplate.update(sql, status, idRace, idUser);
-    }    
+    } 
+    
+    public void updateStatusRace(int idRace) {
+        String sql = "UPDATE race SET status = TRUE WHERE id_race = ?";
+        jdbcTemplate.update(sql, idRace);
+    }
 
     private ResultRace mapRowToResultRace(ResultSet resultSet, int rowNum) throws SQLException {
         return new ResultRace(

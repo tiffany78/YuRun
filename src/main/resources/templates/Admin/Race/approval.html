@@ -52,7 +52,7 @@
     <form class="body" method="post" th:action="@{/admin/race/approval/{idRace}(idRace=${idRace})}">
         <div class="bodyButton">
             <a class="back" th:href="@{/admin/race}">Back</a>
-            <button type="submit">Save</button>
+            <button class="save" type="submit">Save</button>
         </div>
         <div class="contentBody">
             <div class="square" th:each="resultRace : ${resultRace}">

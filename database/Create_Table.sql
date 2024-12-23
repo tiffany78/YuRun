@@ -1,4 +1,5 @@
 DROP VIEW IF EXISTS show_race_admin;
+DROP VIEW IF EXISTS count_race_admin;
 DROP TABLE JoinRace;
 DROP TABLE Activity;
 DROP TABLE Race;
@@ -19,7 +20,8 @@ CREATE TABLE Race (
     start_date DATE NOT NULL,
     time TIME NOT NULL,
     distance DECIMAL (10,2) NOT NULL,
-    description VARCHAR(300)
+    description VARCHAR(300),
+    status BOOLEAN
 );
 
 CREATE TABLE Activity (
@@ -51,3 +53,9 @@ select race.id_race, race.title, race.time as race_time, race.distance, users.id
 from joinrace
 join race on race.id_race = joinrace.id_race
 join users on users.id_user = joinrace.id_user;
+
+CREATE VIEW count_race_admin AS 
+select race.id_race, race.title, race.start_date, race.time as race_time, race.distance, race.description, count(joinrace.id_user), race.status
+from joinrace
+join race on race.id_race = joinrace.id_race
+group by race.id_race;

@@ -29,7 +29,7 @@ public class RaceController {
     @GetMapping("/race")
     @RequiredRole("admin")
     public String index(Model model){
-        List<Race> list = this.repo.findRace();
+        List<CountRace> list = this.repo.findRace();
         model.addAttribute("raceList", list);
 
         LocalDateTime now = LocalDateTime.now();
@@ -128,6 +128,7 @@ public class RaceController {
 
             this.repo.updateStatus(idRace, idUser, statusValue);
         }
+        this.repo.updateStatusRace(idRace);
 
         return "redirect:/admin/race";
     }

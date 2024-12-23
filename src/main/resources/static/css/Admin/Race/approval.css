@@ -183,6 +183,23 @@ a.page{
     text-decoration: none;
     font-size: medium;
     color: #454545;
+    border: #141414 2px solid;
+    width: 70px;
+    border-radius: 10px;
+    padding: 5px;
+    text-align: center;
+}
+.save{
+    text-decoration: none;
+    border: none;
+    font-size: medium;
+    font-weight: 500;
+    color: #fff4ed;
+    background: #ff6f37;
+    width: 90px;
+    border-radius: 10px;
+    padding: 5px;
+    text-align: center;
 }
 
 .contentBody {

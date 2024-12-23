@@ -58,17 +58,15 @@
     <div class="contentBody">
         <div class="square" th:each="race : ${raceList}">
             <a class="kindText" th:text="${race.title}"></a>
-            <div class="imageContainer">
-                
-            </div>
             <div class="detailText">
                 <a th:text="${race.description != null ? race.description : 'desc'}"></a>
                 <a th:text="${race.distance} + ' km'"></a>
-                <a>Count Join</a>
+                <a th:text="${race.count} + ' Members'"></a>
                 <div class="detailTime">
+                    <a th:classappend="${race.status ?'status-approved' : 'status-rejected'}"  th:text="${race.status ? 'DONE' : 'NEED APPROVAL'}"></a>
                     <a th:text="${#dates.format(race.start_date, 'dd/MM/yyyy')}"></a>
                     <a th:text="${#dates.format(race.time, 'HH:mm:ss')}"></a>
-                </div>
+                </div>                
             </div>
             <div class="actionButton">
                 <a class="close"
