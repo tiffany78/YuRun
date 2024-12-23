@@ -52,8 +52,9 @@
     <form class="body" method="post" th:action="@{/admin/race/approval/{idRace}(idRace=${idRace})}">
         <div class="bodyButton">
             <a class="back" th:href="@{/admin/race}">Back</a>
-            <button class="save" type="button" onclick="showPopup(event)">Save</button>
-        </div>
+            <button class="save" type="button" onclick="showPopup(event)" 
+                    th:attr="disabled=${statusRace ? 'disabled' : null}">Save</button>
+        </div>        
         <div class="contentBody">
             <div class="square" th:each="resultRace : ${resultRace}">
                 <div class="imageContainer">
@@ -62,7 +63,6 @@
                 <div class="detailText">
                     <input type="hidden" name="id_users" th:value="${resultRace.id_user}">
                     <input type="hidden" name="statuses" value="null" class="statusField">
-                    
                     <a th:text="${resultRace.name}"></a>
                     <a th:text="${#dates.format(resultRace.member_time, 'HH:mm:ss')}"></a>
                     <div class="buttonApprove">

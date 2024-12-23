@@ -14,4 +14,5 @@ public interface RaceRepository {
     List<ResultRace> getAllResultRace(int id_race);
     void updateStatus(int idRace, int idUser, boolean status);
     void updateStatusRace(int idRace);
+    boolean getRaceStatus(int idRace);
 }

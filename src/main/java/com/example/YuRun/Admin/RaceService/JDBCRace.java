@@ -7,6 +7,7 @@ import java.time.LocalDateTime;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
 
@@ -99,5 +100,25 @@ public class JDBCRace implements RaceRepository{
             resultSet.getString("path_pict"),
             resultSet.getBoolean("status")
         );
+    }
+
+    public boolean getRaceStatus(int idRace) {
+        String sql = "SELECT status FROM race WHERE id_race = ?";
+        try {
+            Boolean status = jdbcTemplate.queryForObject(sql, boolean.class, idRace);
+
+            if(status == null || status == false){
+                return false;
+            }
+            else {
+                return true;
+            }
+        } catch (EmptyResultDataAccessException e) {
+            // Jika tidak ada data ditemukan
+            return false;
+        } catch (Exception e) {
+            e.printStackTrace();
+            throw new RuntimeException("Error retrieving race status");
+        }
     }
 }

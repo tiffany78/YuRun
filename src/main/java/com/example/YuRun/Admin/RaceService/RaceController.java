@@ -108,6 +108,9 @@ public class RaceController {
         model.addAttribute("title", list.get(0).getTitle());
         model.addAttribute("target", list.get(0).getDistance());
 
+        boolean status = this.repo.getRaceStatus(idRace);
+        model.addAttribute("statusRace", status);
+
         return "/Admin/Race/approval";
     }
 
