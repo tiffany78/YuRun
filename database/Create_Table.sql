@@ -1,3 +1,4 @@
+DROP VIEW IF EXISTS show_race_admin;
 DROP TABLE JoinRace;
 DROP TABLE Activity;
 DROP TABLE Race;
@@ -39,8 +40,14 @@ CREATE TABLE JoinRace (
     id_race INT, 
     id_user INT,
     time TIME,
-    picture BYTEA,
+    path_pict VARCHAR(50),
     status BOOLEAN, 
     FOREIGN KEY (id_race) REFERENCES Race (id_race), 
     FOREIGN KEY (id_user) REFERENCES Users (id_user)
 );
+
+CREATE VIEW show_race_admin AS 
+select race.id_race, race.title, race.time as race_time, race.distance, users.id_user, users.name, joinrace.time as member_time, joinrace.path_pict, joinrace.status
+from joinrace
+join race on race.id_race = joinrace.id_race
+join users on users.id_user = joinrace.id_user;

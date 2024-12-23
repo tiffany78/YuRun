@@ -99,9 +99,37 @@ public class RaceController {
             return "redirect:/admin/race";
     }
 
-    @GetMapping("/race/approval")
-    public String indexApproval(){
+    @GetMapping("/race/approval/{idRace}")
+    public String indexApproval(@PathVariable("idRace") int idRace, Model model){
+        List<ResultRace> list = this.repo.getAllResultRace(idRace);
+        model.addAttribute("resultRace", list);
+
+        model.addAttribute("idRace", list.get(0).getId_race());
+        model.addAttribute("title", list.get(0).getTitle());
+        model.addAttribute("target", list.get(0).getDistance());
+
         return "/Admin/Race/approval";
+    }
+
+    @PostMapping("/race/approval/{idRace}")
+    public String saveApproval(
+        @PathVariable("idRace") int idRace,
+        @RequestParam("id_users") List<Integer> idUsers,
+        @RequestParam("statuses") List<String> statuses) {
+
+        for (int i = 0; i < idUsers.size(); i++) {
+            int idUser = idUsers.get(i);
+            String status = statuses.get(i);
+
+            boolean statusValue = false;
+            if ("true".equals(status)) {
+                statusValue = true;
+            }
+
+            this.repo.updateStatus(idRace, idUser, statusValue);
+        }
+
+        return "redirect:/admin/race";
     }
 
     @GetMapping("/race/close/{idRace}")

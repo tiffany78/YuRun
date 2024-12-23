@@ -4,8 +4,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Approval Race</title>
-    <link rel="stylesheet" href="/css/Admin/Race/style1.css">
+    <link rel="stylesheet" href="/css/Admin/Race/approval.css">
     <link rel="stylesheet" href="/css/Admin/HomePage/vars.css">
+    <script src="/js/Admin/Approval.js" defer></script>
 </head>
 <body class="containerBody">
     <nav class="navbar">
@@ -27,68 +28,56 @@
             </a>
         </div>
     </nav>
+    <div class="information">
+        <a class="headInfo">Approvals</a>
+        <a>
+            <span th:text="${title}"></span>
+            <span th:text="${' - ' + target + ' km'}"></span>
+        </a>
+    </div>
     <div class="header">
-        <div class="filter">
-            <div class="pagination">
-                <a href="#">&laquo;</a>
-                <a href="#">1</a>
-                <a class="active" href="#">2</a>
-                <a href="#">3</a>
-                <a href="#">4</a>
-                <a href="#">5</a>
-                <a href="#">6</a>
-                <a href="#">&raquo;</a>
-            </div>
-            <!--FORM FOR SEARCHING-->
-            <div class="search">
-                <img class="search-bar" src="/css/Admin/Race/search0.svg"/>
-                <form method="GET">
-                  <input type="text" name="filter" th:value="${filter}" placeholder="Search Title Race" class="search-race" input=this.form.submit()/>
-                </form>
-              </div>
-            <select class="dropdown" id="kind" name="kind" required>
-                <option value="" disabled th:if="${kind == null}" selected>Choose Kind of Race</option>
-                <option th:value="2023" th:selected="${kind == 'Fun Run'}">Fun Run</option>
-                <option th:value="2024" th:selected="${kind == 'Half Marathon'}">Half Marathon</option>
-                <option th:value="2024" th:selected="${kind == 'Marathon'}">Marathon</option>
-            </select>
-        </div>
-        <a class="add" th:href="@{/admin/addRace}">+ Add Race</a>
+        <!--FORM FOR SEARCHING-->
+        <div class="search">
+            <img class="search-bar" src="/css/Admin/Race/search0.svg"/>
+            <form method="GET">
+              <input type="text" name="filter" th:value="${filter}" placeholder="Search Member" class="search-race" input=this.form.submit()/>
+            </form>
+          </div>
+        <select class="dropdown" id="status" name="status" required>
+            <option value="" disabled th:if="${status == null}" selected>Status Member</option>
+            <option th:value="Approve" th:selected="${status == 'Approve'}">Approve</option>
+            <option th:value="Reject" th:selected="${status == 'Reject'}">Reject</option>
+        </select>
     </div>
-    <div class="contentBody">
-        <div class="text3">
-            <a href="#">Time Line Race</a>
+    <form class="body" method="post" th:action="@{/admin/race/approval/{idRace}(idRace=${idRace})}">
+        <div class="bodyButton">
+            <a class="back" th:href="@{/admin/race}">Back</a>
+            <button type="submit">Save</button>
         </div>
-        <hr>
-        <table class="table_race">
-            <thead>
-                <tr>
-                    <th>Kind</th>
-                    <th>Title</th>
-                    <th>Date <a href="#"><img src="/css/Admin/Race/bxs-sort-alt.svg" alt="Sort Icon"></a></th>
-                    <th>Start Time <a href="#"><img src="/css/Admin/Race/bxs-sort-alt.svg" alt="Sort Icon"></a></th>
-                    <th>Distance <a href="#"><img src="/css/Admin/Race/bxs-sort-alt.svg" alt="Sort Icon"></a></th>
-                    <th>Status</th>
-                    <th>Action</th>
-                </tr>                
-            </thead>
-            <tbody>
-                <tr th:each="race : ${raceList}">
-                    <td th:text="${race.idRace}"></td>
-                    <td th:text="${race.title}"></td>
-                    <td th:text="${#dates.format(race.start_date, 'dd/MM/yyyy')}"></td>
-                    <td th:text="${#dates.format(race.time, 'HH:mm:ss')}"></td>
-                    <td th:text="${race.distance} + ' km'"></td>
-                    <td>bla</td>
-                    <td>
-                        <a th:href="@{/admin/editRace/{idRace}(idRace=${race.idRace})}">
-                            <img class="edit" src="/css/Admin/Race/edit-1-20.svg" alt="Edit"/>
+        <div class="contentBody">
+            <div class="square" th:each="resultRace : ${resultRace}">
+                <div class="imageContainer">
+                    <img th:src="${resultRace.path_pict != null ? '/upload/race-member/' + resultRace.path_pict : '/upload/race-member/null.jpg'}" alt="Image" class="image">
+                </div>
+                <div class="detailText">
+                    <input type="hidden" name="id_users" th:value="${resultRace.id_user}">
+                    <input type="hidden" name="statuses" value="null" class="statusField">
+                    
+                    <a th:text="${resultRace.name}"></a>
+                    <a th:text="${#dates.format(resultRace.member_time, 'HH:mm:ss')}"></a>
+                    <div class="buttonApprove">
+                        <a th:class="${resultRace.status == null ? 'button2' : (resultRace.status ? 'approve' : 'button2')}"
+                           onclick="setApprove(this)">
+                           <img class="imgButton" src="/css/Admin/Race/mark.png"> Approve
                         </a>
-                        <img class="delete" src="/css/Admin/Race/trash-2-20.svg" alt="Delete"/>
-                    </td>
-                </tr>               
-            </tbody>
-        </table>
-    </div>
+                        <a th:class="${resultRace.status == null ? 'button2' : (!resultRace.status ? 'reject' : 'button2')}"
+                           onclick="setReject(this)">
+                           <img class="imgButton" src="/css/Admin/Race/decline.png"> Reject
+                        </a>
+                    </div>                                           
+                </div>
+            </div>            
+        </div>
+    </form>    
 </body>
 </html>

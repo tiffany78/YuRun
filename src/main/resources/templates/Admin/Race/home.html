@@ -80,7 +80,7 @@
 
                 <a class="close"
                     th:if="${!race.startDateTime.isAfter(currentDate)}"
-                    th:href="@{/admin/race/approval}">
+                    th:href="@{/admin/race/approval/{idRace}(idRace=${race.idRace})}">
                     Approval Race
                 </a>
                 <a class="edit" th:href="@{/admin/editRace/{idRace}(idRace=${race.idRace})}">Edit</a>

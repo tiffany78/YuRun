@@ -53,4 +53,29 @@ public class JDBCRace implements RaceRepository{
 
         jdbcTemplate.update(sql, distance, date, time, title, desc, idRace);
     }
+
+    public List<ResultRace> getAllResultRace(int id_race){
+        String sql = "SELECT * FROM show_race_admin WHERE id_race = ?";
+        
+        return jdbcTemplate.query(sql, this::mapRowToResultRace, id_race);
+    }
+
+    public void updateStatus(int idRace, int idUser, boolean status) {
+        String sql = "UPDATE joinrace SET status = ? WHERE id_race = ? AND id_user = ?";
+        jdbcTemplate.update(sql, status, idRace, idUser);
+    }    
+
+    private ResultRace mapRowToResultRace(ResultSet resultSet, int rowNum) throws SQLException {
+        return new ResultRace(
+            resultSet.getInt("id_race"),
+            resultSet.getString("title"),
+            resultSet.getTime("race_time"),
+            resultSet.getDouble("distance"),
+            resultSet.getInt("id_user"),
+            resultSet.getString("name"),
+            resultSet.getTime("member_time"), 
+            resultSet.getString("path_pict"),
+            resultSet.getBoolean("status")
+        );
+    }
 }
