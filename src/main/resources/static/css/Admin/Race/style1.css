@@ -238,6 +238,15 @@ a.page{
     font-weight: bold;
 }
 
+.status-ongoing{
+    background-color: #ccecff; /* Warna merah muda */
+    color: #113659; /* Warna merah gelap */
+    padding: 5px 10px;
+    border-radius: 10px;
+    text-align: center;
+    font-weight: bold;
+}
+
 .actionButton {
     display: flex;
     justify-content: center;

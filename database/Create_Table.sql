@@ -57,5 +57,5 @@ join users on users.id_user = joinrace.id_user;
 CREATE VIEW count_race_admin AS 
 select race.id_race, race.title, race.start_date, race.time as race_time, race.distance, race.description, count(joinrace.id_user), race.status
 from joinrace
-join race on race.id_race = joinrace.id_race
+right join race on race.id_race = joinrace.id_race
 group by race.id_race;
