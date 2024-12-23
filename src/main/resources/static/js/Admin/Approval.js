@@ -27,3 +27,21 @@ function resetButtons(container) {
     const statusField = container.closest('.detailText').querySelector('.statusField');
     statusField.value = 'null';
 }
+// Fungsi untuk menampilkan pop-up
+function showPopup(event) {
+    event.preventDefault(); // Mencegah form langsung dikirimkan
+    const popup = document.getElementById('popup');
+    popup.classList.remove('hidden');
+}
+
+// Fungsi untuk menutup pop-up
+function closePopup() {
+    const popup = document.getElementById('popup');
+    popup.classList.add('hidden');
+}
+
+// Fungsi untuk mengonfirmasi "Yes" dan submit form
+function confirmSubmit() {
+    const form = document.querySelector('form.body'); // Ambil form
+    form.submit(); // Kirim form
+}

@@ -52,7 +52,7 @@
     <form class="body" method="post" th:action="@{/admin/race/approval/{idRace}(idRace=${idRace})}">
         <div class="bodyButton">
             <a class="back" th:href="@{/admin/race}">Back</a>
-            <button class="save" type="submit">Save</button>
+            <button class="save" type="button" onclick="showPopup(event)">Save</button>
         </div>
         <div class="contentBody">
             <div class="square" th:each="resultRace : ${resultRace}">
@@ -78,6 +78,15 @@
                 </div>
             </div>            
         </div>
-    </form>    
+        <div id="popup" class="popup hidden">
+            <div class="popup-content">
+                <p>Are you sure you want to save the changes?</p>
+                <div class="popup-actions">
+                    <a class="noAction" onclick="closePopup()">No</a>
+                    <a id="confirmClose" href="#" class="confirm" onclick="confirmSubmit()">Yes</a>
+                </div>
+            </div>
+        </div>     
+    </form>           
 </body>
 </html>
