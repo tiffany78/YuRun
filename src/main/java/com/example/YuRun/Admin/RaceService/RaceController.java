@@ -3,6 +3,7 @@ package com.example.YuRun.Admin.RaceService;
 import java.sql.Date;
 import java.sql.Time;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
 import java.util.List;
@@ -28,8 +29,12 @@ public class RaceController {
     @GetMapping("/race")
     @RequiredRole("admin")
     public String index(Model model){
-        List<Race> list = this.repo.findRace();
+        List<CountRace> list = this.repo.findRace();
         model.addAttribute("raceList", list);
+
+        LocalDateTime now = LocalDateTime.now();
+        model.addAttribute("currentDate", now);
+
         return "/Admin/Race/home";
     }
 
@@ -92,5 +97,47 @@ public class RaceController {
             this.repo.updateRace(title, sqlTime, sqlDate, distance, desc, idRace);
 
             return "redirect:/admin/race";
+    }
+
+    @GetMapping("/race/approval/{idRace}")
+    public String indexApproval(@PathVariable("idRace") int idRace, Model model){
+        List<ResultRace> list = this.repo.getAllResultRace(idRace);
+        model.addAttribute("resultRace", list);
+
+        model.addAttribute("idRace", list.get(0).getId_race());
+        model.addAttribute("title", list.get(0).getTitle());
+        model.addAttribute("target", list.get(0).getDistance());
+
+        boolean status = this.repo.getRaceStatus(idRace);
+        model.addAttribute("statusRace", status);
+
+        return "/Admin/Race/approval";
+    }
+
+    @PostMapping("/race/approval/{idRace}")
+    public String saveApproval(
+        @PathVariable("idRace") int idRace,
+        @RequestParam("id_users") List<Integer> idUsers,
+        @RequestParam("statuses") List<String> statuses) {
+
+        for (int i = 0; i < idUsers.size(); i++) {
+            int idUser = idUsers.get(i);
+            String status = statuses.get(i);
+
+            boolean statusValue = false;
+            if ("true".equals(status)) {
+                statusValue = true;
+            }
+
+            this.repo.updateStatus(idRace, idUser, statusValue);
+        }
+        this.repo.updateStatusRace(idRace);
+
+        return "redirect:/admin/race";
+    }
+
+    @GetMapping("/race/close/{idRace}")
+    public String deleteRace(@PathVariable int idRace){
+        return "redirect:/admin/race";
     }
 }

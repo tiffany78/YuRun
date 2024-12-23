@@ -27,7 +27,8 @@ public class JDBCHomeImplementation implements HomeRepository {
             resultSet.getDate("start_date"),
             resultSet.getTime("time"),
             resultSet.getDouble("distance"),
-            resultSet.getString("description")
+            resultSet.getString("description"),
+            null
         );
     }
 

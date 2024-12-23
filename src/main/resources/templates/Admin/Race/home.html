@@ -6,6 +6,7 @@
     <title>Home Race</title>
     <link rel="stylesheet" href="/css/Admin/Race/style1.css">
     <link rel="stylesheet" href="/css/Admin/HomePage/vars.css">
+    <script src="/js/Admin/HomeRace.js" defer></script>
 </head>
 <body class="containerBody">
     <nav class="navbar">
@@ -56,39 +57,49 @@
         <a class="add" th:href="@{/admin/addRace}">+ Add Race</a>
     </div>
     <div class="contentBody">
-        <div class="text3">
-            <a href="#">Time Line Race</a>
+        <div class="square" th:each="race : ${raceList}">
+            <a class="kindText" th:text="${race.title}"></a>
+            <div class="detailText">
+                <a th:text="${race.description != null ? race.description : 'desc'}"></a>
+                <a th:text="${race.distance} + ' km'"></a>
+                <a th:text="${race.count} + ' Members'"></a>
+                <div class="detailTime">
+                    <!-- Status DONE -->
+                    <a th:if="${race.status}" th:classappend="'status-approved'"  th:text="'DONE'"></a>
+                    
+                    <!-- Status NEED APPROVAL atau ON GOING -->
+                    <a th:if="${!race.status}" th:classappend="${!race.startDateTime.isAfter(currentDate) ? 'status-rejected' : 'status-ongoing'}" th:text="${race.startDateTime.isAfter(currentDate) ? 'ON GOING' : 'NEED APPROVAL'}"></a>
+                    
+                    <!-- Tanggal dan Waktu -->
+                    <a th:text="${#dates.format(race.start_date, 'dd/MM/yyyy')}"></a>
+                    <a th:text="${#dates.format(race.time, 'HH:mm:ss')}"></a>
+                </div>                
+            </div>
+            <div class="actionButton">
+                <a class="close"
+                    th:if="${race.startDateTime.isAfter(currentDate)}"
+                    th:onclick="'showPopup(' + ${race.idRace} + ')'"
+                    th:text="'Delete Race'">
+                    Delete Race
+                    </a>
+
+                <a class="close"
+                    th:if="${!race.startDateTime.isAfter(currentDate)}"
+                    th:href="@{/admin/race/approval/{idRace}(idRace=${race.idRace})}">
+                    Approval Race
+                </a>
+                <a class="edit" th:href="@{/admin/editRace/{idRace}(idRace=${race.idRace})}">Edit</a>
+            </div>
         </div>
-        <hr>
-        <table class="table_race">
-            <thead>
-                <tr>
-                    <th>Kind</th>
-                    <th>Title</th>
-                    <th>Date <a href="#"><img src="/css/Admin/Race/bxs-sort-alt.svg" alt="Sort Icon"></a></th>
-                    <th>Start Time <a href="#"><img src="/css/Admin/Race/bxs-sort-alt.svg" alt="Sort Icon"></a></th>
-                    <th>Distance <a href="#"><img src="/css/Admin/Race/bxs-sort-alt.svg" alt="Sort Icon"></a></th>
-                    <th>Status</th>
-                    <th>Action</th>
-                </tr>                
-            </thead>
-            <tbody>
-                <tr th:each="race : ${raceList}">
-                    <td th:text="${race.idRace}"></td>
-                    <td th:text="${race.title}"></td>
-                    <td th:text="${#dates.format(race.start_date, 'dd/MM/yyyy')}"></td>
-                    <td th:text="${#dates.format(race.time, 'HH:mm:ss')}"></td>
-                    <td th:text="${race.distance} + ' km'"></td>
-                    <td>bla</td>
-                    <td>
-                        <a th:href="@{/admin/editRace/{idRace}(idRace=${race.idRace})}">
-                            <img class="edit" src="/css/Admin/Race/edit-1-20.svg" alt="Edit"/>
-                        </a>
-                        <img class="delete" src="/css/Admin/Race/trash-2-20.svg" alt="Delete"/>
-                    </td>
-                </tr>               
-            </tbody>
-        </table>
     </div>
+    <div id="popup" class="popup hidden">
+        <div class="popup-content">
+            <p>Are you sure want delete the race?</p>
+            <div class="popup-actions">
+                <a class="noAction" onclick="closePopup()">No</a>
+                <a id="confirmClose" href="#" class="confirm">Yes</a>
+            </div>
+        </div>
+    </div>    
 </body>
 </html>

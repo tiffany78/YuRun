@@ -79,8 +79,8 @@ INSERT INTO Activity (id_user, title, kind, distance, duration, date, time, desc
 -- Dummy data for JoinRace
 INSERT INTO JoinRace (id_race, id_user) VALUES
 -- Sunrise Marathon (Upcoming)
-(1, 1),
-(1, 2),
+(1, 4),
+(1, 5),
 (1, 3),
 -- Twilight Run (Ongoing)
 (2, 4),
@@ -88,8 +88,8 @@ INSERT INTO JoinRace (id_race, id_user) VALUES
 (2, 6),
 -- City Lights Race (Upcoming)
 (4, 10),
-(4, 1),
-(4, 2),
+(4, 4),
+(4, 5),
 -- Beachside Dash (Ongoing)
 (5, 3),
 (5, 4),

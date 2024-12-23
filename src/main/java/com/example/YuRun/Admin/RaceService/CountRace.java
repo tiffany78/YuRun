@@ -1,4 +1,4 @@
-package com.example.YuRun.Admin.Homepage;
+package com.example.YuRun.Admin.RaceService;
 
 import java.sql.Date;
 import java.sql.Time;
@@ -9,12 +9,14 @@ import lombok.Data;
 
 @Data
 @AllArgsConstructor
-public class Race {
+public class CountRace {
     private int idRace; 
     private String title;       
     private Date start_date; 
     private Time time;  
     private Double distance;
     private String description;
+    private int count;    
+    private boolean status;
     private LocalDateTime startDateTime;
 }

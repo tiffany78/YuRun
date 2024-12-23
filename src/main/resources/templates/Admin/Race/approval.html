@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Approval Race</title>
+    <link rel="stylesheet" href="/css/Admin/Race/approval.css">
+    <link rel="stylesheet" href="/css/Admin/HomePage/vars.css">
+    <script src="/js/Admin/Approval.js" defer></script>
+</head>
+<body class="containerBody">
+    <nav class="navbar">
+        <div class="logo">
+            <img src="/css/LandingPage/logo1.svg">
+            <a class="yurun">YuRun</a>
+        </div>
+        <div class="textNavbar">
+            <a th:href="@{/admin/home}">Home</a>
+            <a th:href="@{/admin/userInfo}">User Information</a>
+            <a th:href="@{/admin/race}" class="page">Race</a>
+        </div>
+        <div class="button">
+            <a>
+                <img src="/css/Admin/HomePage/account-circle0.svg"/>
+            </a>
+            <a th:href="@{/logout}">
+                <img src="/css/Admin/HomePage/logout.svg"/>
+            </a>
+        </div>
+    </nav>
+    <div class="information">
+        <a class="headInfo">Approvals</a>
+        <a>
+            <span th:text="${title}"></span>
+            <span th:text="${' - ' + target + ' km'}"></span>
+        </a>
+    </div>
+    <div class="header">
+        <!--FORM FOR SEARCHING-->
+        <div class="search">
+            <img class="search-bar" src="/css/Admin/Race/search0.svg"/>
+            <form method="GET">
+              <input type="text" name="filter" th:value="${filter}" placeholder="Search Member" class="search-race" input=this.form.submit()/>
+            </form>
+          </div>
+        <select class="dropdown" id="status" name="status" required>
+            <option value="" disabled th:if="${status == null}" selected>Status Member</option>
+            <option th:value="Approve" th:selected="${status == 'Approve'}">Approve</option>
+            <option th:value="Reject" th:selected="${status == 'Reject'}">Reject</option>
+        </select>
+    </div>
+    <form class="body" method="post" th:action="@{/admin/race/approval/{idRace}(idRace=${idRace})}">
+        <div class="bodyButton">
+            <a class="back" th:href="@{/admin/race}">Back</a>
+            <button class="save" type="button" onclick="showPopup(event)" 
+                    th:attr="disabled=${statusRace ? 'disabled' : null}">Save</button>
+        </div>        
+        <div class="contentBody">
+            <div class="square" th:each="resultRace : ${resultRace}">
+                <div class="imageContainer">
+                    <img th:src="${resultRace.path_pict != null ? '/upload/race-member/' + resultRace.path_pict : '/upload/race-member/null.jpg'}" alt="Image" class="image">
+                </div>
+                <div class="detailText">
+                    <input type="hidden" name="id_users" th:value="${resultRace.id_user}">
+                    <input type="hidden" name="statuses" value="null" class="statusField">
+                    <a th:text="${resultRace.name}"></a>
+                    <a th:text="${#dates.format(resultRace.member_time, 'HH:mm:ss')}"></a>
+                    <div class="buttonApprove">
+                        <a th:class="${resultRace.status == null ? 'button2' : (resultRace.status ? 'approve' : 'button2')}"
+                           onclick="setApprove(this)">
+                           <img class="imgButton" src="/css/Admin/Race/mark.png"> Approve
+                        </a>
+                        <a th:class="${resultRace.status == null ? 'button2' : (!resultRace.status ? 'reject' : 'button2')}"
+                           onclick="setReject(this)">
+                           <img class="imgButton" src="/css/Admin/Race/decline.png"> Reject
+                        </a>
+                    </div>                                           
+                </div>
+            </div>            
+        </div>
+        <div id="popup" class="popup hidden">
+            <div class="popup-content">
+                <p>Are you sure you want to save the changes?</p>
+                <div class="popup-actions">
+                    <a class="noAction" onclick="closePopup()">No</a>
+                    <a id="confirmClose" href="#" class="confirm" onclick="confirmSubmit()">Yes</a>
+                </div>
+            </div>
+        </div>     
+    </form>           
+</body>
+</html>
