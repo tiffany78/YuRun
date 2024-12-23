@@ -2,6 +2,7 @@ package com.example.YuRun.Admin.Homepage;
 
 import java.sql.Date;
 import java.sql.Time;
+import java.time.LocalDateTime;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -15,4 +16,5 @@ public class Race {
     private Time time;  
     private Double distance;
     private String description;
+    private LocalDateTime startDateTime;
 }

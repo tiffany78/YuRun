@@ -3,6 +3,7 @@ import java.sql.Date;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Time;
+import java.time.LocalDateTime;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,13 +23,16 @@ public class JDBCRace implements RaceRepository{
     } 
 
     private Race mapRowToRace(ResultSet resultSet, int rowNum) throws SQLException {
+        LocalDateTime startDateTime = resultSet.getDate("start_date").toLocalDate()
+            .atTime(resultSet.getTime("time").toLocalTime());
         return new Race(
             resultSet.getInt("id_race"),
             resultSet.getString("title"),
             resultSet.getDate("start_date"),
             resultSet.getTime("time"),
             resultSet.getDouble("distance"),
-            resultSet.getString("description")
+            resultSet.getString("description"), 
+            startDateTime
         );
     }
 

@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Home Race</title>
+    <title>Approval Race</title>
     <link rel="stylesheet" href="/css/Admin/Race/style1.css">
     <link rel="stylesheet" href="/css/Admin/HomePage/vars.css">
 </head>
@@ -56,61 +56,39 @@
         <a class="add" th:href="@{/admin/addRace}">+ Add Race</a>
     </div>
     <div class="contentBody">
-        <div class="square" th:each="race : ${raceList}">
-            <a class="kindText" th:text="${race.title}"></a>
-            <div class="imageContainer">
-                
-            </div>
-            <div class="detailText">
-                <a th:text="${race.description != null ? race.description : 'desc'}"></a>
-                <a th:text="${race.distance} + ' km'"></a>
-                <a>Count Join</a>
-                <div class="detailTime">
-                    <a th:text="${#dates.format(race.start_date, 'dd/MM/yyyy')}"></a>
-                    <a th:text="${#dates.format(race.time, 'HH:mm:ss')}"></a>
-                </div>
-            </div>
-            <div class="actionButton">
-                <a class="close"
-                    th:if="${race.startDateTime.isAfter(currentDate)}"
-                    th:onclick="'showPopup(' + ${race.idRace} + ')'"
-                    th:text="'Close Race'">
-                    Close Race
-                    </a>
-
-                <a class="close"
-                    th:if="${!race.startDateTime.isAfter(currentDate)}"
-                    th:href="@{/admin/race/approval}">
-                    Approval Race
-                </a>
-                <a class="edit" th:href="@{/admin/editRace/{idRace}(idRace=${race.idRace})}">Edit</a>
-            </div>
+        <div class="text3">
+            <a href="#">Time Line Race</a>
         </div>
+        <hr>
+        <table class="table_race">
+            <thead>
+                <tr>
+                    <th>Kind</th>
+                    <th>Title</th>
+                    <th>Date <a href="#"><img src="/css/Admin/Race/bxs-sort-alt.svg" alt="Sort Icon"></a></th>
+                    <th>Start Time <a href="#"><img src="/css/Admin/Race/bxs-sort-alt.svg" alt="Sort Icon"></a></th>
+                    <th>Distance <a href="#"><img src="/css/Admin/Race/bxs-sort-alt.svg" alt="Sort Icon"></a></th>
+                    <th>Status</th>
+                    <th>Action</th>
+                </tr>                
+            </thead>
+            <tbody>
+                <tr th:each="race : ${raceList}">
+                    <td th:text="${race.idRace}"></td>
+                    <td th:text="${race.title}"></td>
+                    <td th:text="${#dates.format(race.start_date, 'dd/MM/yyyy')}"></td>
+                    <td th:text="${#dates.format(race.time, 'HH:mm:ss')}"></td>
+                    <td th:text="${race.distance} + ' km'"></td>
+                    <td>bla</td>
+                    <td>
+                        <a th:href="@{/admin/editRace/{idRace}(idRace=${race.idRace})}">
+                            <img class="edit" src="/css/Admin/Race/edit-1-20.svg" alt="Edit"/>
+                        </a>
+                        <img class="delete" src="/css/Admin/Race/trash-2-20.svg" alt="Delete"/>
+                    </td>
+                </tr>               
+            </tbody>
+        </table>
     </div>
-
-    <script>
-        function showPopup(idRace) {
-            const popup = document.getElementById('popup');
-            popup.classList.remove('hidden');
-    
-            const confirmClose = document.getElementById('confirmClose');
-            confirmClose.href = '/admin/race/close/' + idRace;
-        }
-    
-        function closePopup() {
-            const popup = document.getElementById('popup');
-            popup.classList.add('hidden');
-        }
-    </script>    
-
-    <div id="popup" class="popup hidden">
-        <div class="popup-content">
-            <p>Are you sure want close the race?</p>
-            <div class="popup-actions">
-                <a class="noAction" onclick="closePopup()">No</a>
-                <a id="confirmClose" href="#" class="confirm">Yes</a>
-            </div>
-        </div>
-    </div>    
 </body>
 </html>

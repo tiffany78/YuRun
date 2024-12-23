@@ -3,6 +3,7 @@ package com.example.YuRun.Admin.RaceService;
 import java.sql.Date;
 import java.sql.Time;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
 import java.util.List;
@@ -30,6 +31,10 @@ public class RaceController {
     public String index(Model model){
         List<Race> list = this.repo.findRace();
         model.addAttribute("raceList", list);
+
+        LocalDateTime now = LocalDateTime.now();
+        model.addAttribute("currentDate", now);
+
         return "/Admin/Race/home";
     }
 
@@ -92,5 +97,15 @@ public class RaceController {
             this.repo.updateRace(title, sqlTime, sqlDate, distance, desc, idRace);
 
             return "redirect:/admin/race";
+    }
+
+    @GetMapping("/race/approval")
+    public String indexApproval(){
+        return "/Admin/Race/approval";
+    }
+
+    @GetMapping("/race/close/{idRace}")
+    public String deleteRace(@PathVariable int idRace){
+        return "redirect:/admin/race";
     }
 }
