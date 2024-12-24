@@ -28,9 +28,15 @@ public class RaceController {
 
     @GetMapping("/race")
     @RequiredRole("admin")
-    public String index(Model model){
-        List<CountRace> list = this.repo.findRace();
+    public String index(
+        Model model,
+        @RequestParam(required = false, defaultValue = "") String filter,
+        @RequestParam(required = false, defaultValue = "null") String statusRace){
+
+        List<CountRace> list = this.repo.findRace(filter, statusRace);
         model.addAttribute("raceList", list);
+        model.addAttribute("filter", filter);
+        model.addAttribute("statusRace", statusRace);
 
         LocalDateTime now = LocalDateTime.now();
         model.addAttribute("currentDate", now);

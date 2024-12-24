@@ -4,6 +4,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Time;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,10 +19,38 @@ public class JDBCRace implements RaceRepository{
     @Autowired
     JdbcTemplate jdbcTemplate;
 
-    public List<CountRace> findRace() {
-        String sql = "SELECT * FROM count_race_admin ORDER BY start_date";
-        return jdbcTemplate.query(sql, this::mapRowToCountrace);
-    } 
+    public List<CountRace> findRace(String filter, String statusRace) {
+
+        // mengubah string jadi boolean 
+        boolean statusRaceBool = false;
+        if(statusRace.equals("true")){
+            statusRaceBool = true;
+        }
+
+        String sql = "SELECT * FROM count_race_admin";
+        List<Object> filterList = new ArrayList<>();
+    
+        // Menambahkan filter berdasarkan 'filter' (title)
+        if (filter != null && !filter.isEmpty()) {
+            sql += " WHERE title ILIKE ?";
+            filterList.add("%" + filter + "%");
+        }
+    
+        // Menambahkan filter berdasarkan statusRace jika diberikan
+        if (statusRace != null && !statusRace.equals("null")) {
+            // Menggunakan 'status' untuk memfilter berdasarkan nilai status yang dipilih
+            if (!filterList.isEmpty()) {
+                sql += " AND status = ?";
+            } else {
+                sql += " WHERE status = ?";
+            }
+            filterList.add(statusRaceBool);
+        }
+    
+        sql += " ORDER BY start_date DESC";
+    
+        return jdbcTemplate.query(sql, this::mapRowToCountrace, filterList.toArray());
+    }    
 
     private CountRace mapRowToCountrace(ResultSet resultSet, int rowNum) throws SQLException {
         LocalDateTime startDateTime = resultSet.getDate("start_date").toLocalDate()
@@ -55,7 +84,7 @@ public class JDBCRace implements RaceRepository{
     }
 
     public void addRace(String title, Time time, Date date, Double distance, String desc) {
-        String sql = "INSERT INTO public.race(title, time, start_date, distance, description) VALUES (?, ?, ?, ?, ?)";
+        String sql = "INSERT INTO public.race(title, time, start_date, distance, description, status) VALUES (?, ?, ?, ?, ?, FALSE)";
         jdbcTemplate.update(sql, 
         title, time, date, distance, desc);
     }
