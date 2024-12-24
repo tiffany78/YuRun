@@ -18,7 +18,13 @@ public class UserInformationRepository {
         this.jdbcTemplate = jdbcTemplate;
     }
 
-    public List<User> findAll(String filter) {
+    public List<User> findAll(String filter, String statusMember) {
+        // mengubah string jadi boolean 
+        boolean statusBoolean = false;
+        if(statusMember.equals("true")){
+            statusBoolean = true;
+        }
+
         String sql = """
             SELECT ROW_NUMBER() OVER () AS row_num, name, email, isAdmin, status
             FROM Users
@@ -29,17 +35,21 @@ public class UserInformationRepository {
             sql += " AND name ILIKE ?";
             params.add("%" + filter + "%");
         }
+        if(statusMember != null && !statusMember.equals("null")){
+            sql += " AND status = ?";
+            params.add(statusBoolean);
+        }
     
         return jdbcTemplate.query(sql, this::mapRowToUserInformation, params.toArray());
     }
     
     private User mapRowToUserInformation(ResultSet resultSet, int rowNum) throws SQLException {
         return new User(
-            resultSet.getLong("row_num"),  // ID urut dimulai dari 1
+            resultSet.getLong("row_num"),
             resultSet.getString("name"),
             resultSet.getString("email"),
-            null, // Password tidak diambil dari query
-            false, // isAdmin di-hardcode karena hanya non-admin yang diambil
+            null,
+            false,
             resultSet.getBoolean("status")
         );
     }

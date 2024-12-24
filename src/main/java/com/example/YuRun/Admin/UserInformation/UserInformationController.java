@@ -23,10 +23,14 @@ public class UserInformationController {
 
     @GetMapping("/userInfo")
     @RequiredRole("admin")
-    public String index(@RequestParam(value = "filter", required = false, defaultValue = "") String filter, Model model) {
-        List<User> userList = userInformationRepository.findAll(filter);
+    public String index(
+        @RequestParam(value = "filter", required = false, defaultValue = "") String filter,
+        @RequestParam(required = false, defaultValue = "null") String statusMember, 
+        Model model) {
+        List<User> userList = userInformationRepository.findAll(filter, statusMember);
         model.addAttribute("userList", userList);
         model.addAttribute("filter", filter);
+        model.addAttribute("statusMember", statusMember);
         return "/Admin/UserInformation/index";
     }
 

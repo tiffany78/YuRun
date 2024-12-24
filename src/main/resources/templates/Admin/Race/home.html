@@ -29,7 +29,7 @@
         </div>
     </nav>
     <div class="header">
-        <div class="filter">
+        <form method="get" th:action="@{/admin/race}" class="filterForm">
             <div class="pagination">
                 <a href="#">&laquo;</a>
                 <a href="#">1</a>
@@ -43,17 +43,14 @@
             <!--FORM FOR SEARCHING-->
             <div class="search">
                 <img class="search-bar" src="/css/Admin/Race/search0.svg"/>
-                <form method="GET">
-                  <input type="text" name="filter" th:value="${filter}" placeholder="Search Title Race" class="search-race" input=this.form.submit()/>
-                </form>
-              </div>
-            <select class="dropdown" id="kind" name="kind" required>
-                <option value="" disabled th:if="${kind == null}" selected>Choose Kind of Race</option>
-                <option th:value="2023" th:selected="${kind == 'Fun Run'}">Fun Run</option>
-                <option th:value="2024" th:selected="${kind == 'Half Marathon'}">Half Marathon</option>
-                <option th:value="2024" th:selected="${kind == 'Marathon'}">Marathon</option>
+                <input type="text" name="filter" th:value="${filter}" placeholder="Search Title Race" class="search-race" input=this.form.submit()/>
+            </div>
+            <select class="dropdown" id="statusRace" name="statusRace" onchange="this.form.submit()" required>
+                <option value="null" th:selected="${statusRace == 'null'}">All Status Race</option>
+                <option th:value="false" th:selected="${statusRace == 'false'}">Not Finish</option>
+                <option th:value="true" th:selected="${statusRace == 'true'}">Finished</option>
             </select>
-        </div>
+        </form>
         <a class="add" th:href="@{/admin/addRace}">+ Add Race</a>
     </div>
     <div class="contentBody">

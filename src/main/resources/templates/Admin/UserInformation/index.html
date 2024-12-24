@@ -7,6 +7,7 @@
     <title>User Information</title>
     <link rel="stylesheet" href="/css/Admin/UserInformation/vars.css">
     <link rel="stylesheet" href="/css/Admin/UserInformation/styles.css">
+    <script src="/js/Admin/UserInformation.js" defer></script>
 </head>
 
 <body class="container">
@@ -31,7 +32,7 @@
     </nav>
     <div class="body">
         <div class="header">
-            <form class="filter">
+            <form class="filter" method="get" th:action="@{/admin/userInfo}">
                 <div class="pagination">
                     <a href="#">&laquo;</a>
                     <a href="#">1</a>
@@ -45,14 +46,12 @@
                 <!--FORM FOR SEARCHING-->
                 <div class="search">
                     <img class="search-bar" src="/css/Admin/Race/search0.svg"/>
-                    <form method="GET">
-                      <input id="filterInput" type="text" name="filter" class="search-race" th:value="${filter}" placeholder="Cari Nama Member" />
-                    </form>
+                    <input type="text" name="filter" th:value="${filter}" placeholder="Search Member" class="search-race" input=this.form.submit()/>
                 </div>
-                <select class="dropdown" id="kind" name="kind" required>
-                    <option value="" disabled th:if="${kind == null}" selected>Choose Kind of Status Member</option>
-                    <option th:value="Active" th:selected="${kind == 'Active'}">Active</option>
-                    <option th:value="Disable" th:selected="${kind == 'Disable'}">Disable</option>
+                <select class="dropdown" id="statusMember" name="statusMember" onchange="this.form.submit()" required>
+                    <option value="null" th:selected="${statusMember == 'null'}">All Status Member</option>
+                    <option th:value="true" th:selected="${statusMember == 'true'}">Active</option>
+                    <option th:value="false" th:selected="${statusMember == 'false'}">Disable</option>
                 </select>
             </form>
         </div>
@@ -62,10 +61,10 @@
                     <thead>
                         <tr>
                             <th>No</th>
-                            <th>Nama</th>
+                            <th>Name</th>
                             <th>Email</th>
                             <th>Status</th>
-                            <th>Aksi</th>
+                            <th>Action</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -93,56 +92,10 @@
         <div class="modal-content">
             <p>Are you sure you want to ban <span id="userName"></span>?</p>
             <div class="modal-buttons">
-                <button id="confirmYes">Yes</button>
                 <button id="confirmNo">No</button>
+                <button id="confirmYes">Yes</button>
             </div>
         </div>
     </div>
-    <script>
-        document.addEventListener("DOMContentLoaded", () => {
-            const buttons = document.querySelectorAll(".edit-button");
-
-            buttons.forEach(button => {
-                button.addEventListener("click", (event) => {
-                    // Cegah pengiriman form otomatis
-                    event.preventDefault();
-
-                    const userName = button.closest("tr").querySelector("td:nth-child(2)").textContent;
-
-                    // Update the user name in the modal
-                    document.getElementById("userName").textContent = userName;
-
-                    // Show the modal
-                    const modal = document.getElementById("confirmModal");
-                    modal.style.display = "flex";
-
-                    // If Yes is clicked, send request to update status
-                    document.getElementById("confirmYes").onclick = async () => {
-                        try {
-                            const response = await fetch(`/admin/updateStatus?name=${userName}`, {
-                                method: "GET"
-                            });
-
-                            if (response.ok) {
-                                alert(`User ${userName} is now banned.`);
-                                modal.style.display = "none"; // Hide the modal after action
-                            } else {
-                                alert("Failed to update status.");
-                            }
-                        } catch (error) {
-                            console.error(error);
-                            alert("An error occurred. Please try again.");
-                        }
-                    };
-
-                    // If No is clicked, just hide the modal
-                    document.getElementById("confirmNo").onclick = () => {
-                        modal.style.display = "none";
-                    };
-                });
-            });
-        });
-    </script>
 </body>
-
 </html>
