@@ -31,7 +31,7 @@
     </nav>
     <div class="body">
         <div class="header">
-            <form class="filter">
+            <form class="filter" method="get" th:action="@{/admin/userInfo}">
                 <div class="pagination">
                     <a href="#">&laquo;</a>
                     <a href="#">1</a>
@@ -45,14 +45,12 @@
                 <!--FORM FOR SEARCHING-->
                 <div class="search">
                     <img class="search-bar" src="/css/Admin/Race/search0.svg"/>
-                    <form method="GET">
-                      <input id="filterInput" type="text" name="filter" class="search-race" th:value="${filter}" placeholder="Cari Nama Member" />
-                    </form>
+                    <input type="text" name="filter" th:value="${filter}" placeholder="Search Member" class="search-race" input=this.form.submit()/>
                 </div>
-                <select class="dropdown" id="kind" name="kind" required>
-                    <option value="" disabled th:if="${kind == null}" selected>Choose Kind of Status Member</option>
-                    <option th:value="Active" th:selected="${kind == 'Active'}">Active</option>
-                    <option th:value="Disable" th:selected="${kind == 'Disable'}">Disable</option>
+                <select class="dropdown" id="statusMember" name="statusMember" onchange="this.form.submit()" required>
+                    <option value="null" th:selected="${statusMember == 'null'}">All Status Member</option>
+                    <option th:value="true" th:selected="${statusMember == 'true'}">Active</option>
+                    <option th:value="false" th:selected="${statusMember == 'false'}">Disable</option>
                 </select>
             </form>
         </div>
