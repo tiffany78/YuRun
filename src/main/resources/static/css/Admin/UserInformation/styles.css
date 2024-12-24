@@ -90,11 +90,6 @@ a.page{
   column-gap: 20px;
 }
 
-.contentBody{
-  margin: 10px;
-  width: 100%;
-}
-
 /* BAGIAN HEADER */
 .body{
   grid-area: body;
@@ -180,25 +175,34 @@ color: white;
 }
 
 /* Table Styling */
+.contentBody{
+  margin: 10px;
+  width: 95%;
+  align-self: center;
+}
+
 .member-table {
   width: 100%;
   border-collapse: collapse;
   font-family: "Roboto-Medium", sans-serif;
 }
-
 .member-table th, .member-table td {
   padding: 12px;
   border: 1px solid #ddd;
   text-align: left;
 }
-
 .member-table th {
   background-color: #FF7043;
   color: white;
 }
-
 .member-table tr:nth-child(even) {
   background-color: #f9f9f9;
+}
+thead th:first-child {
+  border-radius: 10px 0 0 10px;
+}
+thead th:last-child {
+  border-radius: 0 10px 10px 0;
 }
 
 /* Edit Button */
@@ -227,6 +231,7 @@ color: white;
 
 /* Modal Styling */
 .modal {
+  font-family: "Roboto-Medium", sans-serif;
   display: none; /* Modal disembunyikan secara default */
   position: fixed;
   top: 50%;
@@ -246,14 +251,23 @@ color: white;
 
 .modal-buttons button {
   margin: 10px;
+  font-size: medium;
+  cursor: pointer;
 }
-
 
 .modal-buttons #confirmYes {
   background-color: #FF7043;
   color: white;
+  border: none;
+  border-radius: 10px;
+  padding: 5px;
+  width: 60px;
 }
 
 .modal-buttons #confirmNo {
   background-color: #ddd;
+  border: none;
+  border-radius: 10px;
+  padding: 5px;
+  width: 60px;
 }
