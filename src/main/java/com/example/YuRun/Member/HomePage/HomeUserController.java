@@ -1,12 +1,15 @@
 package com.example.YuRun.Member.HomePage;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
 import com.example.YuRun.RequiredRole;
 
@@ -36,5 +39,18 @@ public class HomeUserController {
         model.addAttribute("upRaces", list2);
         
         return "Member/HomePage/home";
+    }
+
+    @RestController
+    public class ChartController {
+        @GetMapping("/getGraph1")
+        public Map<String, Object> getChartData() {
+            Map<String, Object> response = new HashMap<>();
+            response.put("categories", List.of("test1", "test2")); 
+
+            response.put("data", List.of(7, 8)); 
+
+            return response;
+        }
     }
 }
