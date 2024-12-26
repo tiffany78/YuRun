@@ -9,8 +9,11 @@
     <script  src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
     <script  src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
     <script  src="https://code.highcharts.com/highcharts.js"></script>
-    <script  src="https://code.highcharts.com/modules/exporting.js"></script>
     <script src="https://code.highcharts.com/highcharts-3d.js"></script>
+    <script src="https://code.highcharts.com/modules/exporting.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="/js/Admin/HomePage.js" defer></script>
 </head>
 <body class="containerBody">
     <nav class="navbar">
@@ -33,84 +36,16 @@
         </div>
     </nav>
     <div class="frame1">
+        <button id="download">Download PNG</button>
         <div>
             <div id="container"></div>
-        </div>
-        <script defer th:inline="javascript">
-        $(function(){
-        Highcharts.chart('container', {
-            chart: {
-                type: 'column',
-                backgroundColor: null
-            },
-            title: {
-                text: 'Partisipant Join The Race'
-            },
-            xAxis: {
-                categories: [[${surveyMap.keySet()}]],
-                crosshair: true,
-            },
-            yAxis: {
-                min: 0,
-                max: 5,
-            },
-            tooltip: {
-                headerFormat: '<span style="font-size:10px">{point.key}</span><table>',
-                pointFormat: '<tr><td style="color:{series.color};padding:0">{series.name}: </td>' +
-                '<td style="padding:0"><b>{point.y}</b></td></tr>',
-                footerFormat: '</table>',
-                shared: true,
-                useHTML: true
-            },
-            plotOptions: {
-                column: {
-                    pointPadding: 0.2,
-                    borderWidth: 0
-                }
-            },
-            series: [{
-                name: 'The Race',
-                data: [[${surveyMap.values()}]],
-                color: '#ff6f37'
-            }]
-        });
-        });
-        </script>   
+        </div>   
     </div>
     <div class="frame2">
-        <div id="container2" style="height: 400px"></div>
-        <script defer th:inline="javascript">
-        Highcharts.chart('container2',{
-        chart: {
-            type: 'line',
-            width: 500,
-            backgroundColor: null
-        },
-        title: {
-            text: 'Line chart'
-        },
-        xAxis: {
-            categories: [[${surveyMap.keySet()}]],
-            crosshair: true
-        },
-        yAxis: {
-            min: 0,
-            max: 5,
-        },
-        tooltip: {
-            headerFormat: '<span style="font-size:10px">{point.key}</span><table>',
-            pointFormat: '<tr><td style="color:{series.color};padding:0">{series.name}: </td>' + '<td style="padding:0"><b>{point.y}</b></td></tr>',
-            footerFormat: '</table>',
-            shared: true,
-            useHTML: true
-        },
-        series: [{
-            name: 'The Race',
-            data: [[${surveyMap.values()}]],
-            color: '#ff6f37'
-        }]
-        });
-        </script>
+        <button id="download2">Download PNG</button>
+        <div>
+            <div id="container2" style="height: 400px"></div>
+        </div> 
     </div>
     <div class="frame3">
         <div class="text3">
