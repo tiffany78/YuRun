@@ -257,6 +257,8 @@ a.page{
     font-weight: 500;
     width: 125px;
     height: 40px;
+    text-decoration: none;
+    border: #ff5722 2px solid;
 }
 
 .edit {

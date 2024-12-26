@@ -22,6 +22,11 @@ public class JDBCActivityMember implements AddActivityRepo{
         id_user, title, kind, distance, duration, date, time, description, path);
     }
 
+    public void deleteActivity(int id_activity){
+        String sql = "DELETE FROM Activity WHERE id_activity = ?";
+        jdbcTemplate.update(sql, id_activity);
+    }
+
     public List<ActivityMember> getAllActivityMember (int id_user){
         String sql = "SELECT * FROM Activity WHERE id_user = ? ORDER BY date";
         return jdbcTemplate.query(sql, this::maptoRowActivityMember, id_user);

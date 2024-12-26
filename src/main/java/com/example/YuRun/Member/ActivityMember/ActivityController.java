@@ -79,24 +79,38 @@ public class ActivityController {
         LocalDate localDate = LocalDate.parse(date, formatter);
         Date sqlDate = Date.valueOf(localDate);
 
-        String timestamp = String.valueOf(System.currentTimeMillis());
-        String fileName = "idUser_" + id_user + "_" + timestamp + ".jpg";
-        String uploadDir = "upload/activity-member";
-        Path uploadPath = Paths.get(uploadDir);
+        String fileName;
+        if (fileImage != null && !fileImage.isEmpty()) {
+            // Jika file diunggah
+            String timestamp = String.valueOf(System.currentTimeMillis());
+            fileName = "idUser_" + id_user + "_" + timestamp + ".jpg";
+            String uploadDir = "upload/activity-member";
+            Path uploadPath = Paths.get(uploadDir);
 
-        // Buat direktori jika belum ada
-        if (!Files.exists(uploadPath)) {
-            Files.createDirectories(uploadPath);
-        }
+            // Buat direktori jika belum ada
+            if (!Files.exists(uploadPath)) {
+                Files.createDirectories(uploadPath);
+            }
 
-        try (InputStream inputStream = fileImage.getInputStream()) {
-            Path filePath = uploadPath.resolve(fileName);
-            Files.copy(inputStream, filePath, StandardCopyOption.REPLACE_EXISTING);
-        } catch (IOException e) {
-            throw new IOException("Could not save file: " + fileName, e);
+            try (InputStream inputStream = fileImage.getInputStream()) {
+                Path filePath = uploadPath.resolve(fileName);
+                Files.copy(inputStream, filePath, StandardCopyOption.REPLACE_EXISTING);
+            } catch (IOException e) {
+                throw new IOException("Could not save file: " + fileName, e);
+            }
+        } else {
+            // Jika file tidak diunggah
+            fileName = "null.jpg";
         }
 
         this.repoAdd.addActivity(id_user, title, kind, distance, duration, sqlDate, sqlTime, desc, fileName);
+        return "redirect:/member/activity";
+    }
+
+    @GetMapping("/deleteActivity/{idActivity}")
+    @RequiredRole("member")
+    public String deleteActivity(@PathVariable("idActivity") int idActivity){
+        this.repoAdd.deleteActivity(idActivity);
         return "redirect:/member/activity";
     }
 

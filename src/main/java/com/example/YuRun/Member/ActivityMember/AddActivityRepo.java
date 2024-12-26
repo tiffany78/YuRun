@@ -12,4 +12,6 @@ public interface AddActivityRepo {
     void updateActivity(int id_activity, String title, String kind, Double distance, String duration, Date date, Time time, String description, String path_pict);
 
     List<ActivityMember> getAllActivityMember(int id_user);
+
+    void deleteActivity(int id_activity);
 }
