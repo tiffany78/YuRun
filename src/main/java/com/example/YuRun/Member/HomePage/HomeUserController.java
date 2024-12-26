@@ -1,5 +1,7 @@
 package com.example.YuRun.Member.HomePage;
 
+import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -43,12 +45,28 @@ public class HomeUserController {
 
     @RestController
     public class ChartController {
-        @GetMapping("/getGraph1")
-        public Map<String, Object> getChartData() {
-            Map<String, Object> response = new HashMap<>();
-            response.put("categories", List.of("test1", "test2")); 
+        @Autowired
+        private HomeMemberRepo repo;
 
-            response.put("data", List.of(7, 8)); 
+        @GetMapping("/getGraph1")
+        public Map<String, Object> getChartData(HttpSession session) {
+            int id_user = (Integer) session.getAttribute("id_user");
+            session.setAttribute("id_user", id_user);
+
+            LocalDate today = LocalDate.now();
+            LocalDate firstDayOfMonth = today.withDayOfMonth(1);
+            ArrayList<String> titles = new ArrayList<>();
+            ArrayList<Double> distances = new ArrayList<>();
+
+            List<Activity> list = this.repo.getActivityMonths(firstDayOfMonth, id_user);
+            for(Activity act : list){
+                titles.add(act.getTitle());
+                distances.add(act.getDistance());
+            }
+
+            Map<String, Object> response = new HashMap<>();
+            response.put("categories", titles); 
+            response.put("data", distances); 
 
             return response;
         }

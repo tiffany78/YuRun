@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home Race</title>
+    <link rel="stylesheet" href="/css/Member/Progress/style.css">
+    <link rel="stylesheet" href="/css/Member/Race/vars.css">
+    <script src="/js/Member/Progress.js" defer></script>
+</head>
+<body class="containerBody">
+    <nav class="navbar">
+        <div class="logo">
+            <img src="/css/LandingPage/logo1.svg">
+            <a class="yurun">YuRun</a>
+        </div>
+        <div class="textNavbar">
+            <a th:href="@{/member}">Home</a>
+            <a th:href="@{/member/activity}">My Activity</a>
+            <a th:href="@{/member/race}">Race</a>
+            <a class="page" th:href="@{/member/progress}">Progress</a>
+        </div>
+        <div class="button">
+            <a>
+                <img src="/css/Admin/HomePage/account-circle0.svg"/>
+            </a>
+            <a th:href="@{/logout}">
+                <img src="/css/Admin/HomePage/logout.svg"/>
+            </a>
+        </div>
+    </nav>
+    <div class="filter">
+        <button class="filter-button" data-target="dropdown">All</button>
+        <button class="filter-button" data-target="dropdown">Weekly</button>
+        <button class="filter-button" data-target="dropdown">1 Month</button>
+        <button class="filter-button" data-target="dropdown">3 Months</button>
+        <button class="filter-button" data-target="dropdown">1 Year</button>
+        <button class="filter-button" data-target="custom">Custom</button>
+        <button>Download PDF</button>
+    </div>
+    
+    <!-- Dropdown untuk memilih jenis aktivitas -->
+    <div class="dropdown hidden">
+        <label for="activity-type">Activity Type:</label>
+        <select id="activity-type">
+            <option value="running">All</option>
+            <option value="cycling">Running</option>
+            <option value="swimming">Race</option>
+        </select>
+    </div>
+    
+    <!-- Custom input untuk range tanggal dan jenis aktivitas -->
+    <div class="custom-input hidden">
+        <label for="start-date">Start Date:</label>
+        <input type="date" id="start-date">
+        <label for="end-date">End Date:</label>
+        <input type="date" id="end-date">
+        <label for="activity-type-custom">Activity Type:</label>
+        <select id="activity-type-custom">
+            <option value="running">All</option>
+            <option value="cycling">Running</option>
+            <option value="swimming">Race</option>
+        </select>
+    </div>    
+    <div class="activity">
+        <a>Summary Your Progress</a>
+        <div class="recap">
+            <span>
+                <a>Distance</a> <br>
+                <a>Total km</a>
+            </span>
+            <span>
+                <a>Time</a> <br>
+                <a>Total</a>
+            </span>
+        </div>
+    </div>
+    <div class="contentBody">
+        <table class="table_race">
+            <a>Running Activities</a>
+            <thead>
+                <tr>
+                    <th>Type</th>
+                    <th>Kind</th>
+                    <th>Title</th>
+                    <th>Date<a href="#"><img src="/css/Admin/Race/bxs-sort-alt.svg" alt="Sort Icon"></a></th>
+                    <th>Start Time<a href="#"><img src="/css/Admin/Race/bxs-sort-alt.svg" alt="Sort Icon"></a></th>
+                    <th>Duration<a href="#"><img src="/css/Admin/Race/bxs-sort-alt.svg" alt="Sort Icon"></a></th>
+                    <th>Distance<a href="#"><img src="/css/Admin/Race/bxs-sort-alt.svg" alt="Sort Icon"></a></th>
+                </tr>                
+            </thead>
+            <tbody>
+                <tr th:each="run : ${runList}">
+                    <td th:text="Running"></td>
+                    <td th:text="${run.kind}"></td>
+                    <td th:text="${run.title}"></td>
+                    <td th:text="${#dates.format(run.date, 'dd/MM/yyyy')}"></td>
+                    <td th:text="${#dates.format(run.time, 'HH:mm:ss')}"></td>
+                    <td th:text="${run.duration}"></td>
+                    <td th:text="${run.distance} + ' km'"></td>
+                </tr>              
+            </tbody>
+        </table>
+        <table class="table_race">
+            <a>Race Activities</a>
+            <thead>
+                <tr>
+                    <th>Type</th>
+                    <th>Title</th>
+                    <th>Date<a href="#"><img src="/css/Admin/Race/bxs-sort-alt.svg" alt="Sort Icon"></a></th>
+                    <th>Duration<a href="#"><img src="/css/Admin/Race/bxs-sort-alt.svg" alt="Sort Icon"></a></th>
+                    <th>Distance<a href="#"><img src="/css/Admin/Race/bxs-sort-alt.svg" alt="Sort Icon"></a></th>
+                </tr>                
+            </thead>
+            <tbody> 
+                <tr th:each="race : ${raceList}">
+                    <td th:text="Race"></td>
+                    <td th:text="${race.title}"></td>
+                    <td th:text="${#dates.format(race.race_date, 'dd/MM/yyyy')}"></td>
+                    <td th:text="${race.member_duration}"></td>
+                    <td th:text="${race.distance} + ' km'"></td>
+                </tr>               
+            </tbody>
+        </table>
+    </div>
+    <footer class="footer">
+        <div class="content2">
+            <div class="logo">
+              <img class="logo3" src="/css/LandingPage/logo3.svg" />
+              <div class="fit-life-studio">FitLife Studio</div>
+            </div>
+            <div class="links">
+              <div class="about2">About</div>
+              <div class="contact">Contact</div>
+            </div>
+            <img class="social" src="/css/LandingPage/social0.svg" />
+        </div>
+        <div class="divider"></div>
+        <div class="credits">
+            <div class="row">
+              <div class="text-1">© 2024 Shipon. All rights reserved.</div>
+              <div class="text-2">Privacy Policy</div>
+              <div class="text-2">Terms of Service</div>
+              <div class="text-2">Cookies Settings</div>
+            </div>
+          </div>
+    </footer>
+</body>
+</html>

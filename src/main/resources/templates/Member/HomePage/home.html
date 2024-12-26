@@ -25,6 +25,7 @@
             <a class="page" th:href="@{/member}">Home</a>
             <a th:href="@{/member/activity}">My Activity</a>
             <a th:href="@{/member/race}">Race</a>
+            <a th:href="@{/member/progress}">Progress</a>
         </div>
         <div class="button">
             <a>
@@ -66,18 +67,35 @@
             </div>
         </div>
     </div>
-    <div class="yourRace">
-        <div class="frame3Header">Your Race</div>
-        <!-- Loop melalui aktivitas -->
-        <div th:each="race : ${races}" class="myRaceList">
-            <div class="headerMyRace" th:text="${race.title}"></div>
-            <div class="infoMyRace">
-                <img src="/css/Member/HomePage/calendar-010.svg">
-                <span th:text="${#dates.format(race.start_date, 'dd/MM/yyyy')}"></span> <!-- Format tanggal -->
+    <div class="recap">
+        <div class="recap1">
+            <div class="frame3Header">Your Race</div>
+            <!-- Loop melalui aktivitas -->
+            <div th:each="race : ${races}" class="myRaceList">
+                <div class="headerMyRace" th:text="${race.title}"></div>
+                <div class="infoMyRace">
+                    <img src="/css/Member/HomePage/calendar-010.svg">
+                    <span th:text="${#dates.format(race.start_date, 'dd/MM/yyyy')}"></span> <!-- Format tanggal -->
+                </div>
+                <div class="infoMyRace">
+                    <img src="/css/Member/HomePage/alarm-010.svg">
+                    <span th:text="${race.time}"></span> <!-- Format waktu -->
+                </div>
             </div>
-            <div class="infoMyRace">
-                <img src="/css/Member/HomePage/alarm-010.svg">
-                <span th:text="${race.time}"></span> <!-- Format waktu -->
+        </div>
+        <div class="recap2">
+            <div class="frame3Header">UpComing Race</div>
+            <!-- Loop melalui aktivitas -->
+            <div th:each="upRace : ${upRaces}" class="myRaceList">
+                <div class="headerMyRace" th:text="${upRace.title}"></div>
+                <div class="infoMyRace">
+                    <img src="/css/Member/HomePage/calendar-010.svg">
+                    <span th:text="${#dates.format(upRace.start_date, 'dd/MM/yyyy')}"></span> <!-- Format tanggal -->
+                </div>
+                <div class="infoMyRace">
+                    <img src="/css/Member/HomePage/alarm-010.svg">
+                    <span th:text="${upRace.time}"></span> <!-- Format waktu -->
+                </div>
             </div>
         </div>
     </div>    
@@ -110,21 +128,6 @@
             </tbody>
         </table>
     </div>
-    <div class="upRace">
-        <div class="frame3Header">UpComing Race</div>
-        <!-- Loop melalui aktivitas -->
-        <div th:each="upRace : ${upRaces}" class="myRaceList">
-            <div class="headerMyRace" th:text="${upRace.title}"></div>
-            <div class="infoMyRace">
-                <img src="/css/Member/HomePage/calendar-010.svg">
-                <span th:text="${#dates.format(upRace.start_date, 'dd/MM/yyyy')}"></span> <!-- Format tanggal -->
-            </div>
-            <div class="infoMyRace">
-                <img src="/css/Member/HomePage/alarm-010.svg">
-                <span th:text="${upRace.time}"></span> <!-- Format waktu -->
-            </div>
-        </div>
-    </div>
     <footer class="footer">
         <div class="content2">
             <div class="logo">
@@ -142,8 +145,8 @@
             <div class="row">
               <div class="text-1">© 2024 Shipon. All rights reserved.</div>
               <div class="text-2">Privacy Policy</div>
-              <div class="text-3">Terms of Service</div>
-              <div class="text-4">Cookies Settings</div>
+              <div class="text-2">Terms of Service</div>
+              <div class="text-2">Cookies Settings</div>
             </div>
           </div>
     </footer>

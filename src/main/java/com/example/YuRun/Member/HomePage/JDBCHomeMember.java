@@ -2,6 +2,7 @@ package com.example.YuRun.Member.HomePage;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.time.LocalDate;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,6 +26,12 @@ public class JDBCHomeMember implements HomeMemberRepo{
     
         List<Activity> activities = jdbcTemplate.query(sql, this::mapRowToActivity, username);
         return activities;
+    }
+
+    public List<Activity> getActivityMonths(LocalDate date, int id_user){
+        String sql = "SELECT * FROM Activity WHERE id_user = ? AND date >= ?";
+
+        return jdbcTemplate.query(sql, this::mapRowToActivity, id_user, date);
     }
 
     private Activity mapRowToActivity(ResultSet resultSet, int rowNum) throws SQLException {

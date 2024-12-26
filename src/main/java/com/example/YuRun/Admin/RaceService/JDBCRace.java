@@ -47,7 +47,7 @@ public class JDBCRace implements RaceRepository{
             filterList.add(statusRaceBool);
         }
     
-        sql += " ORDER BY start_date DESC";
+        sql += " ORDER BY status ASC, start_date";
     
         return jdbcTemplate.query(sql, this::mapRowToCountrace, filterList.toArray());
     }    
@@ -125,7 +125,7 @@ public class JDBCRace implements RaceRepository{
             resultSet.getDouble("distance"),
             resultSet.getInt("id_user"),
             resultSet.getString("name"),
-            resultSet.getTime("member_time"), 
+            resultSet.getString("member_duration"), 
             resultSet.getString("path_pict"),
             resultSet.getBoolean("status")
         );

@@ -95,8 +95,8 @@ INSERT INTO JoinRace (id_race, id_user) VALUES
 (5, 4),
 (5, 5);
 
-INSERT INTO JoinRace (id_race, id_user, time, status) VALUES
+INSERT INTO JoinRace (id_race, id_user, duration, status) VALUES
 -- Night Owl Sprint (Finished)
-(3, 7, '22:00:00', FALSE),
-(3, 8, '22:00:00', FALSE),
-(3, 9, '22:00:00', FALSE);
+(3, 7, '2:10:00', FALSE),
+(3, 8, '1:05:10', FALSE),
+(3, 9, '0:56:50', FALSE);

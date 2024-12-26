@@ -15,8 +15,8 @@ html, body {
   grid-template-columns: auto auto auto;
   grid-template-areas: 
       ". . addActivity"
-      "graph1 graph2 yourRace"
-      "activity activity upRace"
+      "graph1 graph2 recap"
+      "activity activity recap"
       "footer footer footer";
   padding-top: 80px;
   width: 100%;
@@ -166,12 +166,17 @@ a.page{
   transform-origin: 0 0;
   transform: rotate(0deg) scale(1, 1);
 }
-.yourRace {
-  grid-area: yourRace;
+.recap {
+  grid-area: recap;
   margin-right: 20px;
   display: flex;
   flex-direction: column;
-  row-gap: 5px;
+  justify-content: space-evenly;
+}
+.recap1, .recap2 {
+  display: flex;
+  flex-direction: column;
+  row-gap: 10px;
 }
 .frame3Header {
   color: #ff5722;
@@ -266,14 +271,6 @@ thead th:last-child {
 }
 .table_race tbody td:last-child {
   border-radius: 0 10px 10px 0;
-}
-
-.upRace {
-  grid-area: upRace;
-  margin-right: 20px;
-  display: flex;
-  flex-direction: column;
-  row-gap: 5px;
 }
 
 /* BAGIAN FOOTER */
@@ -390,26 +387,6 @@ thead th:last-child {
   position: relative;
 }
 .text-2 {
-  color: var(--neutral-colors-900, #3d3d3d);
-  text-align: left;
-  font-family: var(--text-small-link-font-family, "Roboto-Regular", sans-serif);
-  font-size: var(--text-small-link-font-size, 14px);
-  line-height: var(--text-small-link-line-height, 150%);
-  font-weight: var(--text-small-link-font-weight, 400);
-  text-decoration: underline;
-  position: relative;
-}
-.text-3 {
-  color: var(--neutral-colors-900, #3d3d3d);
-  text-align: left;
-  font-family: var(--text-small-link-font-family, "Roboto-Regular", sans-serif);
-  font-size: var(--text-small-link-font-size, 14px);
-  line-height: var(--text-small-link-line-height, 150%);
-  font-weight: var(--text-small-link-font-weight, 400);
-  text-decoration: underline;
-  position: relative;
-}
-.text-4 {
   color: var(--neutral-colors-900, #3d3d3d);
   text-align: left;
   font-family: var(--text-small-link-font-family, "Roboto-Regular", sans-serif);
