@@ -6,6 +6,7 @@
     <title>Home Race</title>
     <link rel="stylesheet" href="/css/Member/Progress/style.css">
     <link rel="stylesheet" href="/css/Member/Race/vars.css">
+    <script src="/js/Member/Progress.js" defer></script>
 </head>
 <body class="containerBody">
     <nav class="navbar">
@@ -28,31 +29,96 @@
             </a>
         </div>
     </nav>
+    <div class="filter">
+        <button class="filter-button" data-target="dropdown">All</button>
+        <button class="filter-button" data-target="dropdown">Weekly</button>
+        <button class="filter-button" data-target="dropdown">1 Month</button>
+        <button class="filter-button" data-target="dropdown">3 Months</button>
+        <button class="filter-button" data-target="dropdown">1 Year</button>
+        <button class="filter-button" data-target="custom">Custom</button>
+        <button>Download PDF</button>
+    </div>
+    
+    <!-- Dropdown untuk memilih jenis aktivitas -->
+    <div class="dropdown hidden">
+        <label for="activity-type">Activity Type:</label>
+        <select id="activity-type">
+            <option value="running">All</option>
+            <option value="cycling">Running</option>
+            <option value="swimming">Race</option>
+        </select>
+    </div>
+    
+    <!-- Custom input untuk range tanggal dan jenis aktivitas -->
+    <div class="custom-input hidden">
+        <label for="start-date">Start Date:</label>
+        <input type="date" id="start-date">
+        <label for="end-date">End Date:</label>
+        <input type="date" id="end-date">
+        <label for="activity-type-custom">Activity Type:</label>
+        <select id="activity-type-custom">
+            <option value="running">All</option>
+            <option value="cycling">Running</option>
+            <option value="swimming">Race</option>
+        </select>
+    </div>    
+    <div class="activity">
+        <a>Summary Your Progress</a>
+        <div class="recap">
+            <span>
+                <a>Distance</a> <br>
+                <a>Total km</a>
+            </span>
+            <span>
+                <a>Time</a> <br>
+                <a>Total</a>
+            </span>
+        </div>
+    </div>
     <div class="contentBody">
-        <hr>
         <table class="table_race">
+            <a>Running Activities</a>
             <thead>
                 <tr>
+                    <th>Type</th>
                     <th>Kind</th>
                     <th>Title</th>
-                    <th>Date <a href="#"><img src="/css/Admin/Race/bxs-sort-alt.svg" alt="Sort Icon"></a></th>
-                    <th>Start Time <a href="#"><img src="/css/Admin/Race/bxs-sort-alt.svg" alt="Sort Icon"></a></th>
-                    <th>Distance <a href="#"><img src="/css/Admin/Race/bxs-sort-alt.svg" alt="Sort Icon"></a></th>
-                    <th>Status</th>
+                    <th>Date<a href="#"><img src="/css/Admin/Race/bxs-sort-alt.svg" alt="Sort Icon"></a></th>
+                    <th>Start Time<a href="#"><img src="/css/Admin/Race/bxs-sort-alt.svg" alt="Sort Icon"></a></th>
+                    <th>Duration<a href="#"><img src="/css/Admin/Race/bxs-sort-alt.svg" alt="Sort Icon"></a></th>
+                    <th>Distance<a href="#"><img src="/css/Admin/Race/bxs-sort-alt.svg" alt="Sort Icon"></a></th>
                 </tr>                
             </thead>
             <tbody>
+                <tr th:each="run : ${runList}">
+                    <td th:text="Running"></td>
+                    <td th:text="${run.kind}"></td>
+                    <td th:text="${run.title}"></td>
+                    <td th:text="${#dates.format(run.date, 'dd/MM/yyyy')}"></td>
+                    <td th:text="${#dates.format(run.time, 'HH:mm:ss')}"></td>
+                    <td th:text="${run.duration}"></td>
+                    <td th:text="${run.distance} + ' km'"></td>
+                </tr>              
+            </tbody>
+        </table>
+        <table class="table_race">
+            <a>Race Activities</a>
+            <thead>
+                <tr>
+                    <th>Type</th>
+                    <th>Title</th>
+                    <th>Date<a href="#"><img src="/css/Admin/Race/bxs-sort-alt.svg" alt="Sort Icon"></a></th>
+                    <th>Start Time<a href="#"><img src="/css/Admin/Race/bxs-sort-alt.svg" alt="Sort Icon"></a></th>
+                    <th>Distance<a href="#"><img src="/css/Admin/Race/bxs-sort-alt.svg" alt="Sort Icon"></a></th>
+                </tr>                
+            </thead>
+            <tbody> 
                 <tr th:each="race : ${raceList}">
-                    <td th:text="${race.idRace}"></td>
+                    <td th:text="Race"></td>
                     <td th:text="${race.title}"></td>
-                    <td th:text="${#dates.format(race.start_date, 'dd/MM/yyyy')}"></td>
-                    <td th:text="${#dates.format(race.time, 'HH:mm:ss')}"></td>
+                    <td th:text="${#dates.format(race.race_date, 'dd/MM/yyyy')}"></td>
+                    <td th:text="${#dates.format(race.member_time, 'HH:mm:ss')}"></td>
                     <td th:text="${race.distance} + ' km'"></td>
-                    <td>bla</td>
-                    <td>
-                        <img class="join" src="/css/Member/Race/join.svg" alt="Join Race"/>
-                        <img class="exit" src="/css/Member/Race/exit.svg" alt="Exit Race"/>
-                    </td>
                 </tr>               
             </tbody>
         </table>
@@ -74,8 +140,8 @@
             <div class="row">
               <div class="text-1">© 2024 Shipon. All rights reserved.</div>
               <div class="text-2">Privacy Policy</div>
-              <div class="text-3">Terms of Service</div>
-              <div class="text-4">Cookies Settings</div>
+              <div class="text-2">Terms of Service</div>
+              <div class="text-2">Cookies Settings</div>
             </div>
           </div>
     </footer>

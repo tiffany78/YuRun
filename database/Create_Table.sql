@@ -1,5 +1,6 @@
 DROP VIEW IF EXISTS show_race_admin;
 DROP VIEW IF EXISTS count_race_admin;
+DROP VIEW IF EXISTS show_race_member;
 DROP TABLE JoinRace;
 DROP TABLE Activity;
 DROP TABLE Race;
@@ -59,3 +60,9 @@ select race.id_race, race.title, race.start_date, race.time as race_time, race.d
 from joinrace
 right join race on race.id_race = joinrace.id_race
 group by race.id_race;
+
+CREATE VIEW show_race_member AS 
+select race.id_race, race.title, race.start_date as race_date, race.distance, users.id_user, users.name, joinrace.time as member_time, joinrace.status
+from joinrace
+join race on race.id_race = joinrace.id_race
+join users on users.id_user = joinrace.id_user;

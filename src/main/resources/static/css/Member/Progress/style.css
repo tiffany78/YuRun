@@ -8,10 +8,12 @@ body {
 }
 .containerBody{
   display: grid;
-  grid-template-rows: auto auto auto;
+  grid-template-rows: 70px 80px 70px auto auto;
   grid-template-columns: 1fr;
   grid-template-areas: 
       "navbar"
+      "filter"
+      "activity"
       "contentBody"
       "footer";
   min-height: 100vh;
@@ -90,6 +92,35 @@ font-weight: 1000;
   align-items: center;
   justify-content: center;
   text-decoration: none;
+}
+
+/* BAGIAN FILTER */
+.filter{
+  grid-area: filter;
+  margin-left: 20px;
+  height: 70px;
+  border-bottom: 2px solid #ff5722;
+}
+
+.hidden {
+  display: none; /* Sembunyikan elemen secara default */
+}
+.dropdown,
+.custom-input {
+  margin-left: 20px;
+  margin-top: 110px; /* Jarak dari tombol */
+}
+
+/* BAGIAN ACTIVITY */
+.activity {
+  grid-area: activity;
+  margin-left: 20px;
+}
+
+.recap {
+  display: flex;
+  flex-direction: row;
+  column-gap: 15px;
 }
 
 /* BAGIAN CONTENT */
@@ -272,26 +303,6 @@ font-weight: 400;
 position: relative;
 }
 .text-2 {
-color: var(--neutral-colors-900, #3d3d3d);
-text-align: left;
-font-family: var(--text-small-link-font-family, "Roboto-Regular", sans-serif);
-font-size: var(--text-small-link-font-size, 14px);
-line-height: var(--text-small-link-line-height, 150%);
-font-weight: var(--text-small-link-font-weight, 400);
-text-decoration: underline;
-position: relative;
-}
-.text-3 {
-color: var(--neutral-colors-900, #3d3d3d);
-text-align: left;
-font-family: var(--text-small-link-font-family, "Roboto-Regular", sans-serif);
-font-size: var(--text-small-link-font-size, 14px);
-line-height: var(--text-small-link-line-height, 150%);
-font-weight: var(--text-small-link-font-weight, 400);
-text-decoration: underline;
-position: relative;
-}
-.text-4 {
 color: var(--neutral-colors-900, #3d3d3d);
 text-align: left;
 font-family: var(--text-small-link-font-family, "Roboto-Regular", sans-serif);
