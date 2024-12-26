@@ -14,7 +14,7 @@ public class ResultRace {
     private Double distance;
     private int id_user;
     private String name;
-    private Time member_time;
+    private String member_duration;
     private String path_pict;
     private boolean status;
 }

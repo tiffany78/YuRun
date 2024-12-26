@@ -1,7 +1,6 @@
 package com.example.YuRun.Member.Progress;
 
 import java.sql.Date;
-import java.sql.Time;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -15,6 +14,6 @@ public class ProgressRace {
     private Double distance;
     private int id_user;
     private String name;
-    private Time member_time;
+    private String member_duration;
     private boolean status;
 }

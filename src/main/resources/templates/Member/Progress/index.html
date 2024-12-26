@@ -108,7 +108,7 @@
                     <th>Type</th>
                     <th>Title</th>
                     <th>Date<a href="#"><img src="/css/Admin/Race/bxs-sort-alt.svg" alt="Sort Icon"></a></th>
-                    <th>Start Time<a href="#"><img src="/css/Admin/Race/bxs-sort-alt.svg" alt="Sort Icon"></a></th>
+                    <th>Duration<a href="#"><img src="/css/Admin/Race/bxs-sort-alt.svg" alt="Sort Icon"></a></th>
                     <th>Distance<a href="#"><img src="/css/Admin/Race/bxs-sort-alt.svg" alt="Sort Icon"></a></th>
                 </tr>                
             </thead>
@@ -117,7 +117,7 @@
                     <td th:text="Race"></td>
                     <td th:text="${race.title}"></td>
                     <td th:text="${#dates.format(race.race_date, 'dd/MM/yyyy')}"></td>
-                    <td th:text="${#dates.format(race.member_time, 'HH:mm:ss')}"></td>
+                    <td th:text="${race.member_duration}"></td>
                     <td th:text="${race.distance} + ' km'"></td>
                 </tr>               
             </tbody>

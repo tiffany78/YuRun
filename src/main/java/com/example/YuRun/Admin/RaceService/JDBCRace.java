@@ -125,7 +125,7 @@ public class JDBCRace implements RaceRepository{
             resultSet.getDouble("distance"),
             resultSet.getInt("id_user"),
             resultSet.getString("name"),
-            resultSet.getTime("member_time"), 
+            resultSet.getString("member_duration"), 
             resultSet.getString("path_pict"),
             resultSet.getBoolean("status")
         );

@@ -47,7 +47,7 @@ public class JDBCProgress implements ProgressRepo{
             resultSet.getDouble("distance"),
             resultSet.getInt("id_user"),
             resultSet.getString("name"),
-            resultSet.getTime("member_time"), 
+            resultSet.getString("member_duration"), 
             resultSet.getBoolean("status"));
     }
 }
