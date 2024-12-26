@@ -4,27 +4,30 @@ $(document).ready(function () {
         // Inisialisasi grafik setelah data diterima
         Highcharts.chart('container', {
             chart: {
-                type: 'column',
+                type: 'areaspline',
                 backgroundColor: null
             },
             title: {
-                text: 'Partisipant Join The Race'
+                text: 'Your Activities This Month'
             },
             xAxis: {
-                categories: response.categories, // Kategori dari backend
-                crosshair: true
+                categories: response.categories,
+                crosshair: true,
+                tickmarkPlacement: 'on'
             },
             yAxis: {
                 min: 0,
-                max: 10
+                title: {
+                    text: 'Distance (km)' 
+                }
             },
             legend: {
                 enabled: false // Menonaktifkan legenda
             },
             series: [{
-                name: 'Participants',
+                name: 'Distance',
                 data: response.data, // Data dari backend
-                color: '#ff6f37'
+                color: 'rgba(255, 111, 55, 0.5)'
             }],
             exporting: {
                 enabled: false
