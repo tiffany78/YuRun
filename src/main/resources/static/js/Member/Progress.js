@@ -1,3 +1,41 @@
+$(document).ready(function () {
+    // Ambil data dari endpoint Spring Boot
+    $.getJSON('/getGraphProgress', function (response) {
+        // Inisialisasi grafik setelah data diterima
+        Highcharts.chart('container', {
+            chart: {
+                type: 'areaspline',
+                backgroundColor: null
+            },
+            title: {
+                text: null
+            },
+            xAxis: {
+                categories: response.categories,
+                crosshair: true,
+                tickmarkPlacement: 'on'
+            },
+            yAxis: {
+                min: 0,
+                title: {
+                    text: 'Distance (km)' 
+                }
+            },
+            legend: {
+                enabled: false // Menonaktifkan legenda
+            },
+            series: [{
+                name: 'Distance (km)',
+                data: response.data, // Data dari backend
+                color: 'rgba(255, 111, 55, 0.5)'
+            }],
+            exporting: {
+                enabled: false
+            }
+        });
+    });
+});
+
 document.addEventListener('DOMContentLoaded', () => {
     // Ambil semua tombol filter
     const filterButtons = document.querySelectorAll('.filter-button');

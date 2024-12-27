@@ -16,9 +16,29 @@ public class JDBCProgress implements ProgressRepo{
     JdbcTemplate jdbcTemplate;
 
     public List<ActivityMember> getAllActivities(int id_user) {
-        String sql = "SELECT * FROM Activity WHERE id_user = ? ORDER BY date";
+        String sql = "SELECT * FROM Activity WHERE id_user = ?";
         return jdbcTemplate.query(sql, this::maptoRowActivityMember, id_user);
     }
+
+    public List<ActivityMember> getWeeklyActivities(int id_user) {
+        String sql = "SELECT * FROM Activity WHERE id_user = ? AND start_date >= CURRENT_DATE - INTERVAL '7 days'";
+        return jdbcTemplate.query(sql, this::maptoRowActivityMember, id_user);
+    }
+    
+    public List<ActivityMember> getMonthlyActivities(int id_user) {
+        String sql = "SELECT * FROM Activity WHERE id_user = ? AND start_date >= CURRENT_DATE - INTERVAL '1 month'";
+        return jdbcTemplate.query(sql, this::maptoRowActivityMember, id_user);
+    }
+    
+    public List<ActivityMember> getThreeMonthlyActivities(int id_user) {
+        String sql = "SELECT * FROM Activity WHERE id_user = ? AND start_date >= CURRENT_DATE - INTERVAL '3 months'";
+        return jdbcTemplate.query(sql, this::maptoRowActivityMember, id_user);
+    }
+    
+    public List<ActivityMember> getYearlyActivities(int id_user) {
+        String sql = "SELECT * FROM Activity WHERE id_user = ? AND start_date >= CURRENT_DATE - INTERVAL '1 year'";
+        return jdbcTemplate.query(sql, this::maptoRowActivityMember, id_user);
+    }    
 
     private ActivityMember maptoRowActivityMember(ResultSet resultSet, int rowNum) throws SQLException {
         return new ActivityMember(

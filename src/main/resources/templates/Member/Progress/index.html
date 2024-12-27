@@ -6,6 +6,12 @@
     <title>Home Race</title>
     <link rel="stylesheet" href="/css/Member/Progress/style.css">
     <link rel="stylesheet" href="/css/Member/Race/vars.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <script src="https://code.highcharts.com/highcharts.js"></script>
+    <script src="https://code.highcharts.com/modules/exporting.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="/js/Member/Progress.js" defer></script>
 </head>
 <body class="containerBody">
@@ -74,6 +80,10 @@
                 <a>Total</a>
             </span>
         </div>
+    </div>
+    <div class="graph">
+        <a>Your Grafik</a>
+        <div id="container"></div>
     </div>
     <div class="contentBody">
         <table class="table_race">
