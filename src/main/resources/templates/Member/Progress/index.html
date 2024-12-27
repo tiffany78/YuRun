@@ -36,44 +36,46 @@
         </div>
     </nav>
     <div class="filter">
-        <button class="filter-button" data-target="dropdown">All</button>
-        <button class="filter-button" data-target="dropdown">Weekly</button>
-        <button class="filter-button" data-target="dropdown">1 Month</button>
-        <button class="filter-button" data-target="dropdown">3 Months</button>
-        <button class="filter-button" data-target="dropdown">1 Year</button>
-        <button class="filter-button" data-target="custom">Custom</button>
-        <button>Download PDF</button>
-    </div>
-    
-    <!-- Dropdown untuk memilih jenis aktivitas -->
-    <div class="dropdown hidden">
-        <label for="activity-type">Activity Type:</label>
-        <select id="activity-type">
-            <option value="running">All</option>
-            <option value="cycling">Running</option>
-            <option value="swimming">Race</option>
-        </select>
-    </div>
-    
-    <!-- Custom input untuk range tanggal dan jenis aktivitas -->
-    <div class="custom-input hidden">
-        <label for="start-date">Start Date:</label>
-        <input type="date" id="start-date">
-        <label for="end-date">End Date:</label>
-        <input type="date" id="end-date">
-        <label for="activity-type-custom">Activity Type:</label>
-        <select id="activity-type-custom">
-            <option value="running">All</option>
-            <option value="cycling">Running</option>
-            <option value="swimming">Race</option>
-        </select>
-    </div>    
+        <div class="filter1">
+            <form action="/member/progress" method="GET">
+                <input type="hidden" name="filterType" value="All">
+                <button type="submit" class="filter-button" data-filter="All">All</button>
+            </form>
+            <form action="/member/progress" method="GET">
+                <input type="hidden" name="filterType" value="Weekly">
+                <button type="submit" class="filter-button" data-filter="Weekly">Weekly</button>
+            </form>
+            <form action="/member/progress" method="GET">
+                <input type="hidden" name="filterType" value="1Month">
+                <button type="submit" class="filter-button" data-filter="1Month">1 Month</button>
+            </form>
+            <form action="/member/progress" method="GET">
+                <input type="hidden" name="filterType" value="3Months">
+                <button type="submit" class="filter-button" data-filter="3Months">3 Months</button>
+            </form>
+            <form action="/member/progress" method="GET">
+                <input type="hidden" name="filterType" value="1Year">
+                <button type="submit" class="filter-button" data-filter="1Year">1 Year</button>
+            </form>
+        </div>
+        <!-- Custom Filter -->
+        <form action="/member/progress" method="GET" class="custom">
+            <label for="start-date">Start Date:</label>
+            <input type="date" name="startDate" id="start-date" th:value="${startDate}" required>
+            <label for="end-date">End Date:</label>
+            <input type="date" name="endDate" id="end-date" th:value="${endDate}" required>
+            <button type="submit" class="filter-button">Custom</button>
+        </form>
+        <form class="download">
+            <button type="submit">Download PDF</button>
+        </form>
+    </div> 
     <div class="activity">
         <a>Summary Your Progress</a>
         <div class="recap">
             <span>
                 <a>Distance</a> <br>
-                <a>Total km</a>
+                <a>Total</a>
             </span>
             <span>
                 <a>Time</a> <br>
@@ -86,52 +88,56 @@
         <div id="container"></div>
     </div>
     <div class="contentBody">
-        <table class="table_race">
-            <a>Running Activities</a>
-            <thead>
-                <tr>
-                    <th>Type</th>
-                    <th>Kind</th>
-                    <th>Title</th>
-                    <th>Date<a href="#"><img src="/css/Admin/Race/bxs-sort-alt.svg" alt="Sort Icon"></a></th>
-                    <th>Start Time<a href="#"><img src="/css/Admin/Race/bxs-sort-alt.svg" alt="Sort Icon"></a></th>
-                    <th>Duration<a href="#"><img src="/css/Admin/Race/bxs-sort-alt.svg" alt="Sort Icon"></a></th>
-                    <th>Distance<a href="#"><img src="/css/Admin/Race/bxs-sort-alt.svg" alt="Sort Icon"></a></th>
-                </tr>                
-            </thead>
-            <tbody>
-                <tr th:each="run : ${runList}">
-                    <td th:text="Running"></td>
-                    <td th:text="${run.kind}"></td>
-                    <td th:text="${run.title}"></td>
-                    <td th:text="${#dates.format(run.date, 'dd/MM/yyyy')}"></td>
-                    <td th:text="${#dates.format(run.time, 'HH:mm:ss')}"></td>
-                    <td th:text="${run.duration}"></td>
-                    <td th:text="${run.distance} + ' km'"></td>
-                </tr>              
-            </tbody>
-        </table>
-        <table class="table_race">
-            <a>Race Activities</a>
-            <thead>
-                <tr>
-                    <th>Type</th>
-                    <th>Title</th>
-                    <th>Date<a href="#"><img src="/css/Admin/Race/bxs-sort-alt.svg" alt="Sort Icon"></a></th>
-                    <th>Duration<a href="#"><img src="/css/Admin/Race/bxs-sort-alt.svg" alt="Sort Icon"></a></th>
-                    <th>Distance<a href="#"><img src="/css/Admin/Race/bxs-sort-alt.svg" alt="Sort Icon"></a></th>
-                </tr>                
-            </thead>
-            <tbody> 
-                <tr th:each="race : ${raceList}">
-                    <td th:text="Race"></td>
-                    <td th:text="${race.title}"></td>
-                    <td th:text="${#dates.format(race.race_date, 'dd/MM/yyyy')}"></td>
-                    <td th:text="${race.member_duration}"></td>
-                    <td th:text="${race.distance} + ' km'"></td>
-                </tr>               
-            </tbody>
-        </table>
+        <div th:if="${runList != null and !runList.isEmpty()}">
+            <table class="table_race">
+                <a>Running Activities</a>
+                <thead>
+                    <tr>
+                        <th>Type</th>
+                        <th>Kind</th>
+                        <th>Title</th>
+                        <th>Date<a href="#"><img src="/css/Admin/Race/bxs-sort-alt.svg" alt="Sort Icon"></a></th>
+                        <th>Start Time<a href="#"><img src="/css/Admin/Race/bxs-sort-alt.svg" alt="Sort Icon"></a></th>
+                        <th>Duration<a href="#"><img src="/css/Admin/Race/bxs-sort-alt.svg" alt="Sort Icon"></a></th>
+                        <th>Distance<a href="#"><img src="/css/Admin/Race/bxs-sort-alt.svg" alt="Sort Icon"></a></th>
+                    </tr>                
+                </thead>
+                <tbody>
+                    <tr th:each="run : ${runList}">
+                        <td th:text="Running"></td>
+                        <td th:text="${run.kind}"></td>
+                        <td th:text="${run.title}"></td>
+                        <td th:text="${#dates.format(run.date, 'dd/MM/yyyy')}"></td>
+                        <td th:text="${#dates.format(run.time, 'HH:mm:ss')}"></td>
+                        <td th:text="${run.duration}"></td>
+                        <td th:text="${run.distance} + ' km'"></td>
+                    </tr>              
+                </tbody>
+            </table>
+        </div>
+        <div th:if="${raceList != null and !raceList.isEmpty()}">
+            <table class="table_race">
+                <a>Race Activities</a>
+                <thead>
+                    <tr>
+                        <th>Type</th>
+                        <th>Title</th>
+                        <th>Date<a href="#"><img src="/css/Admin/Race/bxs-sort-alt.svg" alt="Sort Icon"></a></th>
+                        <th>Duration<a href="#"><img src="/css/Admin/Race/bxs-sort-alt.svg" alt="Sort Icon"></a></th>
+                        <th>Distance<a href="#"><img src="/css/Admin/Race/bxs-sort-alt.svg" alt="Sort Icon"></a></th>
+                    </tr>                
+                </thead>
+                <tbody> 
+                    <tr th:each="race : ${raceList}">
+                        <td th:text="Race"></td>
+                        <td th:text="${race.title}"></td>
+                        <td th:text="${#dates.format(race.race_date, 'dd/MM/yyyy')}"></td>
+                        <td th:text="${race.member_duration}"></td>
+                        <td th:text="${race.distance} + ' km'"></td>
+                    </tr>               
+                </tbody>
+            </table>
+        </div>
     </div>
     <footer class="footer">
         <div class="content2">

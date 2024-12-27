@@ -1,5 +1,6 @@
 package com.example.YuRun.Member.Progress;
 
+import java.sql.Date;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.List;
@@ -21,24 +22,30 @@ public class JDBCProgress implements ProgressRepo{
     }
 
     public List<ActivityMember> getWeeklyActivities(int id_user) {
-        String sql = "SELECT * FROM Activity WHERE id_user = ? AND start_date >= CURRENT_DATE - INTERVAL '7 days'";
+        String sql = "SELECT * FROM Activity WHERE id_user = ? AND date >= CURRENT_DATE - INTERVAL '7 days'";
         return jdbcTemplate.query(sql, this::maptoRowActivityMember, id_user);
     }
     
     public List<ActivityMember> getMonthlyActivities(int id_user) {
-        String sql = "SELECT * FROM Activity WHERE id_user = ? AND start_date >= CURRENT_DATE - INTERVAL '1 month'";
+        String sql = "SELECT * FROM Activity WHERE id_user = ? AND date >= CURRENT_DATE - INTERVAL '1 month'";
         return jdbcTemplate.query(sql, this::maptoRowActivityMember, id_user);
     }
     
     public List<ActivityMember> getThreeMonthlyActivities(int id_user) {
-        String sql = "SELECT * FROM Activity WHERE id_user = ? AND start_date >= CURRENT_DATE - INTERVAL '3 months'";
+        String sql = "SELECT * FROM Activity WHERE id_user = ? AND date >= CURRENT_DATE - INTERVAL '3 months'";
         return jdbcTemplate.query(sql, this::maptoRowActivityMember, id_user);
     }
     
     public List<ActivityMember> getYearlyActivities(int id_user) {
-        String sql = "SELECT * FROM Activity WHERE id_user = ? AND start_date >= CURRENT_DATE - INTERVAL '1 year'";
+        String sql = "SELECT * FROM Activity WHERE id_user = ? AND date >= CURRENT_DATE - INTERVAL '1 year'";
         return jdbcTemplate.query(sql, this::maptoRowActivityMember, id_user);
+    }  
+    
+    public List<ActivityMember> getActivitiesByDateRange(int id_user, Date startDate, Date endDate) {
+        String sql = "SELECT * FROM Activity WHERE id_user = ? AND date BETWEEN ? AND ?";
+        return jdbcTemplate.query(sql, this::maptoRowActivityMember, id_user, startDate, endDate);
     }    
+    
 
     private ActivityMember maptoRowActivityMember(ResultSet resultSet, int rowNum) throws SQLException {
         return new ActivityMember(
