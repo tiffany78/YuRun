@@ -69,3 +69,49 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     });
 });
+
+document.getElementById('download-pdf').addEventListener('click', function () {
+    // Ambil elemen yang ingin didownload
+    const elements = document.querySelectorAll('.activity, .graph, .contentBody');
+    const container = document.createElement('div');
+
+    // Atur container di luar viewport agar tidak terlihat
+    container.style.position = 'absolute';
+    container.style.top = '-10000px';
+    container.style.left = '-10000px';
+    document.body.appendChild(container);
+
+    // Gabungkan elemen ke dalam container
+    elements.forEach(el => {
+        const clonedElement = el.cloneNode(true); // Salin elemen
+        container.appendChild(clonedElement);
+    });
+
+    // Gunakan html2canvas untuk menangkap elemen gabungan
+    html2canvas(container, {
+        scale: 2, // Resolusi tinggi
+        backgroundColor: null
+    }).then((canvas) => {
+        // Konversi canvas menjadi gambar
+        const imgData = canvas.toDataURL('image/png');
+
+        // Buat dokumen PDF
+        const pdf = new jspdf.jsPDF({
+            orientation: 'portrait',
+            unit: 'mm',
+            format: 'a4'
+        });
+
+        // Sesuaikan ukuran gambar dengan ukuran A4
+        const pdfWidth = 210; // Lebar halaman A4 dalam mm
+        const pdfHeight = (canvas.height * pdfWidth) / canvas.width;
+
+        pdf.addImage(imgData, 'PNG', 0, 0, pdfWidth, pdfHeight);
+
+        // Simpan PDF
+        pdf.save('Progress_Report.pdf');
+
+        // Hapus container sementara dari DOM
+        document.body.removeChild(container);
+    });
+});

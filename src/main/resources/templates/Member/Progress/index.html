@@ -12,6 +12,10 @@
     <script src="https://code.highcharts.com/modules/exporting.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.4.0/jspdf.umd.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+
     <script src="/js/Member/Progress.js" defer></script>
 </head>
 <body class="containerBody">
@@ -66,31 +70,29 @@
             <input type="date" name="endDate" id="end-date" th:value="${endDate}" required>
             <button type="submit" class="filter-button">Custom</button>
         </form>
-        <form class="download">
-            <button type="submit">Download PDF</button>
-        </form>
+        <a type="button" id="download-pdf" class="download">Download PDF</a>
     </div> 
     <div class="activity">
-        <a>Summary Your Progress</a>
+        <a class="title" th:text="'Summary ' + ${username} + '\'' + 's ' + ' Progress'"></a>
         <div class="recap">
             <span>
                 <a>Distance</a> <br>
-                <a>Total</a>
+                <a class="title2" th:text="${sumDistance} + ' km'"></a>
             </span>
             <span>
                 <a>Time</a> <br>
-                <a>Total</a>
+                <a class="title2" th:text="${sumDuration}"></a>
             </span>
         </div>
     </div>
     <div class="graph">
-        <a>Your Grafik</a>
+        <a class="title" th:text="${username} + '\'' + 's ' + ${currFilter} + ' Activities'"></a>
         <div id="container"></div>
     </div>
     <div class="contentBody">
         <div th:if="${runList != null and !runList.isEmpty()}">
             <table class="table_race">
-                <a>Running Activities</a>
+                <a class="title">Running Activities</a>
                 <thead>
                     <tr>
                         <th>Type</th>
@@ -117,7 +119,7 @@
         </div>
         <div th:if="${raceList != null and !raceList.isEmpty()}">
             <table class="table_race">
-                <a>Race Activities</a>
+                <a class="title">Race Activities</a>
                 <thead>
                     <tr>
                         <th>Type</th>

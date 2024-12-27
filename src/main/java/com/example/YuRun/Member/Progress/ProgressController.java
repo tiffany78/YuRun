@@ -1,6 +1,8 @@
 package com.example.YuRun.Member.Progress;
 
 import java.sql.Date;
+import java.text.SimpleDateFormat;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -34,18 +36,26 @@ public class ProgressController {
         
         int id_user = (Integer) session.getAttribute("id_user");
         session.setAttribute("id_user", id_user);
+        String username = (String) session.getAttribute("username");
+        model.addAttribute("username", username);
+
+        Double sumDistance = 0.0;
+        List<String> listDuration = new ArrayList<>();
 
         // Konversi startDate dan endDate ke tipe java.sql.Date
         Date startDate = null;
         Date endDate = null;
+        SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
 
         try {
-            if (startDateStr != null && endDateStr != null) {
-                startDate = Date.valueOf(startDateStr); // Konversi String ke java.sql.Date
+            if (startDateStr != null && endDateStr != null) {    
+                startDate = Date.valueOf(startDateStr);
                 endDate = Date.valueOf(endDateStr);
+
+                startDateStr = formatter.format(startDate);
+                endDateStr = formatter.format(endDate);
             }
         } catch (IllegalArgumentException e) {
-            // Jika format tanggal salah, kembalikan ke default
             startDate = null;
             endDate = null;
         }
@@ -55,33 +65,80 @@ public class ProgressController {
             runList = this.repo.getActivitiesByDateRange(id_user, startDate, endDate);
             model.addAttribute("startDate", startDate);
             model.addAttribute("endDate", endDate);
+
+            String fullDate = startDateStr + " - " + endDateStr;
+            model.addAttribute("currFilter", fullDate);
         } else {
             // Gunakan filterType untuk menentukan logika lainnya
             switch (filterType) {
                 case "Weekly":
                     runList = this.repo.getWeeklyActivities(id_user);
+                    model.addAttribute("currFilter", "Weekly");
                     break;
                 case "1Month":
                     runList = this.repo.getMonthlyActivities(id_user);
+                    model.addAttribute("currFilter", "1 Month");
                     break;
                 case "3Months":
                     runList = this.repo.getThreeMonthlyActivities(id_user);
+                    model.addAttribute("currFilter", "3 Month");
                     break;
                 case "1Year":
                     runList = this.repo.getYearlyActivities(id_user);
+                    model.addAttribute("currFilter", "1 Year");
                     break;
                 case "All":
                 default:
                     runList = this.repo.getAllActivities(id_user);
+                    model.addAttribute("currFilter", "All");
             }
         }
-
         model.addAttribute("runList", runList);
+
+        // Perhitungan total distance dan time dari running
+        for(ActivityMember curr : runList){
+            sumDistance += curr.getDistance();
+            listDuration.add(curr.getDuration());
+        }
 
         List<ProgressRace> list2 = this.repo.getAllRace(id_user);
         model.addAttribute("raceList", list2);
 
+        // Perhitungan total distance dan time dari race
+        for(ProgressRace curr : list2){
+            sumDistance += curr.getDistance();
+            listDuration.add(curr.getMember_duration());
+        }
+
+        String sumDuration = sumDurations(listDuration);
+        model.addAttribute("sumDuration", sumDuration);
+        model.addAttribute("sumDistance", sumDistance);
+
         return "Member/Progress/index";
+    }
+
+    public static String sumDurations(List<String> durations) {
+        int totalSeconds = 0;
+
+        // Konversi setiap durasi ke detik dan tambahkan
+        for (String duration : durations) {
+            if(duration != null){
+                String[] parts = duration.split(":");
+                int hours = Integer.parseInt(parts[0]);
+                int minutes = Integer.parseInt(parts[1]);
+                int seconds = Integer.parseInt(parts[2]);
+    
+                totalSeconds += (hours * 3600) + (minutes * 60) + seconds;
+            }
+        }
+
+        // Konversi total detik kembali ke HH:mm:ss
+        int hours = totalSeconds / 3600;
+        int remainingSeconds = totalSeconds % 3600;
+        int minutes = remainingSeconds / 60;
+        int seconds = remainingSeconds % 60;
+
+        return String.format("%02d:%02d:%02d", hours, minutes, seconds);
     }
 
     @RestController
