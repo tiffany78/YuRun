@@ -76,7 +76,7 @@
                 </div>
             </div>
             <div class="actionButton">
-                <button class="delete"><img src="/css/Admin/Race/trash-2-20.svg" alt="Delete"/>Delete</button>
+                <a class="delete" th:href="@{/member/deleteActivity/{idActivity}(idActivity=${activity.id_activity})}"><img src="/css/Admin/Race/trash-2-20.svg" alt="Delete"/>Delete</a>
                 <a class="edit" th:href="@{/member/editActivity/{idActivity}(idActivity=${activity.id_activity})}">
                     Edit
                 </a>

@@ -4,7 +4,6 @@ body {
     min-height: 100vh;
     display: flex;
     flex-direction: column;
-    background-color: #F5F5F5;
 }
 .containerBody{
     display: grid;
@@ -257,6 +256,8 @@ a.page{
     font-weight: 500;
     width: 125px;
     height: 40px;
+    text-decoration: none;
+    border: #ff5722 2px solid;
 }
 
 .edit {
