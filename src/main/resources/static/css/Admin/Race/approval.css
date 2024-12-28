@@ -302,14 +302,19 @@ a.page{
     display: none; /* Disembunyikan ketika memiliki kelas 'hidden' */
 }
 
-.popup-content p {
-    margin: 0 0 20px;
+.popup-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    row-gap: 6px;
     font-size: 16px;
 }
 
 .popup-actions {
     display: flex;
     justify-content: space-around;
+    column-gap: 5px;
 }
 
 .popup-actions .noAction, .popup-actions .confirm {
