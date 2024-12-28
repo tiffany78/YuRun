@@ -72,9 +72,9 @@
                             <td th:text="${stat.index + 1}"></td> <!-- Nomor urut -->
                             <td th:text="${user.name}"></td>
                             <td th:text="${user.email}"></td>
-                            <td th:text="${user.status ? 'Active' : 'Banned'}"></td>
+                            <td th:text="${user.status ? 'Active' : 'Banned'}" th:class="${user.status ? '' : 'text-red'}"></td>
                             <td>
-                                <form action="/admin/updateStatus" method="get">
+                                <form action="/admin/updateStatus" method="get" th:if="${user.status}">
                                     <input type="hidden" name="name" th:value="${user.name}" />
                                     <button type="submit" class="edit-button">
                                         <img class="edit-icon" src="/css/Admin/UserInformation/vaadin-ban0.svg" alt="Ban">
