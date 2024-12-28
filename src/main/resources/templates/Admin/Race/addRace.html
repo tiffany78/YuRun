@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Add Activity</title>
+    <title>Add Race</title>
     <link rel="stylesheet" href="/css/vars.css">
     <link rel="stylesheet" href="/css/Admin/Race/style2.css">
 </head>
@@ -29,19 +29,19 @@
     </nav>
     <div class="content">
         <form class="frameinput" method="post" th:action="@{/admin/addRace}" enctype="multipart/form-data">
-            <div class="add-new-activity">Edit Race</div>
+            <div class="add-new-activity">Add Race</div>
             <div class="input1">
                 <div class="divInput">
                     <div class="headInput">Distance</div>
                     <div class="groupFrame">
                         <input type="number" step="0.01" class="frame1" required name="distance">
-                        <div class="frame1"><span class="textFrame">Kilometer</span></div>
+                        <div class="textFrame">Kilometer</div>
                     </div>
                 </div>
                 <div class="divInput">
                     <div class="headInput">Start Date & Time</div>
                     <div class="groupFrame">
-                        <input type="date" class="frame1" name="date" th:value="${date}" required> 
+                        <input type="date" class="frame1" name="date" th:value="${date}" th:attr="min=${#dates.format(#dates.createNow(), 'yyyy-MM-dd')}" required>
                         <input type="time" class="frame1" name="time" th:value="${time}" required> 
                     </div>
                 </div>

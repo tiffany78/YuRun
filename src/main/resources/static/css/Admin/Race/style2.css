@@ -142,7 +142,7 @@ input {
     font-family: "Roboto-SemiBold", sans-serif;
     font-size: 14px;
     font-weight: 600;
-    align-content: center;
+    align-self: center;
 }
 .input2{
     grid-area: input2;
