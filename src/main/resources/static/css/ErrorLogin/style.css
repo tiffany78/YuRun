@@ -1,86 +1,64 @@
-._404,
-._404 * {
-  box-sizing: border-box;
-}
-._404 {
-  border-radius: 60px;
-  height: 768px;
-  position: relative;
+body{
   overflow: hidden;
 }
-.group-1 {
-  position: absolute;
-  inset: 0;
-}
 .image {
-  width: 1366px;
-  height: 768px;
+  width: 100vw;
+  height: 100vh;
   position: absolute;
   left: 0px;
   top: 0px;
   object-fit: cover;
+  z-index: -100;
 }
-._404-1 {
-  width: 591.84px;
-  height: 420.77px;
-  position: absolute;
-  left: 387px;
-  top: 0px;
-  overflow: hidden;
+.content{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-evenly;
+  height: 80vh;
 }
 .group {
   height: auto;
-  position: absolute;
-  left: -36.77px;
-  top: -30.38px;
-  overflow: visible;
+  position: relative;
 }
-.rectangle {
-  background: rgba(200, 200, 200, 0.3);
-  width: 1px;
-  height: 14px;
-  position: absolute;
-  left: 618px;
-  top: 653.72px;
-}
+
 .opps-page-not-found {
   color: #565872;
-  text-align: center;
   font-family: "Rubik-SemiBold", sans-serif;
   font-size: 17px;
   line-height: 34px;
   letter-spacing: 4px;
   font-weight: 600;
   text-transform: uppercase;
-  position: absolute;
-  left: 542px;
-  top: 573px;
-  width: 282px;
 }
-.rectangle2 {
-  background: #fb8133;
-  border-radius: 30px;
-  border-style: solid;
-  border-color: #fb8133;
-  border-width: 1px;
-  width: 190px;
-  height: 40px;
-  position: absolute;
-  left: 588px;
-  top: 654px;
-  box-shadow: -15px 15px 20px 0px rgba(0, 0, 0, 0.1);
-}
-.back-to-home {
+.back-to-login {
   color: #ffffff;
-  text-align: center;
   font-family: "Poppins-Regular", sans-serif;
   font-size: 12px;
   line-height: 15.6px;
   letter-spacing: 1px;
-  font-weight: 400;
+  font-weight: 600;
   text-transform: uppercase;
-  position: absolute;
-  left: 630px;
-  top: 666px;
-  width: 107px;
+  width: auto;
+  background-color: coral;
+  border-radius: 10px;
+  padding: 10px;
+  text-decoration: none;
+  text-align: center;
+}
+
+.back-to-home {
+  color: coral;
+  font-family: "Poppins-Regular", sans-serif;
+  font-size: 12px;
+  line-height: 15.6px;
+  letter-spacing: 1px;
+  font-weight: 600;
+  text-transform: uppercase;
+  width: auto;
+  border: coral 2px solid;
+  border-radius: 10px;
+  padding: 10px;
+  text-decoration: none;
+  text-align: center;
 }
