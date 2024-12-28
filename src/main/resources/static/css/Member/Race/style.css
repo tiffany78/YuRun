@@ -4,7 +4,6 @@ body {
   min-height: 100vh;
   display: flex;
   flex-direction: column;
-  background-color: #F5F5F5;
 }
 .containerBody{
   display: grid;
@@ -162,8 +161,7 @@ th a img {
 .footer{
   grid-area: footer;
   background: var(--background-color-primary, #ffffff);
-  padding: 10px 20px; /* Berikan sedikit padding */
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Tambahkan bayangan untuk kesan floating */
+  padding: 10px 20px;
   display: flex;
   flex-direction: column;
   height: 110px;
@@ -272,26 +270,6 @@ font-weight: 400;
 position: relative;
 }
 .text-2 {
-color: var(--neutral-colors-900, #3d3d3d);
-text-align: left;
-font-family: var(--text-small-link-font-family, "Roboto-Regular", sans-serif);
-font-size: var(--text-small-link-font-size, 14px);
-line-height: var(--text-small-link-line-height, 150%);
-font-weight: var(--text-small-link-font-weight, 400);
-text-decoration: underline;
-position: relative;
-}
-.text-3 {
-color: var(--neutral-colors-900, #3d3d3d);
-text-align: left;
-font-family: var(--text-small-link-font-family, "Roboto-Regular", sans-serif);
-font-size: var(--text-small-link-font-size, 14px);
-line-height: var(--text-small-link-line-height, 150%);
-font-weight: var(--text-small-link-font-weight, 400);
-text-decoration: underline;
-position: relative;
-}
-.text-4 {
 color: var(--neutral-colors-900, #3d3d3d);
 text-align: left;
 font-family: var(--text-small-link-font-family, "Roboto-Regular", sans-serif);
