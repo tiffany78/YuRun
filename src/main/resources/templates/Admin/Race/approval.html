@@ -35,27 +35,26 @@
             <span th:text="${' - ' + target + ' km'}"></span>
         </a>
     </div>
-    <div class="header">
+    <form class="header" method="get" th:action="@{/admin/race/approval/{idRace}(idRace=${idRace})}">
         <!--FORM FOR SEARCHING-->
         <div class="search">
             <img class="search-bar" src="/css/Admin/Race/search0.svg"/>
-            <form method="GET">
-              <input type="text" name="filter" th:value="${filter}" placeholder="Search Member" class="search-race" input=this.form.submit()/>
-            </form>
-          </div>
-        <select class="dropdown" id="status" name="status" required>
-            <option value="" disabled th:if="${status == null}" selected>Status Member</option>
-            <option th:value="Approve" th:selected="${status == 'Approve'}">Approve</option>
-            <option th:value="Reject" th:selected="${status == 'Reject'}">Reject</option>
+            <input type="text" name="filter" th:value="${filter}" placeholder="Search Member" class="search-member" input=this.form.submit()/>
+        </div>
+        <!--FORM FOR DROPDOWN-->
+        <select class="dropdown" id="statusMember" name="statusMember" onchange="this.form.submit()">
+            <option value="" th:selected="${statusMember == ''}">All Status Member</option>
+            <option th:value="true" th:selected="${statusMember == 'true'}">Approve</option>
+            <option th:value="false" th:selected="${statusMember == 'false'}">Reject</option>
         </select>
-    </div>
+    </form>
     <form class="body" method="post" th:action="@{/admin/race/approval/{idRace}(idRace=${idRace})}">
         <div class="bodyButton">
             <a class="back" th:href="@{/admin/race}">Back</a>
             <button class="save" type="button" onclick="showPopup(event)" 
                     th:attr="disabled=${statusRace ? 'disabled' : null}">Save</button>
         </div>        
-        <div class="contentBody">
+        <div class="contentBody" th:if="${resultRace != null and resultRace.size() > 0}" >
             <div class="square" th:each="resultRace : ${resultRace}">
                 <div class="imageContainer">
                     <img th:src="${resultRace.path_pict != null ? '/upload/race-member/' + resultRace.path_pict : '/upload/race-member/null.jpg'}" alt="Image" class="image">
@@ -77,6 +76,9 @@
                     </div>                                           
                 </div>
             </div>            
+        </div>
+        <div class="contentBody" th:if="${resultRace == null or resultRace.size() == 0}">
+            <p class="no-results-message" th:text="${message}"></p>
         </div>
         <div id="popup" class="popup hidden">
             <div class="popup-content">

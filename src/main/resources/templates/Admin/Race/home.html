@@ -73,19 +73,21 @@
                 </div>                
             </div>
             <div class="actionButton">
-                <a class="close"
+                <a class="approvalRace"
                     th:if="${race.startDateTime.isAfter(currentDate)}"
                     th:onclick="'showPopup(' + ${race.idRace} + ')'"
                     th:text="'Delete Race'">
                     Delete Race
                     </a>
-
-                <a class="close"
+                <a class="approvalRace"
                     th:if="${!race.startDateTime.isAfter(currentDate)}"
                     th:href="@{/admin/race/approval/{idRace}(idRace=${race.idRace})}">
                     Approval Race
                 </a>
-                <a class="edit" th:href="@{/admin/editRace/{idRace}(idRace=${race.idRace})}">Edit</a>
+                
+                <a class="edit" th:href="@{/admin/editRace/{idRace}(idRace=${race.idRace})}"
+                th:if="${race.startDateTime.isAfter(currentDate)}">
+                Edit </a>
             </div>
         </div>
     </div>
