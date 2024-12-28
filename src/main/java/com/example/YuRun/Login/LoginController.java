@@ -38,7 +38,7 @@ public class LoginController {
             @RequestParam("password") String password,
             Model model, HttpSession session) {
 
-        LoginUser pengguna =loginService.login(email, password);
+        LoginUser pengguna =loginService.login(email, password,model);
         // System.out.println(pengguna);
         // System.out.println(email + password);
         if(pengguna != null){
