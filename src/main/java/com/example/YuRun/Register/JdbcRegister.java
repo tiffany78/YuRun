@@ -1,9 +1,15 @@
 package com.example.YuRun.Register;
 
+import java.util.Optional;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
+
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.List;
 
 @Repository
 public class JdbcRegister implements RegisterRepository {
@@ -13,25 +19,27 @@ public class JdbcRegister implements RegisterRepository {
 
     @Override
     public void tambahUser(RegisterUser user) {
-        try {
-            String sql = "INSERT INTO Users (name, email, password, isAdmin, status) VALUES (?, ?, ?, B'0', ?)";
-            
-            int rowsAffected = jdbcTemplate.update(sql, 
-                user.getName(), 
-                user.getEmail(), 
-                user.getPassword(), 
-                user.isStatus()
-            );
-            
-            if (rowsAffected == 0) {
-                throw new RuntimeException("No rows were inserted");
-            }
-        } catch (DataIntegrityViolationException e) {
-            // Tangani error unique constraint (email sudah ada)
-            throw new RuntimeException("Email already exists", e);
-        } catch (Exception e) {
-            e.printStackTrace();
-            throw new RuntimeException("Failed to insert user: " + e.getMessage(), e);
-        }
+        String sql = "INSERT INTO Users (name, email, password, isAdmin, status) VALUES (?, ?, ?, ?, ?)";
+        jdbcTemplate.update(sql, user.getName(), user.getEmail(), user.getPassword(),0,user.isStatus());
     }
+
+    @Override
+    public Optional<RegisterUser> findByUsername(String username) {
+        String sql = "SELECT * FROM users WHERE name = ?";
+        List<RegisterUser> results = jdbcTemplate.query(sql, this::mapRowToUser, username);
+        return results.size() == 0 ? Optional.empty() : Optional.of(results.get(0));
+    }
+
+
+    private RegisterUser mapRowToUser(ResultSet resultSet, int rowNum) throws SQLException {
+        return new RegisterUser(
+            resultSet.getString("name"),
+            resultSet.getString("email"),
+            resultSet.getString("password"),
+            resultSet.getString("password"),
+            resultSet.getBoolean("isadmin"),
+            resultSet.getBoolean("status")
+        );
+    }
+    
 }
