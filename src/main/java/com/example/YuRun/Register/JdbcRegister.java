@@ -19,8 +19,8 @@ public class JdbcRegister implements RegisterRepository {
 
     @Override
     public void tambahUser(RegisterUser user) {
-        String sql = "INSERT INTO Users (name, email, password, isAdmin, status) VALUES (?, ?, ?, ?, ?)";
-        jdbcTemplate.update(sql, user.getName(), user.getEmail(), user.getPassword(),0,user.isStatus());
+        String sql = "INSERT INTO users (name, email, password, isAdmin, status) VALUES (?, ?, ?, CAST(? AS BIT), ?)";
+        jdbcTemplate.update(sql, user.getName(), user.getEmail(), user.getPassword(),'0',user.isStatus());
     }
 
     @Override
@@ -37,7 +37,7 @@ public class JdbcRegister implements RegisterRepository {
             resultSet.getString("email"),
             resultSet.getString("password"),
             resultSet.getString("password"),
-            resultSet.getBoolean("isadmin"),
+            resultSet.getByte("isadmin"),
             resultSet.getBoolean("status")
         );
     }
