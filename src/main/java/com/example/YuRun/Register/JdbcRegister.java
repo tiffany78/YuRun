@@ -3,7 +3,6 @@ package com.example.YuRun.Register;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
 
@@ -20,7 +19,7 @@ public class JdbcRegister implements RegisterRepository {
     @Override
     public void tambahUser(RegisterUser user) {
         String sql = "INSERT INTO users (name, email, password, isAdmin, status) VALUES (?, ?, ?, CAST(? AS BIT), ?)";
-        jdbcTemplate.update(sql, user.getName(), user.getEmail(), user.getPassword(),'0',user.isStatus());
+        jdbcTemplate.update(sql, user.getName(), user.getEmail(), user.getPassword(),'0',true);
     }
 
     @Override
@@ -30,15 +29,19 @@ public class JdbcRegister implements RegisterRepository {
         return results.size() == 0 ? Optional.empty() : Optional.of(results.get(0));
     }
 
+    public Optional<RegisterUser> findByEmail(String email) {
+        String sql = "SELECT * FROM users WHERE email = ?";
+        List<RegisterUser> results = jdbcTemplate.query(sql, this::mapRowToUser, email);
+        return results.size() == 0 ? Optional.empty() : Optional.of(results.get(0));
+    }
+
 
     private RegisterUser mapRowToUser(ResultSet resultSet, int rowNum) throws SQLException {
         return new RegisterUser(
             resultSet.getString("name"),
             resultSet.getString("email"),
             resultSet.getString("password"),
-            resultSet.getString("password"),
-            resultSet.getByte("isadmin"),
-            resultSet.getBoolean("status")
+            resultSet.getString("password")
         );
     }
     

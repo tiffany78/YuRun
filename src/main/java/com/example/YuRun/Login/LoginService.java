@@ -20,6 +20,7 @@ public class LoginService {
         Optional <LoginUser> userOpt = loginRepo.findPengguna(email);
         if(userOpt.isPresent()){
             LoginUser user = userOpt.get();
+            // Versi pake encoder
             // if(!passEncoder.matches(password, user.getPassword())){//password sesuai
             //     model.addAttribute("error", "Incorrect password. Please try again.");
             //     return null;

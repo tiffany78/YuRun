@@ -39,8 +39,6 @@ public class LoginController {
             Model model, HttpSession session) {
 
         LoginUser pengguna =loginService.login(email, password,model);
-        // System.out.println(pengguna);
-        // System.out.println(email + password);
         if(pengguna != null){
            if(pengguna.getIsadmin()==1){
                 session.setAttribute("email", pengguna.getEmail());
@@ -60,7 +58,6 @@ public class LoginController {
 
         model.addAttribute("status", "failed");
         return "Login/index";
-    
     }
 
     @GetMapping("/directHome")
