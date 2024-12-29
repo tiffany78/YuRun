@@ -7,6 +7,7 @@ import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -106,16 +107,27 @@ public class RaceController {
     }
 
     @GetMapping("/race/approval/{idRace}")
-    public String indexApproval(@PathVariable("idRace") int idRace, Model model){
-        List<ResultRace> list = this.repo.getAllResultRace(idRace);
-        model.addAttribute("resultRace", list);
+    public String indexApproval(@PathVariable("idRace") int idRace, Model model,
+    @RequestParam(value = "filter", required = false, defaultValue = "") String filter,
+    @RequestParam(value = "statusMember", required = false, defaultValue = "") String statusMember){
+        List<ResultRace> list = this.repo.getAllResultRace(idRace, filter, statusMember);
 
-        model.addAttribute("idRace", list.get(0).getId_race());
-        model.addAttribute("title", list.get(0).getTitle());
-        model.addAttribute("target", list.get(0).getDistance());
+        Map<String, Double> result = this.repo.getTitleAndDistance(idRace);
+        result.forEach((title, distance) -> {
+            model.addAttribute("title", title);
+            model.addAttribute("target", distance);
+        });
 
         boolean status = this.repo.getRaceStatus(idRace);
         model.addAttribute("statusRace", status);
+        model.addAttribute("filter", filter);
+        model.addAttribute("statusMember", statusMember);
+        model.addAttribute("idRace", idRace);
+        model.addAttribute("resultRace", list);
+
+        if (list.isEmpty() || list.size() == 0) {
+            model.addAttribute("message", "No member found for the given filter.");
+        }
 
         return "/Admin/Race/approval";
     }

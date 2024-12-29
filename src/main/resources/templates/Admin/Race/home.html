@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Home Race</title>
     <link rel="stylesheet" href="/css/Admin/Race/style1.css">
-    <link rel="stylesheet" href="/css/Admin/HomePage/vars.css">
+    <link rel="stylesheet" href="/css/vars.css">
     <script src="/js/Admin/HomeRace.js" defer></script>
 </head>
 <body class="containerBody">
@@ -73,19 +73,21 @@
                 </div>                
             </div>
             <div class="actionButton">
-                <a class="close"
+                <a class="approvalRace"
                     th:if="${race.startDateTime.isAfter(currentDate)}"
                     th:onclick="'showPopup(' + ${race.idRace} + ')'"
                     th:text="'Delete Race'">
                     Delete Race
                     </a>
-
-                <a class="close"
+                <a class="approvalRace"
                     th:if="${!race.startDateTime.isAfter(currentDate)}"
                     th:href="@{/admin/race/approval/{idRace}(idRace=${race.idRace})}">
                     Approval Race
                 </a>
-                <a class="edit" th:href="@{/admin/editRace/{idRace}(idRace=${race.idRace})}">Edit</a>
+                
+                <a class="edit" th:href="@{/admin/editRace/{idRace}(idRace=${race.idRace})}"
+                th:if="${race.startDateTime.isAfter(currentDate)}">
+                Edit </a>
             </div>
         </div>
     </div>

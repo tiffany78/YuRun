@@ -256,7 +256,7 @@ a.page{
     cursor: pointer;
 }
 
-.close {
+.approvalRace {
     background: none;
     border: #7f190f 1px solid;
     display: flex;
