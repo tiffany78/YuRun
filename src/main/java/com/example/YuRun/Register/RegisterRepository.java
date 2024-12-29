@@ -4,4 +4,5 @@ import java.util.Optional;
 public interface RegisterRepository {
     void tambahUser(RegisterUser user);
     Optional<RegisterUser> findByUsername(String username);
+    Optional<RegisterUser> findByEmail(String email);
 } 
