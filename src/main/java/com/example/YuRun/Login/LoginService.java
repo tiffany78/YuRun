@@ -18,12 +18,17 @@ public class LoginService {
 
     public LoginUser login (String email, String password, Model model){
         Optional <LoginUser> userOpt = loginRepo.findPengguna(email);
-
-
-
         if(userOpt.isPresent()){
             LoginUser user = userOpt.get();
-            if(!passEncoder.matches(password, user.getPassword())){//password sesuai
+            // if(!passEncoder.matches(password, user.getPassword())){//password sesuai
+            //     model.addAttribute("error", "Incorrect password. Please try again.");
+            //     return null;
+            // }
+            // else{
+            //     return user;
+            // }
+
+            if(!password.equals(user.getPassword())){
                 model.addAttribute("error", "Incorrect password. Please try again.");
                 return null;
             }

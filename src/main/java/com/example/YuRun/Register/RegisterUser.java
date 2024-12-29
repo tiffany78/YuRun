@@ -18,8 +18,6 @@ public class RegisterUser {
     @NotBlank
     @Size(min = 4)
     private String confirmPassword;
-
-    
-    private boolean isadmin;
+    private int isadmin;
     private boolean status;
 }
