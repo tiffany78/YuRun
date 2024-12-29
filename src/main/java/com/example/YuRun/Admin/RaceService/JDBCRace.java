@@ -5,7 +5,9 @@ import java.sql.SQLException;
 import java.sql.Time;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.EmptyResultDataAccessException;
@@ -101,10 +103,38 @@ public class JDBCRace implements RaceRepository{
         jdbcTemplate.update(sql, distance, date, time, title, desc, idRace);
     }
 
-    public List<ResultRace> getAllResultRace(int id_race){
-        String sql = "SELECT * FROM show_race_admin WHERE id_race = ?";
+    public Map<String, Double> getTitleAndDistance(int idRace) {
+        String sql = "SELECT title, distance FROM race WHERE id_race = ?";
         
-        return jdbcTemplate.query(sql, this::mapRowToResultRace, id_race);
+        return jdbcTemplate.query(sql, rs -> {
+            Map<String, Double> resultMap = new HashMap<>();
+            while (rs.next()) {
+                resultMap.put(rs.getString("title"), rs.getDouble("distance"));
+            }
+            return resultMap;
+        }, idRace);
+    }
+
+    public List<ResultRace> getAllResultRace(int id_race, String filter, String statusMember){
+        String sql = "SELECT * FROM show_race_admin WHERE id_race = ?";
+
+        List<Object> params = new ArrayList<>(); 
+        params.add(id_race);
+
+        if (filter != null && !filter.isEmpty()) {
+            sql += " AND name ILIKE ?";
+            params.add("%" + filter + "%");
+        }
+
+        if (statusMember != null && statusMember.length() > 0) {
+            sql += " AND status = ?";
+            boolean status = true;
+            if(statusMember.equals("false")){
+                status = false;
+            }
+            params.add(status);
+        }
+        return jdbcTemplate.query(sql, this::mapRowToResultRace, params.toArray());
     }
 
     public void updateStatus(int idRace, int idUser, boolean status) {

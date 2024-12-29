@@ -3,9 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Add Activity</title>
-    <link rel="stylesheet" href="/css/AddActivity/vars.css">
-    <link rel="stylesheet" href="/css/AddActivity/styles.css">
+    <title>Edit Activity</title>
+    <link rel="stylesheet" href="/css/vars.css">
+    <link rel="stylesheet" href="/css/Member/Activity/style2.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <script src="/js/Member/AddActivity.js" defer></script>
 </head>
@@ -17,7 +17,7 @@
         </div>
         <div class="textNavbar">
             <a th:href="@{/member}">Home</a>
-            <a class="home" th:href="@{/member/activity}">My Activity</a>
+            <a class="page" th:href="@{/member/activity}">My Activity</a>
             <a th:href="@{/member/race}">Race</a>
             <a th:href="@{/member/progress}">Progress</a>
         </div>
@@ -36,7 +36,7 @@
                     <div class="headInput">Distance</div>
                     <div class="groupFrame">
                         <input type="number" step="0.01" class="frame1" required name="distance" th:value="${activity.distance}" >
-                        <div class="frame1"><span class="textFrame">Kilometer</span></div>
+                        <div class="textFrame">Kilometer</div>
                     </div>
                 </div>
                 <div class="divInput">
@@ -110,7 +110,7 @@
         <div class="content2">
             <div class="logo">
               <img class="logo3" src="/css/LandingPage/logo3.svg"/>
-              <div class="fit-life-studio">FitLife Studio</div>
+              <div class="fit-life-studio">YuRun</div>
             </div>
             <div class="links">
               <div class="about2">About</div>
@@ -123,8 +123,8 @@
             <div class="row">
               <div class="text-1">© 2024 Shipon. All rights reserved.</div>
               <div class="text-2">Privacy Policy</div>
-              <div class="text-3">Terms of Service</div>
-              <div class="text-4">Cookies Settings</div>
+              <div class="text-2">Terms of Service</div>
+              <div class="text-2">Cookies Settings</div>
             </div>
           </div>
     </footer>

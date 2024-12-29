@@ -2,52 +2,17 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org" >
 <head>
   <meta charset="UTF-8">
-  <!-- <meta http-equiv="X-UA-Compatible" content="IE=edge"> -->
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href="/css/ErrorLogin/vars.css">
   <link rel="stylesheet" href="/css/ErrorLogin/style.css">
-  
-  
-  <style>
-   a,
-   button,
-   input,
-   select,
-   h1,
-   h2,
-   h3,
-   h4,
-   h5,
-   * {
-       box-sizing: border-box;
-       margin: 0;
-       padding: 0;
-       border: none;
-       text-decoration: none;
-       background: none;
-   
-       -webkit-font-smoothing: antialiased;
-   }
-   
-   menu, ol, ul {
-       list-style-type: none;
-       margin: 0;
-       padding: 0;
-   }
-   </style>
   <title>Error404</title>
 </head>
 <body>
-  <div class="_404">
-    <img class="image" src="/css/ErrorLogin/image0.png" />
-    <div class="_404-1">
-      <img class="group" src="/css/ErrorLogin/group0.svg" />
-    </div>
-    <div class="rectangle"></div>
+  <img class="image" src="/css/ErrorLogin/image0.png" />
+  <div class="content">
+    <img class="group" src="/css/ErrorLogin/group0.svg" />
     <div class="opps-page-not-found">Opps! Login Required!</div>
-    <div class="rectangle2"></div>
-    <a th:href="@{/login}"><div class="back-to-home">BACK TO HOME</div></a>
+    <a class="back-to-login" th:href="@{/login}">LOGIN MY ACCOUNT</a>
+    <a class="back-to-home" th:href="@{/}">BACK TO HOME</a>
   </div>
-  
 </body>
 </html>

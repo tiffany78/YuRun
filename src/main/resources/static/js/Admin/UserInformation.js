@@ -21,10 +21,9 @@ document.addEventListener("DOMContentLoaded", () => {
                     const response = await fetch(`/admin/updateStatus?name=${userName}`, {
                         method: "GET"
                     });
-
                     if (response.ok) {
-                        alert(`User ${userName} is now banned.`);
                         modal.style.display = "none"; // Hide the modal after action
+                        location.reload(); // Refresh the page
                     } else {
                         alert("Failed to update status.");
                     }
@@ -32,7 +31,7 @@ document.addEventListener("DOMContentLoaded", () => {
                     console.error(error);
                     alert("An error occurred. Please try again.");
                 }
-            };
+            };            
 
             // If No is clicked, just hide the modal
             document.getElementById("confirmNo").onclick = () => {
