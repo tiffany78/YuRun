@@ -8,89 +8,58 @@
     <title>Register</title>
 </head>
 <body>
-    <div class="header">Welcome to YuRun!</div>
-    <form class="form" th:action="@{/register}" method="post" th:object="${registerUser}">
-        <div class="full-name">
-            <div class="label">Full Name</div>
-            <div class="input">
-                <input type="name" name="name" th:field="*{name}" placeholder="Enter your full name" required>
-                <div th:if="${#fields.hasErrors('name')}" th:errors="*{name}" class="error"></div>
+    <img src="/css/LandingPage/logo1.svg" class="background-image">
+    <div class="content">
+        <div class="left">
+            <a>Track Your Strides <br> Achieve Your Goals</a>
+        </div>
+        <div class="right">
+            <!-- Error message section -->
+            <div class="error-message" th:if="${error}">
+                <p th:text="${error}"></p>
+            </div>
+            <div>
+                <a class="label"><img src="/css/LandingPage/logo1.svg">YuRun</a>
+                <div class="header">Welcome to YuRun</div>
+            </div>
+            <form class="form" th:action="@{/register}" method="post" th:object="${registerUser}">
+                <div class="full-name">
+                    <div class="label">Full Name</div>
+                    <div class="input">
+                        <input type="name" name="name" th:field="*{name}" placeholder="Enter your full name" required>
+                        <div th:if="${#fields.hasErrors('name')}" th:errors="*{name}" class="error"></div>
+                    </div>
+                </div>
+                <div class="email">
+                    <div class="label">Email</div>
+                    <div class="input">
+                        <input type="email" id="email" name="email" th:field="*{email}" placeholder="Enter your email" required>
+                        <div th:if="${#fields.hasErrors('email')}" th:errors="*{email}" class="error"></div>
+                    </div>
+                </div>
+                <div class="password">
+                    <div class="label">Password</div>
+                    <div class="input">
+                        <input type="password" name="password" th:field="*{password}" placeholder="Enter your password" required>
+                        <div th:if="${#fields.hasErrors('password')}" th:errors="*{password}" class="error"></div>
+                    </div>
+                </div>
+                <div class="confirm-password">
+                    <div class="label">Confirm Password</div>
+                    <div class="input">
+                        <input type="password" name="confirmPassword" th:field="*{confirmPassword}" placeholder="Enter your password again" required>
+                        <div th:if="${#fields.hasErrors('confirmPassword')}" th:errors="*{confirmPassword}" class="error"></div>
+                    </div>
+                </div>
+                <div class="button">
+                    <button type="submit">Register</button>
+                </div>
+            </form>    
+            <div class="signin">
+                <span class="already-have-an-account-sign-in">Already have an account?</span>
+                <a href="/login" class="text2">Login</a>
             </div>
         </div>
-        <div class="email">
-            <div class="label">Email</div>
-            <div class="input">
-                <input type="email" id="email" name="email" th:field="*{email}" placeholder="Enter your email" required>
-                <div th:if="${#fields.hasErrors('email')}" th:errors="*{email}" class="error"></div>
-            </div>
-        </div>
-        <div class="password">
-            <div class="label">Password</div>
-            <div class="input">
-                <input type="password" name="password" th:field="*{password}" placeholder="Enter your password" required>
-                <div th:if="${#fields.hasErrors('password')}" th:errors="*{password}" class="error"></div>
-            </div>
-        </div>
-        <div class="confirm-password">
-            <div class="label">Confirm Password</div>
-            <div class="input">
-                <input type="password" name="confirmPassword" th:field="*{confirmPassword}" placeholder="Enter your password again" required>
-                <div th:if="${#fields.hasErrors('confirmPassword')}" th:errors="*{confirmPassword}" class="error"></div>
-            </div>
-        </div>
-        <div class="button">
-            <button type="submit">Register</button>
-        </div>
-        <!-- Error message section -->
-        <div class="error-message">
-            <p style="color: red; font-size: 14px; text-align: center;">
-                <span th:text="${error}"></span>
-            </p>
-        </div>
-    </form>    
-    <div class="signin">
-        <span class="already-have-an-account-sign-in">Already have an account?</span>
-        <a href="/login" class="text2">Login</a>
     </div>
 </body>
 </html>
-
-
-<!-- <div class="register"
-    style="
-        background: url(register.png) center;
-        background-size: cover;
-        background-repeat: no-repeat;
-    "
-    >
-    <div class="already-have-an-account-sign-in">
-        <span>
-        <span class="already-have-an-account-sign-in-span">
-            Already have an account?
-        </span>
-        <span class="already-have-an-account-sign-in-span2">Sign in</span>
-        </span>
-    </div>
-    <div class="fieldset">
-        <div class="input">
-        <div class="label">Full Name</div>
-        <div class="input2"></div>
-        </div>
-        <div class="input">
-        <div class="label">Email</div>
-        <div class="input2"></div>
-        </div>
-        <div class="input">
-        <div class="label">Password</div>
-        <div class="input2"></div>
-        </div>
-        <div class="input">
-        <div class="label">Confirm Password</div>
-        <div class="input2"></div>
-        </div>
-        <div class="primary-button">
-        <div class="sign-in">Sign up</div>
-        </div>
-    </div>
-    <div class="welcome-to-yu-run">Welcome to YuRun!</div>
-    </div> -->

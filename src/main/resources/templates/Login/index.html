@@ -4,37 +4,41 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="/css/vars.css">
-    <link rel="stylesheet" href="/css/Login/styles.css">
+    <link rel="stylesheet" href="/css/Login/style.css">
     <title>Login</title>
 </head>
 <body>
-    <div class="header">Welcome Back</div>
-    <form class="form" action="/login" method="post">
-        <div class="email">
-            <div class="label">Email</div>
-            <div class="input">
-                <input type="email" name="email" placeholder="Enter your email" required>
-            </div>
-        </div>
-        <div class="password">
-            <div class="label">Password</div>
-            <div class="input">
-                <input type="password" name="password" placeholder="Enter your password" required>
-            </div>
-        </div>
-        <div class="button">
-            <button type="submit">Login</button>
-        </div>
+    <img src="/css/LandingPage/logo1.svg" class="background-image">
+    <div class="content">
         <!-- Error message section -->
-        <div class="error-message">
-            <p style="color: red; font-size: 14px; text-align: center;">
-                <span th:text="${error}"></span>
-            </p>
+        <div class="error-message" th:if="${error}">
+            <p th:text="${error}"></p>
         </div>
-    </form>
-    <div class="signup">
-        <span class="you-don-t-have-an-account-sign-up-span">You don't have an account?</span>
-        <a href="/register" class="text2">Register</a>
+        <div>
+            <a class="label"><img src="/css/LandingPage/logo1.svg">YuRun</a>
+            <div class="header">Welcome Back</div>
+        </div>
+        <form class="form" action="/login" method="post">
+            <div class="email">
+                <div class="label">Email</div>
+                <div class="input">
+                    <input type="email" name="email" placeholder="Enter your email" required>
+                </div>
+            </div>
+            <div class="password">
+                <div class="label">Password</div>
+                <div class="input">
+                    <input type="password" name="password" placeholder="Enter your password" required>
+                </div>
+            </div>
+            <div class="button">
+                <button type="submit">Login</button>
+            </div>
+        </form>
+        <div class="signup">
+            <span class="you-don-t-have-an-account-sign-up-span">You don't have an account?</span>
+            <a href="/register" class="text2">Register</a>
+        </div>
     </div>
 </body>
 </html>
