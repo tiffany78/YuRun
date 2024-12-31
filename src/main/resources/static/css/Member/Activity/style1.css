@@ -252,13 +252,13 @@ span.active {
 }
 .square {
     display: grid;
-    grid-template-rows: auto 150px 1fr auto;
+    grid-template-rows: 20px 150px auto auto;
     grid-template-columns: 1fr; /* Semua elemen dalam satu kolom */
     gap: 10px; /* Jarak antar elemen */
     background: #fbf5f0;
     border: #ff5722 3px solid;
     width: 300px;
-    height: 400px;
+    height: 350px;
     border-radius: 10px;
     padding: 15px;
 }
@@ -273,7 +273,7 @@ span.active {
     display: flex;
     justify-content: center;
     align-items: center;
-    max-width: 200px;
+    max-width: 150px;
     max-height: 150px;
     margin: 0 auto;
 }

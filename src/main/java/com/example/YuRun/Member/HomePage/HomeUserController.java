@@ -14,6 +14,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.example.YuRun.RequiredRole;
+import com.example.YuRun.Member.ActivityMember.ActivityMember;
+import com.example.YuRun.Member.Progress.ProgressRace;
+import com.example.YuRun.Member.Progress.ProgressRepo;
 
 import jakarta.servlet.http.HttpSession;
 
@@ -22,6 +25,9 @@ import jakarta.servlet.http.HttpSession;
 public class HomeUserController {
     @Autowired
     private HomeMemberRepo repo;
+
+    @Autowired
+    private ProgressRepo recapRepo;
 
     @GetMapping
     @RequiredRole("member")
@@ -39,8 +45,58 @@ public class HomeUserController {
 
         list2 = this.repo.getUpRace(user);
         model.addAttribute("upRaces", list2);
+
+        Double sumDistance = 0.0;
+        List<String> listDuration = new ArrayList<>();
+        List<ActivityMember> runList = this.recapRepo.getAllActivities(id_user);
+        for(ActivityMember curr : runList){
+            sumDistance += curr.getDistance();
+            listDuration.add(curr.getDuration());
+        }
+
+        List<ProgressRace> listRace = this.recapRepo.getAllRace(id_user);
+        model.addAttribute("raceList", list2);
+
+        // Perhitungan total distance dan time dari race
+        for(ProgressRace curr : listRace){
+            sumDistance += curr.getDistance();
+            listDuration.add(curr.getMember_duration());
+        }
+
+        String sumDuration = sumDurations(listDuration);
+        model.addAttribute("sumDuration", sumDuration);
+
+        String formattedDistance = String.format("%.2f", sumDistance);
+        model.addAttribute("sumDistance", formattedDistance);
+
+        model.addAttribute("sumActivities", runList.size());
+        model.addAttribute("sumRace", listRace.size());
         
         return "Member/HomePage/home";
+    }
+
+    public static String sumDurations(List<String> durations) {
+        int totalSeconds = 0;
+
+        // Konversi setiap durasi ke detik dan tambahkan
+        for (String duration : durations) {
+            if(duration != null){
+                String[] parts = duration.split(":");
+                int hours = Integer.parseInt(parts[0]);
+                int minutes = Integer.parseInt(parts[1]);
+                int seconds = Integer.parseInt(parts[2]);
+    
+                totalSeconds += (hours * 3600) + (minutes * 60) + seconds;
+            }
+        }
+
+        // Konversi total detik kembali ke HH:mm:ss
+        int hours = totalSeconds / 3600;
+        int remainingSeconds = totalSeconds % 3600;
+        int minutes = remainingSeconds / 60;
+        int seconds = remainingSeconds % 60;
+
+        return String.format("%02d:%02d:%02d", hours, minutes, seconds);
     }
 
     @RestController
