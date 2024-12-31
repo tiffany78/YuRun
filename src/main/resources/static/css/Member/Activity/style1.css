@@ -150,21 +150,21 @@ a.page{
   border: 1px solid #ddd;
   border-radius: 4px;
   text-decoration: none;
-  color: #333;
+  color: black;
   font-weight: bold;
   transition: background-color 0.3s, color 0.3s;
 }
 
 /* Styling untuk link yang aktif */
 .pagination a.active {
-  background-color: #007bff;
+  background-color: #c71e07;
   color: white;
-  border-color: #007bff;
+  border-color: #c71e07;
 }
 
 /* Styling untuk link ketika di hover */
 .pagination a:hover {
-  background-color: #007bff;
+  background-color: #c71e07;
   color: white;
 }
 
@@ -175,12 +175,10 @@ a.page{
   border: 1px solid #ddd;
   border-radius: 4px;
   text-decoration: none;
-  color: #333;
 }
 
 .pagination .prev:hover, .pagination .next:hover {
-  background-color: #007bff;
-  color: white;
+  background-color: #c71e07;
 }
 
 /* Disable link prev dan next jika sudah di halaman pertama atau terakhir */
@@ -193,8 +191,7 @@ a.page{
 
 /* Styling untuk kotak halaman aktif */
 span.active {
-  background-color: #007bff;
-  color: white;
+  background-color: #c71e07;
   border-color: #007bff;
   border-radius: 4px;
 }

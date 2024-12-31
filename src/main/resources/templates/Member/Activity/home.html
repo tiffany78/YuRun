@@ -79,13 +79,13 @@
             </div>
         </div>        
     </div>
-    <div class="infoPagination">
+    <div class="infoPagination" th:if="${entries < totalEntries}">
         <span class="showEntries">
             Showing <span th:text="${(currentPage - 1) * entries + 1}"></span>
             to <span th:text="${currEntries}"></span>
-            of <span th:text="${totalEntries}"></span> entries
+            of <span th:text="${totalEntries}"></span> activities
         </span>
-        <div class="pagination" th:if="${entries < totalEntries}">
+        <div class="pagination">
             <a th:href="@{/member/activity(page=${currentPage - 1}, entries=${entries}, filter=${filter}, kindActivity=${kindActivity})}"
                th:if="${currentPage > 1}" class="prev">Prev</a>
             <span th:each="i : ${#numbers.sequence(1, (totalEntries + entries - 1) / entries)}"
