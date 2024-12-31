@@ -4,15 +4,17 @@ body {
   min-height: 100vh;
   display: flex;
   flex-direction: column;
+  font-family: "Roboto-Medium", sans-serif;
 }
 .containerBody{
   display: grid;
-  grid-template-rows: 60px 103px auto auto;
+  grid-template-rows: 60px 103px 1fr auto auto;
   grid-template-columns: 1fr;
   grid-template-areas: 
     "navbar"
     "header"
     "contentBody"
+    "infoPagination"
     "footer";
   min-height: 100vh;
   min-width: 100vw;
@@ -101,58 +103,131 @@ a.page{
   align-items: center;
   width: 95%;
   height: 103px;
+  padding-left: 20px;
 }
 .filter{
   display: flex;
   flex-direction: row;
   justify-content: left;
   align-items: center;
+  column-gap: 10px;
 }
+.entries {
+  font-size: 15px;
+}
+.entries select{
+  padding: 5px;
+  border: none;
+  color: #ffffff;
+  background: #ff5722;
+  border-radius: 5px;
+  outline: none;
+  transition: 0.3s;
+  cursor: pointer;
+}
+
+.infoPagination{
+  grid-area: infoPagination;
+  margin-top: 25px;
+  font-size: 16px;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+
+/* Container pagination */
 .pagination {
-  display: inline-block;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 5px;
 }
+
+/* Styling untuk setiap link */
 .pagination a {
-  color: black;
-  float: left;
-  padding: 8px 16px;
+  display: inline-block;
+  padding: 8px 12px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
   text-decoration: none;
+  color: #333;
+  font-weight: bold;
+  transition: background-color 0.3s, color 0.3s;
 }
+
+/* Styling untuk link yang aktif */
 .pagination a.active {
-  background-color: #4CAF50;
+  background-color: #007bff;
+  color: white;
+  border-color: #007bff;
+}
+
+/* Styling untuk link ketika di hover */
+.pagination a:hover {
+  background-color: #007bff;
   color: white;
 }
-.pagination a:hover:not(.active) {background-color: #ddd;}
+
+/* Styling untuk link prev dan next */
+.pagination .prev, .pagination .next {
+  font-weight: bold;
+  padding: 8px 12px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  text-decoration: none;
+  color: #333;
+}
+
+.pagination .prev:hover, .pagination .next:hover {
+  background-color: #007bff;
+  color: white;
+}
+
+/* Disable link prev dan next jika sudah di halaman pertama atau terakhir */
+.pagination .prev[disabled], .pagination .next[disabled] {
+  background-color: #f2f2f2;
+  color: #ccc;
+  border-color: #ccc;
+  pointer-events: none;
+}
+
+/* Styling untuk kotak halaman aktif */
+span.active {
+  background-color: #007bff;
+  color: white;
+  border-color: #007bff;
+  border-radius: 4px;
+}
 
 .search{
-  display: flex;
   padding-right: 10px;
-  gap: 10px;
+  display: flex;
   flex-direction: row;
-  justify-content: flex-start;
   align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
   position: relative;
   overflow: hidden;
-  flex-shrink: 0;
+  border-style: solid;
+  border-color: var(--grey-40, #d0d0d0);
+  border-width: 1px;
+  border-radius: 10px;
 }
 .search-bar {
-    flex-shrink: 0;
-    width: 24px;
-    height: 24px;
-    position: relative;
-    overflow: visible;
+  flex-shrink: 0;
+  width: 20px;
+  height: 20px;
+  position: relative;
+  overflow: visible;
 }
 .search-race{
-    border-radius: 10px;
-    border-style: solid;
-    border-color: var(--grey-40, #d0d0d0);
-    border-width: 1px;
-    flex-shrink: 0;
-    width: 350px;
-    height: 30px;
-    position: relative;
-    padding-left: 10px;
-    padding-right: 20px;
-    background: none;
+  border: none;
+  flex-shrink: 0;
+  width: 300px;
+  height: 30px;
+  padding-left: 10px;
+  padding-right: 20px;
+  background: none;
 }
 .dropdown{
     border-radius: 10px;
@@ -161,7 +236,7 @@ a.page{
     border-width: 1px;
     flex-shrink: 0;
     width: 200px;
-    height: 30px;
+    height: 35px;
     position: relative;
     padding-left: 10px;
     padding-right: 20px;
@@ -277,15 +352,16 @@ a.page{
 }
 
 /* BAGIAN FOOTER */
-.footer{
-    grid-area: footer;
-    background: var(--background-color-primary, #ffffff);
-    padding: 10px 20px;
-    display: flex;
-    flex-direction: column;
-    height: 110px;
-    margin-top: 20px;
-  }
+.footer {
+  grid-area: footer;
+  background: var(--background-color-primary, #ffffff);
+  padding: 10px 20px;
+  display: flex;
+  flex-direction: column;
+  height: 110px;
+  min-height: 110px; 
+  margin-top: 20px;
+}
   .content2 {
     display: flex;
     flex-direction: row;

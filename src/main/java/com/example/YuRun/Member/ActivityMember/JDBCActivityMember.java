@@ -4,9 +4,11 @@ import java.sql.Date;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Time;
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
 
@@ -27,10 +29,50 @@ public class JDBCActivityMember implements AddActivityRepo{
         jdbcTemplate.update(sql, id_activity);
     }
 
-    public List<ActivityMember> getAllActivityMember (int id_user){
-        String sql = "SELECT * FROM Activity WHERE id_user = ? ORDER BY date";
-        return jdbcTemplate.query(sql, this::maptoRowActivityMember, id_user);
+    public List<ActivityMember> getAllActivityMember (int id_user, String filter, String kind, int entries, int offset){
+        List<Object> params = new ArrayList<>();
+        String sql = "SELECT * FROM Activity WHERE id_user = ?";
+        params.add(id_user);
+
+        if (filter != null && !filter.isEmpty()) {
+            sql += " AND title ILIKE ?";
+            params.add("%" + filter + "%");
+        }
+
+        if(kind != null && !kind.equals("null")){
+            sql += " AND kind = ?";
+            params.add(kind);
+        }
+
+        sql += " ORDER BY date DESC";
+
+        if(entries > 0){
+            sql += " LIMIT ? OFFSET ?";
+            params.add(entries);
+            params.add(offset);
+        }
+
+        return jdbcTemplate.query(sql, this::maptoRowActivityMember, params.toArray());
     }
+
+    public int getTotalEntries(int id_user, String filter, String kind) {
+        List<Object> params = new ArrayList<>();
+        String sql = "SELECT * FROM Activity WHERE id_user = ?";
+        params.add(id_user);
+
+        if (filter != null && !filter.isEmpty()) {
+            sql += " AND title ILIKE ?";
+            params.add("%" + filter + "%");
+        }
+
+        if (kind != null && !kind.equals("null")) {
+            sql += " AND kind = ?";
+            params.add(kind);
+        }
+
+        List<ActivityMember> list = jdbcTemplate.query(sql, this::maptoRowActivityMember, params.toArray());
+        return list.size();
+    }          
 
     public ActivityMember getById(int id_activity){
         String sql = "SELECT * from activity WHERE id_activity = ?";
