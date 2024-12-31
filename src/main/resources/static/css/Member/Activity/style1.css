@@ -1,60 +1,60 @@
 body {
-    margin: 0;
-    padding: 0;
-    min-height: 100vh;
-    display: flex;
-    flex-direction: column;
+  margin: 0;
+  padding: 0;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
 }
 .containerBody{
-    display: grid;
-    grid-template-rows: 60px 103px auto auto;
-    grid-template-columns: 1fr;
-    grid-template-areas: 
-        "navbar"
-        "header"
-        "contentBody"
-        "footer";
-    min-height: 100vh;
-    min-width: 100vw;
-    overflow: auto;
-    justify-content: flex-start;
-    align-items: flex-start;
+  display: grid;
+  grid-template-rows: 60px 103px auto auto;
+  grid-template-columns: 1fr;
+  grid-template-areas: 
+    "navbar"
+    "header"
+    "contentBody"
+    "footer";
+  min-height: 100vh;
+  min-width: 100vw;
+  overflow: auto;
+  justify-content: flex-start;
+  align-items: flex-start;
 }    
 .navbar {
-    grid-area: navbar;
-    position: fixed; /* Tetap di posisi atas */
-    top: 0; /* Pastikan di bagian paling atas */
-    left: 0; /* Mulai dari kiri layar */
-    width: 100%; /* Penuhi lebar layar */
-    z-index: 1000; /* Letakkan di atas elemen lain */
-    background: var(--background-color-primary, #ffffff); /* Pastikan ada warna latar */
-    display: flex;
-    justify-content: space-around;
-    align-items: center;
-    padding: 10px 20px; /* Berikan sedikit padding */
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Tambahkan bayangan untuk kesan floating */
-    height: 40px;
+  grid-area: navbar;
+  position: fixed; /* Tetap di posisi atas */
+  top: 0; /* Pastikan di bagian paling atas */
+  left: 0; /* Mulai dari kiri layar */
+  width: 100%; /* Penuhi lebar layar */
+  z-index: 1000; /* Letakkan di atas elemen lain */
+  background: var(--background-color-primary, #ffffff); /* Pastikan ada warna latar */
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  padding: 10px 20px; /* Berikan sedikit padding */
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Tambahkan bayangan untuk kesan floating */
+  height: 40px;
 }
 .logo{
-    display: flex;
-    width: 220px;
+  display: flex;
+  width: 220px;
 }
 .yurun{
-    display: flex;
-    color: var(--neutral-colors-950, #141414);
-    font-family: "Roboto-Medium", sans-serif;
-    font-size: 21px;
-    line-height: 120%;
-    font-weight: 500;
-    align-items: center;
+  display: flex;
+  color: var(--neutral-colors-950, #141414);
+  font-family: "Roboto-Medium", sans-serif;
+  font-size: 21px;
+  line-height: 120%;
+  font-weight: 500;
+  align-items: center;
 }
 .textNavbar{
-    display: flex;
-    gap: 30px;
-    color: var(--neutral-colors-950, #141414);
-    font-family: "Roboto-Medium", sans-serif;
-    font-size: 16px;
-    font-weight: 500;
+  display: flex;
+  gap: 30px;
+  color: var(--neutral-colors-950, #141414);
+  font-family: "Roboto-Medium", sans-serif;
+  font-size: 16px;
+  font-weight: 500;
 }
 .textNavbar a {
   text-decoration: none;
@@ -66,47 +66,47 @@ a.page{
 }
 
 .button{
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-family: "Roboto-SemiBold", sans-serif;
-    font-size: 16px;
-    line-height: 150%;
-    font-weight: 600;
-    column-gap: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: "Roboto-SemiBold", sans-serif;
+  font-size: 16px;
+  line-height: 150%;
+  font-weight: 600;
+  column-gap: 20px;
 }
 .add {
-    background: #ff5722;
-    border-radius: 16px;
-    width: 179px;
-    height: 50px;
-    color: #ffffff;
-    text-align: left;
-    font-family: "Roboto-Regular", sans-serif;
-    font-size: 20px;
-    line-height: 16px;
-    font-weight: 400;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    text-decoration: none;
+  background: #ff5722;
+  border-radius: 16px;
+  width: 179px;
+  height: 50px;
+  color: #ffffff;
+  text-align: left;
+  font-family: "Roboto-Regular", sans-serif;
+  font-size: 20px;
+  line-height: 16px;
+  font-weight: 400;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-decoration: none;
 }
 
 /* BAGIAN HEADER */
 .header{
-    grid-area: header;
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    align-items: center;
-    width: 95%;
-    height: 103px;
+  grid-area: header;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  width: 95%;
+  height: 103px;
 }
 .filter{
-    display: flex;
-    flex-direction: row;
-    justify-content: left;
-    align-items: center;
+  display: flex;
+  flex-direction: row;
+  justify-content: left;
+  align-items: center;
 }
 .pagination {
   display: inline-block;
@@ -124,15 +124,15 @@ a.page{
 .pagination a:hover:not(.active) {background-color: #ddd;}
 
 .search{
-    padding-right: 10px;
-    display: flex;
-    flex-direction: row;
-    gap: 10px;
-    align-items: center;
-    justify-content: flex-start;
-    flex-shrink: 0;
-    position: relative;
-    overflow: hidden;
+  display: flex;
+  padding-right: 10px;
+  gap: 10px;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: center;
+  position: relative;
+  overflow: hidden;
+  flex-shrink: 0;
 }
 .search-bar {
     flex-shrink: 0;
@@ -284,6 +284,7 @@ a.page{
     display: flex;
     flex-direction: column;
     height: 110px;
+    margin-top: 20px;
   }
   .content2 {
     display: flex;
