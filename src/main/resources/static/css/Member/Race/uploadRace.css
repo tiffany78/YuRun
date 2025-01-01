@@ -5,6 +5,7 @@ body {
     display: flex;
     flex-direction: column;
     padding-top: 80px;
+    font-family: "Roboto-Medium", sans-serif;
 }
 .containerBody{
     display: flex;
@@ -49,25 +50,12 @@ body {
     font-weight: 500;
 }
 .textNavbar a {
-  text-decoration: none;
-  color: var(--neutral-colors-950, #141414);
+    text-decoration: none;
+    color: var(--neutral-colors-950, #141414);
 }
 a.page{
-  color: var(--primary-color-500, #ff5722);
-  font-weight: 1000;
-}
-.kindClass {
-  display: flex;
-  flex-direction: row;
-  margin-top: 10px;
-  column-gap: 5px;
-}
-.textKind {
-  color: #000000;
-  font-family: "Roboto-SemiBold", sans-serif;
-  font-size: 18px;
-  font-weight: 500;
-  align-content: center;
+    color: var(--primary-color-500, #ff5722);
+    font-weight: 1000;
 }
 .button{
     display: flex;
@@ -83,125 +71,115 @@ a.page{
 /* BAGIAN CONTENT */
 .content{
     grid-area: content;
-    font-family: "Roboto-Medium", sans-serif;
 }
 .frameinput {
-  grid-template-rows: auto auto auto auto auto;
-  grid-template-columns: auto;
-  grid-template-areas: 
-  "header"
-  "input1"
-  "input2"
-  "input3"
-  "button2";
-  flex-direction: column;
-  gap: 30px;
-  display: flex;
-  align-items: left;
-  justify-content: center;
-  padding-left: 50px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    justify-content: center;
+    padding-left: 50px;
+    font-family: "Roboto-Medium", sans-serif;
 }
 input {
-padding-left: 10px;
-font-size: large;
+  padding-left: 10px;
+  font-size: large;
 }
 .add-new-activity {
-  grid-area: header;
-  color: #130f26;
-  font-family: "Roboto-SemiBold", sans-serif;
-  font-size: 32px;
-  font-weight: 600;
+    grid-area: header;
+    color: #130f26;
+    font-family: "Roboto-SemiBold", sans-serif;
+    font-size: 32px;
+    font-weight: 600;
 }
 .input1{
-  grid-area: input1;
-  display: flex;
-  flex-direction: row;
-  column-gap: 15px;
+    grid-area: input1;
+    display: flex;
+    flex-direction: column;
+    row-gap: 10px;
 }
 .divInput {
-display: flex;
-flex-direction: column;
-gap: 5px;
-align-items: flex-start;
-justify-content: flex-start;
-font-family: "Roboto-Medium", sans-serif;
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  align-items: flex-start;
+  justify-content: flex-start;
 }
 .headInput {
-color: #000000;
-text-align: left;
-font-family: "Roboto-SemiBold", sans-serif;
-font-size: 24px;
-font-weight: 600;
-position: relative;
-align-self: stretch;
-height: 28px;
+  color: #000000;
+  text-align: left;
+  font-family: "Roboto-SemiBold", sans-serif;
+  font-size: 24px;
+  font-weight: 600;
+  position: relative;
+  align-self: stretch;
+  height: 28px;
 }
 .groupFrame {
-  display: flex;
-  flex-direction: row;
-  column-gap: 10px;
+    display: flex;
+    flex-direction: row;
+    column-gap: 10px;
 }
 .frame1 {
-  border-radius: 6px;
-  border-style: solid;
-  border-color: #ff5722;
-  border-width: 1px;
-  flex-shrink: 0;
-  width: 181px;
-  height: 35px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-family: "Roboto-Medium", sans-serif;
+    border-radius: 6px;
+    border-style: solid;
+    border-color: #ff5722;
+    border-width: 1px;
+    flex-shrink: 0;
+    width: 181px;
+    height: 35px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: "Roboto-Medium", sans-serif;
 }
 .textFrame{
-  color: #000000;
-  font-family: "Roboto-SemiBold", sans-serif;
-  font-size: 14px;
-  font-weight: 600;
-  align-content: center;
+    color: #000000;
+    font-family: "Roboto-SemiBold", sans-serif;
+    font-size: 14px;
+    font-weight: 600;
+    align-self: center;
 }
 .frame2 {
-  border-radius: 6px;
-  border-style: solid;
-  border-color: #ff5722;
-  border-width: 1px;
-  flex-shrink: 0;
-  width: 75px;
-  height: 35px;
-  position: relative;
+    border-radius: 6px;
+    border-style: solid;
+    border-color: #ff5722;
+    border-width: 1px;
+    flex-shrink: 0;
+    width: 75px;
+    height: 35px;
+    position: relative;
 }
 .input2{
-  grid-area: input2;
-  display: flex;
-  flex-direction: row;
-  column-gap: 15px;
+    grid-area: input2;
+    display: flex;
+    flex-direction: row;
+    column-gap: 15px;
 }
 .frame3 {
-  border-radius: 6px;
-  border-style: solid;
-  border-color: #ff5722;
-  border-width: 1px;
-  flex-shrink: 0;
-  width: 500px;
-  height: 35px;
-  position: relative;
+    border-radius: 6px;
+    border-style: solid;
+    border-color: #ff5722;
+    border-width: 1px;
+    flex-shrink: 0;
+    width: 500px;
+    height: 35px;
+    position: relative;
 }
 .frame4 {
-  border-radius: 6px;
-  border-style: solid;
-  border-color: #ff5722;
-  border-width: 1px;
-  flex-shrink: 0;
-  width: 20px;
-  height: 20px;
-  position: relative;
+    border-radius: 6px;
+    border-style: solid;
+    border-color: #ff5722;
+    border-width: 1px;
+    flex-shrink: 0;
+    width: 20px;
+    height: 20px;
+    position: relative;
 }
 .input3{
-  grid-area: input3;
-  display: flex;
-  flex-direction: row;
-  column-gap: 15px;
+    grid-area: input3;
+    display: flex;
+    flex-direction: row;
+    column-gap: 15px;
 }
 .frame5 {
   border-radius: 6px;
@@ -216,72 +194,64 @@ height: 28px;
   line-height: 1.5;
   font-family: "Roboto-Medium", sans-serif;
 }
-.frame6 {
-  width: 500px;
-  height: auto;
-}
-.frame7{
-  width: 500px;
-  height: 30px;
-}
 textarea {
-padding-left: 10px;
-font-size: large;
+  padding-left: 10px;
+  font-size: large;
 }
 .button2{
-  grid-area: button2;
-  display: flex;
-  flex-direction: row;
-  column-gap: 15px;
+    grid-area: button2;
+    display: flex;
+    flex-direction: row;
+    column-gap: 15px;
 }
 .cancel {
-border-radius: 10px;
-border-style: solid;
-border-color: #ff7347;
-border-width: 3px;
-flex-shrink: 0;
-width: 179px;
-height: 40px;
-display: flex;
-align-items: center;
-justify-content: center;
-text-decoration: none;
+  border-radius: 10px;
+  border-style: solid;
+  border-color: #ff7347;
+  border-width: 3px;
+  flex-shrink: 0;
+  width: 179px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-decoration: none;
 }
 .cancel2 {
-color: #141414;
-text-align: left;
-font-family: "Roboto-Regular", sans-serif;
-font-size: 20px;
-line-height: 16px;
-font-weight: 400;
-display: flex;
-align-items: center;
-justify-content: center;
+  color: #141414;
+  text-align: left;
+  font-family: "Roboto-Regular", sans-serif;
+  font-size: 20px;
+  line-height: 16px;
+  font-weight: 400;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 .save {
-border-radius: 10px;
-background-color: #ff7347;
-flex-shrink: 0;
-width: 179px;
-height: 45px;
-display: flex;
-align-items: center;
-justify-content: center;
-text-decoration: none;
-border: none;
+  border-radius: 10px;
+  background-color: #ff7347;
+  flex-shrink: 0;
+  width: 179px;
+  height: 45px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-decoration: none;
+  border: none;
 }
 .save2 {
-color: #ffffff;
-text-align: left;
-font-family: "Roboto-Regular", sans-serif;
-font-size: 20px;
-line-height: 16px;
-font-weight: 400;
-display: flex;
-align-items: center;
-justify-content: center;
+  color: #ffffff;
+  text-align: left;
+  font-family: "Roboto-Regular", sans-serif;
+  font-size: 20px;
+  line-height: 16px;
+  font-weight: 400;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
-#prevImage, #thumbnail{
+#thumbnail{
     max-height: 230px;
 }
 
@@ -289,8 +259,7 @@ justify-content: center;
 .footer{
     grid-area: footer;
     background: var(--background-color-primary, #ffffff);
-    padding: 10px 20px; /* Berikan sedikit padding */
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Tambahkan bayangan untuk kesan floating */
+    padding: 10px 20px;
     display: flex;
     flex-direction: column;
     height: 110px;

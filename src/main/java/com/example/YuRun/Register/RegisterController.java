@@ -5,88 +5,57 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 
 import jakarta.validation.Valid;
 
 @Controller
 @RequestMapping("/register")
 public class RegisterController {
-
-    @Autowired
-    private RegisterRepository repo;
     @Autowired
     private RegisterService service;
 
     @GetMapping
-    public String register() {
+    public String register(RegisterUser user) {
         return "/Register/index";
     }
 
     @PostMapping
-    public String registerUser(
-        @RequestParam("name") String name,
-        @RequestParam("email") String email,
-        @RequestParam("password") String password,
-        @RequestParam("confirmpassword") String confirmpassword,
-        Model model) {
-        
-        // Validasi password
-        if (!password.equals(confirmpassword)) {
-            model.addAttribute("error", "Password and Confirm Password do not match.");
+    public String registerUser(@Valid RegisterUser user, BindingResult bindingResult, Model model) throws Exception {
+        // Validasi custom: periksa nama dan email
+        String validationError = service.getValidationError(user);
+        if (validationError != null) {
+            if(validationError.equals("name")){
+                bindingResult.rejectValue(validationError, "ValidationError", "The username is already taken.");
+            }
+            else{
+                bindingResult.rejectValue(validationError, "ValidationError", "The email address is already registered.");
+            }
+        }
+
+        // Validasi default
+        if (bindingResult.hasErrors()) {
             return "/Register/index";
         }
 
-        // Ubah status menjadi true
-        RegisterUser user = new RegisterUser(name, email, password, confirmpassword, 0, true);
-        
-        try {
-            repo.tambahUser(user);
+        // Validasi password cocok
+        if (!user.getPassword().equals(user.getConfirmPassword())) {
+            bindingResult.rejectValue(
+                "confirmPassword", // Harus sama persis dengan nama field
+                "PasswordMismatch",
+                "Passwords do not match"
+            );
+            return "/Register/index";
+        }
+
+        // Proses registrasi
+        if (service.register(user)) {
             return "redirect:/login";
-        } catch (Exception e) {
-            model.addAttribute("error", "Registration failed: " + e.getMessage());
+        } else {
+            model.addAttribute("error", "Something is wrong. Please try again.");
             return "/Register/index";
         }
     }
 
-    // @PostMapping
-    // public String registerUser(@Valid @ModelAttribute("RegisterUser") RegisterUser user, BindingResult bindingResult, Model model){
-    //     boolean isvalid = service.register(user);
-
-    //     if (bindingResult.hasErrors()) {
-    //         model.addAttribute("user", user);
-    //         return "/Register/index";
-    //     }
-
-    //     if (!user.getPassword().equals(user.getConfirmPassword())) {
-    //         bindingResult.rejectValue(
-    //             "confirmpassword",  // field
-    //             "PasswordMismatch", // error code 
-    //             "Passwords do not match" // error default message
-    //         );
-    //         return "/Register/index";
-    //     }
-        
-    //     if(!isvalid){
-    //         bindingResult.rejectValue(
-    //             "name", 
-    //             "DuplicateName", 
-    //             "Account already exists"
-    //         );
-    //     }
-
-    //     try {
-    //         user.setStatus(true);
-    //         repo.tambahUser(user);
-    //         System.out.println("User registered successfully. Redirecting to login.");
-    //         return "redirect:/login";
-    //     } catch (Exception e) {
-    //         model.addAttribute("error", "Registration failed: " + e.getMessage());
-    //         return "/Register/index";
-    //         }        
-        
-    // }
 }

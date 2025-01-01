@@ -11,5 +11,11 @@ public class MemberRaceController {
     public String race() {
         return "/Member/Race/index";
     }
+
+    @GetMapping("/uploadRace")
+    public String uploadIndex(){
+        return "/Member/Race/uploadRace";
+    }
+    
 }
     

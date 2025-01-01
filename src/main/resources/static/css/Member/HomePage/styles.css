@@ -12,7 +12,7 @@ html, body {
   padding: 0;
   display: grid;
   grid-template-rows: 50px auto auto auto;
-  grid-template-columns: auto auto auto;
+  grid-template-columns: 550px auto auto;
   grid-template-areas: 
       ". . addActivity"
       "graph1 graph2 recap"
@@ -106,7 +106,18 @@ a.page{
 #container {
   width: 500px; 
   height: 400px; 
-  margin: 10px auto;
+  margin-left: 10px;
+}
+#download{
+  display: flex;
+  justify-self: flex-end;
+  margin-right: 50px;
+  background: #ff5722;
+  border-radius: 13px;
+  padding: 10px;
+  color: #ffffff;
+  font-family: "Roboto-Regular", sans-serif;
+  font-size: 13px;
 }
 .graph2 {
   grid-area: graph2;
@@ -120,49 +131,45 @@ a.page{
 .listInfo {
   padding-top: 5px;
   display: flex;
-  column-gap: 10px;
+  flex-direction: column;
+  row-gap: 10px;
 }
 .info1{
-  background: var(--warning-warning200, #eda145);
+  background: #f09564;
   border-radius: 91.49px;
   padding: 23.79px 21.96px 23.79px 21.96px;
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
   gap: 9.15px;
   align-items: center;
-  justify-content: center;
   flex-shrink: 0;
-  width: 100.64px;
+  width: 300px;
+  height: 50px;
   position: relative;
   box-shadow: 0px 21.04px 38.42px 0px rgba(0, 0, 0, 0.15);
   transform-origin: 0 0;
   transform: rotate(0deg) scale(1, 1);
+}
+.listInfo .info1:nth-child(2) {
+  background-color: #c71e07;
 }
 .info1Text{
-  color: #ffffff;
+  color: white;
   font-family: "Roboto-Bold", sans-serif;
   line-height: 140%;
-  font-weight: 400;
+  font-weight: 600;
   position: relative;
   transform-origin: 0 0;
   transform: rotate(0deg) scale(1, 1);
-  letter-spacing: 3px;
+  letter-spacing: 2px;
 }
-.info2{
-  background: var(--warning-warning200, #28816e);
-  border-radius: 91.49px;
-  padding: 23.79px 21.96px 23.79px 21.96px;
+.infoText{
+  font-family: "Roboto-Medium", sans-serif;
+  color: #fff4ed;
   display: flex;
   flex-direction: column;
-  gap: 9.15px;
-  align-items: center;
-  justify-content: center;
-  flex-shrink: 0;
-  width: 100.64px;
-  position: relative;
-  box-shadow: 0px 21.04px 38.42px 0px rgba(0, 0, 0, 0.15);
-  transform-origin: 0 0;
-  transform: rotate(0deg) scale(1, 1);
+  align-items: flex-start;
+  justify-content: flex-start;
 }
 .recap {
   grid-area: recap;
