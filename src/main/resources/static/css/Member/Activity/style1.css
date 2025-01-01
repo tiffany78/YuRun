@@ -284,6 +284,7 @@ span.active {
     object-fit: contain; /* Pastikan gambar tetap proporsional */
     border-radius: 5px;
     border: 1px solid #ccc;
+    cursor: pointer;
 }
 
 .detailText {

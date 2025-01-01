@@ -55,10 +55,10 @@
     <div class="contentBody">
         <div class="square" th:each="activity : ${activity}">
             <div class="kindText" th:text="${activity.kind}">Kind</div>
-            <div class="imageContainer">
-                <img th:src="${activity.path_pict != null ? '/upload/activity-member/' + activity.path_pict : '/upload/activity-member/null.jpg'}" 
+            <a class="imageContainer" th:href="@{/member/editActivity/{idActivity}(idActivity=${activity.id_activity})}">
+                <img th:src="${activity.path_pict != null ? '/upload/activity-member/' + activity.path_pict : '/upload/activity-member/null2.jpg'}" 
                      alt="Image" class="image">
-            </div>
+            </a>
             <div class="detailText">
                 <a>
                     <span class="title" th:text="${activity.title}"></span>
