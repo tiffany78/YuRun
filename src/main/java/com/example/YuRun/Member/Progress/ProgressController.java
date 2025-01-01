@@ -111,7 +111,9 @@ public class ProgressController {
 
         String sumDuration = sumDurations(listDuration);
         model.addAttribute("sumDuration", sumDuration);
-        model.addAttribute("sumDistance", sumDistance);
+
+        String formattedDistance = String.format("%.2f", sumDistance);
+        model.addAttribute("sumDistance", formattedDistance);
 
         return "Member/Progress/index";
     }

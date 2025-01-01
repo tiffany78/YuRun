@@ -35,14 +35,43 @@ public class ActivityController {
 
     @GetMapping("/activity")
     @RequiredRole("member")
-    public String home(HttpSession session, Model model){
+    public String home(HttpSession session, Model model,
+        @RequestParam(value = "filter", required = false, defaultValue = "") String filter,
+        @RequestParam(value = "entries", required = false, defaultValue = "0") int entries,
+        @RequestParam(value = "kindActivity", required = false, defaultValue = "null") String kind,
+        @RequestParam(value = "page", required = false, defaultValue = "1") int page) {
+
         String user = (String) session.getAttribute("username");
         session.setAttribute("username", user);
         int id_user = (Integer) session.getAttribute("id_user");
         session.setAttribute("id_user", id_user);
 
-        List<ActivityMember> list = this.repoAdd.getAllActivityMember(id_user);
+        // Hitung offset berdasarkan halaman dan jumlah entri
+        int offset = (page - 1) * entries;
+
+        // Dapatkan daftar aktivitas berdasarkan filter dan pagination
+        List<ActivityMember> list = this.repoAdd.getAllActivityMember(id_user, filter, kind, entries, offset);
+
+        // Hitung total jumlah entri untuk pagination
+        int totalEntries = this.repoAdd.getTotalEntries(id_user, filter, kind);
+        if (entries == 0) {
+            entries = totalEntries;
+        }
+
+        int currEntries = totalEntries;
+        if (entries > 0){
+            currEntries = Math.min(page * entries, totalEntries);
+        }
+
+        // Kirimkan data ke view
         model.addAttribute("activity", list);
+        model.addAttribute("filter", filter);
+        model.addAttribute("kindActivity", kind);
+        model.addAttribute("entries", entries);
+        model.addAttribute("currEntries", currEntries);
+        model.addAttribute("totalEntries", totalEntries);
+        model.addAttribute("currentPage", page);
+
         return "Member/Activity/home";
     }
 

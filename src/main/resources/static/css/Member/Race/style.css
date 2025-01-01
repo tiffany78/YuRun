@@ -7,10 +7,12 @@ body {
 }
 .containerBody{
   display: grid;
-  grid-template-rows: auto auto auto;
+  grid-template-rows: 60px 103px 25px auto auto;
   grid-template-columns: 1fr;
   grid-template-areas: 
       "navbar"
+      "header"
+      "note"
       "contentBody"
       "footer";
   min-height: 100vh;
@@ -74,11 +76,88 @@ font-weight: 1000;
   font-weight: 600;
   column-gap: 20px;
 }
+
+/* BAGIAN HEADER */
+.header{
+  grid-area: header;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  width: 95%;
+  height: 103px;
+}
+.filter{
+  display: flex;
+  flex-direction: row;
+  justify-content: left;
+  align-items: center;
+}
+.pagination {
+display: inline-block;
+}
+.pagination a {
+color: black;
+float: left;
+padding: 8px 16px;
+text-decoration: none;
+}
+.pagination a.active {
+background-color: #4CAF50;
+color: white;
+}
+.pagination a:hover:not(.active) {background-color: #ddd;}
+
+.search{
+  padding-right: 10px;
+  display: flex;
+  flex-direction: row;
+  gap: 10px;
+  align-items: center;
+  justify-content: flex-start;
+  flex-shrink: 0;
+  position: relative;
+  overflow: hidden;
+}
+.search-bar {
+  flex-shrink: 0;
+  width: 24px;
+  height: 24px;
+  position: relative;
+  overflow: visible;
+}
+.search-race{
+  border-radius: 10px;
+  border-style: solid;
+  border-color: var(--grey-40, #d0d0d0);
+  border-width: 1px;
+  flex-shrink: 0;
+  width: 350px;
+  height: 30px;
+  position: relative;
+  padding-left: 10px;
+  padding-right: 20px;
+  background: none;
+}
+.dropdown{
+  border-radius: 10px;
+  border-style: solid;
+  border-color: var(--grey-40, #d0d0d0);
+  border-width: 1px;
+  flex-shrink: 0;
+  width: 200px;
+  height: 30px;
+  position: relative;
+  padding-left: 10px;
+  padding-right: 20px;
+  background: none;
+}
 .add {
   background: #ff5722;
-  border-radius: 16px;
-  width: 179px;
-  height: 50px;
+  border-radius: 10px;
+  width: fit-content;
+  height: fit-content;
+  padding: 10px;
   color: #ffffff;
   text-align: left;
   font-family: "Roboto-Regular", sans-serif;
@@ -89,6 +168,13 @@ font-weight: 1000;
   align-items: center;
   justify-content: center;
   text-decoration: none;
+}
+
+.note{
+  grid-area: note;
+  text-align: right;
+  margin-right: 20px;
+  font-size: 15px;
 }
 
 /* BAGIAN CONTENT */
@@ -124,7 +210,7 @@ font-weight: 1000;
   border-radius: 10px;
 }
 thead th {
-  background-color: #ffffff;
+  background-color: #F5F5F5;
   padding: 10px;
   text-align: center;
   font-weight: bold;

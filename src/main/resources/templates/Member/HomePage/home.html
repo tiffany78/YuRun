@@ -42,28 +42,34 @@
         </a>
     </div>
     <div class="graph1">
-        <button id="download">Download PNG</button>
         <div>
             <div id="container"></div>
         </div>
+        <a id="download">Download PNG</a>
     </div>
     <div class="graph2">
         <div class="graph2Header">Your Achievements</div>
         <div class="listInfo">
             <div class="info1">
                 <img src="/css/Member/HomePage/vector0.svg">
-                <a class="info1Text">Activites</a>
-                <a>test3</a>
+                <div class="infoText">
+                    <a class="info1Text">Activites</a>
+                    <a th:text="${sumActivities} + 'Activities over ' + ${sumDistance} + ' km'"></a>
+                </div>
             </div>
-            <div class="info2">
+            <div class="info1">
                 <img src="/css/Member/HomePage/icon.svg">
-                <a class="info1Text">Minutes</a>
-                <a>test3</a>
+                <div class="infoText">
+                    <a class="info1Text">Total Duration</a>
+                    <a th:text="${sumDuration}"></a>
+                </div>
             </div>
             <div class="info1">
                 <img src="/css/Member/HomePage/vector.svg">
-                <a class="info1Text">Race</a>
-                <a>test3</a>
+                <div class="infoText">
+                    <a class="info1Text">Total Races</a>
+                    <a th:text="${sumRace} + ' races'"></a>
+                </div>
             </div>
         </div>
     </div>

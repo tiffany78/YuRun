@@ -28,8 +28,36 @@
             </a>
         </div>
     </nav>
+    <div class="header">
+        <div class="filter">
+            <div class="pagination">
+                <a href="#">&laquo;</a>
+                <a href="#">1</a>
+                <a class="active" href="#">2</a>
+                <a href="#">3</a>
+                <a href="#">4</a>
+                <a href="#">5</a>
+                <a href="#">6</a>
+                <a href="#">&raquo;</a>
+            </div>
+            <!--FORM FOR SEARCHING-->
+            <div class="search">
+                <img class="search-bar" src="/css/Admin/Race/search0.svg"/>
+                <form method="GET">
+                  <input type="text" name="filter" th:value="${filter}" placeholder="Search Your Activity" class="search-race" input=this.form.submit()/>
+                </form>
+              </div>
+            <select class="dropdown" id="kind" name="kind" required>
+                <option value="" disabled th:if="${kind == null}" selected>Choose Kind of Activity</option>
+                <option th:value="Fun-Run" th:selected="${kind == 'Fun-Run'}">Fun-Run</option>
+                <option th:value="Half-Marathon" th:selected="${kind == 'Half-Marathon'}">Half-Marathon</option>
+                <option th:value="Marathon" th:selected="${kind == 'Marathon'}">Marathon</option>
+            </select>
+        </div>
+        <a class="add" th:href="@{/member/uploadRace}">Upload Race Activity (dummy)</a>
+    </div>
+    <a class="note">button diatas cuman buat mapping aja ya adji, nanti hapus aja</a>
     <div class="contentBody">
-        <hr>
         <table class="table_race">
             <thead>
                 <tr>

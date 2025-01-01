@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Add Activity</title>
     <link rel="stylesheet" href="/css/vars.css">
-    <link rel="stylesheet" href="/css/Member/Activity/style2.css">
+    <link rel="stylesheet" href="/css/Member/Race/uploadRace.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <script src="/js/Member/AddActivity.js" defer></script>
 </head>
@@ -17,8 +17,8 @@
         </div>
         <div class="textNavbar">
             <a th:href="@{/member}">Home</a>
-            <a class="page" th:href="@{/member/activity}">My Activity</a>
-            <a th:href="@{/member/race}">Race</a>
+            <a th:href="@{/member/activity}">My Activity</a>
+            <a class="page" th:href="@{/member/race}">Race</a>
             <a th:href="@{/member/progress}">Progress</a>
         </div>
         <div class="button">
@@ -30,15 +30,12 @@
     </nav>
     <div class="content">
         <form class="frameinput" method="post" th:action="@{/member/addActivity}" enctype="multipart/form-data">
-            <div class="add-new-activity">Add Activity</div>
+            <div class="add-new-activity">Upload Race Activity</div>
             <div class="input1">
-                <div class="divInput">
-                    <div class="headInput">Distance</div>
-                    <div class="groupFrame">
-                        <input type="number" class="frame1" min="0.00" max="9999.00" step="0.01" required id="distance" name="distance"/>
-                        <div class="textFrame">Kilometer</div>
-                    </div>
-                </div>
+                <a>Race: </a>
+                <a>Distance: </a>
+            </div>
+            <div class="input2">
                 <div class="divInput">
                     <div class="headInput">Duration</div>
                     <div class="groupFrame">
@@ -50,42 +47,8 @@
                         <span class="textFrame">Second</span>
                     </div>
                 </div>
-                <div class="divInput">
-                    <div class="headInput">Date & Time</div>
-                    <div class="groupFrame">
-                        <input type="date" id="date" name="date" class="frame1">
-                        <input type="time" id="time" name="time" class="frame1">
-                    </div>
-                </div>
-            </div>
-            <div class="input2">
-                <div class="divInput">
-                    <div class="headInput">Title</div>
-                    <input type="text" class="frame3" id="title" name="title"/>
-                </div>
-                <div class="divInput">
-                    <div class="headInput">Kind</div>
-                    <div class="kindClass">
-                        <label class="kindLabel">
-                            <input type="radio" name="kind" th:value="Fun-Run">
-                            <span class="textKind">Fun Run</span>
-                        </label>
-                        <label class="kindLabel">
-                            <input type="radio" name="kind" th:value="Half-Marathon">
-                            <span class="textKind">Half-Marathon</span>
-                        </label>
-                        <label class="kindLabel">
-                            <input type="radio" name="kind" th:value="Marathon">
-                            <span class="textKind">Marathon</span>
-                        </label>
-                    </div>
-                </div>
             </div>
             <div class="input3">
-                <div class="divInput">
-                    <div class="headInput">Description</div>
-                    <textarea type="text" class="frame5" placeholder="Description about your activity" name="desc"></textarea>
-                </div>
                 <div class="divInput">
                     <div class="headInput">Upload Your Picture</div>
                     <input type="file" class="frame7" name="fileImage" id="fileImage" accept="image/*">
@@ -93,7 +56,7 @@
                 </div>
             </div>
             <div class="button2">
-                <a class="cancel" th:href="@{/member/activity}">
+                <a class="cancel" th:href="@{/member/race}">
                     <div class="cancel2">Cancel</div>
                 </a>
                 <button class="save" type="submit">
