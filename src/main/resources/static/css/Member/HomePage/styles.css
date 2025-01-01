@@ -176,7 +176,8 @@ a.page{
   margin-right: 20px;
   display: flex;
   flex-direction: column;
-  justify-content: space-evenly;
+  justify-content: flex-start;
+  row-gap: 15px;
 }
 .recap1, .recap2 {
   display: flex;

@@ -8,7 +8,7 @@ $(document).ready(function () {
                 backgroundColor: null
             },
             title: {
-                text: 'Your Activities This Month'
+                text: 'Activities During This Month'
             },
             xAxis: {
                 categories: response.categories,

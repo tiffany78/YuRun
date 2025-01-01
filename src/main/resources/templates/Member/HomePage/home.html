@@ -54,7 +54,7 @@
                 <img src="/css/Member/HomePage/vector0.svg">
                 <div class="infoText">
                     <a class="info1Text">Activites</a>
-                    <a th:text="${sumActivities} + 'Activities over ' + ${sumDistance} + ' km'"></a>
+                    <a th:text="${sumActivities} + ' Activities over ' + ${sumDistance} + ' km'"></a>
                 </div>
             </div>
             <div class="info1">
@@ -107,7 +107,7 @@
     </div>    
     <div class="activity">
         <div class="text3">
-            <a href="#">Your New Activity</a>
+            <a href="#">New Activities</a>
             <a th:href="@{/member/activity}">Show All</a>
         </div>
         <hr>

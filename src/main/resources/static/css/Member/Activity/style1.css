@@ -258,7 +258,7 @@ span.active {
     background: #fbf5f0;
     border: #ff5722 3px solid;
     width: 300px;
-    height: 350px;
+    height: auto;
     border-radius: 10px;
     padding: 15px;
 }
