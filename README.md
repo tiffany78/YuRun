@@ -50,4 +50,4 @@ Setelah proses build berhasil, Anda bisa menjalankan aplikasi di dalam direktori
 ```
 ./gradlew bootRun
 ```
-Aplikasi akan berjalan dan bisa akses melalui browser pada alamat `http://localhost:8080/`. Anda akan langsung diarahakan pada halaman login dari aplikasi SiapSidang. 
+Aplikasi akan berjalan dan bisa akses melalui browser pada alamat `http://localhost:8080/`. Anda akan langsung diarahakan pada Landing Page YURUN. 
