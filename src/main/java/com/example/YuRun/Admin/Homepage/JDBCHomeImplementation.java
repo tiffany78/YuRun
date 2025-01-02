@@ -20,6 +20,11 @@ public class JDBCHomeImplementation implements HomeRepository {
         return jdbcTemplate.query(sql, this::mapRowToRaceHome, currDate);
     } 
 
+    public List<Race> getRaceLandingPage() {
+        String sql = "SELECT * FROM race ORDER BY start_date DESC LIMIT 3";
+        return jdbcTemplate.query(sql, this::mapRowToRaceHome);
+    }
+
     private Race mapRowToRaceHome(ResultSet resultSet, int rowNum) throws SQLException {
         return new Race(
             resultSet.getInt("id_race"),

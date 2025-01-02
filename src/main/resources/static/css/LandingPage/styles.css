@@ -13,7 +13,7 @@ body {
     grid-template-areas: 
     "navbar"
     "frame1"
-    "frame3"
+    "frame-container"
     "frame2"
     "footer";
     min-height: 100vh;
@@ -217,50 +217,101 @@ body {
     height: 400px;
     position: relative;
     object-fit: cover;
-  }
-.frame3 {
-    grid-area: frame3;
-    background: #ffffff;
+}
+
+.frame-container {
+    grid-area: frame-container;
     display: flex;
+    width: 100vw;  
+    position: relative;
     flex-direction: row;
+    column-gap: 30vw;
+    justify-content: center;
+    animation: slideFrames 12s ease-in-out infinite;
+}
+
+.frame3 {
+    display: flex;
+    flex: 0 0 70vw; 
+    background: #ffffff;
     border-style: solid;
     border-color: #a30d11;
     border-radius: 10px;
     align-items: center;
-    width: 60%;
-    margin: 0 auto; 
+    column-gap: 30px;
+    position: relative; 
 }
-.right3-item1{
-    color: var(--primary-primary1000, #651800);
+
+@keyframes slideFrames {
+    0% {
+        transform: translateX(+100vw); 
+    }
+    25% {
+        transform: translateX(+100vw); 
+    }
+    33.33% {
+        transform: translateX(0);
+    }
+    58.33% {
+        transform: translateX(0); 
+    }
+    66.66% {
+        transform: translateX(-100vw);
+    }
+    91.66% {
+        transform: translateX(-100vw); 
+    }
+    100% {
+        transform: translateX(0); 
+    }
+}
+
+.left3 {
+    width: 50%;
+    padding: 10px;
+}
+
+.image-3 {
+    object-fit: cover;
+    padding-left: 5px;
+}
+
+.right3 {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.right3-item1 {
+    color: #651800;
     text-align: center;
-    font-family: var(--heading-desktop-h2-font-family, "Roboto-Bold", sans-serif);
-    font-size: var(--heading-desktop-h2-font-size, 48px);
-    line-height: var(--heading-desktop-h2-line-height, 120%);
-    font-weight: var(--heading-desktop-h2-font-weight, 700);
+    font-family: "Roboto-Bold", sans-serif;
+    font-size: 48px;
+    font-weight: 700;
 }
-.right3-item2{
+
+.right3-item2 {
     display: flex;
     flex-direction: row;
-    align-items: center;
+    margin: 5px 0;
+    font-size: 18px;
+    margin-left: 10px;
 }
-.text3{
+
+.text3 {
     color: var(--primary-primary1000, #651800);
-    text-align: left;
     font-family: "Roboto-Medium", sans-serif;
     font-size: 28px;
     line-height: 150%;
     font-weight: 500;
     padding-top: 15px;
 }
-.icon3{
+
+.icon3 {
     width: 35px;
     height: 35px;
     padding-right: 15px;
     padding-top: 15px;
-}
-.image-3 {
-    object-fit: cover;
-    padding-left: 5px;
 }
 .footer{
     grid-area: footer;
