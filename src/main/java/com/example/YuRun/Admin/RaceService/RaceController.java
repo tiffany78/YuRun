@@ -35,10 +35,8 @@ public class RaceController {
         @RequestParam(required = false, defaultValue = "") String filter,
         @RequestParam(required = false, defaultValue = "null") String statusRace,
         @RequestParam(value = "entries", required = false, defaultValue = "0") int entries,
-        @RequestParam(value = "page", required = false, defaultValue = "1") int page, 
-        HttpSession session){
+        @RequestParam(value = "page", required = false, defaultValue = "1") int page){
 
-        session.setAttribute("peran", "admin");
         // Hitung offset berdasarkan halaman dan jumlah entri
         int offset = (page - 1) * entries;
 

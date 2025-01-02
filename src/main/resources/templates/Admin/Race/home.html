@@ -64,7 +64,7 @@
                 <a th:text="${race.count} + ' Members'"></a>
                 <div class="detailTime">
                     <!-- Status DONE -->
-                    <a th:if="${race.status}" th:classappend="'status-approved'"  th:text="'DONE'"></a>
+                    <a th:if="${race.status}" th:classappend="'status-approved'" th:text="'DONE'"></a>
                     
                     <!-- Status NEED APPROVAL atau ON GOING -->
                     <a th:if="${!race.status}" th:classappend="${!race.startDateTime.isAfter(currentDate) ? 'status-rejected' : 'status-ongoing'}" th:text="${race.startDateTime.isAfter(currentDate) ? 'ON GOING' : 'NEED APPROVAL'}"></a>
@@ -97,7 +97,7 @@
         <span class="showEntries">
             Showing <span th:text="${(currentPage - 1) * entries + 1}"></span>
             to <span th:text="${currEntries}"></span>
-            of <span th:text="${totalEntries}"></span> activities
+            of <span th:text="${totalEntries}"></span> races
         </span>
         <div class="pagination">
             <a th:href="@{/admin/race(page=${currentPage - 1}, entries=${entries}, filter=${filter}, kindActivity=${kindActivity})}"
