@@ -41,7 +41,7 @@
             </div>            
             <div class="search">
                 <img class="search-bar" src="/css/Admin/Race/search0.svg"/>
-                <input type="text" name="filter" th:value="${filter}" placeholder="Search Title Activity" class="search-race" input=this.form.submit()/>
+                <input type="text" name="filter" th:value="${filter}" placeholder="Search Title Activity" class="search-race" onkeyup=this.form.submit()/>
             </div>
             <select class="dropdown" id="kindActivity" name="kindActivity" onchange="this.form.submit()">
                 <option th:value="null" th:selected="${kindActivity == 'null'}">All Kind Activity</option>
@@ -51,6 +51,9 @@
             </select>
         </form>
         <a class="add" th:href="@{/member/addActivity}">+ Add Activity</a>
+    </div>
+    <div class="contentBody" th:if="${activity != null or !activity.isEmpty()}">
+        <p>No activities available at the moment.</p>
     </div>
     <div class="contentBody">
         <div class="square" th:each="activity : ${activity}">

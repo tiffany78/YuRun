@@ -70,9 +70,16 @@
             <input type="date" name="endDate" id="end-date" th:value="${endDate}" required>
             <button type="submit" class="filter-button">Custom</button>
         </form>
-        <a type="button" id="download-pdf" class="download">Download PDF</a>
+        <a type="button" id="download-pdf" class="download" 
+            th:classappend="${(runList == null and runList.isEmpty() and raceList == null and raceList.isEmpty()) ? 'disabled' : ''}" 
+            th:attr="disabled=${(runList == null and runList.isEmpty() and raceList == null and raceList.isEmpty()) ? 'true' : null}">
+            Download PDF
+        </a>
     </div> 
-    <div class="activity">
+    <div class="activity" th:if="${runList == null and runList.isEmpty() and raceList == null and raceList.isEmpty()}">
+        <p>No activities available at the moment.</p>
+    </div>
+    <div class="activity" th:if="${(runList != null and !runList.isEmpty()) or (raceList != null and !raceList.isEmpty())}">
         <a class="title" th:text="'Summary ' + ${username} + '\'' + 's ' + ' Progress'"></a>
         <div class="recap">
             <span>

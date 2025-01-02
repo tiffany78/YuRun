@@ -151,6 +151,11 @@ input[type="date"]{
   text-align: center;
   cursor: pointer;
 }
+.disabled {
+  background-color: #d3d3d3; /* Warna abu-abu */
+  cursor: not-allowed; /* Cursor menjadi tanda larangan */
+  pointer-events: none; /* Menonaktifkan interaksi dengan tombol */
+}
 .custom {
   grid-area: custom;
 }

@@ -103,7 +103,10 @@ a.page{
   grid-area: graph1;
   border-radius: 10px;
   display: flex;
-  justify-content: center;
+  flex-direction: column;
+  align-items: flex-end;
+  justify-content: flex-end;
+  margin-right: 20px;
 }
 .left{
   font-family: "Poppins-Regular", sans-serif;
@@ -124,14 +127,13 @@ a.page{
 }
 #download{
   display: flex;
-  justify-self: flex-end;
-  margin-right: 50px;
   background: #ff5722;
   border-radius: 13px;
   padding: 10px;
   color: #ffffff;
   font-family: "Roboto-Regular", sans-serif;
   font-size: 13px;
+  width: auto;
 }
 .graph2 {
   grid-area: graph2;

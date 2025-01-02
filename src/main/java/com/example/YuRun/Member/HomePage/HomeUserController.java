@@ -63,6 +63,11 @@ public class HomeUserController {
             listDuration.add(curr.getMember_duration());
         }
 
+        LocalDate today = LocalDate.now();
+        LocalDate firstDayOfMonth = today.withDayOfMonth(1);
+        List<Activity> graphList = this.repo.getActivityMonths(firstDayOfMonth, id_user);
+        model.addAttribute("graphList", graphList);
+
         String sumDuration = sumDurations(listDuration);
         model.addAttribute("sumDuration", sumDuration);
 
@@ -105,7 +110,7 @@ public class HomeUserController {
         private HomeMemberRepo repo;
 
         @GetMapping("/getGraph1")
-        public Map<String, Object> getChartData(HttpSession session, Model model) {
+        public Map<String, Object> getChartData(HttpSession session) {
             int id_user = (Integer) session.getAttribute("id_user");
             session.setAttribute("id_user", id_user);
 
@@ -115,7 +120,6 @@ public class HomeUserController {
             ArrayList<Double> distances = new ArrayList<>();
 
             List<Activity> list = this.repo.getActivityMonths(firstDayOfMonth, id_user);
-            model.addAttribute("graphList", list);
             for(Activity act : list){
                 titles.add(act.getTitle());
                 distances.add(act.getDistance());
