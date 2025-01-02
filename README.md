@@ -1,6 +1,6 @@
 # YuRun
 Topik 3 PBW : Aplikasi Track Running - YURUN
-**Kelompok 3 - RPL B**
+**TUBES F - PBW A**
 1. 6182101017 - RAYHAN ADJI SANTOSO
 2. 6182101021 - CLARENCE FERDINAND
 3. ⁠6182201002 - FERNANDO INDRAWAN
@@ -31,7 +31,7 @@ Pindah ke dalam direktori proyek SiapSidang
 ## 1. Persiapan Database 
 1. Masuk ke dalam PostgreSQL menggunakan terminal atau pgAdmin
 2. Membuat database dengan nama `YURUN`
-3. Run Tabel dan Dummy Data yang sudah tersedia pada folder `database`. Lakukan proses run `Create_Table` terlebih dahulu, kemudian `Dummy_Data` 
+3. Run Tabel, View, dan Dummy Data yang sudah tersedia pada folder `database`. Lakukan proses run `Create_Table` terlebih dahulu, kemudian `Dummy_Data` 
 ## 2. Konfigurasi dengan Database
 Buka file `src/main/resources/application.properties` dan sesuaikan dengan pengaturan database Anda.
 ```
