@@ -16,5 +16,5 @@ public class ResultRace {
     private String name;
     private String member_duration;
     private String path_pict;
-    private boolean status;
+    private Boolean status;
 }

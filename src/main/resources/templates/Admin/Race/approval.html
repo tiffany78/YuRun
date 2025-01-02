@@ -65,15 +65,15 @@
                     <a th:text="${resultRace.name}"></a>
                     <a th:text="'Duration: ' + ${resultRace.member_duration}"></a>
                     <div class="buttonApprove">
-                        <a th:class="${resultRace.status == null ? 'button2' : (resultRace.status ? 'approve' : 'button2')}"
-                           onclick="setApprove(this)">
+                        <a th:class="${resultRace.status == null ? 'button2' : (resultRace.status ? 'approve disabled' : 'button2 disabled')}"
+                           th:attr="onclick=${resultRace.status == null ? 'setApprove(this)' : null}">
                            <img class="imgButton" src="/css/Admin/Race/mark.png"> Approve
                         </a>
-                        <a th:class="${resultRace.status == null ? 'button2' : (!resultRace.status ? 'reject' : 'button2')}"
-                           onclick="setReject(this)">
+                        <a th:class="${resultRace.status == null ? 'button2' : (!resultRace.status ? 'reject disabled' : 'button2 disabled')}"
+                           th:attr="onclick=${resultRace.status == null ? 'setReject(this)' : null}">
                            <img class="imgButton" src="/css/Admin/Race/decline.png"> Reject
                         </a>
-                    </div>                                           
+                    </div>                                                               
                 </div>
             </div>            
         </div>

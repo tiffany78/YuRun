@@ -21,7 +21,7 @@ public class JDBCRace implements RaceRepository{
     @Autowired
     JdbcTemplate jdbcTemplate;
 
-    public List<CountRace> findRace(String filter, String statusRace) {
+    public List<CountRace> findRace(String filter, String statusRace, int entries, int offset) {
 
         // mengubah string jadi boolean 
         boolean statusRaceBool = false;
@@ -50,9 +50,48 @@ public class JDBCRace implements RaceRepository{
         }
     
         sql += " ORDER BY status ASC, start_date";
+
+        if(entries > 0){
+            sql += " LIMIT ? OFFSET ?";
+            filterList.add(entries);
+            filterList.add(offset);
+        }
     
         return jdbcTemplate.query(sql, this::mapRowToCountrace, filterList.toArray());
-    }    
+    }
+    
+    public int getTotalEntries(String filter, String statusRace) {
+        // mengubah string jadi boolean 
+        boolean statusRaceBool = false;
+        if(statusRace.equals("true")){
+            statusRaceBool = true;
+        }
+
+        String sql = "SELECT * FROM count_race_admin";
+        List<Object> filterList = new ArrayList<>();
+    
+        // Menambahkan filter berdasarkan 'filter' (title)
+        if (filter != null && !filter.isEmpty()) {
+            sql += " WHERE title ILIKE ?";
+            filterList.add("%" + filter + "%");
+        }
+    
+        // Menambahkan filter berdasarkan statusRace jika diberikan
+        if (statusRace != null && !statusRace.equals("null")) {
+            // Menggunakan 'status' untuk memfilter berdasarkan nilai status yang dipilih
+            if (!filterList.isEmpty()) {
+                sql += " AND status = ?";
+            } else {
+                sql += " WHERE status = ?";
+            }
+            filterList.add(statusRaceBool);
+        }
+    
+        sql += " ORDER BY status ASC, start_date";
+
+        List<CountRace> list = jdbcTemplate.query(sql, this::mapRowToCountrace, filterList.toArray());
+        return list.size();
+    }
 
     private CountRace mapRowToCountrace(ResultSet resultSet, int rowNum) throws SQLException {
         LocalDateTime startDateTime = resultSet.getDate("start_date").toLocalDate()
@@ -148,6 +187,8 @@ public class JDBCRace implements RaceRepository{
     }
 
     private ResultRace mapRowToResultRace(ResultSet resultSet, int rowNum) throws SQLException {
+        Boolean status = (Boolean) resultSet.getObject("status");
+
         return new ResultRace(
             resultSet.getInt("id_race"),
             resultSet.getString("title"),
@@ -157,7 +198,7 @@ public class JDBCRace implements RaceRepository{
             resultSet.getString("name"),
             resultSet.getString("member_duration"), 
             resultSet.getString("path_pict"),
-            resultSet.getBoolean("status")
+            status
         );
     }
 

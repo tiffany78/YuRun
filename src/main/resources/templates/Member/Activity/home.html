@@ -15,7 +15,7 @@
         </div>
         <div class="textNavbar">
             <a th:href="@{/member}">Home</a>
-            <a class="page" th:href="@{/member/activity}">My Activity</a>
+            <a class="home" th:href="@{/member/activity}">My Activity</a>
             <a th:href="@{/member/race}">Race</a>
             <a th:href="@{/member/progress}">Progress</a>
         </div>
@@ -52,7 +52,7 @@
         </form>
         <a class="add" th:href="@{/member/addActivity}">+ Add Activity</a>
     </div>
-    <div class="contentBody" th:if="${activity != null or !activity.isEmpty()}">
+    <div class="contentBody" th:if="${activity == null or activity.isEmpty()}">
         <p>No activities available at the moment.</p>
     </div>
     <div class="contentBody">
@@ -99,7 +99,6 @@
             <a th:href="@{/member/activity(page=${currentPage + 1}, entries=${entries}, filter=${filter}, kindActivity=${kindActivity})}"
                th:if="${currentPage < (totalEntries + entries - 1) / entries}" class="next">Next</a>
         </div>
-        
     </div>       
     <footer class="footer">
         <div class="content2">

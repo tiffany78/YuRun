@@ -20,6 +20,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import com.example.YuRun.RequiredRole;
 import com.example.YuRun.Admin.Homepage.Race;
+import jakarta.servlet.http.HttpSession;
 
 @Controller
 @RequestMapping("/admin")
@@ -32,12 +33,32 @@ public class RaceController {
     public String index(
         Model model,
         @RequestParam(required = false, defaultValue = "") String filter,
-        @RequestParam(required = false, defaultValue = "null") String statusRace){
+        @RequestParam(required = false, defaultValue = "null") String statusRace,
+        @RequestParam(value = "entries", required = false, defaultValue = "0") int entries,
+        @RequestParam(value = "page", required = false, defaultValue = "1") int page, 
+        HttpSession session){
 
-        List<CountRace> list = this.repo.findRace(filter, statusRace);
+        session.setAttribute("peran", "admin");
+        // Hitung offset berdasarkan halaman dan jumlah entri
+        int offset = (page - 1) * entries;
+
+        List<CountRace> list = this.repo.findRace(filter, statusRace, entries, offset);
         model.addAttribute("raceList", list);
         model.addAttribute("filter", filter);
         model.addAttribute("statusRace", statusRace);
+
+        int totalEntries = this.repo.getTotalEntries(filter, statusRace);
+        if (entries == 0) {
+            entries = totalEntries;
+        }
+        int currEntries = totalEntries;
+        if (entries > 0){
+            currEntries = Math.min(page * entries, totalEntries);
+        }
+        model.addAttribute("entries", entries);
+        model.addAttribute("currEntries", currEntries);
+        model.addAttribute("totalEntries", totalEntries);
+        model.addAttribute("currentPage", page);
 
         LocalDateTime now = LocalDateTime.now();
         model.addAttribute("currentDate", now);
