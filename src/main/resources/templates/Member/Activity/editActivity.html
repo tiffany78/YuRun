@@ -86,9 +86,9 @@
                     <div class="headInput">Description</div>
                     <textarea class="frame5" placeholder="Description about the race" name="desc" th:value="${activity.description}" th:text="${activity.description}" required></textarea>
                 </div>
-                <div class="divInput">
+                <div class="divInput" th:if="${activity.path_pict != null}">
                     <div class="headInput">Your Previous Picture</div>
-                    <img th:src="${activity.path_pict != null ? '/upload/activity-member/' + activity.path_pict : '/upload/activity-member/null.jpg'}" alt="Image" id="prevImage">
+                    <img th:src="${activity.path_pict != null ? '/upload/activity-member/' + activity.path_pict : '/upload/activity-member/null2.jpg'}" alt="Image" id="prevImage">
                 </div>
                 <div class="divInput">
                     <div class="headInput">Upload Your New Picture</div>

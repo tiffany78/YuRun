@@ -102,6 +102,23 @@ a.page{
 .graph1 {
   grid-area: graph1;
   border-radius: 10px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  justify-content: flex-end;
+  margin-right: 20px;
+}
+.left{
+  font-family: "Poppins-Regular", sans-serif;
+  font-weight: 600;
+  color: #FF5722;
+  padding-left: 10px;
+  font-size: 40px;
+  letter-spacing: 0.13em;
+  font-style: italic;
+  text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.15);
+  display: flex;
+  align-items: center;
 }
 #container {
   width: 500px; 
@@ -110,14 +127,13 @@ a.page{
 }
 #download{
   display: flex;
-  justify-self: flex-end;
-  margin-right: 50px;
   background: #ff5722;
   border-radius: 13px;
   padding: 10px;
   color: #ffffff;
   font-family: "Roboto-Regular", sans-serif;
   font-size: 13px;
+  width: auto;
 }
 .graph2 {
   grid-area: graph2;
@@ -176,7 +192,8 @@ a.page{
   margin-right: 20px;
   display: flex;
   flex-direction: column;
-  justify-content: space-evenly;
+  justify-content: flex-start;
+  row-gap: 15px;
 }
 .recap1, .recap2 {
   display: flex;

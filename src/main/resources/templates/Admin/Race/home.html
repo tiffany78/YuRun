@@ -30,15 +30,14 @@
     </nav>
     <div class="header">
         <form method="get" th:action="@{/admin/race}" class="filterForm">
-            <div class="pagination">
-                <a href="#">&laquo;</a>
-                <a href="#">1</a>
-                <a class="active" href="#">2</a>
-                <a href="#">3</a>
-                <a href="#">4</a>
-                <a href="#">5</a>
-                <a href="#">6</a>
-                <a href="#">&raquo;</a>
+            <div class="entries">
+                Show <select id="entries" name="entries" onchange="this.form.submit()">
+                    <option th:value="0" th:selected="${entries == 0}">All</option>
+                    <option th:value="4" th:selected="${entries == 4}">4</option>
+                    <option th:value="8" th:selected="${entries == 8}">8</option>
+                    <option th:value="12" th:selected="${entries == 12}">12</option>
+                    <option th:value="20" th:selected="${entries == 20}">20</option>
+                </select> entries
             </div>
             <!--FORM FOR SEARCHING-->
             <div class="search">
@@ -53,6 +52,9 @@
         </form>
         <a class="add" th:href="@{/admin/addRace}">+ Add Race</a>
     </div>
+    <div class="contentBody" th:if="${raceList == null or raceList.isEmpty()}">
+        <p>No races available at the moment.</p>
+    </div>
     <div class="contentBody">
         <div class="square" th:each="race : ${raceList}">
             <a class="kindText" th:text="${race.title}"></a>
@@ -62,7 +64,7 @@
                 <a th:text="${race.count} + ' Members'"></a>
                 <div class="detailTime">
                     <!-- Status DONE -->
-                    <a th:if="${race.status}" th:classappend="'status-approved'"  th:text="'DONE'"></a>
+                    <a th:if="${race.status}" th:classappend="'status-approved'" th:text="'DONE'"></a>
                     
                     <!-- Status NEED APPROVAL atau ON GOING -->
                     <a th:if="${!race.status}" th:classappend="${!race.startDateTime.isAfter(currentDate) ? 'status-rejected' : 'status-ongoing'}" th:text="${race.startDateTime.isAfter(currentDate) ? 'ON GOING' : 'NEED APPROVAL'}"></a>
@@ -89,6 +91,24 @@
                 th:if="${race.startDateTime.isAfter(currentDate)}">
                 Edit </a>
             </div>
+        </div>
+    </div>
+    <div class="infoPagination" th:if="${entries < totalEntries}">
+        <span class="showEntries">
+            Showing <span th:text="${(currentPage - 1) * entries + 1}"></span>
+            to <span th:text="${currEntries}"></span>
+            of <span th:text="${totalEntries}"></span> races
+        </span>
+        <div class="pagination">
+            <a th:href="@{/admin/race(page=${currentPage - 1}, entries=${entries}, filter=${filter}, kindActivity=${kindActivity})}"
+               th:if="${currentPage > 1}" class="prev">Prev</a>
+            <span th:each="i : ${#numbers.sequence(1, (totalEntries + entries - 1) / entries)}"
+                  th:classappend="${i == currentPage} ? 'active' : ''">
+                <a th:href="@{/admin/race(page=${i}, entries=${entries}, filter=${filter}, kindActivity=${kindActivity})}"
+                   th:text="${i}"></a>
+            </span>
+            <a th:href="@{/admin/race(page=${currentPage + 1}, entries=${entries}, filter=${filter}, kindActivity=${kindActivity})}"
+               th:if="${currentPage < (totalEntries + entries - 1) / entries}" class="next">Next</a>
         </div>
     </div>
     <div id="popup" class="popup hidden">

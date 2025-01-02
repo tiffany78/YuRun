@@ -92,21 +92,17 @@ document.getElementById('download-pdf').addEventListener('click', function () {
         scale: 2, // Resolusi tinggi
         backgroundColor: null
     }).then((canvas) => {
-        // Konversi canvas menjadi gambar
+        // Konversi canvas menjadi gambar PNG
         const imgData = canvas.toDataURL('image/png');
 
-        // Buat dokumen PDF
+        // Buat dokumen PDF tanpa menyesuaikan ukuran A4
         const pdf = new jspdf.jsPDF({
-            orientation: 'portrait',
-            unit: 'mm',
-            format: 'a4'
+            unit: 'px',  // Menggunakan piksel sebagai satuan
+            format: [canvas.width, canvas.height] // Sesuaikan dengan ukuran gambar
         });
 
-        // Sesuaikan ukuran gambar dengan ukuran A4
-        const pdfWidth = 210; // Lebar halaman A4 dalam mm
-        const pdfHeight = (canvas.height * pdfWidth) / canvas.width;
-
-        pdf.addImage(imgData, 'PNG', 0, 0, pdfWidth, pdfHeight);
+        // Menambahkan gambar PNG ke PDF dengan ukuran asli
+        pdf.addImage(imgData, 'PNG', 0, 0, canvas.width, canvas.height);
 
         // Simpan PDF
         pdf.save('Progress_Report.pdf');
