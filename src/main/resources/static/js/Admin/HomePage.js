@@ -16,7 +16,6 @@ $(document).ready(function () {
             },
             yAxis: {
                 min: 0,
-                max: 10,
                 title: {
                     text: 'Count'
                 }
@@ -51,8 +50,7 @@ $(document).ready(function () {
             crosshair: true
         },
         yAxis: {
-            min: 0,
-            max: 5,
+            min: 0
         },
         legend: {
             enabled: false // Menonaktifkan legenda

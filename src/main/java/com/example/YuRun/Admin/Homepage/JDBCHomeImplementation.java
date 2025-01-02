@@ -38,7 +38,7 @@ public class JDBCHomeImplementation implements HomeRepository {
     }
 
     public List<JoinRace> countRace(){
-        String sql = "SELECT race.title, COUNT(id_user) FROM joinrace JOIN race ON race.id_race = joinrace.id_race GROUP BY race.id_race ORDER BY race.id_race";
+        String sql = "SELECT title, count FROM count_race_admin ORDER BY start_date";
         return jdbcTemplate.query(sql, this::mapRowToRace);
     }
 

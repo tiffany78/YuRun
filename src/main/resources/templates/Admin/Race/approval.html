@@ -57,7 +57,7 @@
         <div class="contentBody" th:if="${resultRace != null and resultRace.size() > 0}" >
             <div class="square" th:each="resultRace : ${resultRace}">
                 <div class="imageContainer">
-                    <img th:src="${resultRace.path_pict != null ? '/upload/race-member/' + resultRace.path_pict : '/upload/race-member/null.jpg'}" alt="Image" class="image">
+                    <img th:src="${resultRace.path_pict != null ? '/upload/race-member/' + resultRace.path_pict : '/upload/race-member/noPict.jpg'}" alt="Image" class="image">
                 </div>
                 <div class="detailText">
                     <input type="hidden" name="id_users" th:value="${resultRace.id_user}">
