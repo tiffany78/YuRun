@@ -20,7 +20,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import com.example.YuRun.RequiredRole;
 import com.example.YuRun.Admin.Homepage.Race;
-import jakarta.servlet.http.HttpSession;
 
 @Controller
 @RequestMapping("/admin")
@@ -175,6 +174,7 @@ public class RaceController {
 
     @GetMapping("/race/close/{idRace}")
     public String deleteRace(@PathVariable int idRace){
+        this.repo.deleteRace(idRace);
         return "redirect:/admin/race";
     }
 }

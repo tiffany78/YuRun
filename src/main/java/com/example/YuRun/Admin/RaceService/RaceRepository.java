@@ -18,4 +18,5 @@ public interface RaceRepository {
     boolean getRaceStatus(int idRace);
     Map<String, Double> getTitleAndDistance(int idRace);
     int getTotalEntries(String filter, String kind);
+    void deleteRace(int id_race);
 }

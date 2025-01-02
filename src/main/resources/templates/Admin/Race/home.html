@@ -59,7 +59,7 @@
         <div class="square" th:each="race : ${raceList}">
             <a class="kindText" th:text="${race.title}"></a>
             <div class="detailText">
-                <a th:text="${race.description != null ? race.description : 'desc'}"></a>
+                <a th:text="${race.description != null ? race.description : 'no description'}"></a>
                 <a th:text="${race.distance} + ' km'"></a>
                 <a th:text="${race.count} + ' Members'"></a>
                 <div class="detailTime">
@@ -78,9 +78,9 @@
                 <a class="approvalRace"
                     th:if="${race.startDateTime.isAfter(currentDate)}"
                     th:onclick="'showPopup(' + ${race.idRace} + ')'"
-                    th:text="'Delete Race'">
+                    th:text="'Delete Race'"> <img src="/css/Admin/Race/trash-01.svg">
                     Delete Race
-                    </a>
+                </a>
                 <a class="approvalRace"
                     th:if="${!race.startDateTime.isAfter(currentDate)}"
                     th:href="@{/admin/race/approval/{idRace}(idRace=${race.idRace})}">

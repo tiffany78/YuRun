@@ -221,4 +221,9 @@ public class JDBCRace implements RaceRepository{
             throw new RuntimeException("Error retrieving race status");
         }
     }
+
+    public void deleteRace(int id_race){
+        String sql = "DELETE FROM race WHERE id_race = ?";
+        jdbcTemplate.update(sql, id_race);
+    }
 }
