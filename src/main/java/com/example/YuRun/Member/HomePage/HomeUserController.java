@@ -105,7 +105,7 @@ public class HomeUserController {
         private HomeMemberRepo repo;
 
         @GetMapping("/getGraph1")
-        public Map<String, Object> getChartData(HttpSession session) {
+        public Map<String, Object> getChartData(HttpSession session, Model model) {
             int id_user = (Integer) session.getAttribute("id_user");
             session.setAttribute("id_user", id_user);
 
@@ -115,6 +115,7 @@ public class HomeUserController {
             ArrayList<Double> distances = new ArrayList<>();
 
             List<Activity> list = this.repo.getActivityMonths(firstDayOfMonth, id_user);
+            model.addAttribute("graphList", list);
             for(Activity act : list){
                 titles.add(act.getTitle());
                 distances.add(act.getDistance());

@@ -102,6 +102,20 @@ a.page{
 .graph1 {
   grid-area: graph1;
   border-radius: 10px;
+  display: flex;
+  justify-content: center;
+}
+.left{
+  font-family: "Poppins-Regular", sans-serif;
+  font-weight: 600;
+  color: #FF5722;
+  padding-left: 10px;
+  font-size: 40px;
+  letter-spacing: 0.13em;
+  font-style: italic;
+  text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.15);
+  display: flex;
+  align-items: center;
 }
 #container {
   width: 500px; 

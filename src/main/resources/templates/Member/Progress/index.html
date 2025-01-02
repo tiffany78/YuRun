@@ -85,7 +85,7 @@
             </span>
         </div>
     </div>
-    <div class="graph">
+    <div class="graph" th:if="${(runList != null and !runList.isEmpty()) or (raceList != null and !raceList.isEmpty())}">
         <a class="title" th:text="${username} + '\'' + 's ' + ${currFilter} + ' Activities'"></a>
         <div id="container"></div>
     </div>
