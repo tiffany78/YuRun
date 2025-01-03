@@ -1,6 +1,5 @@
 package com.example.YuRun.LandingPage.LandingPageRace;
 
-import java.time.LocalDateTime;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,11 +17,10 @@ public class RaceLandingController {
     
     @GetMapping("/race")
     public String homepageRace (Model model,  @RequestParam(value = "filter", required = false, defaultValue = "") String filter) {
-        List<Race>  list = repo.findRace( filter);
+        List<Race>  list = repo.findRace(filter);
         model.addAttribute("raceList", list);
         model.addAttribute("filter", filter);
 
-        
         return "/LandingPage/Race/raceLandingPage";
     } 
 }
