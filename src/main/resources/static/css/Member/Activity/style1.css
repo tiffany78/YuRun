@@ -300,7 +300,7 @@ span.active {
     display: flex;
     flex-direction: row;
     column-gap: 10px;
-    font-size: small;
+    font-size: 15px;
     color: gray;
 }
 .actionButton {

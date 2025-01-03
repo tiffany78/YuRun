@@ -53,7 +53,7 @@
                 <div class="divInput">
                     <div class="headInput">Date & Time</div>
                     <div class="groupFrame">
-                        <input type="date" id="date" name="date" class="frame1">
+                        <input type="date" id="date" name="date" class="frame1" th:attr="max=${#dates.format(#dates.createNow(), 'yyyy-MM-dd')}">
                         <input type="time" id="time" name="time" class="frame1">
                     </div>
                 </div>

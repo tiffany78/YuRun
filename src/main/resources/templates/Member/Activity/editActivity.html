@@ -53,7 +53,7 @@
                 <div class="divInput">
                     <div class="headInput">Start Date & Time</div>
                     <div class="groupFrame">
-                        <input type="date" class="frame1" name="date" th:value="${#dates.format(activity.date, 'yyyy-MM-dd')}" required> 
+                        <input type="date" class="frame1" name="date" th:value="${#dates.format(activity.date, 'yyyy-MM-dd')}" th:attr="max=${#dates.format(#dates.createNow(), 'yyyy-MM-dd')}" required> 
                         <input type="time" class="frame1" name="time" th:value="${#dates.format(activity.time, 'HH:mm')}"required> 
                     </div>
                 </div>

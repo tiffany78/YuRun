@@ -21,6 +21,6 @@ public class RaceLandingController {
         model.addAttribute("raceList", list);
         model.addAttribute("filter", filter);
 
-        return "/LandingPage/Race/raceLandingPage";
+        return "/LandingPage/raceLandingPage";
     } 
 }

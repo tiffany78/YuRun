@@ -83,7 +83,7 @@
                 <img class="image-3" src="/images/image-30.png"/>
             </div>
             <div class="right3">
-                <div class="right3-item1" th:text="${race.title}"></div>
+                <a class="right3-item1" th:text="${race.title}" th:href="@{/race}"></a>
                 <div class="right3-item2">
                     <img class="icon3" src="/css/LandingPage/icon0.svg"/>
                     <div class="text3" th:text="${#dates.format(race.start_date, 'd MMMM yyyy')}"></div>
