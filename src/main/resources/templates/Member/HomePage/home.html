@@ -77,6 +77,11 @@
         </div>
     </div>
     <div class="recap">
+        <div class="recap1" th:if="${races == null or races.isEmpty()}">
+            <div class="text">
+                You already finished all your race.<br>Let's join other race!
+            </div>
+        </div>
         <div class="recap1" th:if="${races != null and !races.isEmpty()}">
             <div class="frame3Header">Your Race</div>
             <!-- Loop melalui aktivitas -->
@@ -84,11 +89,11 @@
                 <div class="headerMyRace" th:text="${race.title}"></div>
                 <div class="infoMyRace">
                     <img src="/css/Member/HomePage/calendar-010.svg">
-                    <span th:text="${#dates.format(race.start_date, 'dd/MM/yyyy')}"></span> <!-- Format tanggal -->
+                    <span th:text="${#dates.format(race.start_date, 'd MMMM yyyy')}"></span> <!-- Format tanggal -->
                 </div>
                 <div class="infoMyRace">
                     <img src="/css/Member/HomePage/alarm-010.svg">
-                    <span th:text="${race.time}"></span> <!-- Format waktu -->
+                    <span th:text="${race.time}"></span>
                 </div>
             </div>
         </div>
@@ -99,7 +104,7 @@
                 <div class="headerMyRace" th:text="${upRace.title}"></div>
                 <div class="infoMyRace">
                     <img src="/css/Member/HomePage/calendar-010.svg">
-                    <span th:text="${#dates.format(upRace.start_date, 'dd/MM/yyyy')}"></span> <!-- Format tanggal -->
+                    <span th:text="${#dates.format(upRace.start_date, 'd MMMM yyyy')}"></span> <!-- Format tanggal -->
                 </div>
                 <div class="infoMyRace">
                     <img src="/css/Member/HomePage/alarm-010.svg">
@@ -131,7 +136,7 @@
                     <td th:text="${activity.kind}"></td>
                     <td th:text="${activity.distance} + ' km'"></td>
                     <td th:text="${activity.duration}"></td>
-                    <td th:text="${#dates.format(activity.date, 'dd/MM/yyyy')}"></td>
+                    <td th:text="${#dates.format(activity.date, 'd MMMM yyyy')}"></td>
                     <td th:text="${activity.time}"></td>
                 </tr>                
             </tbody>

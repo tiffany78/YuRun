@@ -144,7 +144,7 @@ public class ProgressController {
         int minutes = remainingSeconds / 60;
         int seconds = remainingSeconds % 60;
 
-        return String.format("%02d:%02d:%02d", hours, minutes, seconds);
+        return String.format("%02d Hours %02d Minutes %02d Seconds", hours, minutes, seconds);
     }
 
     @RestController

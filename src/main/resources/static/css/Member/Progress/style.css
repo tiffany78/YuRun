@@ -8,7 +8,7 @@ body {
 }
 .containerBody{
   display: grid;
-  grid-template-rows: 70px 80px 80px auto auto auto;
+  grid-template-rows: 70px 80px 80px 1fr 1fr auto;
   grid-template-columns: 1fr;
   grid-template-areas: 
       "navbar"
@@ -243,7 +243,6 @@ thead th:last-child {
   padding: 10px;
   text-align: center;
   border: 1px solid #F5F5F5;
-  background-color: #f8dfd1;
 }
 .table_race tbody td:first-child {
   border-radius: 10px 0 0 10px; 
@@ -261,12 +260,13 @@ th a img {
 /* BAGIAN FOOTER */
 .footer{
   grid-area: footer;
-  background: var(--background-color-primary, #ffffff);
-  padding: 10px 20px; /* Berikan sedikit padding */
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Tambahkan bayangan untuk kesan floating */
-  display: flex;
-  flex-direction: column;
-  height: 110px;
+    background: var(--background-color-primary, #ffffff);
+    padding: 10px 20px;
+    display: flex;
+    flex-direction: column;
+    height: 110px;
+    min-height: 110px;
+    margin-top: 20px;
 }
 .content2 {
   display: flex;

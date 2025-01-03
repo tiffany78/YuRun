@@ -71,13 +71,13 @@
             <button type="submit" class="filter-button">Custom</button>
         </form>
         <a type="button" id="download-pdf" class="download" 
-            th:classappend="${(runList == null and runList.isEmpty() and raceList == null and raceList.isEmpty()) ? 'disabled' : ''}" 
-            th:attr="disabled=${(runList == null and runList.isEmpty() and raceList == null and raceList.isEmpty()) ? 'true' : null}">
+            th:classappend="${(runList == null or runList.isEmpty() or raceList == null or raceList.isEmpty()) ? 'disabled' : ''}" 
+            th:attr="disabled=${(runList == null or runList.isEmpty() or raceList == null or raceList.isEmpty()) ? 'true' : null}">
             Download PDF
         </a>
     </div> 
-    <div class="activity" th:if="${runList == null and runList.isEmpty() and raceList == null and raceList.isEmpty()}">
-        <p>No activities available at the moment.</p>
+    <div class="activity" th:if="${runList == null or runList.isEmpty() or raceList == null or raceList.isEmpty()}">
+        <p>No activities available at the moment. Let's track your strides!</p>
     </div>
     <div class="activity" th:if="${(runList != null and !runList.isEmpty()) or (raceList != null and !raceList.isEmpty())}">
         <a class="title" th:text="'Summary ' + ${username} + '\'' + 's ' + ' Progress'"></a>
@@ -116,7 +116,7 @@
                         <td th:text="Running"></td>
                         <td th:text="${run.kind}"></td>
                         <td th:text="${run.title}"></td>
-                        <td th:text="${#dates.format(run.date, 'dd/MM/yyyy')}"></td>
+                        <td th:text="${#dates.format(run.date, 'd MMMM yyyy')}"></td>
                         <td th:text="${#dates.format(run.time, 'HH:mm:ss')}"></td>
                         <td th:text="${run.duration}"></td>
                         <td th:text="${run.distance} + ' km'"></td>
@@ -140,7 +140,7 @@
                     <tr th:each="race : ${raceList}">
                         <td th:text="Race"></td>
                         <td th:text="${race.title}"></td>
-                        <td th:text="${#dates.format(race.race_date, 'dd/MM/yyyy')}"></td>
+                        <td th:text="${#dates.format(race.race_date, 'd MMMM yyyy')}"></td>
                         <td th:text="${race.member_duration}"></td>
                         <td th:text="${race.distance} + ' km'"></td>
                     </tr>               
