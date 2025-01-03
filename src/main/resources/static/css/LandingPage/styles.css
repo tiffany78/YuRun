@@ -55,7 +55,13 @@ body {
     font-weight: 500;
     align-items: center;
 }
-.home{
+
+
+.textNavbar a {
+    text-decoration: none;
+    color: var(--neutral-colors-950, #141414);
+}
+a.page{
     color: var(--primary-color-500, #ff5722);
     font-weight: 1000;
 }
