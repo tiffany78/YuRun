@@ -61,7 +61,7 @@
         <table class="table_race">
             <thead>
                 <tr>
-                    <th>Kind</th>
+                    <th>No.</th>
                     <th>Title</th>
                     <th>Date <a href="#"><img src="/css/Admin/Race/bxs-sort-alt.svg" alt="Sort Icon"></a></th>
                     <th>Start Time <a href="#"><img src="/css/Admin/Race/bxs-sort-alt.svg" alt="Sort Icon"></a></th>
@@ -70,17 +70,26 @@
                 </tr>                
             </thead>
             <tbody>
-                <tr th:each="race : ${raceList}">
+                <tr th:each="race : ${races}">
                     <td th:text="${race.idRace}"></td>
                     <td th:text="${race.title}"></td>
                     <td th:text="${#dates.format(race.start_date, 'dd/MM/yyyy')}"></td>
                     <td th:text="${#dates.format(race.time, 'HH:mm:ss')}"></td>
                     <td th:text="${race.distance} + ' km'"></td>
-                    <td>bla</td>
                     <td>
-                        <img class="join" src="/css/Member/Race/join.svg" alt="Join Race"/>
-                        <img class="exit" src="/css/Member/Race/exit.svg" alt="Exit Race"/>
+                        <img class="join" style="cursor: pointer;" src="/css/Member/Race/join.svg" alt="Join Race"
+                            th:onclick="'updateRaceStatus(' + ${race.idRace} + ', true)'" />
+                        <img class="exit" style="cursor: pointer;" src="/css/Member/Race/exit.svg" alt="Exit Race"
+                            th:onclick="'updateRaceStatus(' + ${race.idRace} + ', false)'" />
                     </td>
+                    <!-- <td>
+                        <img th:if="${!raceStatuses.get(race.idRace)}" 
+                            class="join" style="cursor: pointer;" src="/css/Member/Race/join.svg" alt="Join Race"
+                            th:onclick="'updateRaceStatus(' + ${race.idRace} + ', true)'" />
+                        <img th:if="${raceStatuses.get(race.idRace)}" 
+                            class="exit" style="cursor: pointer;" src="/css/Member/Race/exit.svg" alt="Exit Race"
+                            th:onclick="'updateRaceStatus(' + ${race.idRace} + ', false)'" />
+                    </td> -->
                 </tr>               
             </tbody>
         </table>
@@ -107,5 +116,33 @@
             </div>
           </div>
     </footer>
+    <script th:inline="javascript">
+        const currentUserId = 5;
+        
+        function updateRaceStatus(idRace, isJoining) {
+            // Add confirmation dialog for exit
+            if (!isJoining) {
+                if (!confirm("Are you sure you want to exit the race?")) {
+                    return; // If user clicks Cancel, stop the function
+                }
+            }
+    
+            fetch(`/member/race/${isJoining ? "join" : "exit"}`, {
+                method: "POST",
+                headers: { "Content-Type": "application/x-www-form-urlencoded" },
+                body: `idRace=${idRace}&idUser=${currentUserId}`
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.success) {
+                    alert(`Successfully ${isJoining ? "joined" : "exited"} the race.`);
+                    location.reload();
+                } else {
+                    alert(`Failed to ${isJoining ? "join" : "exit"} the race.`);
+                }
+            })
+            .catch(error => console.error("Error:", error));
+        }
+    </script>
 </body>
 </html>
