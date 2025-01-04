@@ -63,6 +63,11 @@ public class HomeUserController {
             listDuration.add(curr.getMember_duration());
         }
 
+        LocalDate today = LocalDate.now();
+        LocalDate firstDayOfMonth = today.withDayOfMonth(1);
+        List<Activity> graphList = this.repo.getActivityMonths(firstDayOfMonth, id_user);
+        model.addAttribute("graphList", graphList);
+
         String sumDuration = sumDurations(listDuration);
         model.addAttribute("sumDuration", sumDuration);
 

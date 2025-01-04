@@ -2,7 +2,6 @@ package com.example.YuRun.Admin.Homepage;
 
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -26,13 +25,6 @@ public class HomeController {
     public String index(Model model) {
         List<Race> list = this.repo.findRace();
         model.addAttribute("race", list);
-
-        List<JoinRace> list2 = this.repo.countRace();
-        Map<String, Integer> mapJoin = new LinkedHashMap<>();
-        for(JoinRace currRace : list2){
-            mapJoin.put(currRace.getTitle(), currRace.getCount());
-        }
-        model.addAttribute("surveyMap", mapJoin);
         return "Admin/HomePage/index";
     }
 

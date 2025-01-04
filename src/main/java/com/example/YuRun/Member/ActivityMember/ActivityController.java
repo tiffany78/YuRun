@@ -129,7 +129,7 @@ public class ActivityController {
             }
         } else {
             // Jika file tidak diunggah
-            fileName = "null.jpg";
+            fileName = null;
         }
 
         this.repoAdd.addActivity(id_user, title, kind, distance, duration, sqlDate, sqlTime, desc, fileName);

@@ -41,11 +41,14 @@
             + Add Activity
         </a>
     </div>
-    <div class="graph1">
+    <div class="graph1" th:if="${graphList != null and !graphList.isEmpty()}">
         <div>
             <div id="container"></div>
         </div>
         <a id="download">Download PNG</a>
+    </div>
+    <div class="graph1" th:if="${graphList == null or graphList.isEmpty()}">
+        <a class="left">Track Your Strides <br> Achieve Your Goals</a>
     </div>
     <div class="graph2">
         <div class="graph2Header">Your Achievements</div>
@@ -54,7 +57,7 @@
                 <img src="/css/Member/HomePage/vector0.svg">
                 <div class="infoText">
                     <a class="info1Text">Activites</a>
-                    <a th:text="${sumActivities} + 'Activities over ' + ${sumDistance} + ' km'"></a>
+                    <a th:text="${sumActivities} + ' Activities over ' + ${sumDistance} + ' km'"></a>
                 </div>
             </div>
             <div class="info1">
@@ -74,7 +77,7 @@
         </div>
     </div>
     <div class="recap">
-        <div class="recap1">
+        <div class="recap1" th:if="${races != null and !races.isEmpty()}">
             <div class="frame3Header">Your Race</div>
             <!-- Loop melalui aktivitas -->
             <div th:each="race : ${races}" class="myRaceList">
@@ -105,9 +108,9 @@
             </div>
         </div>
     </div>    
-    <div class="activity">
+    <div class="activity" th:if="${activity != null and !activity.isEmpty()}">
         <div class="text3">
-            <a href="#">Your New Activity</a>
+            <a href="#">New Activities</a>
             <a th:href="@{/member/activity}">Show All</a>
         </div>
         <hr>

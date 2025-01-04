@@ -60,8 +60,10 @@ public class ProgressController {
         }
 
         List<ActivityMember> runList;
+        List<ProgressRace> raceList;
         if (startDate != null && endDate != null) {
             runList = this.repo.getActivitiesByDateRange(id_user, startDate, endDate);
+            raceList = this.repo.getRaceByDateRange(id_user, startDate, endDate);
             model.addAttribute("startDate", startDate);
             model.addAttribute("endDate", endDate);
 
@@ -72,27 +74,33 @@ public class ProgressController {
             switch (filterType) {
                 case "Weekly":
                     runList = this.repo.getWeeklyActivities(id_user);
+                    raceList = this.repo.getWeeklyRace(id_user);
                     model.addAttribute("currFilter", "Weekly");
                     break;
                 case "1Month":
                     runList = this.repo.getMonthlyActivities(id_user);
+                    raceList = this.repo.getMonthlyRace(id_user);
                     model.addAttribute("currFilter", "1 Month");
                     break;
                 case "3Months":
                     runList = this.repo.getThreeMonthlyActivities(id_user);
+                    raceList = this.repo.getThreeMonthlyRace(id_user);
                     model.addAttribute("currFilter", "3 Month");
                     break;
                 case "1Year":
                     runList = this.repo.getYearlyActivities(id_user);
+                    raceList = this.repo.getYearlyRace(id_user);
                     model.addAttribute("currFilter", "1 Year");
                     break;
                 case "All":
                 default:
                     runList = this.repo.getAllActivities(id_user);
+                    raceList = this.repo.getAllRace(id_user);
                     model.addAttribute("currFilter", "All");
             }
         }
         model.addAttribute("runList", runList);
+        model.addAttribute("raceList", raceList);
 
         // Perhitungan total distance dan time dari running
         for(ActivityMember curr : runList){
@@ -100,11 +108,8 @@ public class ProgressController {
             listDuration.add(curr.getDuration());
         }
 
-        List<ProgressRace> list2 = this.repo.getAllRace(id_user);
-        model.addAttribute("raceList", list2);
-
         // Perhitungan total distance dan time dari race
-        for(ProgressRace curr : list2){
+        for(ProgressRace curr : raceList){
             sumDistance += curr.getDistance();
             listDuration.add(curr.getMember_duration());
         }
@@ -172,25 +177,32 @@ public class ProgressController {
     
             // Filter data berdasarkan filterType atau rentang tanggal
             List<ActivityMember> activityList;
+            List<ProgressRace> raceList;
             if (startDate != null && endDate != null) {
                 activityList = this.repo.getActivitiesByDateRange(id_user, startDate, endDate);
+                raceList = this.repo.getRaceByDateRange(id_user, startDate, endDate);
             } else {
                 switch (filterType) {
                     case "Weekly":
                         activityList = this.repo.getWeeklyActivities(id_user);
+                        raceList = this.repo.getWeeklyRace(id_user);
                         break;
                     case "1Month":
                         activityList = this.repo.getMonthlyActivities(id_user);
+                        raceList = this.repo.getMonthlyRace(id_user);
                         break;
                     case "3Months":
                         activityList = this.repo.getThreeMonthlyActivities(id_user);
+                        raceList = this.repo.getThreeMonthlyRace(id_user);
                         break;
                     case "1Year":
                         activityList = this.repo.getYearlyActivities(id_user);
+                        raceList = this.repo.getYearlyRace(id_user);
                         break;
                     case "All":
                     default:
                         activityList = this.repo.getAllActivities(id_user);
+                        raceList = this.repo.getAllRace(id_user);
                 }
             }
     
@@ -204,7 +216,6 @@ public class ProgressController {
             }
     
             // Tambahkan data dari race (opsional, sesuai kebutuhan)
-            List<ProgressRace> raceList = this.repo.getAllRace(id_user);
             for (ProgressRace race : raceList) {
                 titles.add(race.getTitle());
                 distances.add(race.getDistance());

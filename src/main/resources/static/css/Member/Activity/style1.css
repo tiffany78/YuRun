@@ -62,7 +62,7 @@ body {
   text-decoration: none;
   color: var(--neutral-colors-950, #141414);
 }
-a.page{
+a.home{
   color: var(--primary-color-500, #ff5722);
   font-weight: 1000;
 }
@@ -135,7 +135,6 @@ a.page{
   align-items: center;
 }
 
-/* Container pagination */
 .pagination {
   display: flex;
   justify-content: center;
@@ -143,7 +142,6 @@ a.page{
   gap: 5px;
 }
 
-/* Styling untuk setiap link */
 .pagination a {
   display: inline-block;
   padding: 8px 12px;
@@ -155,20 +153,17 @@ a.page{
   transition: background-color 0.3s, color 0.3s;
 }
 
-/* Styling untuk link yang aktif */
 .pagination a.active {
   background-color: #c71e07;
   color: white;
   border-color: #c71e07;
 }
 
-/* Styling untuk link ketika di hover */
 .pagination a:hover {
   background-color: #c71e07;
   color: white;
 }
 
-/* Styling untuk link prev dan next */
 .pagination .prev, .pagination .next {
   font-weight: bold;
   padding: 8px 12px;
@@ -181,7 +176,6 @@ a.page{
   background-color: #c71e07;
 }
 
-/* Disable link prev dan next jika sudah di halaman pertama atau terakhir */
 .pagination .prev[disabled], .pagination .next[disabled] {
   background-color: #f2f2f2;
   color: #ccc;
@@ -189,10 +183,9 @@ a.page{
   pointer-events: none;
 }
 
-/* Styling untuk kotak halaman aktif */
 span.active {
   background-color: #c71e07;
-  border-color: #007bff;
+  border-color: #c71e07;
   border-radius: 4px;
 }
 
@@ -258,7 +251,7 @@ span.active {
     background: #fbf5f0;
     border: #ff5722 3px solid;
     width: 300px;
-    height: 350px;
+    height: auto;
     border-radius: 10px;
     padding: 15px;
 }
@@ -284,6 +277,7 @@ span.active {
     object-fit: contain; /* Pastikan gambar tetap proporsional */
     border-radius: 5px;
     border: 1px solid #ccc;
+    cursor: pointer;
 }
 
 .detailText {

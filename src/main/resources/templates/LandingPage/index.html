@@ -16,9 +16,9 @@
             <a class="yurun">YuRun</a>
         </div>
         <div class="textNavbar">
-            <a class="home">Home</a>
+            <a class="page">Home</a>
             <a>About</a>
-            <a>Race</a>
+            <a th:href="@{/race}">Race</a>
         </div>
         <button class="button">
             <a class="buttonText" th:href="@{/login}">Join Now</a>
@@ -63,40 +63,42 @@
             <div class="list">
                 <div class="item">
                     <img class="vector-item" src="/css/LandingPage/vector2.svg"/>
-                    <a class="header-item">Be Healthy</a><br>
+                    <a class="header-item">Be One of Us</a><br>
                 </div>
-                <a class="text-item">Improve your physical fitness and well-being through regular running.</a>
+                <a class="text-item">Join a supportive community of like-minded runners and achieving goals together.</a>
             </div>
             <br>
             <div class="list">
                 <div class="item">
                     <img class="vector-item" src="/css/LandingPage/vector2.svg"/>
-                    <a class="header-item">Feel Free</a><br>
+                    <a class="header-item">Be Strong</a><br>
                 </div>
-                <a class="text-item">Experience the freedom of running outdoors and challenging yourself.</a>
+                <a class="text-item">Build resilience and mental toughness as you push your limits.</a>
             </div>
         </div>
     </div>
-    <div class="frame3">
-        <div class="left3">
-            <img class="image-3" src="/images/image-30.png"/>
+    <div class="frame-container">
+        <div class="frame3" th:each="race : ${listRace}">
+            <div class="left3">
+                <img class="image-3" src="/images/image-30.png"/>
+            </div>
+            <div class="right3">
+                <div class="right3-item1" th:text="${race.title}"></div>
+                <div class="right3-item2">
+                    <img class="icon3" src="/css/LandingPage/icon0.svg"/>
+                    <div class="text3" th:text="${#dates.format(race.start_date, 'd MMMM yyyy')}"></div>
+                </div>
+                <div class="right3-item2">
+                    <img class="icon3" src="/css/LandingPage/icon1.svg"/>
+                    <div class="text3" th:text="${race.time}"></div>
+                </div>
+                <div class="right3-item2">
+                    <img class="icon3" src="/css/LandingPage/vector5.svg"/>
+                    <div class="text3" th:text="${race.distance} + ' km'"></div>
+                </div>
+            </div>
         </div>
-        <div class="right3">
-            <div class="right3-item1">Title Running</div>
-            <div class="right3-item2">
-                <img class="icon3" src="/css/LandingPage/icon0.svg"/>
-                <div class="text3">1 January 2025</div>
-            </div>
-            <div class="right3-item2">
-                <img class="icon3" src="/css/LandingPage/icon1.svg"/>
-                <div class="text3">07.00</div>
-            </div>
-            <div class="right3-item2">
-                <img class="icon3" src="/css/LandingPage/vector5.svg"/>
-                <div class="text3">5 km</div>
-            </div>
-        </div>
-    </div>
+    </div>              
     <footer class="footer">
         <div class="content2">
             <div class="logo">

@@ -15,7 +15,7 @@
         </div>
         <div class="textNavbar">
             <a th:href="@{/member}">Home</a>
-            <a class="page" th:href="@{/member/activity}">My Activity</a>
+            <a class="home" th:href="@{/member/activity}">My Activity</a>
             <a th:href="@{/member/race}">Race</a>
             <a th:href="@{/member/progress}">Progress</a>
         </div>
@@ -41,7 +41,7 @@
             </div>            
             <div class="search">
                 <img class="search-bar" src="/css/Admin/Race/search0.svg"/>
-                <input type="text" name="filter" th:value="${filter}" placeholder="Search Title Activity" class="search-race" input=this.form.submit()/>
+                <input type="text" name="filter" th:value="${filter}" placeholder="Search Title Activity" class="search-race" onkeyup=this.form.submit()/>
             </div>
             <select class="dropdown" id="kindActivity" name="kindActivity" onchange="this.form.submit()">
                 <option th:value="null" th:selected="${kindActivity == 'null'}">All Kind Activity</option>
@@ -52,13 +52,16 @@
         </form>
         <a class="add" th:href="@{/member/addActivity}">+ Add Activity</a>
     </div>
+    <div class="contentBody" th:if="${activity == null or activity.isEmpty()}">
+        <p>No activities available at the moment.</p>
+    </div>
     <div class="contentBody">
         <div class="square" th:each="activity : ${activity}">
             <div class="kindText" th:text="${activity.kind}">Kind</div>
-            <div class="imageContainer">
-                <img th:src="${activity.path_pict != null ? '/upload/activity-member/' + activity.path_pict : '/upload/activity-member/null.jpg'}" 
+            <a class="imageContainer" th:href="@{/member/editActivity/{idActivity}(idActivity=${activity.id_activity})}">
+                <img th:src="${activity.path_pict != null ? '/upload/activity-member/' + activity.path_pict : '/upload/activity-member/null2.jpg'}" 
                      alt="Image" class="image">
-            </div>
+            </a>
             <div class="detailText">
                 <a>
                     <span class="title" th:text="${activity.title}"></span>
@@ -96,7 +99,6 @@
             <a th:href="@{/member/activity(page=${currentPage + 1}, entries=${entries}, filter=${filter}, kindActivity=${kindActivity})}"
                th:if="${currentPage < (totalEntries + entries - 1) / entries}" class="next">Next</a>
         </div>
-        
     </div>       
     <footer class="footer">
         <div class="content2">
