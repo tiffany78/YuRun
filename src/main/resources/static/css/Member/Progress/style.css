@@ -8,7 +8,7 @@ body {
 }
 .containerBody{
   display: grid;
-  grid-template-rows: 70px 80px 80px 1fr 1fr auto;
+  grid-template-rows: 70px 80px 80px auto 1fr auto;
   grid-template-columns: 1fr;
   grid-template-areas: 
       "navbar"
@@ -26,10 +26,10 @@ body {
 }    
 .navbar {
   grid-area: navbar;
-  position: fixed; /* Tetap di posisi atas */
-  top: 0; /* Pastikan di bagian paling atas */
-  left: 0; /* Mulai dari kiri layar */
-  width: 100%; /* Penuhi lebar layar */
+  position: fixed; 
+  top: 0; 
+  left: 0; 
+  width: 100%; 
   z-index: 1000; /* Letakkan di atas elemen lain */
   background: var(--background-color-primary, #ffffff); /* Pastikan ada warna latar */
   display: flex;
