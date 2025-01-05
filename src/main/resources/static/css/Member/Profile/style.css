@@ -8,7 +8,7 @@ body {
 }
 .containerBody{
   display: grid;
-  grid-template-rows: 70px 120px 80px auto 1fr auto;
+  grid-template-rows: 70px 80px 80px auto auto auto;
   grid-template-columns: 1fr;
   grid-template-areas: 
       "navbar"
@@ -26,10 +26,10 @@ body {
 }    
 .navbar {
   grid-area: navbar;
-  position: fixed; 
-  top: 0; 
-  left: 0; 
-  width: 100%; 
+  position: fixed; /* Tetap di posisi atas */
+  top: 0; /* Pastikan di bagian paling atas */
+  left: 0; /* Mulai dari kiri layar */
+  width: 100%; /* Penuhi lebar layar */
   z-index: 1000; /* Letakkan di atas elemen lain */
   background: var(--background-color-primary, #ffffff); /* Pastikan ada warna latar */
   display: flex;
@@ -69,133 +69,6 @@ color: var(--primary-color-500, #ff5722);
 font-weight: 1000;
 }
 
-.button{
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-family: "Roboto-SemiBold", sans-serif;
-  font-size: 16px;
-  line-height: 150%;
-  font-weight: 600;
-  column-gap: 20px;
-}
-.add {
-  background: #ff5722;
-  border-radius: 16px;
-  width: 179px;
-  height: 50px;
-  color: #ffffff;
-  text-align: left;
-  font-family: "Roboto-Regular", sans-serif;
-  font-size: 20px;
-  line-height: 16px;
-  font-weight: 400;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  text-decoration: none;
-}
-
-/* BAGIAN FILTER */
-.title {
-  font-weight: 600;
-  color: #7f190f;
-  font-size: larger;
-}
-
-.filter{
-  grid-area: filter;
-  display: grid;
-  grid-template-areas: 
-  "filter1 download"
-  "custom download"
-  "sort download";
-  grid-template-columns: 600px auto;
-  margin: 0 20px 0 20px;
-  height: 110px;
-  border-bottom: 2px solid #ff5722;
-  gap: 10px;
-}
-.filter1 {
-  grid-area: filter1;
-  display: flex;
-  flex-direction: row;
-  column-gap: 10px;
-}
-input[type="date"]{
-  font-family: "Roboto-Medium", sans-serif;
-}
-
-.filter-button {
-  background-color: #fdb19a;
-  width: 100px;
-  height: 25px;
-  border-radius: 5px;
-  border: none;
-  cursor: pointer;
-}
-.filter-button.active {
-  background-color: #ff6f37; /* Warna tombol aktif */
-  color: white; /* Ubah warna teks jika diperlukan */
-}
-
-.download {
-  grid-area: download;
-  background-color: #7f190f;
-  color: #ffffff;
-  font-weight: 550;
-  border-radius: 5px;
-  width: 180px;
-  height: 40px;
-  align-content: center;
-  align-self: center;
-  text-align: center;
-  cursor: pointer;
-}
-.disabled {
-  background-color: #d3d3d3; /* Warna abu-abu */
-  cursor: not-allowed; /* Cursor menjadi tanda larangan */
-  pointer-events: none; /* Menonaktifkan interaksi dengan tombol */
-}
-.custom {
-  grid-area: custom;
-}
-.sort {
-  grid-area: sort;
-}
-
-/* BAGIAN ACTIVITY */
-.activity {
-  grid-area: activity;
-  margin-left: 20px;
-}
-
-.recap {
-  display: flex;
-  flex-direction: row;
-  column-gap: 15px;
-  margin-top: 10px 0 10px 0;
-  column-gap: 30px;
-}
-
-.title2 {
-  font-weight: 600;
-  color: #141414;
-  font-size: large;
-}
-
-/* BAGIAN GRAFIK */
-.graph {
-  grid-area: graph;
-  margin-left: 20px;
-}
-
-#container {
-  height: 300px;
-  width: 80%;
-  margin-top: 10px;
-}
-
 /* BAGIAN CONTENT */
 .contentBody{
   grid-area: contentBody;
@@ -219,7 +92,7 @@ input[type="date"]{
   color: inherit;
 }
 
-.table_race {
+.tabel-biodata {
   width: 100%;
   /* margin: 20px auto; */
   text-align: center;
@@ -229,24 +102,25 @@ input[type="date"]{
   border-radius: 10px;
   margin: 10px 0 20px 0;
 }
-thead th {
+th {
   background-color: #F5F5F5;
   padding: 10px;
   text-align: center;
   font-weight: bold;
   color: #ff5722;
 }
-thead th:first-child {
+th:first-child {
   border-radius: 10px 0 0 10px;
 }
 
-thead th:last-child {
+th:last-child {
   border-radius: 0 10px 10px 0;
 }
-.table_race td {
+.tabel-biodata td {
   padding: 10px;
   text-align: center;
   border: 1px solid #F5F5F5;
+  background-color: #f8dfd1;
 }
 .table_race tbody td:first-child {
   border-radius: 10px 0 0 10px; 
@@ -264,13 +138,12 @@ th a img {
 /* BAGIAN FOOTER */
 .footer{
   grid-area: footer;
-    background: var(--background-color-primary, #ffffff);
-    padding: 10px 20px;
-    display: flex;
-    flex-direction: column;
-    height: 110px;
-    min-height: 110px;
-    margin-top: 20px;
+  background: var(--background-color-primary, #ffffff);
+  padding: 10px 20px; /* Berikan sedikit padding */
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Tambahkan bayangan untuk kesan floating */
+  display: flex;
+  flex-direction: column;
+  height: 110px;
 }
 .content2 {
   display: flex;

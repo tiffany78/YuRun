@@ -1,47 +1,59 @@
 $(document).ready(function () {
-    // Ambil parameter filterType, startDate, dan endDate dari URL
+    // Ambil parameter filterType, startDate, endDate, dan distanceSort dari URL
     const params = new URLSearchParams(window.location.search);
-    const filterType = params.get('filterType') || 'All';
+    let filterType = params.get('filterType') || 'All';
     const startDate = params.get('startDate');
     const endDate = params.get('endDate');
+    let distanceSort = params.get('distanceSort') || 'null';
 
-    // Buat URL untuk request ke backend
-    const url = `/getGraphProgress?filterType=${filterType}${startDate ? `&startDate=${startDate}` : ''}${endDate ? `&endDate=${endDate}` : ''}`;
+    // Function untuk update grafik berdasarkan URL
+    function updateChart() {
+        const url = `/getGraphProgres?filterType=${filterType}&distanceSort=${distanceSort}${startDate ? `&startDate=${startDate}` : ''}${endDate ? `&endDate=${endDate}` : ''}`;
 
-    // Ambil data dari endpoint Spring Boot
-    $.getJSON(url, function (response) {
-        // Inisialisasi grafik setelah data diterima
-        Highcharts.chart('container', {
-            chart: {
-                type: 'areaspline',
-                backgroundColor: null
-            },
-            title: {
-                text: null
-            },
-            xAxis: {
-                categories: response.categories,
-                crosshair: true,
-                tickmarkPlacement: 'on'
-            },
-            yAxis: {
-                min: 0,
+        // Ambil data dari endpoint Spring Boot
+        $.getJSON(url, function (response) {
+            // Inisialisasi grafik setelah data diterima
+            Highcharts.chart('container', {
+                chart: {
+                    type: 'areaspline',
+                    backgroundColor: null
+                },
                 title: {
-                    text: 'Distance (km)' 
+                    text: null
+                },
+                xAxis: {
+                    categories: response.categories,
+                    crosshair: true,
+                    tickmarkPlacement: 'on'
+                },
+                yAxis: {
+                    min: 0,
+                    title: {
+                        text: 'Distance (km)' 
+                    }
+                },
+                legend: {
+                    enabled: false // Menonaktifkan legenda
+                },
+                series: [{
+                    name: 'Distance (km)',
+                    data: response.data, // Data dari backend
+                    color: 'rgba(255, 111, 55, 0.5)'
+                }],
+                exporting: {
+                    enabled: false
                 }
-            },
-            legend: {
-                enabled: false // Menonaktifkan legenda
-            },
-            series: [{
-                name: 'Distance (km)',
-                data: response.data, // Data dari backend
-                color: 'rgba(255, 111, 55, 0.5)'
-            }],
-            exporting: {
-                enabled: false
-            }
+            });
         });
+    }
+
+    // Panggil updateChart untuk menggambar grafik pertama kali
+    updateChart();
+
+    // Menangani perubahan distanceSort dari dropdown
+    $('#id').change(function() {
+        distanceSort = $(this).val(); // Ambil nilai dari dropdown
+        updateChart(); // Update grafik setelah perubahan
     });
 });
 

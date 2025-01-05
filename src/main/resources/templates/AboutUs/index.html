@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>About Us</title>
+    <link rel="stylesheet" href="/css/LandingPage/about.css">
+    <link rel="stylesheet" href="/css/vars.css">
+    <script src="/js/LandingPage/about.js" defer></script>
+</head>
+<body class="container">
+    <nav class="navbar">
+        <div class="logo">
+            <img src="/css/LandingPage/logo1.svg">
+            <a class="yurun">YuRun</a>
+        </div>
+        <div class="textNavbar">
+            <a th:href="@{/}">Home</a>
+            <a class="page" th:href="@{/AboutUs}">About</a>
+            <a th:href="@{/race}">Race</a>
+        </div>
+        <button class="button">
+            <a class="buttonText" th:href="@{/login}">Join Now</a>
+        </button>
+    </nav>
+
+    <div class="our-teams-container">
+        <h2>Our Teams</h2>
+        <p>Say hello to a few members of our leadership team – and visit our Comparably page to meet the whole crew.</p>
+        <div class="team-cards">
+            <!-- Team Member 1 -->
+            <div class="team-card">
+                <img src="/images/rayhan.jpg" alt="Alice Johnson">
+                <h3>Tiffany Tasya</h3>
+                <p color="">Project Manager with 8+ years of experience in managing software development projects.</p>
+            </div>
+            <!-- Team Member 2 -->
+            <div class="team-card">
+                <img src="/images/rayhan.jpg" alt="Bob Smith">
+                <h3>Fernando Indrawan</h3>
+                <p>Senior Developer specializing in backend systems and API integrations.</p>
+            </div>
+            <!-- Team Member 3 -->
+            <div class="team-card">
+                <img src="/images/rayhan.jpg" alt="Charlie Brown">
+                <h3>Rayhan Adji</h3>
+                <p>UI/UX Designer focused on creating intuitive user interfaces and experiences.</p>
+            </div>
+            <!-- Team Member 4 -->
+            <div class="team-card">
+                <img src="/images/clarence.jpg" alt="Diana Green">
+                <h3>Clarence Ferdinand</h3>
+                <p>QA Engineer ensuring high-quality releases with comprehensive testing.</p>
+            </div>
+        </div>
+    </div>
+    <div class="slider-container">
+        <h4 class="header">Review from our member</h4>
+        <div class="slider-content">
+            <button class="nav-button" onclick="prevSlide()">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
+                </svg>
+            </button>
+
+            <div class="member-card">
+                <div class="image-container">
+                    <img src="" alt="Team member" class="member-image"> <!-- Gambar akan diubah lewat JavaScript -->
+                    <div class="accent-block"></div>
+                    <div class="progress-bar"></div>
+                </div>
+                <div class="member-info">
+                    <h3 class="member-name">John Doe</h3>
+                    <p class="member-title">This app transformed my running experience. I can now track my progress and
+                        set new goals easily.</p>
+                </div>
+            </div>
+
+            <button class="nav-button" onclick="nextSlide()">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+                </svg>
+            </button>
+        </div>
+
+        <div class="controls-container">
+            <div class="dots-container">
+                <div class="dot active"></div>
+                <div class="dot"></div>
+                <div class="dot"></div>
+                <div class="dot"></div>
+            </div>
+            <button class="play-pause-button" onclick="toggleAutoplay()">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"
+                    class="pause-icon">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                        d="M10 9v6m4-6v6m7-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+                </svg>
+            </button>
+        </div>
+    </div>
+    <footer class="footer">
+        <div class="content2">
+            <div class="logo">
+                <img class="logo3" src="/css/LandingPage/logo3.svg" />
+                <div class="fit-life-studio">YuRun</div>
+            </div>
+            <div class="links">
+                <div class="about2">About</div>
+                <div class="contact">Contact</div>
+            </div>
+            <img class="social" src="/css/LandingPage/social0.svg" />
+        </div>
+        <div class="divider"></div>
+        <div class="credits">
+            <div class="row">
+                <div class="text-1">© 2024 Shipon. All rights reserved.</div>
+                <div class="text-2">Privacy Policy</div>
+                <div class="text-2">Terms of Service</div>
+                <div class="text-2">Cookies Settings</div>
+            </div>
+        </div>
+    </footer>
+</body>
+
+</html>
