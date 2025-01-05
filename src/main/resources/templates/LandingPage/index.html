@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org" lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,8 +8,29 @@
     <link rel="stylesheet" href="/css/vars.css">
     <link rel="stylesheet" href="/css/LandingPage/styles.css">
     <script src="/js/LandingPage/script.js" defer></script>
+    <style>
+        .textNavbar {
+            display: flex;
+            gap: 30px;
+            color: var(--neutral-colors-950, #141414);
+            font-family: "Roboto-Medium", sans-serif;
+            font-size: 16px;
+            font-weight: 500;
+        }
+
+        .textNavbar a {
+            text-decoration: none;
+            color: var(--neutral-colors-950, #141414);
+        }
+
+        a.page {
+            color: var(--primary-color-500, #ff5722);
+            font-weight: 1000;
+        }
+    </style>
 
 </head>
+
 <body class="container">
     <nav class="navbar">
         <div class="logo">
@@ -16,9 +38,9 @@
             <a class="yurun">YuRun</a>
         </div>
         <div class="textNavbar">
-            <a class="home">Home</a>
-            <a>About</a>
-            <a>Race</a>
+            <a class="page" th:href="@{/}">Home</a>
+            <a th:href="@{/AboutUs}">About</a>
+            <a th:href="@{/login}">Race</a>
         </div>
         <button class="button">
             <a class="buttonText" th:href="@{/login}">Join Now</a>
@@ -31,10 +53,11 @@
             <div class="a3">
                 Track Your Strides, Achieve Your Goals.
             </div>
-            <a class="getStarted" th:href="@{/login}">Get Started <img class="chevron-right" src="/css/LandingPage/chevron-right0.svg" /></a>
+            <a class="getStarted" th:href="@{/login}">Get Started <img class="chevron-right"
+                    src="/css/LandingPage/chevron-right0.svg" /></a>
         </div>
         <div class="right">
-            <img class="image" src="/images/image-10.png"/>
+            <img class="image" src="/images/image-10.png" />
         </div>
         <div class="ellipse-4"></div>
     </div>
@@ -42,7 +65,7 @@
         <div class="left2">
             <div class="list">
                 <div class="item">
-                    <img class="vector-item" src="/css/LandingPage/vector2.svg"/>
+                    <img class="vector-item" src="/css/LandingPage/vector2.svg" />
                     <a class="header-item">Be Healthy</a><br>
                 </div>
                 <a class="text-item">Improve your physical fitness and well-being through regular running.</a>
@@ -50,7 +73,7 @@
             <br>
             <div class="list">
                 <div class="item">
-                    <img class="vector-item" src="/css/LandingPage/vector2.svg"/>
+                    <img class="vector-item" src="/css/LandingPage/vector2.svg" />
                     <a class="header-item">Feel Free</a><br>
                 </div>
                 <a class="text-item">Experience the freedom of running outdoors and challenging yourself.</a>
@@ -62,15 +85,16 @@
         <div class="right2">
             <div class="list">
                 <div class="item">
-                    <img class="vector-item" src="/css/LandingPage/vector2.svg"/>
+                    <img class="vector-item" src="/css/LandingPage/vector2.svg" />
                     <a class="header-item">Be One of Us</a><br>
                 </div>
-                <a class="text-item">Join a supportive community of like-minded runners and achieving goals together.</a>
+                <a class="text-item">Join a supportive community of like-minded runners and achieving goals
+                    together.</a>
             </div>
             <br>
             <div class="list">
                 <div class="item">
-                    <img class="vector-item" src="/css/LandingPage/vector2.svg"/>
+                    <img class="vector-item" src="/css/LandingPage/vector2.svg" />
                     <a class="header-item">Be Strong</a><br>
                 </div>
                 <a class="text-item">Build resilience and mental toughness as you push your limits.</a>
@@ -80,46 +104,47 @@
     <div class="frame-container">
         <div class="frame3" th:each="race : ${listRace}">
             <div class="left3">
-                <img class="image-3" src="/images/image-30.png"/>
+                <img class="image-3" src="/images/image-30.png" />
             </div>
             <div class="right3">
                 <div class="right3-item1" th:text="${race.title}"></div>
                 <div class="right3-item2">
-                    <img class="icon3" src="/css/LandingPage/icon0.svg"/>
+                    <img class="icon3" src="/css/LandingPage/icon0.svg" />
                     <div class="text3" th:text="${#dates.format(race.start_date, 'd MMMM yyyy')}"></div>
                 </div>
                 <div class="right3-item2">
-                    <img class="icon3" src="/css/LandingPage/icon1.svg"/>
+                    <img class="icon3" src="/css/LandingPage/icon1.svg" />
                     <div class="text3" th:text="${race.time}"></div>
                 </div>
                 <div class="right3-item2">
-                    <img class="icon3" src="/css/LandingPage/vector5.svg"/>
+                    <img class="icon3" src="/css/LandingPage/vector5.svg" />
                     <div class="text3" th:text="${race.distance} + ' km'"></div>
                 </div>
             </div>
         </div>
-    </div>              
+    </div>
     <footer class="footer">
         <div class="content2">
             <div class="logo">
-              <img class="logo3" src="/css/LandingPage/logo3.svg" />
-              <div class="fit-life-studio">YuRun</div>
+                <img class="logo3" src="/css/LandingPage/logo3.svg" />
+                <div class="fit-life-studio">YuRun</div>
             </div>
             <div class="links">
-              <div class="about2">About</div>
-              <div class="contact">Contact</div>
+                <a class="about2" th:href="@{/AboutUs}">About</a>
+                <div class="contact">Contact</div>
             </div>
             <img class="social" src="/css/LandingPage/social0.svg" />
         </div>
         <div class="divider"></div>
         <div class="credits">
             <div class="row">
-              <div class="text-1">© 2024 Shipon. All rights reserved.</div>
-              <div class="text-2">Privacy Policy</div>
-              <div class="text-3">Terms of Service</div>
-              <div class="text-4">Cookies Settings</div>
+                <div class="text-1">© 2024 Shipon. All rights reserved.</div>
+                <div class="text-2">Privacy Policy</div>
+                <div class="text-3">Terms of Service</div>
+                <div class="text-4">Cookies Settings</div>
             </div>
-          </div>
+        </div>
     </footer>
 </body>
+
 </html>

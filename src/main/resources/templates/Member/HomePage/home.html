@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -15,6 +16,7 @@
     <script src="/js/Member/HomePage.js" defer></script>
 
 </head>
+
 <body class="containerBody">
     <nav class="navbar">
         <div class="logo">
@@ -28,11 +30,11 @@
             <a th:href="@{/member/progress}">Progress</a>
         </div>
         <div class="button">
-            <a>
-                <img src="/css/Admin/HomePage/account-circle0.svg"/>
+            <a th:href="@{/member/profile}">
+                <img src="/css/Admin/HomePage/account-circle0.svg" />
             </a>
             <a th:href="@{/logout}">
-                <img src="/css/Admin/HomePage/logout.svg"/>
+                <img src="/css/Admin/HomePage/logout.svg" />
             </a>
         </div>
     </nav>
@@ -107,7 +109,7 @@
                 </div>
             </div>
         </div>
-    </div>    
+    </div>
     <div class="activity" th:if="${activity != null and !activity.isEmpty()}">
         <div class="text3">
             <a href="#">New Activities</a>
@@ -117,12 +119,12 @@
         <table class="table_race">
             <thead>
                 <tr>
-                  <th>Title</th>
-                  <th>Kind</th>
-                  <th>Distance</th>
-                  <th>Duration</th>
-                  <th>Date</th>
-                  <th>Time</th>
+                    <th>Title</th>
+                    <th>Kind</th>
+                    <th>Distance</th>
+                    <th>Duration</th>
+                    <th>Date</th>
+                    <th>Time</th>
                 </tr>
             </thead>
             <tbody>
@@ -133,31 +135,32 @@
                     <td th:text="${activity.duration}"></td>
                     <td th:text="${#dates.format(activity.date, 'dd/MM/yyyy')}"></td>
                     <td th:text="${activity.time}"></td>
-                </tr>                
+                </tr>
             </tbody>
         </table>
     </div>
     <footer class="footer">
         <div class="content2">
             <div class="logo">
-              <img class="logo3" src="/css/LandingPage/logo3.svg" />
-              <div class="fit-life-studio">YuRun</div>
+                <img class="logo3" src="/css/LandingPage/logo3.svg" />
+                <div class="fit-life-studio">YuRun</div>
             </div>
             <div class="links">
-              <div class="about2">About</div>
-              <div class="contact">Contact</div>
+                <div class="about2">About</div>
+                <div class="contact">Contact</div>
             </div>
             <img class="social" src="/css/LandingPage/social0.svg" />
         </div>
         <div class="divider"></div>
         <div class="credits">
             <div class="row">
-              <div class="text-1">© 2024 Shipon. All rights reserved.</div>
-              <div class="text-2">Privacy Policy</div>
-              <div class="text-2">Terms of Service</div>
-              <div class="text-2">Cookies Settings</div>
+                <div class="text-1">© 2024 Shipon. All rights reserved.</div>
+                <div class="text-2">Privacy Policy</div>
+                <div class="text-2">Terms of Service</div>
+                <div class="text-2">Cookies Settings</div>
             </div>
-          </div>
+        </div>
     </footer>
 </body>
+
 </html>
