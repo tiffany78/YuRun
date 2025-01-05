@@ -1,0 +1,813 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            padding: 0;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            padding-top: 80px;
+        }
+
+        .container {
+            display: grid;
+            grid-template-rows: auto auto auto auto auto;
+            grid-template-columns: auto;
+            grid-template-areas:
+                "navbar"
+                "frame1"
+                "frame-container"
+                "frame2"
+                "footer";
+            min-height: 100vh;
+            overflow: auto;
+            row-gap: 50px;
+        }
+
+        .navbar {
+            position: fixed;
+            /* Tetap di posisi atas */
+            top: 0;
+            /* Pastikan di bagian paling atas */
+            left: 0;
+            /* Mulai dari kiri layar */
+            width: 100%;
+            /* Penuhi lebar layar */
+            z-index: 1000;
+            /* Letakkan di atas elemen lain */
+            background: var(--background-color-primary, #ffffff);
+            /* Pastikan ada warna latar */
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            padding: 10px 20px;
+            /* Berikan sedikit padding */
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            /* Tambahkan bayangan untuk kesan floating */
+        }
+
+        .logo {
+            display: flex;
+            width: 220px;
+        }
+
+        .yurun {
+            display: flex;
+            color: var(--neutral-colors-950, #141414);
+            font-family: "Roboto-Medium", sans-serif;
+            font-size: 21px;
+            line-height: 120%;
+            font-weight: 500;
+            align-items: center;
+        }
+
+        .textNavbar {
+            display: flex;
+            gap: 20px;
+            color: var(--neutral-colors-950, #141414);
+            font-family: "Roboto-Medium", sans-serif;
+            font-size: 16px;
+            font-weight: 500;
+        }
+
+        /* .home {
+            color: var(--primary-color-500, #ff5722);
+            font-weight: 1000;
+        } */
+
+        .button {
+            background: var(--primary-color-500, #ff5722);
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            padding: 8px 24px 8px 24px;
+            font-family: "Roboto-Medium", sans-serif;
+            font-size: 16px;
+            line-height: 150%;
+            font-weight: 600;
+            border-color: #ff5722;
+        }
+
+        .buttonText {
+            text-decoration: none;
+            color: white;
+        }
+
+        /* DEVELOPER */
+        .our-teams-container {
+            text-align: center;
+            font-family: "Roboto-Medium", sans-serif;
+            margin-bottom: 40px;
+        }
+
+        .Header-Review {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+        .Header-Review h4 {
+            font-size: 2rem;
+            font-weight: bold;
+            color: #333;
+        }
+
+        .our-teams-container h2 {
+            text-align: center;
+            font-size: 2rem;
+            font-weight: bold;
+            color: #333;
+        }
+
+
+        .our-teams-container p {
+            font-size: 1rem;
+            color: #555;
+            margin-top: 10px;
+            margin-bottom: 30px;
+        }
+
+        .team-cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            justify-content: center;
+        }
+
+        .team-card {
+            background-color: #f9f9f9;
+            padding: 15px;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .team-card:hover {
+            transform: scale(1.05);
+            box-shadow: 0 8px 12px rgba(0, 0, 0, 0.15);
+        }
+
+        .team-card img {
+            width: 100px;
+            height: 100px;
+            object-fit: cover;
+            border-radius: 50%;
+            margin-bottom: 15px;
+            border: 3px solid #ddd;
+        }
+
+        .team-card h3 {
+            font-size: 1.2rem;
+            font-weight: 600;
+            color: #333;
+            margin-bottom: 10px;
+        }
+
+        .team-card p {
+            font-size: 0.9rem;
+            color: #555;
+            margin: 0;
+        }
+
+        /* SLIDER */
+        .slider-container {
+            width: 100%;
+            max-width: 800px;
+            background: white;
+            border-radius: 12px;
+            padding: 32px;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+            position: relative;
+            display: flex;
+            justify-content: center;
+            /* Center horizontally */
+            align-items: center;
+            /* Center vertically */
+            margin: 0 auto;
+            /* Center the container itself */
+            flex-direction: column;
+        }
+
+
+        .slider-content {
+            font-family: "Roboto-Medium", sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+        }
+
+        /* .slider-content {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 24px;
+        } */
+
+        .member-card {
+            flex: 1;
+            display: flex;
+            align-items: center;
+            gap: 30px;
+            opacity: 1;
+            transform: translateX(0);
+            transition: all 0.5s ease;
+        }
+
+        .member-card.slide-out-left {
+            transform: translateX(-100%);
+            opacity: 0;
+        }
+
+        .member-card.slide-out-right {
+            transform: translateX(100%);
+            opacity: 0;
+        }
+
+        .image-container {
+            position: relative;
+            width: 200px;
+            height: 200px;
+            flex-shrink: 0;
+            background-color: #e5e7eb;
+            border-radius: 8px;
+            overflow: hidden;
+        }
+
+        .member-image {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            background-color: #e5e7eb;
+        }
+
+        .accent-block {
+            position: absolute;
+            top: 16px;
+            right: -8px;
+            width: 32px;
+            height: 96px;
+            background-color: #ff4500;
+            z-index: 1;
+        }
+
+        .member-info {
+            flex: 1;
+        }
+
+        .member-name {
+            font-size: 24px;
+            font-weight: bold;
+            margin-bottom: 8px;
+        }
+
+        .member-title {
+            color: #666;
+            font-size: 16px;
+        }
+
+        .nav-button {
+            background: none;
+            border: none;
+            cursor: pointer;
+            padding: 8px;
+            border-radius: 50%;
+            transition: background-color 0.3s;
+            z-index: 2;
+        }
+
+        .nav-button:hover {
+            background-color: #f0f0f0;
+        }
+
+        .nav-button svg {
+            width: 24px;
+            height: 24px;
+        }
+
+        .controls-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            position: absolute;
+            bottom: 0;
+            width: 100%;
+        }
+
+        .dots-container {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            margin-top: 10px;
+            /* Ensure some spacing between slider content and dots */
+        }
+
+        .dot {
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            background-color: gray;
+            transition: background-color 0.3s;
+        }
+
+        .dot.active {
+            background-color: #2563eb;
+        }
+
+
+
+        .play-pause-button {
+            background: none;
+            border: none;
+            cursor: pointer;
+            padding: 8px;
+            border-radius: 50%;
+            transition: background-color 0.3s;
+        }
+
+        .play-pause-button:hover {
+            background-color: #f0f0f0;
+        }
+
+        .progress-bar {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            height: 4px;
+            background-color: #2563eb;
+            width: 0%;
+            transition: width linear;
+        }
+
+        @media (max-width: 640px) {
+            .slider-container {
+                padding: 16px;
+            }
+
+            .image-container {
+                width: 140px;
+                height: 140px;
+            }
+
+            .member-name {
+                font-size: 20px;
+            }
+
+            .member-title {
+                font-size: 14px;
+            }
+        }
+
+        /* FOOTER */
+        .footer {
+            grid-area: footer;
+            background: var(--background-color-primary, #ffffff);
+            padding: 10px 20px;
+            /* Berikan sedikit padding */
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            /* Tambahkan bayangan untuk kesan floating */
+            display: flex;
+            flex-direction: column;
+        }
+
+        .content2 {
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            justify-content: space-between;
+            align-self: stretch;
+            flex-shrink: 0;
+            position: relative;
+        }
+
+        .logo3 {
+            flex-shrink: 0;
+            width: 22.48px;
+            height: 25px;
+            position: relative;
+            overflow: visible;
+        }
+
+        .fit-life-studio {
+            color: var(--primary-color-500, #ff5722);
+            text-align: left;
+            font-family: "Roboto-Medium", sans-serif;
+            font-size: 21px;
+            line-height: 120%;
+            font-weight: 600;
+            position: relative;
+            width: 200px;
+        }
+
+        .links {
+            display: flex;
+            flex-direction: row;
+            gap: 40px;
+            align-items: flex-start;
+            justify-content: flex-start;
+            flex-shrink: 0;
+            position: relative;
+        }
+
+        .about2 {
+            color: var(--neutral-colors-900, #3d3d3d);
+            text-align: left;
+            font-family: "Roboto-Medium", sans-serif;
+            font-size: 16px;
+            line-height: 150%;
+            font-weight: 500;
+            position: relative;
+        }
+
+        .contact {
+            color: var(--neutral-colors-900, #3d3d3d);
+            text-align: left;
+            font-family: "Roboto-Medium", sans-serif;
+            font-size: 16px;
+            line-height: 150%;
+            font-weight: 500;
+            position: relative;
+        }
+
+        .social {
+            display: flex;
+            flex-direction: row;
+            gap: 12px;
+            align-items: center;
+            justify-content: flex-end;
+            flex-shrink: 0;
+            width: 171px;
+            height: auto;
+            position: relative;
+            overflow: visible;
+        }
+
+        .divider {
+            background: var(--neutral-colors-500, #6d6d6d);
+            border-style: solid;
+            border-color: var(--neutral-colors-800, #454545);
+            border-width: 1px;
+            align-self: stretch;
+            flex-shrink: 0;
+            height: 1px;
+            margin: 20px 0;
+        }
+
+        .credits {
+            display: flex;
+            flex-direction: column;
+            gap: 32px;
+            align-items: center;
+            justify-content: flex-start;
+            align-self: stretch;
+            flex-shrink: 0;
+            position: relative;
+        }
+
+        .row {
+            display: flex;
+            flex-direction: row;
+            gap: 24px;
+            align-items: flex-start;
+            justify-content: flex-start;
+            flex-shrink: 0;
+            position: relative;
+        }
+
+        .text-1 {
+            color: var(--neutral-colors-900, #3d3d3d);
+            text-align: left;
+            font-family: "Roboto-Medium", sans-serif;
+            font-size: 14px;
+            line-height: 150%;
+            font-weight: 400;
+            position: relative;
+        }
+
+        .text-2 {
+            color: var(--neutral-colors-900, #3d3d3d);
+            text-align: left;
+            font-family: var(--text-small-link-font-family, "Roboto-Medium", sans-serif);
+            font-size: var(--text-small-link-font-size, 14px);
+            line-height: var(--text-small-link-line-height, 150%);
+            font-weight: var(--text-small-link-font-weight, 400);
+            text-decoration: underline;
+            position: relative;
+        }
+
+        .text-3 {
+            color: var(--neutral-colors-900, #3d3d3d);
+            text-align: left;
+            font-family: var(--text-small-link-font-family, "Roboto-Medium", sans-serif);
+            font-size: var(--text-small-link-font-size, 14px);
+            line-height: var(--text-small-link-line-height, 150%);
+            font-weight: var(--text-small-link-font-weight, 400);
+            text-decoration: underline;
+            position: relative;
+        }
+
+        .text-4 {
+            color: var(--neutral-colors-900, #3d3d3d);
+            text-align: left;
+            font-family: var(--text-small-link-font-family, "Roboto-Medium", sans-serif);
+            font-size: var(--text-small-link-font-size, 14px);
+            line-height: var(--text-small-link-line-height, 150%);
+            font-weight: var(--text-small-link-font-weight, 400);
+            text-decoration: underline;
+            position: relative;
+        }
+
+        .textNavbar {
+            display: flex;
+            gap: 30px;
+            color: var(--neutral-colors-950, #141414);
+            font-family: "Roboto-Medium", sans-serif;
+            font-size: 16px;
+            font-weight: 500;
+        }
+
+        .textNavbar a {
+            text-decoration: none;
+            color: var(--neutral-colors-950, #141414);
+        }
+
+        a.page {
+            color: var(--primary-color-500, #ff5722);
+            font-weight: 1000;
+        }
+    </style>
+</head>
+
+<body class="container">
+    <nav class="navbar">
+        <div class="logo">
+            <img src="/css/LandingPage/logo1.svg">
+            <a class="yurun">YuRun</a>
+        </div>
+        <div class="textNavbar">
+            <a th:href="@{/}">Home</a>
+            <a class="page" th:href="@{/AboutUs}">About</a>
+            <a th:href="@{/login}">Race</a>
+        </div>
+        <button class="button">
+            <a class="buttonText" th:href="@{/login}">Join Now</a>
+        </button>
+    </nav>
+
+    <div class="our-teams-container">
+        <h2>Our Teams</h2>
+        <p>Say hello to a few members of our leadership team – and visit our Comparably page to meet the whole crew.</p>
+        <div class="team-cards">
+            <!-- Team Member 1 -->
+            <div class="team-card">
+                <img src="/images/rayhan.jpg" alt="Alice Johnson">
+                <h3>Tiffany Tasya</h3>
+                <p color="">Project Manager with 8+ years of experience in managing software development projects.</p>
+            </div>
+            <!-- Team Member 2 -->
+            <div class="team-card">
+                <img src="/images/rayhan.jpg" alt="Bob Smith">
+                <h3>Fernando Indrawan</h3>
+                <p>Senior Developer specializing in backend systems and API integrations.</p>
+            </div>
+            <!-- Team Member 3 -->
+            <div class="team-card">
+                <img src="/images/rayhan.jpg" alt="Charlie Brown">
+                <h3>Rayhan Adji</h3>
+                <p>UI/UX Designer focused on creating intuitive user interfaces and experiences.</p>
+            </div>
+            <!-- Team Member 4 -->
+            <div class="team-card">
+                <img src="/images/clarence.jpg" alt="Diana Green">
+                <h3>Clarence Ferdinand</h3>
+                <p>QA Engineer ensuring high-quality releases with comprehensive testing.</p>
+            </div>
+        </div>
+    </div>
+    <div class="Header-Review">
+        <h4>Review from our member</h4>
+    </div>
+
+    <div class="slider-container">
+        <div class="slider-content">
+            <button class="nav-button" onclick="prevSlide()">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
+                </svg>
+            </button>
+
+            <div class="member-card">
+                <div class="image-container">
+                    <img src="" alt="Team member" class="member-image"> <!-- Gambar akan diubah lewat JavaScript -->
+                    <div class="accent-block"></div>
+                    <div class="progress-bar"></div>
+                </div>
+                <div class="member-info">
+                    <h3 class="member-name">John Doe</h3>
+                    <p class="member-title">This app transformed my running experience. I can now track my progress and
+                        set new goals easily.</p>
+                </div>
+            </div>
+
+            <button class="nav-button" onclick="nextSlide()">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+                </svg>
+            </button>
+        </div>
+
+        <div class="controls-container">
+            <div class="dots-container">
+                <div class="dot active"></div>
+                <div class="dot"></div>
+                <div class="dot"></div>
+                <div class="dot"></div>
+            </div>
+            <button class="play-pause-button" onclick="toggleAutoplay()">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"
+                    class="pause-icon">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                        d="M10 9v6m4-6v6m7-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+                </svg>
+            </button>
+        </div>
+    </div>
+
+    <script>
+        const teamMembers = [
+            {
+                name: "John Doe",
+                title: "This app transformed my running experience. I can now track my progress and set new goals easily.",
+                color: "#ff4500",
+                image: "/images/lebron.jpg" // Menambahkan URL gambar untuk John
+            },
+            {
+                name: "Jane Smith",
+                title: "The personalized training plans helped me prepare for my first marathon. Highly recommend it!",
+                color: "#2563eb",
+                image: "/images/jane.jpg" // Menambahkan URL gambar untuk Jane
+            },
+            {
+                name: "Alice Johnson",
+                title: "The personalized plans and motivating features have made my fitness journey enjoyable and rewarding!",
+                color: "#059669",
+                image: "/images/alice.jpg" // Menambahkan URL gambar untuk Alice
+            },
+            {
+                name: "Michael Brown",
+                title: "I enjoy tracking my daily runs and seeing my progress over time. A great app for runners!",
+                color: "#ff4500",
+                image: "/images/kobe.jpg" // Menambahkan URL gambar untuk Michael
+            }
+        ];
+
+        let currentIndex = 0;
+        let isAnimating = false;
+        let autoplayInterval;
+        let isAutoplayEnabled = true;
+        const slideInterval = 5000; // 5 seconds per slide
+
+        function updateProgressBar() {
+            const progressBar = document.querySelector('.progress-bar');
+            progressBar.style.width = '0%';
+            if (isAutoplayEnabled) {
+                progressBar.style.transition = `width ${slideInterval}ms linear`;
+                setTimeout(() => {
+                    progressBar.style.width = '100%';
+                }, 50);
+            }
+        }
+
+        function updateMemberCard(direction) {
+            const memberCard = document.querySelector('.member-card');
+            const nameElement = document.querySelector('.member-name');
+            const titleElement = document.querySelector('.member-title');
+            const accentBlock = document.querySelector('.accent-block');
+            const dots = document.querySelectorAll('.dot');
+            const progressBar = document.querySelector('.progress-bar');
+            const memberImage = document.querySelector('.member-image'); // Menambahkan selector untuk gambar
+
+            memberCard.classList.add(`slide-out-${direction}`);
+            progressBar.style.transition = 'none';
+            progressBar.style.width = '0%';
+
+            setTimeout(() => {
+                // Memperbarui informasi anggota
+                nameElement.textContent = teamMembers[currentIndex].name;
+                titleElement.textContent = teamMembers[currentIndex].title;
+                accentBlock.style.backgroundColor = teamMembers[currentIndex].color;
+
+                // Memperbarui gambar anggota
+                memberImage.src = teamMembers[currentIndex].image; // Mengubah gambar anggota
+
+                dots.forEach((dot, index) => {
+                    dot.classList.toggle('active', index === currentIndex);
+                });
+
+                memberCard.classList.remove(`slide-out-${direction}`);
+                isAnimating = false;
+                updateProgressBar();
+            }, 500);
+        }
+
+
+        function nextSlide() {
+            if (isAnimating) return;
+            isAnimating = true;
+            currentIndex = (currentIndex + 1) % teamMembers.length;
+            updateMemberCard('left');
+        }
+
+        function prevSlide() {
+            if (isAnimating) return;
+            isAnimating = true;
+            currentIndex = (currentIndex - 1 + teamMembers.length) % teamMembers.length;
+            updateMemberCard('right');
+        }
+
+        function startAutoplay() {
+            if (!autoplayInterval) {
+                autoplayInterval = setInterval(nextSlide, slideInterval);
+                updateProgressBar();
+            }
+        }
+
+        function stopAutoplay() {
+            if (autoplayInterval) {
+                clearInterval(autoplayInterval);
+                autoplayInterval = null;
+                const progressBar = document.querySelector('.progress-bar');
+                progressBar.style.transition = 'none';
+                progressBar.style.width = '0%';
+            }
+        }
+
+        function toggleAutoplay() {
+            const playPauseButton = document.querySelector('.play-pause-button');
+            isAutoplayEnabled = !isAutoplayEnabled;
+
+            if (isAutoplayEnabled) {
+                playPauseButton.innerHTML = `
+          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 9v6m4-6v6m7-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+          </svg>
+        `;
+                startAutoplay();
+            } else {
+                playPauseButton.innerHTML = `
+          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14.752 11.168l-3.197-2.132A1 1 0 0010 9.87v4.263a1 1 0 001.555.832l3.197-2.132a1 1 0 000-1.664z" />
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+          </svg>
+        `;
+                stopAutoplay();
+            }
+        }
+
+        // Start autoplay when the page loads
+        startAutoplay();
+
+        // Pause autoplay when the user hovers over the slider
+        document.querySelector('.slider-container').addEventListener('mouseenter', stopAutoplay);
+        document.querySelector('.slider-container').addEventListener('mouseleave', () => {
+            if (isAutoplayEnabled) {
+                startAutoplay();
+            }
+        });
+    </script>
+    <footer class="footer">
+        <div class="content2">
+            <div class="logo">
+                <img class="logo3" src="/css/LandingPage/logo3.svg" />
+                <div class="fit-life-studio">YuRun</div>
+            </div>
+            <div class="links">
+                <div class="about2">About</div>
+                <div class="contact">Contact</div>
+            </div>
+            <img class="social" src="/css/LandingPage/social0.svg" />
+        </div>
+        <div class="divider"></div>
+        <div class="credits">
+            <div class="row">
+                <div class="text-1">© 2024 Shipon. All rights reserved.</div>
+                <div class="text-2">Privacy Policy</div>
+                <div class="text-3">Terms of Service</div>
+                <div class="text-4">Cookies Settings</div>
+            </div>
+        </div>
+    </footer>
+</body>
+
+</html>
