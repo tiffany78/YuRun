@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Race</title>
+    <link rel="stylesheet" href="/css/LandingPage/raceLandingPage/styles.css">
+    <link rel="stylesheet" href="/css/vars.css">
+    <!-- <script src="/js/Admin/HomeRace.js" defer></script> -->
+</head>
+<body class="containerBody">
+    <nav class="navbar">
+        <div class="logo">
+            <img src="/css/LandingPage/logo1.svg">
+            <a class="yurun">YuRun</a>
+        </div>
+        <div class="textNavbar">
+            <a th:href="@{/}">Home</a>
+            <a>About</a>
+            <a th:href="@{/race}" class="page">Race</a>
+        </div>
+        <button class="button">
+            <a class="buttonText" th:href="@{/login}">Join Now</a>
+        </button>
+    </nav>
+    <div class="header">
+        <!-- <form method="get" th:action="" class="filterForm">
+            <div class="pagination">
+                <a href="#">&laquo;</a>
+                <a href="#">1</a>
+                <a class="active" href="#">2</a>
+                <a href="#">3</a>
+                <a href="#">4</a>
+                <a href="#">5</a>
+                <a href="#">6</a>
+                <a href="#">&raquo;</a>
+            </div> -->
+            <!--FORM FOR SEARCHING-->
+            <div class="search">
+                <img class="search-bar" src="/css/LandingPage/raceLandingPage/search0.svg"/>
+                <input type="text" name="filter" th:value="${filter}" placeholder="Search Title Race" class="search-race" input=this.form.submit()/>
+            </div>
+            <!-- <select class="dropdown" id="statusRace" name="statusRace" onchange="this.form.submit()" required>
+                <option value="null" th:selected="${statusRace == 'null'}">All Status Race</option>
+                <option th:value="false" th:selected="${statusRace == 'false'}">Not Finish</option>
+                <option th:value="true" th:selected="${statusRace == 'true'}">Finished</option>
+            </select> -->
+        </form>
+    </div>
+    <div class="contentBody">
+        <div class="square" th:each="race : ${raceList}">
+            <a class="kindText" th:text="${race.title}"></a>
+            <div class="detailText">
+                <a th:text="${race.description != null ? race.description : 'desc'}"></a>
+                <a th:text="${race.distance} + ' km'"></a>
+                <!-- <a th:text="${race.count} + ' Members'"></a> -->
+                <div class="detailTime">
+                    <!-- Status DONE -->
+                    <!-- <a th:if="${race.status}" th:classappend="'status-approved'"  th:text="'DONE'"></a> -->
+                    
+                    <!-- Status NEED APPROVAL atau ON GOING -->
+                    <!-- <a th:if="${!race.status}" th:classappend="${!race.startDateTime.isAfter(currentDate) ? 'status-rejected' : 'status-ongoing'}" th:text="${race.startDateTime.isAfter(currentDate) ? 'ON GOING' : 'NEED APPROVAL'}"></a> -->
+                    
+                    <!-- Tanggal dan Waktu -->
+                    <a th:text="${#dates.format(race.start_date, 'dd/MM/yyyy')}"></a>
+                    <a th:text="${#dates.format(race.time, 'HH:mm:ss')}"></a>
+                </div>                
+            </div>
+            <div class="actionButton">
+                <!-- <a class="approvalRace"
+                    th:if="${race.startDateTime.isAfter(currentDate)}"
+                    th:onclick="'showPopup(' + ${race.idRace} + ')'"
+                    th:text="'Delete Race'">
+                    Delete Race
+                    </a> -->
+                <a class="joinRace" th:href="@{/login}">
+                    Join Race
+                </a>
+                
+                <!-- <a class="edit" th:href="@{/admin/editRace/{idRace}(idRace=${race.idRace})}"
+                th:if="${race.startDateTime.isAfter(currentDate)}">
+                Edit </a> -->
+            </div>
+        </div>
+    </div> 
+</body>
+</html>
