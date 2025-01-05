@@ -39,7 +39,8 @@ public class ActivityController {
         @RequestParam(value = "filter", required = false, defaultValue = "") String filter,
         @RequestParam(value = "entries", required = false, defaultValue = "0") int entries,
         @RequestParam(value = "kindActivity", required = false, defaultValue = "null") String kind,
-        @RequestParam(value = "page", required = false, defaultValue = "1") int page) {
+        @RequestParam(value = "page", required = false, defaultValue = "1") int page,
+        @RequestParam(value = "sort", required = false, defaultValue = "null") String sort) {
 
         String user = (String) session.getAttribute("username");
         session.setAttribute("username", user);
@@ -50,7 +51,7 @@ public class ActivityController {
         int offset = (page - 1) * entries;
 
         // Dapatkan daftar aktivitas berdasarkan filter dan pagination
-        List<ActivityMember> list = this.repoAdd.getAllActivityMember(id_user, filter, kind, entries, offset);
+        List<ActivityMember> list = this.repoAdd.getAllActivityMember(id_user, filter, kind, entries, offset, sort);
 
         // Hitung total jumlah entri untuk pagination
         int totalEntries = this.repoAdd.getTotalEntries(id_user, filter, kind);
@@ -67,6 +68,7 @@ public class ActivityController {
         model.addAttribute("activity", list);
         model.addAttribute("filter", filter);
         model.addAttribute("kindActivity", kind);
+        model.addAttribute("sort", sort);
         model.addAttribute("entries", entries);
         model.addAttribute("currEntries", currEntries);
         model.addAttribute("totalEntries", totalEntries);

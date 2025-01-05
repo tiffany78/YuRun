@@ -28,7 +28,7 @@ public class JDBCActivityMember implements AddActivityRepo{
         jdbcTemplate.update(sql, id_activity);
     }
 
-    public List<ActivityMember> getAllActivityMember (int id_user, String filter, String kind, int entries, int offset){
+    public List<ActivityMember> getAllActivityMember (int id_user, String filter, String kind, int entries, int offset, String sort){
         List<Object> params = new ArrayList<>();
         String sql = "SELECT * FROM Activity WHERE id_user = ?";
         params.add(id_user);
@@ -43,7 +43,31 @@ public class JDBCActivityMember implements AddActivityRepo{
             params.add(kind);
         }
 
-        sql += " ORDER BY date DESC";
+        if(sort != null && !sort.equals("null")){
+            switch (sort) {
+                case "Distance-Asc":
+                    sql += " ORDER BY distance";
+                    break;
+                case "Distance-Desc":
+                    sql += " ORDER BY distance DESC";
+                    break;
+                case "Duration-Asc":
+                    sql += " ORDER BY duration";
+                    break;
+                case "Duration-Desc":
+                    sql += " ORDER BY duration DESC";
+                    break;
+                case "Date-Asc":
+                    sql += " ORDER BY date";
+                    break;
+                case "Date-Desc":
+                    sql += " ORDER BY date DESC";
+                    break;
+                default:
+                    sql += " ORDER BY date DESC";
+                    break;
+            }
+        }
 
         if(entries > 0){
             sql += " LIMIT ? OFFSET ?";

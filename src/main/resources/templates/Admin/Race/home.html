@@ -77,8 +77,7 @@
             <div class="actionButton">
                 <a class="approvalRace"
                     th:if="${race.startDateTime.isAfter(currentDate)}"
-                    th:onclick="'showPopup(' + ${race.idRace} + ')'"
-                    th:text="'Delete Race'"> <img src="/css/Admin/Race/trash-01.svg">
+                    th:onclick="'showPopup(' + ${race.idRace} + ')'"> <img src="/css/Admin/Race/trash-2-20.svg" alt="Delete"/>
                     Delete Race
                 </a>
                 <a class="approvalRace"
