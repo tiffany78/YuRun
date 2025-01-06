@@ -42,10 +42,11 @@ public class ActivityController {
         @RequestParam(value = "page", required = false, defaultValue = "1") int page,
         @RequestParam(value = "sort", required = false, defaultValue = "null") String sort) {
 
-        String user = (String) session.getAttribute("username");
-        session.setAttribute("username", user);
-        int id_user = (Integer) session.getAttribute("id_user");
-        session.setAttribute("id_user", id_user);
+        Integer idUserObj = (Integer) session.getAttribute("id_user");
+        if (idUserObj == null) {
+            return "/ErrorLogin/errorPage";
+        }
+        int id_user = idUserObj;
 
         // Hitung offset berdasarkan halaman dan jumlah entri
         int offset = (page - 1) * entries;
@@ -79,7 +80,7 @@ public class ActivityController {
 
     @GetMapping("/addActivity")
     @RequiredRole("member")
-    public String addActivity(HttpSession session){
+    public String addActivity(){
         return "Member/Activity/addActivity";
     }
 
@@ -98,7 +99,11 @@ public class ActivityController {
         @RequestParam("fileImage") MultipartFile fileImage,
         HttpSession session) throws IOException{
 
-        int id_user = (Integer) session.getAttribute("id_user");
+        Integer idUserObj = (Integer) session.getAttribute("id_user");
+        if (idUserObj == null) {
+            return "/ErrorLogin/errorPage";
+        }
+        int id_user = idUserObj;
         String duration = String.format("%02d:%02d:%02d", hour, minute, second);
         
         time += ":00";
@@ -179,8 +184,11 @@ public class ActivityController {
     @RequestParam(value = "pictureOld", required = false) String pictureOldBase64,
     HttpSession session) throws IOException {
 
-    int id_user = (Integer) session.getAttribute("id_user");
-    session.setAttribute("id_user", id_user);
+    Integer idUserObj = (Integer) session.getAttribute("id_user");
+    if (idUserObj == null) {
+        return "/ErrorLogin/errorPage";
+    }
+    int id_user = idUserObj;
     String duration = String.format("%02d:%02d:%02d", hour, minute, second);
     
     // Konversi waktu ke SQL Time

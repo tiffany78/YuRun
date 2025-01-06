@@ -235,21 +235,22 @@ font-size: large;
   column-gap: 15px;
 }
 .cancel {
-  border-radius: 10px;
-  border-style: solid;
-  border-color: #ff7347;
-  border-width: 3px;
-  flex-shrink: 0;
-  width: 179px;
-  height: 40px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  text-decoration: none;
-  color: #141414;
-  font-size: 20px;
-  font-weight: 400;
+border-radius: 10px;
+border-style: solid;
+border-color: #ff7347;
+border-width: 3px;
+flex-shrink: 0;
+width: 179px;
+height: 40px;
+display: flex;
+align-items: center;
+justify-content: center;
+text-decoration: none;
+color: #141414;
+font-size: 20px;
+font-weight: 400;
 }
+
 .save {
 border-radius: 10px;
 background-color: #ff7347;

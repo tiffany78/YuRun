@@ -96,7 +96,7 @@ public class RaceController {
     @RequiredRole("admin")
     public String editRace(@PathVariable("idRace") int idRace, Model model) {
         Race race = this.repo.getById(idRace);
-        model.addAttribute("race", race); // Tambahkan objek race
+        model.addAttribute("race", race);
         return "/Admin/Race/editRace";
     }
 

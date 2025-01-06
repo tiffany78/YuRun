@@ -72,20 +72,14 @@
         </form>
         <form action="/member/progress" method="GET" class="sort" id="sort">
             <label>Sort Feature:</label>
-            <select class="dropdown" id="distanceSort" name="distanceSort" onchange="this.form.submit()">
-                <option th:value="null" th:selected="${distanceSort == 'null'}">Distance</option>
-                <option th:value="Distance-Asc" th:selected="${distanceSort == 'Distance-Asc'}">Distance: Short - Long</option>
-                <option th:value="Distance-Desc" th:selected="${distanceSort == 'Distance-Desc'}">Distance: Long - Short</option>
-            </select>
-            <select class="dropdown" id="durationSort" name="durationSort" onchange="this.form.submit()">
-                <option th:value="null" th:selected="${durationSort == 'null'}">Duration</option>
-                <option th:value="Duration-Asc" th:selected="${durationSort == 'Duration-Asc'}">Duration: Short - Long</option>
-                <option th:value="Duration-Desc" th:selected="${durationSort == 'Duration-Desc'}">Duration: Long - Short</option>
-            </select>
-            <select class="dropdown" id="dateSort" name="dateSort" onchange="this.form.submit()">
-                <option th:value="null" th:selected="${dateSort == 'null'}">Date</option>
-                <option th:value="Date-Asc" th:selected="${dateSort == 'Date-Asc'}">Date: Oldest - Newest</option>
-                <option th:value="Date-Desc" th:selected="${dateSort == 'Date-Desc'}">Date: Newest - Oldest</option>
+            <select class="dropdown" id="sort" name="sort" onchange="this.form.submit()">
+                <option th:value="null" th:selected="${sort == null}">Sort by: Featured</option>
+                <option th:value="Distance-Asc" th:selected="${sort == 'Distance-Asc'}">Distance: Short - Long</option>
+                <option th:value="Distance-Desc" th:selected="${sort == 'Distance-Desc'}">Distance: Long - Short</option>
+                <option th:value="Duration-Asc" th:selected="${sort == 'Duration-Asc'}">Duration: Short - Long</option>
+                <option th:value="Duration-Desc" th:selected="${sort == 'Duration-Desc'}">Duration: Long - Short</option>
+                <option th:value="Date-Asc" th:selected="${sort == 'Date-Asc'}">Date: Oldest - Newest</option>
+                <option th:value="Date-Desc" th:selected="${sort == 'Date-Desc'}">Date: Newest - Oldest</option>
             </select>
         </form>
         <a type="button" id="download-pdf" class="download" 
