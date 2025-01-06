@@ -4,6 +4,7 @@ html, body {
   padding: 0;
   height: 100vh;
   width: 100vw;
+  overflow: auto;
 }
 
 .containerBody {
@@ -200,6 +201,14 @@ a.page{
   flex-direction: column;
   row-gap: 10px;
 }
+.text{
+  margin-top: 20px;
+  font-family: "Roboto-SemiBold", sans-serif;
+  color: #8a2100;
+  line-height: 30px;
+  font-weight: bold;
+  text-align: center;
+}
 .frame3Header {
   color: #ff5722;
   font-family: "Roboto-Bold", sans-serif;
@@ -299,8 +308,7 @@ thead th:last-child {
 .footer{
   grid-area: footer;
   background: var(--background-color-primary, #ffffff);
-  padding: 10px 20px; /* Berikan sedikit padding */
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Tambahkan bayangan untuk kesan floating */
+  padding: 10px 20px;
   display: flex;
   flex-direction: column;
   height: 110px;

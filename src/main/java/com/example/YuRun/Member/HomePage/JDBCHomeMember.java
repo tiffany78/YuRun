@@ -49,8 +49,9 @@ public class JDBCHomeMember implements HomeMemberRepo{
     }
     
     public List<RaceUser> getMyRace(String user) {
-        String sql = "select race.id_race, race.title, race.start_date, race.time, race.distance, race.description from joinrace join users on users.id_user = joinrace.id_user join race on race.id_race = joinrace.id_race where users.name ilike ? LIMIT 3";
-        return jdbcTemplate.query(sql, this::mapRowToRaceHome, user);
+        LocalDate currDate = LocalDate.now();
+        String sql = "select race.id_race, race.title, race.start_date, race.time, race.distance, race.description from joinrace join users on users.id_user = joinrace.id_user join race on race.id_race = joinrace.id_race where users.name ilike ? AND start_date > ? LIMIT 3";
+        return jdbcTemplate.query(sql, this::mapRowToRaceHome, user, currDate);
     } 
 
     private RaceUser mapRowToRaceHome(ResultSet resultSet, int rowNum) throws SQLException {
@@ -65,7 +66,8 @@ public class JDBCHomeMember implements HomeMemberRepo{
     }
 
     public List<RaceUser> getUpRace(String user){
-        String sql = "SELECT race.id_race, race.title, race.start_date, race.time, race.distance, race.description FROM race LEFT JOIN joinrace ON race.id_race = joinrace.id_race LEFT JOIN users ON joinrace.id_user = users.id_user  WHERE users.name ILIKE ? OR joinrace.id_user IS NULL LIMIT 2";
-        return jdbcTemplate.query(sql, this::mapRowToRaceHome, user);
+        LocalDate currDate = LocalDate.now();
+        String sql = "SELECT race.id_race, race.title, race.start_date, race.time, race.distance, race.description FROM race LEFT JOIN joinrace ON race.id_race = joinrace.id_race LEFT JOIN users ON joinrace.id_user = users.id_user  WHERE (users.name ILIKE ? OR joinrace.id_user IS NULL) AND start_date > ? LIMIT 2";
+        return jdbcTemplate.query(sql, this::mapRowToRaceHome, user, currDate);
     }
 }

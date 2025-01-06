@@ -48,7 +48,7 @@ public class HomeUserController {
 
         Double sumDistance = 0.0;
         List<String> listDuration = new ArrayList<>();
-        List<ActivityMember> runList = this.recapRepo.getAllActivities(id_user);
+        List<ActivityMember> runList = this.recapRepo.getAllActivities(id_user, null);
         for(ActivityMember curr : runList){
             sumDistance += curr.getDistance();
             listDuration.add(curr.getDuration());
@@ -101,7 +101,7 @@ public class HomeUserController {
         int minutes = remainingSeconds / 60;
         int seconds = remainingSeconds % 60;
 
-        return String.format("%02d:%02d:%02d", hours, minutes, seconds);
+        return String.format("%02d Hours %02d Minutes %02d Seconds", hours, minutes, seconds);
     }
 
     @RestController

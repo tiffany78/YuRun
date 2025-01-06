@@ -246,9 +246,8 @@ span.active {
 .square {
     display: grid;
     grid-template-rows: 20px 150px auto auto;
-    grid-template-columns: 1fr; /* Semua elemen dalam satu kolom */
-    gap: 10px; /* Jarak antar elemen */
-    background: #fbf5f0;
+    grid-template-columns: 1fr;
+    gap: 10px; 
     border: #ff5722 3px solid;
     width: 300px;
     height: auto;
@@ -300,7 +299,7 @@ span.active {
     display: flex;
     flex-direction: row;
     column-gap: 10px;
-    font-size: small;
+    font-size: 15px;
     color: gray;
 }
 .actionButton {
