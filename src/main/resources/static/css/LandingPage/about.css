@@ -463,3 +463,6 @@ a.page {
     text-decoration: underline;
     position: relative;
 }
+a{
+    text-decoration: none;
+}

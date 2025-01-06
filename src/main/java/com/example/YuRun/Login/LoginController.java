@@ -31,6 +31,14 @@ public class LoginController {
     public String error2(){
         return "/ErrorLogin/errorPageWrongRole";
     }
+    
+
+    @GetMapping("/banned")
+    public String errorBan(){
+        return "/ErrorLogin/Banned";
+    }
+    
+    
 
     @PostMapping("/login")
     public String validation(
@@ -40,6 +48,9 @@ public class LoginController {
 
         LoginUser pengguna =loginService.login(email, password,model);
         if(pengguna != null){
+            if(!pengguna.isNotBanned()){
+                return "redirect:/banned";
+            }
            if(pengguna.getIsadmin()==1){
                 session.setAttribute("email", pengguna.getEmail());
                 session.setAttribute("username", pengguna.getName());
