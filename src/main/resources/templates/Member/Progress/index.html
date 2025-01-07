@@ -83,8 +83,8 @@
             </select>
         </form>
         <a type="button" id="download-pdf" class="download" 
-            th:classappend="${(runList == null or runList.isEmpty() or raceList == null or raceList.isEmpty()) ? 'disabled' : ''}" 
-            th:attr="disabled=${(runList == null or runList.isEmpty() or raceList == null or raceList.isEmpty()) ? 'true' : null}">
+            th:classappend="${(runList == null or runList.isEmpty()) and (raceList == null or raceList.isEmpty()) ? 'disabled' : ''}" 
+            th:attr="disabled=${(runList == null or runList.isEmpty()) and (raceList == null or raceList.isEmpty()) ? 'true' : null}">
             Download PDF
         </a>
     </div> 
@@ -101,6 +101,14 @@
             <span>
                 <a>Time</a> <br>
                 <a class="title2" th:text="${sumDuration}"></a>
+            </span>
+            <span th:if="${runList != null and !runList.isEmpty()}">
+                <a>Running</a> <br>
+                <a class="title2" th:text="${runList.size()} + ' Run Activities'"></a>
+            </span>
+            <span th:if="${raceList != null and !raceList.isEmpty()}">
+                <a>Race</a> <br>
+                <a class="title2" th:text="${raceList.size()} + ' Races'"></a>
             </span>
         </div>
     </div>

@@ -138,3 +138,14 @@ document.querySelector('.slider-container').addEventListener('mouseleave', () =>
         startAutoplay();
     }
 });
+
+document.addEventListener("DOMContentLoaded", function () {
+    const image = document.querySelector('.picture'); 
+    const images = ['/images/run1.png', '/images/run2.png', '/images/run3.png']; // Daftar gambar
+    let currentIndex = 0;
+
+    setInterval(() => {
+        currentIndex = (currentIndex + 1) % images.length; // Update index gambar
+        image.src = images[currentIndex]; // Ganti src gambar
+    }, 2000); // Ganti gambar setiap 2 detik
+});

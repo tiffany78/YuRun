@@ -104,6 +104,7 @@ public class ProgressController {
         model.addAttribute("runList", runList);
         model.addAttribute("raceList", raceList);
         model.addAttribute("sort", sort);
+        model.addAttribute("username", session.getAttribute("username"));
 
         // Perhitungan total distance dan time dari running
         for(ActivityMember curr : runList){

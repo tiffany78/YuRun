@@ -10,10 +10,11 @@ body {
 
 .container {
     display: grid;
-    grid-template-rows: auto auto auto auto;
+    grid-template-rows: auto 450px auto auto auto;
     grid-template-columns: auto;
     grid-template-areas:
         "navbar"
+        "prolog"
         "our-teams-container"
         "slider-container"
         "footer";
@@ -23,17 +24,17 @@ body {
 
 .navbar {
     grid-area: navbar;
-    position: fixed;
+    position: fixed; 
     top: 0;
-    left: 0;
-    width: 100%;
-    z-index: 1000;
-    background: var(--background-color-primary, #ffffff);
+    left: 0; 
+    width: 100%; 
+    z-index: 1000; 
+    background: var(--background-color-primary, #ffffff); 
     display: flex;
     justify-content: space-around;
     align-items: center;
-    padding: 10px 20px;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    padding: 10px 20px; 
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); 
 }
 
 .logo {
@@ -44,33 +45,30 @@ body {
 .yurun {
     display: flex;
     color: var(--neutral-colors-950, #141414);
+    font-family: "Roboto-Medium", sans-serif;
     font-size: 21px;
     line-height: 120%;
     font-weight: 500;
     align-items: center;
 }
-
-.textNavbar {
+.textNavbar{
     display: flex;
     gap: 30px;
     color: var(--neutral-colors-950, #141414);
+    font-family: "Roboto-Medium", sans-serif;
     font-size: 16px;
     font-weight: 500;
     align-items: center;
-    justify-content: center;
 }
-
 .textNavbar a {
     text-decoration: none;
     color: var(--neutral-colors-950, #141414);
 }
-
-a.page {
+a.page{
     color: var(--primary-color-500, #ff5722);
     font-weight: 1000;
 }
-
-.button {
+.button{
     background: var(--primary-color-500, #ff5722);
     border-radius: 8px;
     display: flex;
@@ -78,6 +76,7 @@ a.page {
     justify-content: center;
     color: white;
     padding: 8px 24px 8px 24px;
+    font-family: "Roboto-SemiBold", sans-serif;
     font-size: 16px;
     line-height: 150%;
     font-weight: 600;
@@ -87,6 +86,55 @@ a.page {
 .buttonText {
     text-decoration: none;
     color: white;
+}
+
+/* BAGIAN PROLOG */
+.prolog{
+    grid-area: prolog;
+    background-color: #fefaf4;
+    padding: 50px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+    height: 350px;
+}
+
+.text {
+    display: flex;
+    flex-direction: column;
+    font-size: 60px;
+    font-weight: bold;
+    row-gap: 15px;
+}
+
+.text p{
+    font-size: 20px;
+    font-weight: 300;
+}
+
+.picture{
+    max-height: 350px;
+}
+
+.getStarted {
+    background: var(--primary-color-500, #ff5722);
+    border-color: #ff5722;
+    border-radius: 8px;
+    padding: 12px 20px 12px 20px;
+    display: flex;
+    flex-direction: row;
+    gap: 4px;
+    align-items: center;
+    justify-content: center;
+    width: 200px;
+    position: relative;
+    color: #ffffff;
+    text-align: center;
+    font-size: 16px;
+    line-height: 150%;
+    font-weight: 600;
+    text-decoration: none;
 }
 
 /* DEVELOPER */
