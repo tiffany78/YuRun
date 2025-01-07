@@ -22,4 +22,9 @@ public class LandingController {
         model.addAttribute("listRace", listRace);
         return "/LandingPage/index";
     }
+
+    @GetMapping("/AboutUs")
+    public String showAboutPage() {
+        return "/LandingPage/aboutUs";
+    }
 }

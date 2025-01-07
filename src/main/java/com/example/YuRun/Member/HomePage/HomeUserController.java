@@ -33,9 +33,11 @@ public class HomeUserController {
     @RequiredRole("member")
     public String home(HttpSession session, Model model){
         String user = (String) session.getAttribute("username");
-        session.setAttribute("username", user);
-        int id_user = (Integer) session.getAttribute("id_user");
-        session.setAttribute("id_user", id_user);
+        Integer idUserObj = (Integer) session.getAttribute("id_user");
+        if (idUserObj == null || user == null) {
+            return "/ErrorLogin/errorPage";
+        }
+        int id_user = idUserObj;
 
         List<Activity> list = this.repo.getActivity(user);
         model.addAttribute("activity", list);

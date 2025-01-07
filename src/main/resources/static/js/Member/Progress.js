@@ -1,14 +1,14 @@
 $(document).ready(function () {
-    // Ambil parameter filterType, startDate, endDate, dan distanceSort dari URL
+    // Ambil parameter filterType, startDate, endDate, dan sort dari URL
     const params = new URLSearchParams(window.location.search);
     let filterType = params.get('filterType') || 'All';
     const startDate = params.get('startDate');
     const endDate = params.get('endDate');
-    let distanceSort = params.get('distanceSort') || 'null';
+    let sort = params.get('sort') || 'null';
 
     // Function untuk update grafik berdasarkan URL
     function updateChart() {
-        const url = `/getGraphProgres?filterType=${filterType}&distanceSort=${distanceSort}${startDate ? `&startDate=${startDate}` : ''}${endDate ? `&endDate=${endDate}` : ''}`;
+        const url = `/getGraphProgres?filterType=${filterType}&sort=${sort}${startDate ? `&startDate=${startDate}` : ''}${endDate ? `&endDate=${endDate}` : ''}`;
 
         // Ambil data dari endpoint Spring Boot
         $.getJSON(url, function (response) {
@@ -50,9 +50,8 @@ $(document).ready(function () {
     // Panggil updateChart untuk menggambar grafik pertama kali
     updateChart();
 
-    // Menangani perubahan distanceSort dari dropdown
     $('#id').change(function() {
-        distanceSort = $(this).val(); // Ambil nilai dari dropdown
+        sort = $(this).val(); // Ambil nilai dari dropdown
         updateChart(); // Update grafik setelah perubahan
     });
 });
