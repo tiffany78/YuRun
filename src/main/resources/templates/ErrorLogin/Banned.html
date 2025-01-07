@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" >
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="/css/ErrorLogin/style.css">
+  <title>Error404</title>
+</head>
+<body>
+  <img class="image" src="/css/ErrorLogin/image0.png" />
+  <div class="content">
+    <img class="group" src="/css/ErrorLogin/group0.svg" />
+    <div class="opps-page-not-found">Sorry, your account has been banned </div>
+    <a class="back-to-login" th:href="@{/register}">CREATE NEW ACCOUNT</a>
+    <a class="back-to-home" th:href="@{/}">BACK TO HOME</a>
+  </div>
+</body>
+</html>
