@@ -9,9 +9,11 @@ import lombok.Data;
 @Data
 @AllArgsConstructor
 public class Race {
-    private int idRace; 
+    private int id_race; 
     private String title;       
     private Date start_date; 
     private Time time;  
     private Double distance;
+    private String description;
+    private boolean status;
 }

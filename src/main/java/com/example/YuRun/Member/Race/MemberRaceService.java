@@ -16,21 +16,15 @@ public class MemberRaceService {
         return raceRepository.findAllRaces();
     }
 
-    public boolean joinRace(int idRace, int idUser) {
-        try {
-            return raceRepository.addJoinRace(idRace, idUser);
-        } catch (Exception e) {
-            // Log error untuk debugging
-            System.err.println("Error joining race: " + e.getMessage());
-            return false;
-        }
+    public boolean joinRace(int id_race, int id_user) {
+        return raceRepository.addJoinRace(id_race, id_user);
     }
 
-    public void exitRace(int idRace, int idUser) {
-        raceRepository.exitRace(idRace, idUser);
+    public void exitRace(int id_race, int id_user) {
+        raceRepository.exitRace(id_race, id_user);
     }
 
-    public boolean isUserJoinedRace(int idRace, int idUser) {
-        return raceRepository.checkJoinStatus(idRace, idUser);
+    public boolean isUserJoinedRace(int id_race, int id_user) {
+        return raceRepository.checkJoinStatus(id_race, id_user);
     }
 }

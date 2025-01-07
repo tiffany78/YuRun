@@ -6,8 +6,8 @@ import java.util.List;
 @Repository
 public interface MemberRaceRepository {
     List<Race> findAllRaces();
-    // void joinRace(int idRace, int idUser);
-    void exitRace(int idRace, int idUser);
-    boolean addJoinRace(int idRace, int idUser);
-    boolean checkJoinStatus(int idRace, int idUser);
+    // void joinRace(int id_race, int id_user);
+    void exitRace(int id_race, int id_user);
+    boolean addJoinRace(int id_race, int id_user);
+    boolean checkJoinStatus(int id_race, int id_user);
 }
