@@ -27,4 +27,17 @@ public class MemberRaceService {
     public boolean isUserJoinedRace(int id_race, int id_user) {
         return raceRepository.checkJoinStatus(id_race, id_user);
     }
+
+    public Race getRaceById(int idRace) {
+        return raceRepository.findRaceById(idRace);
+    }
+
+    public void saveRaceActivity(int idRace, int idUser, String duration, String pathPict) {
+        raceRepository.addRaceActivity(idRace, idUser, duration, pathPict);
+        raceRepository.updateRaceStatus(idRace, idUser);
+    }
+    
+    public List<Race> getAvailableRaces(int idUser) {
+        return raceRepository.findAvailableRacesForUser(idUser);
+    }
 }

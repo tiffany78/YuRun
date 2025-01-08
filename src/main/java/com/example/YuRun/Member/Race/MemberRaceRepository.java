@@ -6,8 +6,11 @@ import java.util.List;
 @Repository
 public interface MemberRaceRepository {
     List<Race> findAllRaces();
-    // void joinRace(int id_race, int id_user);
     void exitRace(int id_race, int id_user);
     boolean addJoinRace(int id_race, int id_user);
     boolean checkJoinStatus(int id_race, int id_user);
+    Race findRaceById(int idRace);
+    void addRaceActivity(int idRace, int idUser, String duration, String pathPict);
+    void updateRaceStatus(int idRace, int idUser);
+    List<Race> findAvailableRacesForUser(int idUser);
 }

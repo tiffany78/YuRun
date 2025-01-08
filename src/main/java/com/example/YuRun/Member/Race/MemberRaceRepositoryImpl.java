@@ -4,8 +4,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
 
+import java.sql.Date;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Time;
 import java.util.List;
 
 @Repository
@@ -48,7 +50,7 @@ public class MemberRaceRepositoryImpl implements MemberRaceRepository {
 
     @Override
     public void exitRace(int id_race, int id_user) {
-        String sql = "UPDATE joinrace SET status = false WHERE id_race = ? AND id_user = ?";
+        String sql = "DELETE FROM joinrace WHERE id_race = ? AND id_user = ?";
         jdbcTemplate.update(sql, id_race, id_user);
     }
 
@@ -71,5 +73,34 @@ public class MemberRaceRepositoryImpl implements MemberRaceRepository {
             (rs, rowNum) -> rs.getBoolean("status"), 
             id_race, id_user);
         return !results.isEmpty() && results.get(0);
+    }
+
+    @Override
+    public Race findRaceById(int idRace) {
+        String sql = "SELECT id_race, title, start_date, time, distance, description, status FROM race WHERE id_race = ?";
+        return jdbcTemplate.queryForObject(sql, this::mapRowToRace, idRace);
+    }
+
+    @Override
+    public void addRaceActivity(int idRace, int idUser, String duration, String pathPict) {
+        String sql = "UPDATE joinrace SET duration = ?, path_pict = ? WHERE id_race = ? AND id_user = ?";
+        jdbcTemplate.update(sql, duration, pathPict, idRace, idUser);
+    }
+
+    @Override
+    public void updateRaceStatus(int idRace, int idUser) {
+        String sql = "UPDATE joinrace SET status = false WHERE id_race = ? AND id_user = ?";
+        jdbcTemplate.update(sql, idRace, idUser);
+    }
+
+    @Override
+    public List<Race> findAvailableRacesForUser(int idUser) {
+        String sql = """
+            SELECT r.* FROM race r 
+            LEFT JOIN joinrace jr ON r.id_race = jr.id_race AND jr.id_user = ? 
+            WHERE jr.id_race IS NULL 
+            OR (jr.id_user = ? AND jr.status = true)
+        """;
+        return jdbcTemplate.query(sql, this::mapRowToRace, idUser, idUser);
     }
 }
