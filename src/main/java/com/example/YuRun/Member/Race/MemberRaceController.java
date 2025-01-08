@@ -10,8 +10,19 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import com.example.YuRun.RequiredRole;
 import jakarta.servlet.http.HttpSession;
+
+import java.io.IOException;
+import java.io.InputStream;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.nio.file.StandardCopyOption;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -20,7 +31,7 @@ import java.util.Map;
 @RequestMapping("/member")
 public class MemberRaceController {
     private final MemberRaceService raceService;
-   
+    
     @Autowired
     public MemberRaceController(MemberRaceService raceService) {
         this.raceService = raceService;
@@ -28,15 +39,13 @@ public class MemberRaceController {
 
     @GetMapping("/race")
     public String race(Model model, HttpSession session) {
-        // Get races
-        List<Race> races = raceService.getAllRaces();
-        model.addAttribute("races", races);
-
-        // Get current user from session
         Integer currentUserId = (Integer) session.getAttribute("id_user");
-
+        
         if (currentUserId != null) {
-            // Get race statuses
+            // Get only available races for the user
+            List<Race> races = raceService.getAvailableRaces(currentUserId);
+            model.addAttribute("races", races);
+
             Map<Integer, Boolean> raceStatuses = new HashMap<>();
             for (Race race : races) {
                 boolean isJoined = raceService.isUserJoinedRace(race.getId_race(), currentUserId);
@@ -46,6 +55,7 @@ public class MemberRaceController {
             model.addAttribute("currentUserId", currentUserId);
             model.addAttribute("raceStatuses", raceStatuses);
         } else {
+            model.addAttribute("races", new ArrayList<>());
             model.addAttribute("currentUserId", 0);
             model.addAttribute("raceStatuses", new HashMap<>());
         }
@@ -76,8 +86,70 @@ public class MemberRaceController {
         return Map.of("success", true);
     }
 
+    @PostMapping("/race/selectRace")
+    public String selectRace(@RequestParam("id_race") int idRace, HttpSession session) {
+        session.setAttribute("selected_race_id", idRace);
+        return "redirect:/member/uploadRace";
+    }
+
     @GetMapping("/uploadRace")
-    public String uploadIndex() {
+    @RequiredRole("member")
+    public String uploadRace(Model model, HttpSession session) {
+        Integer idRace = (Integer) session.getAttribute("selected_race_id");
+        if (idRace == null) {
+            return "redirect:/member/race";
+        }
+        
+        Race race = raceService.getRaceById(idRace);
+        model.addAttribute("race", race);
         return "/Member/Race/uploadRace";
+    }
+
+    @PostMapping("/uploadRace")
+    @RequiredRole("member")
+    public String uploadRace2(
+        @RequestParam("hour") Integer hour,
+        @RequestParam("minute") Integer minute,
+        @RequestParam("second") Integer second,
+        @RequestParam("fileImage") MultipartFile fileImage,
+        HttpSession session,
+        RedirectAttributes redirectAttributes) throws IOException {
+        
+        Integer idUserObj = (Integer) session.getAttribute("id_user");
+        Integer idRace = (Integer) session.getAttribute("selected_race_id");
+        
+        if (idUserObj == null || idRace == null) {
+            return "/ErrorLogin/errorPage";
+        }
+        
+        int id_user = idUserObj;
+        String duration = String.format("%02d:%02d:%02d", hour, minute, second);
+        
+        String fileName = null;
+        if (fileImage != null && !fileImage.isEmpty()) {
+            String timestamp = String.valueOf(System.currentTimeMillis());
+            fileName = "idUser_" + id_user + "_" + timestamp + ".jpg";
+            String uploadDir = "upload/RaceActivity-member";
+            Path uploadPath = Paths.get(uploadDir);
+
+            if (!Files.exists(uploadPath)) {
+                Files.createDirectories(uploadPath);
+            }
+
+            try (InputStream inputStream = fileImage.getInputStream()) {
+                Path filePath = uploadPath.resolve(fileName);
+                Files.copy(inputStream, filePath, StandardCopyOption.REPLACE_EXISTING);
+            } catch (IOException e) {
+                throw new IOException("Could not save file: " + fileName, e);
+            }
+        }
+
+        // Save to database and update status
+        raceService.saveRaceActivity(idRace, id_user, duration, fileName);
+        
+        session.removeAttribute("selected_race_id");
+        redirectAttributes.addFlashAttribute("successMessage", "Race activity has been saved successfully!");
+        
+        return "redirect:/member/race";
     }
 }

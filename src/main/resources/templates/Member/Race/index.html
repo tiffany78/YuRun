@@ -79,11 +79,17 @@
                     <td th:text="${race.distance} + ' km'"></td>
                     <td th:text="${race.description}"></td>
                     <td>
-                        <!-- Kondisi untuk menampilkan gambar berdasarkan status bergabung -->
+                        <!-- Ikon "Join" jika belum bergabung -->
                         <img th:if="${!raceStatuses[race.id_race]}" class="join" style="cursor: pointer;" src="/css/Member/Race/join.svg" alt="Join Race"
                             th:onclick="'updateRaceStatus(' + ${race.id_race} + ', true)'"/>
+                        
+                        <!-- Ikon "Exit" dan "Upload" jika sudah bergabung -->
                         <img th:if="${raceStatuses[race.id_race]}" class="exit" style="cursor: pointer;" src="/css/Member/Race/exit.svg" alt="Exit Race"
                             th:onclick="'updateRaceStatus(' + ${race.id_race} + ', false)'"/>
+                        
+                        <img th:if="${raceStatuses[race.id_race]}" class="upload" style="cursor: pointer;" src="/css/Member/Race/upload-icon.png" alt="Upload Race"
+                            width="22" height="22"
+                            th:onclick="'uploadRaceActivity(' + ${race.id_race} + ')'"/>
                     </td>
                 </tr>
             </tbody>
@@ -138,6 +144,22 @@
                 }
             })
             .catch(error => console.error("Error:", error));
+        }
+
+     
+        function uploadRaceActivity(id_race) {
+            const form = document.createElement('form');
+            form.method = 'POST';
+            form.action = '/member/race/selectRace';
+            
+            const input = document.createElement('input');
+            input.type = 'hidden';
+            input.name = 'id_race';
+            input.value = id_race;
+            
+            form.appendChild(input);
+            document.body.appendChild(form);
+            form.submit();
         }
     </script>
 </body>

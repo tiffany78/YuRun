@@ -12,13 +12,3 @@ public class JoinRace {
     private String path_pict;
     private boolean status;
 }
-
-// @Data
-// @AllArgsConstructor
-// public class JoinRace {
-//     private int idRace;
-//     private int idUser;
-//     private Time time;
-//     private String imagePath;
-//     private boolean status;
-// }
