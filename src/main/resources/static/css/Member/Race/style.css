@@ -169,6 +169,8 @@ color: white;
   align-items: center;
   justify-content: center;
   text-decoration: none;
+  margin-top: 20px; /* Tambahkan jarak ke atas */
+  margin-left: auto; /* Pindahkan ke sebelah kanan */
 }
 
 .note{

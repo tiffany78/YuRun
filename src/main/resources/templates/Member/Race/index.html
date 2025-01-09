@@ -43,20 +43,22 @@
             <!--FORM FOR SEARCHING-->
             <div class="search">
                 <img class="search-bar" src="/css/Admin/Race/search0.svg"/>
-                <form method="GET">
-                  <input type="text" name="filter" th:value="${filter}" placeholder="Search Your Activity" class="search-race" input=this.form.submit()/>
+                <form method="get" th:action="@{/member/race}">
+                    <input type="text" name="filter" th:value="${filter}" placeholder="Search Race Title" 
+                        class="search-race" onkeypress="submitOnEnter(event, this.form)"/>
                 </form>
-              </div>
-            <select class="dropdown" id="kind" name="kind" required>
-                <option value="" disabled th:if="${kind == null}" selected>Choose Kind of Activity</option>
-                <option th:value="Fun-Run" th:selected="${kind == 'Fun-Run'}">Fun-Run</option>
-                <option th:value="Half-Marathon" th:selected="${kind == 'Half-Marathon'}">Half-Marathon</option>
-                <option th:value="Marathon" th:selected="${kind == 'Marathon'}">Marathon</option>
+            </div>
+            <!-- Tambah dropdown sort, hapus dropdown kind -->
+            <select class="dropdown" id="sort" name="sort" onchange="this.form.submit()">
+                <option th:value="null" th:selected="${sort == 'null'}">Sort by: Featured</option>
+                <option th:value="Distance-Asc" th:selected="${sort == 'Distance-Asc'}">Distance: Short - Long</option>
+                <option th:value="Distance-Desc" th:selected="${sort == 'Distance-Desc'}">Distance: Long - Short</option>
+                <option th:value="Date-Asc" th:selected="${sort == 'Date-Asc'}">Date: Oldest - Newest</option>
+                <option th:value="Date-Desc" th:selected="${sort == 'Date-Desc'}">Date: Newest - Oldest</option>
             </select>
         </div>
-        <a class="add" th:href="@{/member/uploadRace}">Upload Race Activity (dummy)</a>
+        <!-- <a class="add" th:href="@{/member/raceActivityHistory}">Race Activity History</a> -->
     </div>
-    <a class="note">button diatas cuman buat mapping aja ya adji, nanti hapus aja</a>
     <div class="contentBody">
         <table class="table_race">
             <thead>
@@ -94,6 +96,7 @@
                 </tr>
             </tbody>
         </table>
+        <a class="add" th:href="@{/member/raceActivityHistory}">Race Activity History</a>
     </div>
     <footer class="footer">
         <div class="content2">
@@ -160,6 +163,13 @@
             form.appendChild(input);
             document.body.appendChild(form);
             form.submit();
+        }
+
+        function submitOnEnter(event, form) {
+            if (event.key === "Enter") {
+                event.preventDefault();
+                form.submit();
+            }
         }
     </script>
 </body>

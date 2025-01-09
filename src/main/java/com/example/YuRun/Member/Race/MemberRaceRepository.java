@@ -12,5 +12,7 @@ public interface MemberRaceRepository {
     Race findRaceById(int idRace);
     void addRaceActivity(int idRace, int idUser, String duration, String pathPict);
     void updateRaceStatus(int idRace, int idUser);
-    List<Race> findAvailableRacesForUser(int idUser);
+    List<Race> findAvailableRacesForUser(int idUser, String filter, String sort);
+    List<RaceActivity> getRaceActivities(int id_user, String filter, String sort, int entries, int offset);
+    int getTotalRaceActivities(int id_user, String filter);
 }

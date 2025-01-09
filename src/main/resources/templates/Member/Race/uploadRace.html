@@ -34,6 +34,7 @@
             <div class="input1">
                 <a>Race: <span th:text="${race.title}"></span></a>
                 <a>Distance: <span th:text="${race.distance} + ' km'"></span></a>
+                <a>Date: <span th:text="${#dates.format(race.start_date, 'd MMMM yyyy')}"></span></a>
             </div>
             <div class="input2">
                 <div class="divInput">
