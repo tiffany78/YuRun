@@ -16,22 +16,35 @@ public class JDBCProgress implements ProgressRepo{
     @Autowired
     JdbcTemplate jdbcTemplate;
 
-    public List<ActivityMember> getAllActivities(int id_user, String distanceSort) {
+    public List<ActivityMember> getAllActivities(int id_user, String sort) {
         String sql = "SELECT * FROM Activity WHERE id_user = ?";
 
-        if(distanceSort != null && !distanceSort.equals("null")){
-            switch (distanceSort) {
+        if(sort != null && !sort.equals("null")){
+            switch (sort) {
                 case "Distance-Asc":
                     sql += " ORDER BY distance";
                     break;
                 case "Distance-Desc":
                     sql += " ORDER BY distance DESC";
                     break;
+                case "Duration-Asc":
+                    sql += " ORDER BY duration";
+                    break;
+                case "Duration-Desc":
+                    sql += " ORDER BY duration DESC";
+                    break;
+                case "Date-Asc":
+                    sql += " ORDER BY date";
+                    break;
+                case "Date-Desc":
+                    sql += " ORDER BY date DESC";
+                    break;
                 default:
-                    sql += "";
+                    sql += " ORDER BY date DESC";
                     break;
             }
         }
+        
         return jdbcTemplate.query(sql, this::maptoRowActivityMember, id_user);
     }
 

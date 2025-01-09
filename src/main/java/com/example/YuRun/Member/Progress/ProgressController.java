@@ -30,14 +30,15 @@ public class ProgressController {
         @RequestParam(value = "filterType", required = false, defaultValue = "All") String filterType,
         @RequestParam(value = "startDate", required = false) String startDateStr,
         @RequestParam(value = "endDate", required = false) String endDateStr,
-        @RequestParam(value = "distanceSort", required = false, defaultValue = "null") String distanceSort,
+        @RequestParam(value = "sort", required = false, defaultValue = "null") String sort,
         HttpSession session,
         Model model) {
         
-        int id_user = (Integer) session.getAttribute("id_user");
-        session.setAttribute("id_user", id_user);
-        String username = (String) session.getAttribute("username");
-        model.addAttribute("username", username);
+        Integer idUserObj = (Integer) session.getAttribute("id_user");
+        if (idUserObj == null) {
+            return "/ErrorLogin/errorPage";
+        }
+        int id_user = idUserObj;
 
         Double sumDistance = 0.0;
         List<String> listDuration = new ArrayList<>();
@@ -95,14 +96,15 @@ public class ProgressController {
                     break;
                 case "All":
                 default:
-                    runList = this.repo.getAllActivities(id_user, distanceSort);
+                    runList = this.repo.getAllActivities(id_user, sort);
                     raceList = this.repo.getAllRace(id_user);
                     model.addAttribute("currFilter", "All");
             }
         }
         model.addAttribute("runList", runList);
         model.addAttribute("raceList", raceList);
-        model.addAttribute("distanceSort", distanceSort);
+        model.addAttribute("sort", sort);
+        model.addAttribute("username", session.getAttribute("username"));
 
         // Perhitungan total distance dan time dari running
         for(ActivityMember curr : runList){
@@ -159,7 +161,7 @@ public class ProgressController {
             @RequestParam(value = "filterType", required = false, defaultValue = "All") String filterType,
             @RequestParam(value = "startDate", required = false) String startDateStr,
             @RequestParam(value = "endDate", required = false) String endDateStr,
-            @RequestParam(value = "distanceSort", required = false, defaultValue = "null") String distanceSort,
+            @RequestParam(value = "sort", required = false, defaultValue = "null") String sort,
             HttpSession session) {
             
             int id_user = (Integer) session.getAttribute("id_user");
@@ -204,7 +206,7 @@ public class ProgressController {
                         break;
                     case "All":
                     default:
-                        activityList = this.repo.getAllActivities(id_user, distanceSort);
+                        activityList = this.repo.getAllActivities(id_user, sort);
                         raceList = this.repo.getAllRace(id_user);
                 }
             }

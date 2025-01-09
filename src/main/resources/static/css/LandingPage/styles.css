@@ -53,7 +53,7 @@ body {
 }
 .textNavbar{
     display: flex;
-    gap: 20px;
+    gap: 30px;
     color: var(--neutral-colors-950, #141414);
     font-family: "Roboto-Medium", sans-serif;
     font-size: 16px;
@@ -165,14 +165,13 @@ a.page{
     position: relative;
     top: 20px;
     left: 40px;
-    font-family: "JockeyOne-Regular", sans-serif;
     color: #ffffff;
     text-align: center;
-    font-family: "Roboto-SemiBold", sans-serif;
     font-size: 16px;
     line-height: 150%;
     font-weight: 600;
     text-decoration: none;
+    font-family: "Roboto-SemiBold", sans-serif;
 }
 
 .frame2 {
