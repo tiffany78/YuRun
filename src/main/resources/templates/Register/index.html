@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="/css/vars.css">
     <link rel="stylesheet" href="/css/Register/styles.css">
+    <script src="/js/Register/passwordEye.js" defer ></script>
     <title>Register</title>
 </head>
 <body>
@@ -39,15 +40,17 @@
                 </div>
                 <div class="password">
                     <div class="label">Password</div>
-                    <div class="input">
-                        <input type="password" name="password" th:field="*{password}" placeholder="Enter your password" required>
+                    <div class="input-pass">
+                        <input type="password" name="password" id="passwordInput" th:field="*{password}" placeholder="Enter your password"  required>
+                        <img src="/images/eye-close.png" id="eyeiconPass" > 
                         <div th:if="${#fields.hasErrors('password')}" th:errors="*{password}" class="error"></div>
                     </div>
                 </div>
                 <div class="confirm-password">
                     <div class="label">Confirm Password</div>
-                    <div class="input">
-                        <input type="password" name="confirmPassword" th:field="*{confirmPassword}" placeholder="Enter your password again" required>
+                    <div class="input-pass">
+                        <input type="password" name="confirmPassword" id="confrimInput"  th:field="*{confirmPassword}" placeholder="Enter your password again" required>
+                        <img src="/images/eye-close.png" id="eyeiconConfrim" >
                         <div th:if="${#fields.hasErrors('confirmPassword')}" th:errors="*{confirmPassword}" class="error"></div>
                     </div>
                 </div>
