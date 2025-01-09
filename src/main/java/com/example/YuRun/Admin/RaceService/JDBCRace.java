@@ -173,6 +173,8 @@ public class JDBCRace implements RaceRepository{
             }
             params.add(status);
         }
+        sql += " ORDER BY member_duration";
+
         return jdbcTemplate.query(sql, this::mapRowToResultRace, params.toArray());
     }
 

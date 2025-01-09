@@ -34,6 +34,7 @@
             <span th:text="${title}"></span>
             <span th:text="${' - ' + target + ' km'}"></span>
         </a>
+        <a th:text="'Current Winner: ' + ${winner}"></a>
     </div>
     <form class="header" method="get" th:action="@{/admin/race/approval/{idRace}(idRace=${idRace})}">
         <!--FORM FOR SEARCHING-->
@@ -55,14 +56,14 @@
                     th:attr="disabled=${statusRace ? 'disabled' : null}">Save</button>
         </div>        
         <div class="contentBody" th:if="${resultRace != null and resultRace.size() > 0}" >
-            <div class="square" th:each="resultRace : ${resultRace}">
+            <div class="square" th:each="resultRace, iterStat : ${resultRace}">
                 <div class="imageContainer">
                     <img th:src="${resultRace.path_pict != null ? '/upload/race-member/' + resultRace.path_pict : '/upload/race-member/noPict.jpg'}" alt="Image" class="image">
                 </div>
                 <div class="detailText">
                     <input type="hidden" name="id_users" th:value="${resultRace.id_user}">
                     <input type="hidden" name="statuses" value="null" class="statusField">
-                    <a th:text="${resultRace.name}"></a>
+                    <a th:text="${iterStat.index + 1 + '. ' + resultRace.name}"></a>
                     <a th:text="'Duration: ' + ${resultRace.member_duration}"></a>
                     <div class="buttonApprove">
                         <a th:class="${resultRace.status == null ? 'button2' : (resultRace.status ? 'approve disabled' : 'button2 disabled')}"

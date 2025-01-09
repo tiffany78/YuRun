@@ -142,9 +142,12 @@ public class RaceController {
         model.addAttribute("statusMember", statusMember);
         model.addAttribute("idRace", idRace);
         model.addAttribute("resultRace", list);
-
+        
         if (list.isEmpty() || list.size() == 0) {
             model.addAttribute("message", "No member found for the given filter.");
+        }
+        else{
+            model.addAttribute("winner", list.get(0).getName());
         }
 
         return "/Admin/Race/approval";
