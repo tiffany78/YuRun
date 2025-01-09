@@ -14,6 +14,8 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.example.YuRun.RequiredRole;
+import com.example.YuRun.Member.ActivityMember.ActivityMember;
+
 import jakarta.servlet.http.HttpSession;
 
 import java.io.IOException;
@@ -31,19 +33,24 @@ import java.util.Map;
 @RequestMapping("/member")
 public class MemberRaceController {
     private final MemberRaceService raceService;
+    private MemberRaceRepository raceRepository;
     
     @Autowired
-    public MemberRaceController(MemberRaceService raceService) {
+    public MemberRaceController(MemberRaceService raceService, MemberRaceRepository raceRepository) {
         this.raceService = raceService;
+        this.raceRepository = raceRepository;
     }
 
     @GetMapping("/race")
-    public String race(Model model, HttpSession session) {
+    public String race(Model model, 
+                    HttpSession session,
+                    @RequestParam(value = "filter", required = false, defaultValue = "") String filter,
+                    @RequestParam(value = "sort", required = false, defaultValue = "null") String sort) {
         Integer currentUserId = (Integer) session.getAttribute("id_user");
         
         if (currentUserId != null) {
-            // Get only available races for the user
-            List<Race> races = raceService.getAvailableRaces(currentUserId);
+            // Get filtered and sorted races for the user
+            List<Race> races = raceService.getAvailableRaces(currentUserId, filter, sort);
             model.addAttribute("races", races);
 
             Map<Integer, Boolean> raceStatuses = new HashMap<>();
@@ -54,10 +61,14 @@ public class MemberRaceController {
 
             model.addAttribute("currentUserId", currentUserId);
             model.addAttribute("raceStatuses", raceStatuses);
+            model.addAttribute("filter", filter);
+            model.addAttribute("sort", sort);
         } else {
             model.addAttribute("races", new ArrayList<>());
             model.addAttribute("currentUserId", 0);
             model.addAttribute("raceStatuses", new HashMap<>());
+            model.addAttribute("filter", "");
+            model.addAttribute("sort", "null");
         }
 
         return "/Member/Race/index";
@@ -151,5 +162,45 @@ public class MemberRaceController {
         redirectAttributes.addFlashAttribute("successMessage", "Race activity has been saved successfully!");
         
         return "redirect:/member/race";
+    }
+
+    @GetMapping("/raceActivityHistory")
+    @RequiredRole("member")
+    public String raceActivityHistory(HttpSession session, Model model,
+        @RequestParam(value = "filter", required = false, defaultValue = "") String filter,
+        @RequestParam(value = "entries", required = false, defaultValue = "0") int entries,
+        @RequestParam(value = "page", required = false, defaultValue = "1") int page,
+        @RequestParam(value = "sort", required = false, defaultValue = "null") String sort) {
+
+        Integer idUserObj = (Integer) session.getAttribute("id_user");
+        if (idUserObj == null) {
+            return "/ErrorLogin/errorPage";
+        }
+        
+        // Hitung offset berdasarkan halaman dan jumlah entri
+        int offset = (page - 1) * entries;
+
+        // Dapatkan daftar aktivitas race
+        List<RaceActivity> activities = raceRepository.getRaceActivities(idUserObj, filter, sort, entries, offset);
+        
+        // Hitung total entries untuk pagination
+        int totalEntries = raceRepository.getTotalRaceActivities(idUserObj, filter);
+        
+        if (entries == 0) {
+            entries = totalEntries;
+        }
+
+        int currEntries = Math.min(page * entries, totalEntries);
+
+        // Kirim data ke view
+        model.addAttribute("activity", activities);
+        model.addAttribute("filter", filter);
+        model.addAttribute("sort", sort);
+        model.addAttribute("entries", entries);
+        model.addAttribute("currEntries", currEntries);
+        model.addAttribute("totalEntries", totalEntries);
+        model.addAttribute("currentPage", page);
+
+        return "Member/Race/raceActivityHistory";
     }
 }

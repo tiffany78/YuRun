@@ -8,6 +8,7 @@ import java.sql.Date;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Time;
+import java.util.ArrayList;
 import java.util.List;
 
 @Repository
@@ -94,13 +95,123 @@ public class MemberRaceRepositoryImpl implements MemberRaceRepository {
     }
 
     @Override
-    public List<Race> findAvailableRacesForUser(int idUser) {
-        String sql = """
-            SELECT r.* FROM race r 
-            LEFT JOIN joinrace jr ON r.id_race = jr.id_race AND jr.id_user = ? 
-            WHERE jr.id_race IS NULL 
-            OR (jr.id_user = ? AND jr.status = true)
-        """;
-        return jdbcTemplate.query(sql, this::mapRowToRace, idUser, idUser);
+    public List<Race> findAvailableRacesForUser(int idUser, String filter, String sort) {
+        StringBuilder sql = new StringBuilder(
+            "SELECT r.* FROM race r " +
+            "LEFT JOIN joinrace jr ON r.id_race = jr.id_race AND jr.id_user = ? " +
+            "WHERE (jr.id_race IS NULL OR (jr.id_user = ? AND jr.status = true)) "
+        );
+        
+        List<Object> params = new ArrayList<>();
+        params.add(idUser);
+        params.add(idUser);
+
+        if (filter != null && !filter.isEmpty()) {
+            sql.append("AND LOWER(r.title) LIKE LOWER(?) ");
+            params.add("%" + filter + "%");
+        }
+
+        // Add sorting
+        if (sort != null && !sort.equals("null")) {
+            switch (sort) {
+                case "Distance-Asc":
+                    sql.append("ORDER BY r.distance ASC ");
+                    break;
+                case "Distance-Desc":
+                    sql.append("ORDER BY r.distance DESC ");
+                    break;
+                case "Date-Asc":
+                    sql.append("ORDER BY r.start_date ASC ");
+                    break;
+                case "Date-Desc":
+                    sql.append("ORDER BY r.start_date DESC ");
+                    break;
+                default:
+                    sql.append("ORDER BY r.start_date DESC "); // Default sort
+            }
+        } else {
+            sql.append("ORDER BY r.start_date DESC "); // Default sort
+        }
+
+        return jdbcTemplate.query(sql.toString(), params.toArray(), this::mapRowToRace);
+    }
+
+    @Override
+    public List<RaceActivity> getRaceActivities(int id_user, String filter, String sort, int entries, int offset) {
+        StringBuilder sql = new StringBuilder(
+            "SELECT r.id_race, r.title, jr.duration, jr.path_pict, r.start_date, r.distance, r.description " +
+            "FROM race r " +
+            "JOIN joinrace jr ON r.id_race = jr.id_race " +
+            "WHERE jr.id_user = ? AND jr.status = false "
+        );
+        
+        List<Object> params = new ArrayList<>();
+        params.add(id_user);
+
+        if (filter != null && !filter.isEmpty()) {
+            sql.append("AND LOWER(r.title) LIKE LOWER(?) ");
+            params.add("%" + filter + "%");
+        }
+
+        if (sort != null) {
+            switch (sort) {
+                case "Distance-Asc":
+                    sql.append("ORDER BY r.distance ASC ");
+                    break;
+                case "Distance-Desc":
+                    sql.append("ORDER BY r.distance DESC ");
+                    break;
+                case "Duration-Asc":
+                    sql.append("ORDER BY jr.duration ASC ");
+                    break;
+                case "Duration-Desc":
+                    sql.append("ORDER BY jr.duration DESC ");
+                    break;
+                case "Date-Asc":
+                    sql.append("ORDER BY r.start_date ASC ");
+                    break;
+                case "Date-Desc":
+                    sql.append("ORDER BY r.start_date DESC ");
+                    break;
+                default:
+                    sql.append("ORDER BY r.start_date DESC ");
+            }
+        }
+
+        if (entries > 0) {
+            sql.append("LIMIT ? OFFSET ?");
+            params.add(entries);
+            params.add(offset);
+        }
+
+        return jdbcTemplate.query(sql.toString(), params.toArray(), (rs, rowNum) -> new RaceActivity(
+            rs.getInt("id_race"),
+            rs.getString("title"),
+            rs.getString("duration"),
+            rs.getString("path_pict"),
+            rs.getDate("start_date"),
+            rs.getDouble("distance"),
+            rs.getString("description"),
+            false
+        ));
+    }
+
+    @Override
+    public int getTotalRaceActivities(int id_user, String filter) {
+        StringBuilder sql = new StringBuilder(
+            "SELECT COUNT(*) FROM race r " +
+            "JOIN joinrace jr ON r.id_race = jr.id_race " +
+            "WHERE jr.id_user = ? AND jr.status = false "
+        );
+        
+        List<Object> params = new ArrayList<>();
+        params.add(id_user);
+
+        if (filter != null && !filter.isEmpty()) {
+            sql.append("AND LOWER(r.title) LIKE LOWER(?) ");
+            params.add("%" + filter + "%");
+        }
+
+        return jdbcTemplate.queryForObject(sql.toString(), params.toArray(), Integer.class);
     }
 }
