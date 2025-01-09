@@ -14,39 +14,40 @@ body {
     row-gap: 50px;
 }
 .navbar {
-    position: fixed; /* Tetap di posisi atas */
-    top: 0; /* Pastikan di bagian paling atas */
-    left: 0; /* Mulai dari kiri layar */
-    width: 100%; /* Penuhi lebar layar */
-    z-index: 1000; /* Letakkan di atas elemen lain */
-    background: var(--background-color-primary, #ffffff); /* Pastikan ada warna latar */
-    display: flex;
-    justify-content: space-around;
-    align-items: center;
-    padding: 10px 20px; /* Berikan sedikit padding */
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Tambahkan bayangan untuk kesan floating */
-    height: 40px;
+  position: fixed; /* Tetap di posisi atas */
+  top: 0; /* Pastikan di bagian paling atas */
+  left: 0; /* Mulai dari kiri layar */
+  width: 100%; /* Penuhi lebar layar */
+  z-index: 1000; /* Letakkan di atas elemen lain */
+  background: var(--background-color-primary, #ffffff); /* Pastikan ada warna latar */
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  padding: 10px 20px; /* Berikan sedikit padding */
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Tambahkan bayangan untuk kesan floating */
+  height: 40px;
 }
 .logo{
-    display: flex;
-    width: 220px;
+  display: flex;
+  width: 220px;
 }
 .yurun{
-    display: flex;
-    color: var(--neutral-colors-950, #141414);
-    font-family: "Roboto-Medium", sans-serif;
-    font-size: 21px;
-    line-height: 120%;
-    font-weight: 500;
-    align-items: center;
+  display: flex;
+  color: var(--neutral-colors-950, #141414);
+  font-family: "Roboto-Medium", sans-serif;
+  font-size: 21px;
+  line-height: 120%;
+  font-weight: 500;
+  align-items: center;
 }
 .textNavbar{
-    display: flex;
-    gap: 30px;
-    color: var(--neutral-colors-950, #141414);
-    font-family: "Roboto-Medium", sans-serif;
-    font-size: 16px;
-    font-weight: 500;
+  display: flex;
+  gap: 30px;
+  color: var(--neutral-colors-950, #141414);
+  font-family: "Roboto-Medium", sans-serif;
+  font-size: 16px;
+  font-weight: 500;
+  align-items: center;
 }
 .textNavbar a {
   text-decoration: none;

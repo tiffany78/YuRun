@@ -21,12 +21,14 @@
             <a th:href="@{/member/race}">Race</a>
             <a th:href="@{/member/progress}">Progress</a>
         </div>
-        <a>
-            <img src="/css/Admin/HomePage/account-circle0.svg"/>
-        </a>
-        <a th:href="@{/logout}">
-            <img src="/css/Admin/HomePage/logout.svg"/>
-        </a>
+        <div class="button">
+            <a>
+                <img src="/css/Admin/HomePage/account-circle0.svg"/>
+            </a>
+            <a th:href="@{/logout}">
+                <img src="/css/Admin/HomePage/logout.svg"/>
+            </a>
+        </div>
     </nav>
     <div class="content">
         <form class="frameinput" method="post" th:action="@{/member/editActivity/{idActivity}(idActivity=${activity.id_activity})}" enctype="multipart/form-data">
