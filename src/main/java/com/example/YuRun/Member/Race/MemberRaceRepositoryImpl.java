@@ -142,7 +142,7 @@ public class MemberRaceRepositoryImpl implements MemberRaceRepository {
             "SELECT r.id_race, r.title, jr.duration, jr.path_pict, r.start_date, r.distance, r.description " +
             "FROM race r " +
             "JOIN joinrace jr ON r.id_race = jr.id_race " +
-            "WHERE jr.id_user = ? AND jr.status = false "
+            "WHERE jr.id_user = ? "
         );
         
         List<Object> params = new ArrayList<>();

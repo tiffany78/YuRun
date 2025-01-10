@@ -263,6 +263,10 @@ a.page{
     justify-content: space-evenly;
     cursor: pointer;
 }
+.button2.disabled {
+    pointer-events: none;
+    opacity: 0.5;
+}
 .approve {
     background: #69e88f;
     border: none;

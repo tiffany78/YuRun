@@ -59,7 +59,6 @@
     </div>
     <div class="contentBody">
         <div class="square" th:each="activity : ${activity}">
-            <!-- <div class="kindText" th:text="'Race Activity'">Race Activity</div> -->
             <div class="kindText" th:text="${activity.title}"></div>
             <div class="imageContainer">
                 <img th:src="${activity.path_pict != null ? '/upload/RaceActivity-member/' + activity.path_pict : '/upload/RaceActivity-member/default.jpg'}" 
@@ -67,7 +66,6 @@
             </div>
             <div class="detailText">
                 <a>
-                    <!-- <span class="title" th:text="${activity.title}"></span> -->
                     <span class="description" th:text="${activity.description}"></span>
                 </a>                
                 <a th:text="${'Distance: ' + activity.distance + ' km'}">Distance</a>
