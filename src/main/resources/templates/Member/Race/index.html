@@ -51,7 +51,6 @@
                     <th>No.</th>
                     <th>Title</th>
                     <th>Date</th>
-                    <th>Start Time</th>
                     <th>Distance</th>
                     <th>Description</th>
                     <th>Status</th>
@@ -62,7 +61,6 @@
                     <td th:text="${stat.index + 1}"></td>
                     <td th:text="${race.title}"></td>
                     <td th:text="${#dates.format(race.start_date, 'dd/MM/yyyy')}"></td>
-                    <td th:text="${#dates.format(race.time, 'HH:mm:ss')}"></td>
                     <td th:text="${race.distance} + ' km'"></td>
                     <td th:text="${race.description}"></td>
                     <td>

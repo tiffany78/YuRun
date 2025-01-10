@@ -30,7 +30,6 @@ public class JDBCHomeImplementation implements HomeRepository {
             resultSet.getInt("id_race"),
             resultSet.getString("title"),
             resultSet.getDate("start_date"),
-            resultSet.getTime("time"),
             resultSet.getDouble("distance"),
             resultSet.getString("description"),
             null

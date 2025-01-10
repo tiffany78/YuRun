@@ -17,12 +17,12 @@ INSERT INTO Users (name, email, password, isAdmin, status) VALUES
 
 
 -- Dummy data for Race (with end_date removed)
-INSERT INTO Race (title, start_date, time, distance, status) VALUES
-('Sunrise Marathon', '2024-12-10', '06:00:00', 40.00, FALSE),
-('Twilight Run', '2024-12-08', '18:00:00', 20.00, FALSE),
-('Night Owl Sprint', '2024-12-06', '22:00:00', 5.00, FALSE),
-('City Lights Race', '2024-12-12', '20:00:00', 10.00, FALSE),
-('Beachside Dash', '2024-12-07', '07:30:00', 15.50, FALSE); 
+INSERT INTO Race (title, start_date, distance, status) VALUES
+('Sunrise Marathon', '2024-12-10', 40.00, FALSE),
+('Twilight Run', '2024-12-08', 20.00, FALSE),
+('Night Owl Sprint', '2024-12-06', 5.00, FALSE),
+('City Lights Race', '2024-12-12', 10.00, FALSE),
+('Beachside Dash', '2024-12-07', 15.50, FALSE); 
 
 -- Dummy data for Activity
 INSERT INTO Activity (id_user, title, kind, distance, duration, date, time, description) VALUES

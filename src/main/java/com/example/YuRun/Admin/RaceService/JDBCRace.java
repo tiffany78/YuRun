@@ -94,14 +94,12 @@ public class JDBCRace implements RaceRepository{
     }
 
     private CountRace mapRowToCountrace(ResultSet resultSet, int rowNum) throws SQLException {
-        LocalDateTime startDateTime = resultSet.getDate("start_date").toLocalDate()
-            .atTime(resultSet.getTime("race_time").toLocalTime());
+        LocalDateTime startDateTime = resultSet.getDate("start_date").toLocalDate().atStartOfDay();
 
         return new CountRace(
             resultSet.getInt("id_race"),
             resultSet.getString("title"),
             resultSet.getDate("start_date"),
-            resultSet.getTime("race_time"),
             resultSet.getDouble("distance"),
             resultSet.getString("description"), 
             resultSet.getInt("count"),
@@ -111,23 +109,21 @@ public class JDBCRace implements RaceRepository{
     }
 
     private Race mapRowToRace(ResultSet resultSet, int rowNum) throws SQLException {
-        LocalDateTime startDateTime = resultSet.getDate("start_date").toLocalDate()
-            .atTime(resultSet.getTime("time").toLocalTime());
+        LocalDateTime startDateTime = resultSet.getDate("start_date").toLocalDate().atStartOfDay();
+
         return new Race(
             resultSet.getInt("id_race"),
             resultSet.getString("title"),
             resultSet.getDate("start_date"),
-            resultSet.getTime("time"),
             resultSet.getDouble("distance"),
             resultSet.getString("description"), 
             startDateTime
         );
     }
 
-    public void addRace(String title, Time time, Date date, Double distance, String desc) {
-        String sql = "INSERT INTO public.race(title, time, start_date, distance, description, status) VALUES (?, ?, ?, ?, ?, FALSE)";
-        jdbcTemplate.update(sql, 
-        title, time, date, distance, desc);
+    public void addRace(String title, Date date, Double distance, String desc) {
+        String sql = "INSERT INTO public.race(title, start_date, distance, description, status) VALUES (?, ?, ?, ?, FALSE)";
+        jdbcTemplate.update(sql, title, date, distance, desc);
     }
 
     public Race getById(int id){
@@ -136,10 +132,10 @@ public class JDBCRace implements RaceRepository{
         return list.get(0);
     }
 
-    public void updateRace(String title, Time time, Date date, Double distance, String desc, int idRace){
-        String sql = "UPDATE race SET distance = ?, start_date = ?, time = ?, title = ?, description = ? WHERE id_race = ?";
+    public void updateRace(String title, Date date, Double distance, String desc, int idRace){
+        String sql = "UPDATE race SET distance = ?, start_date = ?, title = ?, description = ? WHERE id_race = ?";
 
-        jdbcTemplate.update(sql, distance, date, time, title, desc, idRace);
+        jdbcTemplate.update(sql, distance, date, title, desc, idRace);
     }
 
     public Map<String, Double> getTitleAndDistance(int idRace) {
@@ -194,7 +190,6 @@ public class JDBCRace implements RaceRepository{
         return new ResultRace(
             resultSet.getInt("id_race"),
             resultSet.getString("title"),
-            resultSet.getTime("race_time"),
             resultSet.getDouble("distance"),
             resultSet.getInt("id_user"),
             resultSet.getString("name"),

@@ -64,7 +64,6 @@
                 <tr>
                   <th>Title</th>
                   <th>Start Date</th>
-                  <th>Time</th>
                   <th>Distance</th>
                 </tr>
             </thead>
@@ -72,7 +71,6 @@
                 <tr th:each="race : ${race}">
                     <td th:text="${race.title}"></td>
                     <td th:text="${#dates.format(race.start_date, 'dd/MM/yyyy')}"></td>
-                    <td th:text="${race.time}"></td>
                     <td th:text="${race.distance} + ' km'"></td>
                 </tr>                
             </tbody>

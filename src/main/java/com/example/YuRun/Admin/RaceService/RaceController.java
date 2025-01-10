@@ -73,21 +73,15 @@ public class RaceController {
     @RequiredRole("admin")
     public String addRace(
         @RequestParam("title") String title,
-        @RequestParam("time") String time,
         @RequestParam("date") String date,
         @RequestParam("distance") Double distance,
         @RequestParam("desc") String desc) {
 
-        time += ":00";
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("HH:mm:ss");
-        LocalTime localTime = LocalTime.parse(time, formatter);
-        Time sqlTime = Time.valueOf(localTime);
-
-        formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
         LocalDate localDate = LocalDate.parse(date, formatter);
         Date sqlDate = Date.valueOf(localDate);
 
-        this.repo.addRace(title, sqlTime, sqlDate, distance, desc);
+        this.repo.addRace(title, sqlDate, distance, desc);
 
         return "redirect:/admin/race";
     }
@@ -104,22 +98,17 @@ public class RaceController {
     @RequiredRole("admin")
     public String updateRace(
         @RequestParam("title") String title,
-        @RequestParam("time") String time,
         @RequestParam("startDate") String date,
         @RequestParam("distance") Double distance,
         @RequestParam("description") String desc,
         @PathVariable("idRace") int idRace
     ){
-        time += ":00";
-            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("HH:mm:ss");
-            LocalTime localTime = LocalTime.parse(time, formatter);
-            Time sqlTime = Time.valueOf(localTime);
 
-            formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
             LocalDate localDate = LocalDate.parse(date, formatter);
             Date sqlDate = Date.valueOf(localDate);
 
-            this.repo.updateRace(title, sqlTime, sqlDate, distance, desc, idRace);
+            this.repo.updateRace(title, sqlDate, distance, desc, idRace);
 
             return "redirect:/admin/race";
     }

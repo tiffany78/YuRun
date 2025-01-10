@@ -9,9 +9,9 @@ import com.example.YuRun.Admin.Homepage.Race;
 
 public interface RaceRepository {
     List<CountRace> findRace(String filter, String statusRace, int entries, int offset);
-    void addRace(String title, Time time, Date date, Double distance, String desc);
+    void addRace(String title, Date date, Double distance, String desc);
     Race getById(int id);
-    void updateRace(String title, Time time, Date date, Double distance, String desc, int idRace);
+    void updateRace(String title, Date date, Double distance, String desc, int idRace);
     List<ResultRace> getAllResultRace(int id_race, String filter, String statusMember);
     void updateStatus(int idRace, int idUser, boolean status);
     void updateStatusRace(int idRace);

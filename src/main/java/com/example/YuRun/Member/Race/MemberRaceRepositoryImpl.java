@@ -18,7 +18,7 @@ public class MemberRaceRepositoryImpl implements MemberRaceRepository {
 
     @Override
     public List<Race> findAllRaces() {
-        String sql = "SELECT id_race, title, start_date, time, distance, description, status FROM race";
+        String sql = "SELECT id_race, title, start_date, distance, description, status FROM race";
         return jdbcTemplate.query(sql, this::mapRowToRace);
     }
 
@@ -55,14 +55,12 @@ public class MemberRaceRepositoryImpl implements MemberRaceRepository {
     }
 
     private Race mapRowToRace(ResultSet resultSet, int rowNum) throws SQLException {
-        LocalDateTime startDateTime = resultSet.getDate("start_date").toLocalDate()
-            .atTime(resultSet.getTime("time").toLocalTime());
+        LocalDateTime startDateTime = resultSet.getDate("start_date").toLocalDate().atStartOfDay();
 
         return new Race(
             resultSet.getInt("id_race"),
             resultSet.getString("title"),
             resultSet.getDate("start_date"),
-            resultSet.getTime("time"),
             resultSet.getDouble("distance"),
             resultSet.getString("description"),
             resultSet.getBoolean("status"),
@@ -81,7 +79,7 @@ public class MemberRaceRepositoryImpl implements MemberRaceRepository {
 
     @Override
     public Race findRaceById(int idRace) {
-        String sql = "SELECT id_race, title, start_date, time, distance, description, status FROM race WHERE id_race = ?";
+        String sql = "SELECT id_race, title, start_date, distance, description, status FROM race WHERE id_race = ?";
         return jdbcTemplate.queryForObject(sql, this::mapRowToRace, idRace);
     }
 

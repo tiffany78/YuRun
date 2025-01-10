@@ -99,8 +99,7 @@
                     <span th:text="${#dates.format(race.start_date, 'd MMMM yyyy')}"></span> <!-- Format tanggal -->
                 </div>
                 <div class="infoMyRace">
-                    <img src="/css/Member/HomePage/alarm-010.svg">
-                    <span th:text="${race.time}"></span>
+                    <span th:text="${race.description != null ? race.description : ''}"></span>
                 </div>
             </div>
         </div>
@@ -114,8 +113,7 @@
                     <span th:text="${#dates.format(upRace.start_date, 'd MMMM yyyy')}"></span> <!-- Format tanggal -->
                 </div>
                 <div class="infoMyRace">
-                    <img src="/css/Member/HomePage/alarm-010.svg">
-                    <span th:text="${upRace.time}"></span> <!-- Format waktu -->
+                    <span th:text="${upRace.description != null ? upRace.description : ''}"></span>
                 </div>
             </div>
         </div>
@@ -134,7 +132,6 @@
                     <th>Distance</th>
                     <th>Duration</th>
                     <th>Date</th>
-                    <th>Time</th>
                 </tr>
             </thead>
             <tbody>
@@ -144,7 +141,6 @@
                     <td th:text="${activity.distance} + ' km'"></td>
                     <td th:text="${activity.duration}"></td>
                     <td th:text="${#dates.format(activity.date, 'd MMMM yyyy')}"></td>
-                    <td th:text="${activity.time}"></td>
                 </tr>
             </tbody>
         </table>
