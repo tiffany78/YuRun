@@ -49,6 +49,15 @@
                 <option th:value="Half-Marathon" th:selected="${kindActivity == 'Half-Marathon'}">Half-Marathon</option>
                 <option th:value="Marathon" th:selected="${kindActivity == 'Marathon'}">Marathon</option>
             </select>
+            <select class="dropdown" id="sort" name="sort" onchange="this.form.submit()">
+                <option th:value="null" th:selected="${sort == null}">Sort by: Featured</option>
+                <option th:value="Distance-Asc" th:selected="${sort == 'Distance-Asc'}">Distance: Short - Long</option>
+                <option th:value="Distance-Desc" th:selected="${sort == 'Distance-Desc'}">Distance: Long - Short</option>
+                <option th:value="Duration-Asc" th:selected="${sort == 'Duration-Asc'}">Duration: Short - Long</option>
+                <option th:value="Duration-Desc" th:selected="${sort == 'Duration-Desc'}">Duration: Long - Short</option>
+                <option th:value="Date-Asc" th:selected="${sort == 'Date-Asc'}">Date: Oldest - Newest</option>
+                <option th:value="Date-Desc" th:selected="${sort == 'Date-Desc'}">Date: Newest - Oldest</option>
+            </select>
         </form>
         <a class="add" th:href="@{/member/addActivity}">+ Add Activity</a>
     </div>
@@ -70,7 +79,7 @@
                 <a th:text="${'Distance: ' + activity.distance + ' km'}">Distance</a>
                 <a th:text="${'Duration: ' + activity.duration}">Duration</a>
                 <div class="detailTime">
-                    <a th:text="${#dates.format(activity.date, 'dd/MM/yyyy')}">Date</a>
+                    <a th:text="${#dates.format(activity.date, 'd MMMM yyyy')}">Date</a>
                     <a th:text="${activity.time}">Time</a>
                 </div>
             </div>

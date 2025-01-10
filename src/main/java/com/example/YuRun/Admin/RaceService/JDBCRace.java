@@ -173,6 +173,8 @@ public class JDBCRace implements RaceRepository{
             }
             params.add(status);
         }
+        sql += " ORDER BY member_duration";
+
         return jdbcTemplate.query(sql, this::mapRowToResultRace, params.toArray());
     }
 
@@ -223,7 +225,10 @@ public class JDBCRace implements RaceRepository{
     }
 
     public void deleteRace(int id_race){
-        String sql = "DELETE FROM race WHERE id_race = ?";
+        String sql = "DELETE FROM joinrace WHERE id_race = ?";
+        jdbcTemplate.update(sql, id_race);
+
+        sql = "DELETE FROM race WHERE id_race = ?";
         jdbcTemplate.update(sql, id_race);
     }
 }

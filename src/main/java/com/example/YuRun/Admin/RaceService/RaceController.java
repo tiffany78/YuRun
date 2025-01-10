@@ -96,7 +96,7 @@ public class RaceController {
     @RequiredRole("admin")
     public String editRace(@PathVariable("idRace") int idRace, Model model) {
         Race race = this.repo.getById(idRace);
-        model.addAttribute("race", race); // Tambahkan objek race
+        model.addAttribute("race", race);
         return "/Admin/Race/editRace";
     }
 
@@ -142,9 +142,12 @@ public class RaceController {
         model.addAttribute("statusMember", statusMember);
         model.addAttribute("idRace", idRace);
         model.addAttribute("resultRace", list);
-
+        
         if (list.isEmpty() || list.size() == 0) {
             model.addAttribute("message", "No member found for the given filter.");
+        }
+        else{
+            model.addAttribute("winner", list.get(0).getName());
         }
 
         return "/Admin/Race/approval";

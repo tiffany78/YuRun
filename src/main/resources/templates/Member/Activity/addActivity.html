@@ -53,7 +53,7 @@
                 <div class="divInput">
                     <div class="headInput">Date & Time</div>
                     <div class="groupFrame">
-                        <input type="date" id="date" name="date" class="frame1">
+                        <input type="date" id="date" name="date" class="frame1" th:attr="max=${#dates.format(#dates.createNow(), 'yyyy-MM-dd')}">
                         <input type="time" id="time" name="time" class="frame1">
                     </div>
                 </div>
@@ -93,11 +93,9 @@
                 </div>
             </div>
             <div class="button2">
-                <a class="cancel" th:href="@{/member/activity}">
-                    <div class="cancel2">Cancel</div>
+                <a class="cancel" th:href="@{/member/activity}">Cancel
                 </a>
-                <button class="save" type="submit">
-                    <div class="save2">Save</div>
+                <button class="save" type="submit">Save
                 </button>
             </div>
         </div>

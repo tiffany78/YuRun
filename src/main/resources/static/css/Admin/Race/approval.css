@@ -9,7 +9,7 @@ body {
 }
 .containerBody{
     display: grid;
-    grid-template-rows: 60px 90px 103px auto;
+    grid-template-rows: 60px 110px 103px auto;
     grid-template-columns: 1fr;
     grid-template-areas: 
         "navbar"
@@ -57,6 +57,7 @@ body {
     font-family: "Roboto-Medium", sans-serif;
     font-size: 16px;
     font-weight: 500;
+    align-items: center;
 }
 .textNavbar a {
   text-decoration: none;

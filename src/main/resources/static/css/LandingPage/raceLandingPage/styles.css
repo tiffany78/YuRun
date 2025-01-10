@@ -1,0 +1,200 @@
+body {
+    margin: 0;
+    padding: 0;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    background-color: #F5F5F5;
+    font-family: "Roboto-Medium", sans-serif;
+}
+.containerBody{
+    display: grid;
+    grid-template-rows: 60px 103px auto;
+    grid-template-columns: 1fr;
+    grid-template-areas: 
+        "navbar"
+        "search"
+        "contentBody";
+    min-height: 100vh;
+    min-width: 100vw;
+    overflow: auto;
+    justify-content: flex-start;
+    align-items: flex-start;
+}    
+.navbar {
+    grid-area: navbar;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 1000;
+    background: var(--background-color-primary, #ffffff);
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    padding: 10px 20px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+.logo {
+    display: flex;
+    width: 220px;
+}
+.yurun {
+    display: flex;
+    color: var(--neutral-colors-950, #141414);
+    font-size: 21px;
+    line-height: 120%;
+    font-weight: 500;
+    align-items: center;
+}
+.textNavbar {
+    display: flex;
+    gap: 30px;
+    color: var(--neutral-colors-950, #141414);
+    font-size: 16px;
+    font-weight: 500;
+    align-items: center;
+    justify-content: center;
+}
+.textNavbar a {
+    text-decoration: none;
+    color: var(--neutral-colors-950, #141414);
+}
+a.page{
+    color: var(--primary-color-500, #ff5722);
+    font-weight: 1000;
+}
+.button{
+    background: var(--primary-color-500, #ff5722);
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    padding: 8px 24px 8px 24px;
+    font-family: "Roboto-SemiBold", sans-serif;
+    font-size: 16px;
+    line-height: 150%;
+    font-weight: 600;
+    border-color: #ff5722;
+}
+.buttonText {
+    text-decoration: none;
+    color: white;
+}
+/* BAGIAN SEARCH */
+.search{
+    grid-area: search;
+    padding-right: 10px;
+    margin: 20px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: flex-start;
+    position: relative;
+    overflow: hidden;
+    border-style: solid;
+    border-color: var(--grey-40, #d0d0d0);
+    border-width: 1px;
+    border-radius: 10px;
+    width: 350px;
+    height: 30px;
+}
+.search-bar {
+    flex-shrink: 0;
+    width: 20px;
+    height: 20px;
+    position: relative;
+    overflow: visible;
+}
+.search-race{
+    border: none;
+    flex-shrink: 0;
+    padding-left: 10px;
+    padding-right: 20px;
+    background: none;
+    width: 300px;
+    height: 25px;
+}
+
+
+/* BAGIAN CONTENT */
+.contentBody {
+    grid-area: contentBody;
+    justify-content: center;
+    justify-self: center;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 10px;
+    font-family: "Roboto-Medium", sans-serif;
+}
+.square {
+    display: grid;
+    grid-template-rows: auto 1fr auto;
+    grid-template-columns: 1fr; /* Semua elemen dalam satu kolom */
+    gap: 10px; /* Jarak antar elemen */
+    background: #fefaf7;
+    border: #ff5722 3px solid;
+    width: 300px;
+    height: auto;
+    border-radius: 10px;
+    padding: 15px;
+}
+.kindText {
+    font-weight: 600;
+    font-size: larger;
+    text-align: center; /* Lurus di tengah */
+}
+.detailText {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 5px; /* Jarak antar teks */
+    text-align: left; /* Lurus di kiri */
+    font-weight: 500;
+    font-size: large;
+}
+.title {
+    font-weight: bold; /* Membuat teks title lebih tebal */
+}
+.description {
+    font-weight: normal; /* Membuat teks description normal */
+    color: #666; /* Opsional: Gunakan warna abu-abu untuk membedakan */
+}
+.detailTime {
+    display: flex;
+    flex-direction: row;
+    column-gap: 10px;
+    font-size: small;
+    color: gray;
+    align-items: center;
+}
+
+
+.actionButton {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    align-items: center;
+    margin-top: auto; 
+    cursor: pointer;
+}
+
+.joinRace {
+    background: none;
+    border: #7f190f 1px solid;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    column-gap: 10px;
+    border-radius: 10px;
+    font-size: medium;
+    color: #c71e07;
+    font-weight: 500;
+    width: 135px;
+    height: 40px;
+    text-decoration: none;
+}
+
+

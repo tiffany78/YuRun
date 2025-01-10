@@ -33,9 +33,11 @@ public class HomeUserController {
     @RequiredRole("member")
     public String home(HttpSession session, Model model){
         String user = (String) session.getAttribute("username");
-        session.setAttribute("username", user);
-        int id_user = (Integer) session.getAttribute("id_user");
-        session.setAttribute("id_user", id_user);
+        Integer idUserObj = (Integer) session.getAttribute("id_user");
+        if (idUserObj == null || user == null) {
+            return "/ErrorLogin/errorPage";
+        }
+        int id_user = idUserObj;
 
         List<Activity> list = this.repo.getActivity(user);
         model.addAttribute("activity", list);
@@ -48,7 +50,7 @@ public class HomeUserController {
 
         Double sumDistance = 0.0;
         List<String> listDuration = new ArrayList<>();
-        List<ActivityMember> runList = this.recapRepo.getAllActivities(id_user);
+        List<ActivityMember> runList = this.recapRepo.getAllActivities(id_user, null);
         for(ActivityMember curr : runList){
             sumDistance += curr.getDistance();
             listDuration.add(curr.getDuration());
@@ -101,7 +103,7 @@ public class HomeUserController {
         int minutes = remainingSeconds / 60;
         int seconds = remainingSeconds % 60;
 
-        return String.format("%02d:%02d:%02d", hours, minutes, seconds);
+        return String.format("%02d Hours %02d Minutes %02d Seconds", hours, minutes, seconds);
     }
 
     @RestController

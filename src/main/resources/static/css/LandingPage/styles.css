@@ -23,25 +23,18 @@ body {
 }
 
 .navbar {
-    position: fixed;
-    /* Tetap di posisi atas */
+    grid-area: navbar;
+    position: fixed; 
     top: 0;
-    /* Pastikan di bagian paling atas */
-    left: 0;
-    /* Mulai dari kiri layar */
-    width: 100%;
-    /* Penuhi lebar layar */
-    z-index: 1000;
-    /* Letakkan di atas elemen lain */
-    background: var(--background-color-primary, #ffffff);
-    /* Pastikan ada warna latar */
+    left: 0; 
+    width: 100%; 
+    z-index: 1000; 
+    background: var(--background-color-primary, #ffffff); 
     display: flex;
     justify-content: space-around;
     align-items: center;
-    padding: 10px 20px;
-    /* Berikan sedikit padding */
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    /* Tambahkan bayangan untuk kesan floating */
+    padding: 10px 20px; 
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); 
 }
 
 .logo {
@@ -58,8 +51,24 @@ body {
     font-weight: 500;
     align-items: center;
 }
-
-.button {
+.textNavbar{
+    display: flex;
+    gap: 30px;
+    color: var(--neutral-colors-950, #141414);
+    font-family: "Roboto-Medium", sans-serif;
+    font-size: 16px;
+    font-weight: 500;
+    align-items: center;
+}
+.textNavbar a {
+    text-decoration: none;
+    color: var(--neutral-colors-950, #141414);
+}
+a.page{
+    color: var(--primary-color-500, #ff5722);
+    font-weight: 1000;
+}
+.button{
     background: var(--primary-color-500, #ff5722);
     border-radius: 8px;
     display: flex;
@@ -156,14 +165,13 @@ body {
     position: relative;
     top: 20px;
     left: 40px;
-    font-family: "JockeyOne-Regular", sans-serif;
     color: #ffffff;
     text-align: center;
-    font-family: "Roboto-SemiBold", sans-serif;
     font-size: 16px;
     line-height: 150%;
     font-weight: 600;
     text-decoration: none;
+    font-family: "Roboto-SemiBold", sans-serif;
 }
 
 .frame2 {
@@ -311,6 +319,7 @@ body {
     font-family: "Roboto-Bold", sans-serif;
     font-size: 48px;
     font-weight: 700;
+    text-decoration: none;
 }
 
 .right3-item2 {
