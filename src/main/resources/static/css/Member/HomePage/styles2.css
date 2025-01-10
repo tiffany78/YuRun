@@ -127,18 +127,11 @@ a.page{
   height: 400px; 
   margin-left: 10px;
 }
-#download{
+.buttonDownload{
   display: flex;
-  background: #ff5722;
-  border-radius: 13px;
-  padding: 10px;
-  color: #ffffff;
-  font-family: "Roboto-Regular", sans-serif;
-  font-size: 13px;
-  width: auto;
+  flex-direction: row;
 }
-/* BUTTON DOWNLOAD PDF */
-#downloadPdf {
+#download, #downloadPdf {
   display: flex;
   background: #ff5722; /* Warna latar belakang yang sama dengan tombol PNG */
   border-radius: 13px;
@@ -153,7 +146,6 @@ a.page{
   text-decoration: none;
   margin-top: 20px;
 }
-
 
 .graph2 {
   grid-area: graph2;
