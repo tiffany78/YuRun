@@ -8,13 +8,14 @@ body {
 }
 .containerBody{
     display: grid;
-    grid-template-rows: auto auto auto auto;
-    grid-template-columns: 1fr 1fr;
+    grid-template-rows: auto auto auto auto auto;
+    grid-template-columns: 1fr 1fr 1fr;
     grid-template-areas: 
-        "navbar navbar"
-        "frame1 frame2"
-        "frame3 frame3"
-        "footer footer";
+        "navbar navbar navbar"
+        "frame1 frame1 frame1"
+        "frame2 frame2 frame4"
+        "frame3 frame3 frame3"
+        "footer footer footer";
     min-height: 100vh;
     min-width: 100vw;
     overflow: auto;
@@ -93,10 +94,19 @@ a.page{
     flex-direction: column;
     align-items: center;
 }
+/* BAGIAN FRAME 4 */
+.frame4 {
+    grid-area: frame4;
+    border-radius: 10px;
+    margin-top: 90px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
 
 #container {
-  width: 500px; 
-  height: 400px; 
+  width: 1000px; 
+  height: 250px; 
   margin: 10px auto;
 }
 

@@ -43,13 +43,13 @@
     </div>
     <div class="frame2">
         <div>
-            <div id="container2" style="height: 400px"></div>
+            <div id="container2" style="height: 300px"></div>
         </div> 
         <a id="download2">Download PNG</a>
     </div>
     <div class="frame4">
         <div>
-            <div id="container3" style="height: 400px"></div>
+            <div id="container3" style="height: 300px"></div>
         </div> 
         <a id="download3">Download PNG</a>
     </div>
@@ -64,7 +64,6 @@
                 <tr>
                   <th>Title</th>
                   <th>Start Date</th>
-                  <th>Time</th>
                   <th>Distance</th>
                 </tr>
             </thead>
@@ -72,7 +71,6 @@
                 <tr th:each="race : ${race}">
                     <td th:text="${race.title}"></td>
                     <td th:text="${#dates.format(race.start_date, 'dd/MM/yyyy')}"></td>
-                    <td th:text="${race.time}"></td>
                     <td th:text="${race.distance} + ' km'"></td>
                 </tr>                
             </tbody>

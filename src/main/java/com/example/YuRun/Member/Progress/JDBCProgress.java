@@ -89,32 +89,32 @@ public class JDBCProgress implements ProgressRepo{
     }
 
     public List<ProgressRace> getAllRace(int id_user){
-        String sql = "SELECT * FROM show_race_member WHERE id_user = ? AND status = true ORDER BY race_date DESC";
+        String sql = "SELECT * FROM show_race_member WHERE id_user = ? AND member_duration != 'null' AND status = TRUE ORDER BY race_date DESC";
         return jdbcTemplate.query(sql, this::maptoRowRace, id_user);
     }
 
     public List<ProgressRace> getWeeklyRace(int id_user) {
-        String sql = "SELECT * FROM show_race_member WHERE id_user = ? AND race_date >= CURRENT_DATE - INTERVAL '7 days' AND status = true ORDER BY race_date DESC";
+        String sql = "SELECT * FROM show_race_member WHERE id_user = ? AND race_date >= CURRENT_DATE - INTERVAL '7 days' AND member_duration != 'null' AND status = TRUE ORDER BY race_date DESC";
         return jdbcTemplate.query(sql, this::maptoRowRace, id_user);
     }
     
     public List<ProgressRace> getMonthlyRace(int id_user) {
-        String sql = "SELECT * FROM show_race_member WHERE id_user = ? AND race_date >= CURRENT_DATE - INTERVAL '1 month' AND status = true ORDER BY race_date DESC";
+        String sql = "SELECT * FROM show_race_member WHERE id_user = ? AND race_date >= CURRENT_DATE - INTERVAL '1 month' AND member_duration != 'null' AND status = TRUE ORDER BY race_date DESC";
         return jdbcTemplate.query(sql, this::maptoRowRace, id_user);
     }
     
     public List<ProgressRace> getThreeMonthlyRace(int id_user) {
-        String sql = "SELECT * FROM show_race_member WHERE id_user = ? AND race_date >= CURRENT_DATE - INTERVAL '3 months' AND status = true ORDER BY race_date DESC";
+        String sql = "SELECT * FROM show_race_member WHERE id_user = ? AND race_date >= CURRENT_DATE - INTERVAL '3 months' AND member_duration != 'null' AND status = TRUE ORDER BY race_date DESC";
         return jdbcTemplate.query(sql, this::maptoRowRace, id_user);
     }
     
     public List<ProgressRace> getYearlyRace(int id_user) {
-        String sql = "SELECT * FROM show_race_member WHERE id_user = ? AND race_date >= CURRENT_DATE - INTERVAL '1 year' AND status = true ORDER BY race_date DESC";
+        String sql = "SELECT * FROM show_race_member WHERE id_user = ? AND race_date >= CURRENT_DATE - INTERVAL '1 year' AND member_duration != 'null' AND status = TRUE ORDER BY race_date DESC";
         return jdbcTemplate.query(sql, this::maptoRowRace, id_user);
     }  
     
     public List<ProgressRace> getRaceByDateRange(int id_user, Date startDate, Date endDate) {
-        String sql = "SELECT * FROM show_race_member WHERE id_user = ? AND race_date BETWEEN ? AND ? AND status = true ORDER BY race_date DESC";
+        String sql = "SELECT * FROM show_race_member WHERE id_user = ? AND race_date BETWEEN ? AND ? AND member_duration != 'null' AND status = TRUE ORDER BY race_date DESC";
         return jdbcTemplate.query(sql, this::maptoRowRace, id_user, startDate, endDate);
     } 
 

@@ -18,7 +18,7 @@ public class MemberRaceRepositoryImpl implements MemberRaceRepository {
 
     @Override
     public List<Race> findAllRaces() {
-        String sql = "SELECT id_race, title, start_date, time, distance, description, status FROM race";
+        String sql = "SELECT id_race, title, start_date, distance, description, status FROM race";
         return jdbcTemplate.query(sql, this::mapRowToRace);
     }
 
@@ -55,17 +55,16 @@ public class MemberRaceRepositoryImpl implements MemberRaceRepository {
     }
 
     private Race mapRowToRace(ResultSet resultSet, int rowNum) throws SQLException {
-        LocalDateTime startDateTime = resultSet.getDate("start_date").toLocalDate()
-            .atTime(resultSet.getTime("time").toLocalTime());
+        LocalDateTime startDateTime = resultSet.getDate("start_date").toLocalDate().atStartOfDay();
 
         return new Race(
             resultSet.getInt("id_race"),
             resultSet.getString("title"),
             resultSet.getDate("start_date"),
-            resultSet.getTime("time"),
             resultSet.getDouble("distance"),
             resultSet.getString("description"),
             resultSet.getBoolean("status"),
+            resultSet.getBoolean("iswinner"),
             startDateTime
         );
     }
@@ -81,7 +80,7 @@ public class MemberRaceRepositoryImpl implements MemberRaceRepository {
 
     @Override
     public Race findRaceById(int idRace) {
-        String sql = "SELECT id_race, title, start_date, time, distance, description, status FROM race WHERE id_race = ?";
+        String sql = "SELECT id_race, title, start_date, distance, description, status FROM race WHERE id_race = ?";
         return jdbcTemplate.queryForObject(sql, this::mapRowToRace, idRace);
     }
 
@@ -100,9 +99,10 @@ public class MemberRaceRepositoryImpl implements MemberRaceRepository {
     @Override
     public List<Race> findAvailableRacesForUser(int idUser, String filter, String sort) {
         StringBuilder sql = new StringBuilder(
-            "SELECT r.* FROM race r " +
+            "SELECT r.*, COALESCE(jr.iswinner, FALSE) AS iswinner " +
+            "FROM race r " +
             "LEFT JOIN joinrace jr ON r.id_race = jr.id_race AND jr.id_user = ? " +
-            "WHERE (jr.id_race IS NULL OR (jr.id_user = ? AND jr.status = true)) "
+            "WHERE (jr.id_race IS NULL OR (jr.id_user = ? AND jr.status = true))"
         );
         
         List<Object> params = new ArrayList<>();
@@ -133,7 +133,7 @@ public class MemberRaceRepositoryImpl implements MemberRaceRepository {
                     sql.append("ORDER BY r.start_date DESC "); // Default sort
             }
         } else {
-            sql.append("ORDER BY r.start_date DESC "); // Default sort
+            sql.append("ORDER BY COALESCE(jr.iswinner, FALSE) DESC, r.start_date DESC "); // Prioritize isWinner
         }
 
         return jdbcTemplate.query(sql.toString(), params.toArray(), this::mapRowToRace);

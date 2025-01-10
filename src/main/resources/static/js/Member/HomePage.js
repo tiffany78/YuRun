@@ -30,12 +30,7 @@ $(document).ready(function () {
                 color: 'rgba(255, 111, 55, 0.5)'
             }],
             exporting: {
-                enabled: true, // Mengaktifkan ekspor
-                buttons: {
-                    contextButton: {
-                        menuItems: ['downloadPNG', 'downloadJPEG', 'downloadPDF', 'downloadSVG']
-                    }
-                }
+                enabled: false
             }
         });
     });
@@ -54,14 +49,25 @@ document.getElementById('download').addEventListener('click', function () {
 // Fungsi untuk mengunduh PDF
 document.getElementById('downloadPdf').addEventListener('click', function () {
     const element = document.getElementById('container');
+    const elementWidth = element.offsetWidth;
+    const elementHeight = element.offsetHeight;
+
+    // Hitung ukuran PDF berdasarkan dimensi elemen (dalam mm)
+    const pdfWidth = elementWidth * 0.264583; // Konversi px ke mm
+    const pdfHeight = elementHeight * 0.264583; // Konversi px ke mm
+
     html2canvas(element).then(canvas => {
         const { jsPDF } = window.jspdf; // Pastikan jsPDF sudah di-load
-        const pdf = new jsPDF();
-        pdf.addImage(canvas.toDataURL(), 'PNG', 10, 10);
+        const pdf = new jsPDF({
+            orientation: pdfWidth > pdfHeight ? 'landscape' : 'portrait', // Orientasi otomatis
+            unit: 'mm',
+            format: [pdfWidth, pdfHeight], // Ukuran PDF sesuai elemen
+        });
+
+        // Tambahkan canvas ke PDF
+        pdf.addImage(canvas.toDataURL(), 'PNG', 0, 0, pdfWidth, pdfHeight);
         pdf.save('chart.pdf');
     }).catch(error => {
         console.error('Error during PDF download:', error);
     });
 });
-
-

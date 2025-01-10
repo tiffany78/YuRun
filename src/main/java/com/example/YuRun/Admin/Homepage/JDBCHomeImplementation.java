@@ -30,7 +30,6 @@ public class JDBCHomeImplementation implements HomeRepository {
             resultSet.getInt("id_race"),
             resultSet.getString("title"),
             resultSet.getDate("start_date"),
-            resultSet.getTime("time"),
             resultSet.getDouble("distance"),
             resultSet.getString("description"),
             null
@@ -39,7 +38,7 @@ public class JDBCHomeImplementation implements HomeRepository {
 
     @Override
     public List<JoinRace> countRace() {
-        String sql = "SELECT title, count FROM count_race_admin ORDER BY start_date";
+        String sql = "SELECT title, count FROM count_race_admin WHERE status = false ORDER BY start_date";
         return jdbcTemplate.query(sql, this::mapRowToRace);
     }
 
