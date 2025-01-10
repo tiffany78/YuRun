@@ -134,7 +134,13 @@ public class RaceController {
             model.addAttribute("message", "No member found for the given filter.");
         }
         else{
-            model.addAttribute("winner", list.get(0).getName());
+            if(status) {
+                String name = this.repo.getWinner(idRace);
+                model.addAttribute("winner", name);
+            }
+            else {
+                model.addAttribute("winner", list.get(0).getName());
+            }
         }
 
         return "/Admin/Race/approval";
@@ -158,6 +164,7 @@ public class RaceController {
             this.repo.updateStatus(idRace, idUser, statusValue);
         }
         this.repo.updateStatusRace(idRace);
+        this.repo.setWinner(idRace);
 
         return "redirect:/admin/race";
     }

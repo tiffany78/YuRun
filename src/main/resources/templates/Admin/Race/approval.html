@@ -34,7 +34,8 @@
             <span th:text="${title}"></span>
             <span th:text="${' - ' + target + ' km'}"></span>
         </a>
-        <a th:text="'Current Winner: ' + ${winner}"></a>
+        <a class="currWinner" th:if="${!statusRace}" th:text="'Current Winner: ' + ${winner}"></a>
+        <a class="winner" th:if="${statusRace}" th:text="'Winner: ' + ${winner}"></a>
     </div>
     <form class="header" method="get" th:action="@{/admin/race/approval/{idRace}(idRace=${idRace})}">
         <!--FORM FOR SEARCHING-->

@@ -225,4 +225,41 @@ public class JDBCRace implements RaceRepository{
         sql = "DELETE FROM race WHERE id_race = ?";
         jdbcTemplate.update(sql, id_race);
     }
+
+    public String getWinner(int id_race) {
+        String sql = "SELECT users.name FROM joinrace " +
+                     "JOIN users ON users.id_user = joinrace.id_user " +
+                     "WHERE joinrace.id_race = ? AND joinrace.isWinner = TRUE";
+    
+        try {
+            return jdbcTemplate.queryForObject(sql, new Object[]{id_race}, String.class);
+        } catch (EmptyResultDataAccessException e) {
+            return "No winner found for this race";
+        }
+    }    
+
+    public void setWinner(int id_race) {
+        String selectSql = "SELECT * FROM joinrace WHERE id_race = ? AND status = TRUE ORDER BY duration ASC LIMIT 1";
+        String updateSql = "UPDATE joinrace SET isWinner = TRUE WHERE id_race = ? AND id_user = ?";
+        List<JoinRaceService> results = jdbcTemplate.query(selectSql, this::mapRowToJoinRace, id_race);
+
+        if (!results.isEmpty()) {
+            JoinRaceService winner = results.get(0);
+            jdbcTemplate.update(updateSql, id_race, winner.getIdUser());
+            System.out.println("Winner set for raceId " + id_race + ", userId " + winner.getIdUser());
+        } else {
+            System.out.println("No participants found for raceId " + id_race);
+        }
+    }
+
+    // Method untuk memetakan hasil query ke objek JoinRace
+    private JoinRaceService mapRowToJoinRace(ResultSet resultSet, int rowNum) throws SQLException {
+        return new JoinRaceService(
+            resultSet.getInt("id_race"), 
+            resultSet.getInt("id_user"), 
+            resultSet.getString("duration"), 
+            resultSet.getString("path_pict"), 
+            resultSet.getBoolean("status"), 
+            resultSet.getBoolean("isWinner"));
+    }
 }

@@ -44,6 +44,7 @@ CREATE TABLE JoinRace (
     duration VARCHAR(8),
     path_pict VARCHAR(50),
     status BOOLEAN, 
+    isWinner BOOLEAN,
     FOREIGN KEY (id_race) REFERENCES Race (id_race), 
     FOREIGN KEY (id_user) REFERENCES Users (id_user)
 );

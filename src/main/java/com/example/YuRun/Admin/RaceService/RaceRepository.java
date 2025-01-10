@@ -18,4 +18,6 @@ public interface RaceRepository {
     Map<String, Double> getTitleAndDistance(int idRace);
     int getTotalEntries(String filter, String kind);
     void deleteRace(int id_race);
+    void setWinner(int id_race);
+    String getWinner(int id_race);
 }
