@@ -42,6 +42,7 @@
                 <option th:value="Date-Desc" th:selected="${sort == 'Date-Desc'}">Date: Newest - Oldest</option>
             </select>
         </form>
+        <a class="add" th:href="@{/member/raceActivityHistory}">Race Activity History</a>
     </div>
     <div class="contentBody">
         <table class="table_race">
@@ -66,21 +67,23 @@
                     <td th:text="${race.description}"></td>
                     <td>
                         <!-- Ikon "Join" jika belum bergabung -->
-                        <img th:if="${!raceStatuses[race.id_race]}" class="join" style="cursor: pointer;" src="/css/Member/Race/join.svg" alt="Join Race"
+                        <img th:if="${!raceStatuses[race.id_race] && race.startDateTime.isAfter(currentDate)}" class="join" style="cursor: pointer;" src="/css/Member/Race/join.svg" alt="Join Race"
                             th:onclick="'updateRaceStatus(' + ${race.id_race} + ', true)'"/>
                         
                         <!-- Ikon "Exit" dan "Upload" jika sudah bergabung -->
-                        <img th:if="${raceStatuses[race.id_race]}" class="exit" style="cursor: pointer;" src="/css/Member/Race/exit.svg" alt="Exit Race"
+                        <img th:if="${raceStatuses[race.id_race] && race.startDateTime.isAfter(currentDate)}" class="exit" style="cursor: pointer;" src="/css/Member/Race/exit.svg" alt="Exit Race"
                             th:onclick="'updateRaceStatus(' + ${race.id_race} + ', false)'"/>
                         
-                        <img th:if="${raceStatuses[race.id_race]}" class="upload" style="cursor: pointer;" src="/css/Member/Race/upload-icon.png" alt="Upload Race"
+                        <img th:if="${raceStatuses[race.id_race] && race.startDateTime.isAfter(currentDate)}" class="upload" style="cursor: pointer;" src="/css/Member/Race/upload-icon.png" alt="Upload Race"
                             width="22" height="22"
                             th:onclick="'uploadRaceActivity(' + ${race.id_race} + ')'"/>
+
+                        <!-- Ikon "Exit" dan "Upload" jika sudah bergabung -->
+                        <a th:if="${!race.startDateTime.isAfter(currentDate)}">Closed</a>
                     </td>                    
                 </tr>
             </tbody>
         </table>
-        <a class="add" th:href="@{/member/raceActivityHistory}">Race Activity History</a>
     </div>
     <footer class="footer">
         <div class="content2">

@@ -4,10 +4,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
 
-import java.sql.Date;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.Time;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -56,6 +55,9 @@ public class MemberRaceRepositoryImpl implements MemberRaceRepository {
     }
 
     private Race mapRowToRace(ResultSet resultSet, int rowNum) throws SQLException {
+        LocalDateTime startDateTime = resultSet.getDate("start_date").toLocalDate()
+            .atTime(resultSet.getTime("time").toLocalTime());
+
         return new Race(
             resultSet.getInt("id_race"),
             resultSet.getString("title"),
@@ -63,7 +65,8 @@ public class MemberRaceRepositoryImpl implements MemberRaceRepository {
             resultSet.getTime("time"),
             resultSet.getDouble("distance"),
             resultSet.getString("description"),
-            resultSet.getBoolean("status")
+            resultSet.getBoolean("status"),
+            startDateTime
         );
     }
 
@@ -137,9 +140,9 @@ public class MemberRaceRepositoryImpl implements MemberRaceRepository {
     }
 
     @Override
-    public List<RaceActivity> getRaceActivities(int id_user, String filter, String sort, int entries, int offset) {
+    public List<RaceActivity> getRaceActivities(int id_user, String filter, String sort, String status) {
         StringBuilder sql = new StringBuilder(
-            "SELECT r.id_race, r.title, jr.duration, jr.path_pict, r.start_date, r.distance, r.description " +
+            "SELECT r.id_race, r.title, jr.duration, jr.path_pict, jr.status as statusMember, r.start_date, r.distance, r.description, r.status as statusRace " +
             "FROM race r " +
             "JOIN joinrace jr ON r.id_race = jr.id_race " +
             "WHERE jr.id_user = ? "
@@ -151,6 +154,15 @@ public class MemberRaceRepositoryImpl implements MemberRaceRepository {
         if (filter != null && !filter.isEmpty()) {
             sql.append("AND LOWER(r.title) LIKE LOWER(?) ");
             params.add("%" + filter + "%");
+        }
+
+        if (status != null && !status.isEmpty()) {
+            if(status.equals("Status-True")){
+                sql.append("AND r.status = TRUE ");
+            }
+            else{
+                sql.append("AND r.status = FALSE ");
+            }
         }
 
         if (sort != null) {
@@ -178,21 +190,16 @@ public class MemberRaceRepositoryImpl implements MemberRaceRepository {
             }
         }
 
-        if (entries > 0) {
-            sql.append("LIMIT ? OFFSET ?");
-            params.add(entries);
-            params.add(offset);
-        }
-
         return jdbcTemplate.query(sql.toString(), params.toArray(), (rs, rowNum) -> new RaceActivity(
             rs.getInt("id_race"),
             rs.getString("title"),
             rs.getString("duration"),
             rs.getString("path_pict"),
+            rs.getBoolean("statusmember"),
             rs.getDate("start_date"),
             rs.getDouble("distance"),
             rs.getString("description"),
-            false
+            rs.getBoolean("statusrace")
         ));
     }
 
