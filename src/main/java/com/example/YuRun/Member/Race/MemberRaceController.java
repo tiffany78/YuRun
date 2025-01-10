@@ -14,8 +14,6 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.example.YuRun.RequiredRole;
-import com.example.YuRun.Member.ActivityMember.ActivityMember;
-
 import jakarta.servlet.http.HttpSession;
 
 import java.io.IOException;
@@ -24,6 +22,7 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.nio.file.StandardCopyOption;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -58,6 +57,9 @@ public class MemberRaceController {
                 boolean isJoined = raceService.isUserJoinedRace(race.getId_race(), currentUserId);
                 raceStatuses.put(race.getId_race(), isJoined);
             }
+
+            LocalDateTime now = LocalDateTime.now();
+            model.addAttribute("currentDate", now);
 
             model.addAttribute("currentUserId", currentUserId);
             model.addAttribute("raceStatuses", raceStatuses);
@@ -168,38 +170,22 @@ public class MemberRaceController {
     @RequiredRole("member")
     public String raceActivityHistory(HttpSession session, Model model,
         @RequestParam(value = "filter", required = false, defaultValue = "") String filter,
-        @RequestParam(value = "entries", required = false, defaultValue = "0") int entries,
-        @RequestParam(value = "page", required = false, defaultValue = "1") int page,
-        @RequestParam(value = "sort", required = false, defaultValue = "null") String sort) {
+        @RequestParam(value = "sort", required = false, defaultValue = "null") String sort,
+        @RequestParam(value = "status", required = false, defaultValue = "") String status) {
 
         Integer idUserObj = (Integer) session.getAttribute("id_user");
         if (idUserObj == null) {
             return "/ErrorLogin/errorPage";
         }
-        
-        // Hitung offset berdasarkan halaman dan jumlah entri
-        int offset = (page - 1) * entries;
 
         // Dapatkan daftar aktivitas race
-        List<RaceActivity> activities = raceRepository.getRaceActivities(idUserObj, filter, sort, entries, offset);
-        
-        // Hitung total entries untuk pagination
-        int totalEntries = raceRepository.getTotalRaceActivities(idUserObj, filter);
-        
-        if (entries == 0) {
-            entries = totalEntries;
-        }
-
-        int currEntries = Math.min(page * entries, totalEntries);
+        List<RaceActivity> activities = raceRepository.getRaceActivities(idUserObj, filter, sort, status);
 
         // Kirim data ke view
         model.addAttribute("activity", activities);
         model.addAttribute("filter", filter);
         model.addAttribute("sort", sort);
-        model.addAttribute("entries", entries);
-        model.addAttribute("currEntries", currEntries);
-        model.addAttribute("totalEntries", totalEntries);
-        model.addAttribute("currentPage", page);
+        model.addAttribute("status", status);
 
         return "Member/Race/raceActivityHistory";
     }

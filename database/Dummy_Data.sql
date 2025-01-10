@@ -77,23 +77,23 @@ INSERT INTO Activity (id_user, title, kind, distance, duration, date, time, desc
 (10, 'Morning Half-Marathon', 'Half-Marathon', 21.10, '02:00:00', '2024-12-06', '06:30:00', 'A morning half-marathon with scenic views of the city.');
 
 -- Dummy data for JoinRace
-INSERT INTO JoinRace (id_race, id_user) VALUES
+INSERT INTO JoinRace (id_race, id_user, status) VALUES
 -- Sunrise Marathon (Upcoming)
-(1, 4),
-(1, 5),
-(1, 3),
+(1, 4, TRUE),
+(1, 5, TRUE),
+(1, 3, TRUE),
 -- Twilight Run (Ongoing)
-(2, 4),
-(2, 5),
-(2, 6),
+(2, 4, TRUE),
+(2, 5, TRUE),
+(2, 6, TRUE),
 -- City Lights Race (Upcoming)
-(4, 10),
-(4, 4),
-(4, 5),
+(4, 10, TRUE),
+(4, 4, TRUE),
+(4, 5, TRUE),
 -- Beachside Dash (Ongoing)
-(5, 3),
-(5, 4),
-(5, 5);
+(5, 3, TRUE),
+(5, 4, TRUE),
+(5, 5, TRUE);
 
 INSERT INTO JoinRace (id_race, id_user, duration, status) VALUES
 -- Night Owl Sprint (Finished)

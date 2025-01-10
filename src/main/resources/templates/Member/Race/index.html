@@ -29,35 +29,20 @@
         </div>
     </nav>
     <div class="header">
-        <div class="filter">
-            <div class="pagination">
-                <a href="#">&laquo;</a>
-                <a href="#">1</a>
-                <a class="active" href="#">2</a>
-                <a href="#">3</a>
-                <a href="#">4</a>
-                <a href="#">5</a>
-                <a href="#">6</a>
-                <a href="#">&raquo;</a>
-            </div>
-            <!--FORM FOR SEARCHING-->
+        <form class="filter">            
             <div class="search">
                 <img class="search-bar" src="/css/Admin/Race/search0.svg"/>
-                <form method="get" th:action="@{/member/race}">
-                    <input type="text" name="filter" th:value="${filter}" placeholder="Search Race Title" 
-                        class="search-race" onkeypress="submitOnEnter(event, this.form)"/>
-                </form>
+                <input type="text" name="filter" th:value="${filter}" placeholder="Search Title Activity" class="search-race" onkeyup=this.form.submit()/>
             </div>
-            <!-- Tambah dropdown sort, hapus dropdown kind -->
             <select class="dropdown" id="sort" name="sort" onchange="this.form.submit()">
-                <option th:value="null" th:selected="${sort == 'null'}">Sort by: Featured</option>
+                <option th:value="null" th:selected="${sort == null}">Sort by: Featured</option>
                 <option th:value="Distance-Asc" th:selected="${sort == 'Distance-Asc'}">Distance: Short - Long</option>
                 <option th:value="Distance-Desc" th:selected="${sort == 'Distance-Desc'}">Distance: Long - Short</option>
                 <option th:value="Date-Asc" th:selected="${sort == 'Date-Asc'}">Date: Oldest - Newest</option>
                 <option th:value="Date-Desc" th:selected="${sort == 'Date-Desc'}">Date: Newest - Oldest</option>
             </select>
-        </div>
-        <!-- <a class="add" th:href="@{/member/raceActivityHistory}">Race Activity History</a> -->
+        </form>
+        <a class="add" th:href="@{/member/raceActivityHistory}">Race Activity History</a>
     </div>
     <div class="contentBody">
         <table class="table_race">
@@ -65,16 +50,16 @@
                 <tr>
                     <th>No.</th>
                     <th>Title</th>
-                    <th>Date <a href="#"><img src="/css/Admin/Race/bxs-sort-alt.svg" alt="Sort Icon"></a></th>
-                    <th>Start Time <a href="#"><img src="/css/Admin/Race/bxs-sort-alt.svg" alt="Sort Icon"></a></th>
-                    <th>Distance <a href="#"><img src="/css/Admin/Race/bxs-sort-alt.svg" alt="Sort Icon"></a></th>
+                    <th>Date</th>
+                    <th>Start Time</th>
+                    <th>Distance</th>
                     <th>Description</th>
                     <th>Status</th>
                 </tr>                
             </thead>
             <tbody>
                 <tr th:each="race, stat : ${races}">
-                    <td th:text="${stat.index + 1}"></td> <!-- Nomor urut -->
+                    <td th:text="${stat.index + 1}"></td>
                     <td th:text="${race.title}"></td>
                     <td th:text="${#dates.format(race.start_date, 'dd/MM/yyyy')}"></td>
                     <td th:text="${#dates.format(race.time, 'HH:mm:ss')}"></td>
@@ -82,21 +67,23 @@
                     <td th:text="${race.description}"></td>
                     <td>
                         <!-- Ikon "Join" jika belum bergabung -->
-                        <img th:if="${!raceStatuses[race.id_race]}" class="join" style="cursor: pointer;" src="/css/Member/Race/join.svg" alt="Join Race"
+                        <img th:if="${!raceStatuses[race.id_race] && race.startDateTime.isAfter(currentDate)}" class="join" style="cursor: pointer;" src="/css/Member/Race/join.svg" alt="Join Race"
                             th:onclick="'updateRaceStatus(' + ${race.id_race} + ', true)'"/>
                         
                         <!-- Ikon "Exit" dan "Upload" jika sudah bergabung -->
-                        <img th:if="${raceStatuses[race.id_race]}" class="exit" style="cursor: pointer;" src="/css/Member/Race/exit.svg" alt="Exit Race"
+                        <img th:if="${raceStatuses[race.id_race] && race.startDateTime.isAfter(currentDate)}" class="exit" style="cursor: pointer;" src="/css/Member/Race/exit.svg" alt="Exit Race"
                             th:onclick="'updateRaceStatus(' + ${race.id_race} + ', false)'"/>
                         
-                        <img th:if="${raceStatuses[race.id_race]}" class="upload" style="cursor: pointer;" src="/css/Member/Race/upload-icon.png" alt="Upload Race"
+                        <img th:if="${raceStatuses[race.id_race] && race.startDateTime.isAfter(currentDate)}" class="upload" style="cursor: pointer;" src="/css/Member/Race/upload-icon.png" alt="Upload Race"
                             width="22" height="22"
                             th:onclick="'uploadRaceActivity(' + ${race.id_race} + ')'"/>
-                    </td>
+
+                        <!-- Ikon "Exit" dan "Upload" jika sudah bergabung -->
+                        <a th:if="${!race.startDateTime.isAfter(currentDate)}">Closed</a>
+                    </td>                    
                 </tr>
             </tbody>
         </table>
-        <a class="add" th:href="@{/member/raceActivityHistory}">Race Activity History</a>
     </div>
     <footer class="footer">
         <div class="content2">
