@@ -64,6 +64,7 @@ public class MemberRaceRepositoryImpl implements MemberRaceRepository {
             resultSet.getDouble("distance"),
             resultSet.getString("description"),
             resultSet.getBoolean("status"),
+            resultSet.getBoolean("iswinner"),
             startDateTime
         );
     }
@@ -98,9 +99,10 @@ public class MemberRaceRepositoryImpl implements MemberRaceRepository {
     @Override
     public List<Race> findAvailableRacesForUser(int idUser, String filter, String sort) {
         StringBuilder sql = new StringBuilder(
-            "SELECT r.* FROM race r " +
+            "SELECT r.*, COALESCE(jr.iswinner, FALSE) AS iswinner " +
+            "FROM race r " +
             "LEFT JOIN joinrace jr ON r.id_race = jr.id_race AND jr.id_user = ? " +
-            "WHERE (jr.id_race IS NULL OR (jr.id_user = ? AND jr.status = true)) "
+            "WHERE (jr.id_race IS NULL OR (jr.id_user = ? AND jr.status = true))"
         );
         
         List<Object> params = new ArrayList<>();
@@ -131,7 +133,7 @@ public class MemberRaceRepositoryImpl implements MemberRaceRepository {
                     sql.append("ORDER BY r.start_date DESC "); // Default sort
             }
         } else {
-            sql.append("ORDER BY r.start_date DESC "); // Default sort
+            sql.append("ORDER BY COALESCE(jr.iswinner, FALSE) DESC, r.start_date DESC "); // Prioritize isWinner
         }
 
         return jdbcTemplate.query(sql.toString(), params.toArray(), this::mapRowToRace);

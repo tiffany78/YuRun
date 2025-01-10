@@ -59,7 +59,10 @@
             <tbody>
                 <tr th:each="race, stat : ${races}">
                     <td th:text="${stat.index + 1}"></td>
-                    <td th:text="${race.title}"></td>
+                    <td>
+                        <img th:if="${race.iswinner}" src="/css/Member/Race/crown.png" alt="Crown" style="width:20px; height:20px; margin-right:4px;">
+                        <span th:text="${race.title}"></span>
+                    </td>                    
                     <td th:text="${#dates.format(race.start_date, 'dd/MM/yyyy')}"></td>
                     <td th:text="${race.distance} + ' km'"></td>
                     <td th:text="${race.description}"></td>
@@ -78,7 +81,7 @@
 
                         <!-- Ikon "Exit" dan "Upload" jika sudah bergabung -->
                         <a th:if="${!race.startDateTime.isAfter(currentDate)}">Closed</a>
-                    </td>                    
+                    </td>             
                 </tr>
             </tbody>
         </table>

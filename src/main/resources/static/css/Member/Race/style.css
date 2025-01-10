@@ -226,7 +226,7 @@ thead th:last-child {
   text-align: center;
   font-weight: bold;
   border: 1px solid #ffffff;
-  background-color: #ffc8a8;
+  background-color: #f9efe9;
 }
 .table_race tbody td:first-child {
   border-radius: 10px 0 0 10px; 

@@ -15,5 +15,6 @@ public class Race {
     private Double distance;
     private String description;
     private boolean status;
+    private boolean iswinner;
     private LocalDateTime startDateTime;
 }
