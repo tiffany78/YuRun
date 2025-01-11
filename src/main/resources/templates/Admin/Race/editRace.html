@@ -34,8 +34,8 @@
                     <input type="number" class="frame1" name="distance" th:value="${race.distance}" required>
                 </div>
                 <div class="divInput">
-                    <div class="headInput">Start Date</div>
-                    <input type="date" class="frame1" name="startDate" th:value="${#dates.format(race.start_date, 'yyyy-MM-dd')}">
+                    <div class="headInput">Due Date</div>
+                    <input type="date" class="frame1" name="endDate" th:value="${#dates.format(race.end_date, 'yyyy-MM-dd')}">
                 </div>
             </div>
             <div class="input2">

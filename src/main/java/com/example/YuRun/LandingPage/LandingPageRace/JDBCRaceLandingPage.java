@@ -21,7 +21,7 @@ public class JDBCRaceLandingPage implements RaceLandingRepository {
     public List<Race> findRace(String filter) {
         LocalDate currDate = LocalDate.now();
 
-        String sql = "SELECT * FROM race WHERE start_date > ?";
+        String sql = "SELECT * FROM race WHERE end_date > ?";
         List<Object> fil = new ArrayList<>();
         fil.add(currDate);
     
@@ -31,7 +31,7 @@ public class JDBCRaceLandingPage implements RaceLandingRepository {
             fil.add("%" + filter + "%");
         }
 
-        sql += " ORDER BY start_date";
+        sql += " ORDER BY end_date";
 
         return jdbcTemplate.query(sql, this::mapRowToRaceHome, fil.toArray());
     }
@@ -40,7 +40,7 @@ public class JDBCRaceLandingPage implements RaceLandingRepository {
         return new Race(
             resultSet.getInt("id_race"),
             resultSet.getString("title"),
-            resultSet.getDate("start_date"),
+            resultSet.getDate("end_date"),
             resultSet.getDouble("distance"),
             resultSet.getString("description"),
             null

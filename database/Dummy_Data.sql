@@ -17,7 +17,7 @@ INSERT INTO Users (name, email, password, isAdmin, status) VALUES
 
 
 -- Dummy data for Race (with end_date removed)
-INSERT INTO Race (title, start_date, distance, status) VALUES
+INSERT INTO Race (title, end_date, distance, status) VALUES
 ('Sunrise Marathon', '2025-01-13', 40.00, FALSE),
 ('Twilight Run', '2025-01-07', 20.00, FALSE),
 ('Night Owl Sprint', '2024-12-06', 5.00, FALSE),
@@ -74,23 +74,23 @@ INSERT INTO JoinRace (id_race, id_user, status) VALUES
 (5, 4, TRUE),
 (5, 5, TRUE);
 
-INSERT INTO JoinRace (id_race, id_user, duration, status) VALUES
--- Sunrise Marathon BUTUH GAMBAR
-(3, 7, '2:10:00', TRUE),
-(3, 8, '1:05:10', TRUE),
-(3, 9, '0:56:50', TRUE);
--- Twilight Run BUTUH GAMBAR
-(2, 4, '0:30:55', TRUE),
-(2, 5, '0:40:50', TRUE),
-(2, 6, '0:20:50', TRUE),
--- City Lights Race BUTUH GAMBAR
-(4, 10, '0:30:50', TRUE),
-(4, 4, '0:48:50', TRUE),
-(4, 5, '0:67:38', TRUE),
--- Night Owl Sprint BUTUH GAMBAR
-(3, 7, '1:10:00', TRUE),
-(3, 8, '1:05:10', TRUE),
-(3, 9, '0:59:50', TRUE);
+INSERT INTO JoinRace (id_race, id_user, duration, status, path_pict) VALUES
+-- Sunrise Marathon
+(1, 7, '3:10:00', TRUE, 'sunrise1.jpg'),
+(1, 8, '4:05:10', TRUE, 'sunrise2.jpg'),
+(1, 9, '4:56:50', TRUE, 'sunrise3.jpg'),
+-- Twilight Run
+(2, 4, '1:30:55', TRUE, 'twilight1.jpg'),
+(2, 5, '1:40:50', TRUE, 'twilight2.jpg'),
+(2, 6, '2:20:50', TRUE, 'twilight3.jpg'),
+-- City Lights Race
+(4, 10, '0:30:50', TRUE, 'city1.jpg'),
+(4, 4, '0:48:50', TRUE, 'city2.jpg'),
+(4, 5, '0:37:38', TRUE, 'city3.jpg'),
+-- Night Owl Sprint
+(3, 7, '1:10:00', TRUE, 'night1.jpg'),
+(3, 8, '1:05:10', TRUE, 'night2.jpg'),
+(3, 9, '0:59:50', TRUE, 'night3.jpg');
 
 -- BEBERAPA BUTUH GAMBAR
 INSERT INTO Activity (id_user, title, kind, distance, duration, date, time, description) VALUES
