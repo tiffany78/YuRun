@@ -25,7 +25,7 @@ INSERT INTO Race (title, start_date, distance, status) VALUES
 ('Beachside Dash', '2025-01-25', 15.50, FALSE); 
 
 -- Dummy data for Activity
-INSERT INTO Activity (id_user, title, kind, distance, duration, date, time, description, path_pict) VALUES
+INSERT INTO Activity (id_user, title, kind, distance, duration, date, time, description) VALUES
 -- Activities for Member 1 (id_user = 3) BUTUH GAMBAR
 (3, 'Morning Jog', 'Fun-Run', 5.50, '00:35:00', '2024-12-03', '06:30:00', 'A refreshing morning jog to start the day.'),
 (3, 'Evening Marathon Prep', 'Marathon', 25.00, '02:15:00', '2024-12-05', '17:00:00', 'A long run as preparation for an upcoming marathon.'),
@@ -74,7 +74,7 @@ INSERT INTO JoinRace (id_race, id_user, status) VALUES
 (5, 4, TRUE),
 (5, 5, TRUE);
 
-INSERT INTO JoinRace (id_race, id_user, duration, status, path_pict) VALUES
+INSERT INTO JoinRace (id_race, id_user, duration, status) VALUES
 -- Sunrise Marathon BUTUH GAMBAR
 (3, 7, '2:10:00', TRUE),
 (3, 8, '1:05:10', TRUE),
@@ -93,7 +93,7 @@ INSERT INTO JoinRace (id_race, id_user, duration, status, path_pict) VALUES
 (3, 9, '0:59:50', TRUE);
 
 -- BEBERAPA BUTUH GAMBAR
-INSERT INTO Activity (id_user, title, kind, distance, duration, date, time, description, path_pict) VALUES
+INSERT INTO Activity (id_user, title, kind, distance, duration, date, time, description) VALUES
 (3, 'Morning Jog', 'Fun-Run', 5.50, '00:35:00', '2024-12-03', '06:30:00', 'A refreshing morning jog to start the day.'),
 (3, 'Evening Marathon Prep', 'Marathon', 25.00, '02:15:00', '2024-12-05', '17:00:00', 'A long run as preparation for an upcoming marathon.'),
 (3, 'Park Run', 'Half-Marathon', 12.30, '01:10:00', '2024-12-07', '07:00:00', 'A fun half-marathon at the local park.'),
