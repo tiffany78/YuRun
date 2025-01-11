@@ -7,25 +7,14 @@
     <title>Home Page</title>
     <link rel="stylesheet" href="/css/vars.css">
     <link rel="stylesheet" href="/css/Member/HomePage/styles2.css">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-    <!-- <script src="https://code.highcharts.com/highcharts.js"></script> -->
-    <!-- <script src="https://code.highcharts.com/modules/exporting.js"></script> -->
-    <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script> -->
-    <!-- <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script> -->
-    <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script> -->
-    <script src="https://code.highcharts.com/modules/accessibility.js"></script>
-
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <script src="https://code.highcharts.com/highcharts.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/html2canvas@0.4.1/dist/html2canvas.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+    <script  src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    <script  src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <script  src="https://code.highcharts.com/highcharts.js"></script>
+    <script src="https://code.highcharts.com/highcharts-3d.js"></script>
     <script src="https://code.highcharts.com/modules/exporting.js"></script>
-
-
-
-
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.4.0/jspdf.umd.min.js"></script>
     <script src="/js/Member/HomePage.js" defer></script>
 
 </head>
@@ -60,11 +49,10 @@
         <div>
             <div id="container"></div>
         </div>
-        <a id="download" style="cursor: pointer;">Download PNG</a>
-        <!-- Tombol untuk download PDF -->
-        <a id="downloadPdf" style="cursor: pointer;">Download PDF</a>
-
-
+        <div class="buttonDownload">
+            <a id="download" style="cursor: pointer;">Download PNG</a>
+            <a id="downloadPdf" style="cursor: pointer;">Download PDF</a>
+        </div>
     </div>
     <div class="graph1" th:if="${graphList == null or graphList.isEmpty()}">
         <a class="left">Track Your Strides <br> Achieve Your Goals</a>
@@ -108,11 +96,10 @@
                 <div class="headerMyRace" th:text="${race.title}"></div>
                 <div class="infoMyRace">
                     <img src="/css/Member/HomePage/calendar-010.svg">
-                    <span th:text="${#dates.format(race.start_date, 'd MMMM yyyy')}"></span> <!-- Format tanggal -->
+                    <span th:text="${#dates.format(race.end_date, 'd MMMM yyyy')}"></span> <!-- Format tanggal -->
                 </div>
                 <div class="infoMyRace">
-                    <img src="/css/Member/HomePage/alarm-010.svg">
-                    <span th:text="${race.time}"></span>
+                    <span th:text="${race.description != null ? race.description : ''}"></span>
                 </div>
             </div>
         </div>
@@ -123,11 +110,10 @@
                 <div class="headerMyRace" th:text="${upRace.title}"></div>
                 <div class="infoMyRace">
                     <img src="/css/Member/HomePage/calendar-010.svg">
-                    <span th:text="${#dates.format(upRace.start_date, 'd MMMM yyyy')}"></span> <!-- Format tanggal -->
+                    <span th:text="${#dates.format(upRace.end_date, 'd MMMM yyyy')}"></span> <!-- Format tanggal -->
                 </div>
                 <div class="infoMyRace">
-                    <img src="/css/Member/HomePage/alarm-010.svg">
-                    <span th:text="${upRace.time}"></span> <!-- Format waktu -->
+                    <span th:text="${upRace.description != null ? upRace.description : ''}"></span>
                 </div>
             </div>
         </div>
@@ -146,7 +132,6 @@
                     <th>Distance</th>
                     <th>Duration</th>
                     <th>Date</th>
-                    <th>Time</th>
                 </tr>
             </thead>
             <tbody>
@@ -156,7 +141,6 @@
                     <td th:text="${activity.distance} + ' km'"></td>
                     <td th:text="${activity.duration}"></td>
                     <td th:text="${#dates.format(activity.date, 'd MMMM yyyy')}"></td>
-                    <td th:text="${activity.time}"></td>
                 </tr>
             </tbody>
         </table>
@@ -184,5 +168,4 @@
         </div>
     </footer>
 </body>
-
 </html>

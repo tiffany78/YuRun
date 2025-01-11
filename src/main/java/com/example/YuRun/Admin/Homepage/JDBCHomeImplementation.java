@@ -16,12 +16,12 @@ public class JDBCHomeImplementation implements HomeRepository {
 
     public List<Race> findRace() {
         LocalDate currDate = LocalDate.now();
-        String sql = "SELECT * FROM race WHERE start_date > ? ORDER BY start_date LIMIT 3";
+        String sql = "SELECT * FROM race WHERE end_date > ? ORDER BY end_date LIMIT 3";
         return jdbcTemplate.query(sql, this::mapRowToRaceHome, currDate);
     } 
 
     public List<Race> getRaceLandingPage() {
-        String sql = "SELECT * FROM race ORDER BY start_date DESC LIMIT 3";
+        String sql = "SELECT * FROM race ORDER BY end_date DESC LIMIT 3";
         return jdbcTemplate.query(sql, this::mapRowToRaceHome);
     }
 
@@ -29,16 +29,16 @@ public class JDBCHomeImplementation implements HomeRepository {
         return new Race(
             resultSet.getInt("id_race"),
             resultSet.getString("title"),
-            resultSet.getDate("start_date"),
-            resultSet.getTime("time"),
+            resultSet.getDate("end_date"),
             resultSet.getDouble("distance"),
             resultSet.getString("description"),
             null
         );
     }
 
-    public List<JoinRace> countRace(){
-        String sql = "SELECT title, count FROM count_race_admin ORDER BY start_date";
+    @Override
+    public List<JoinRace> countRace() {
+        String sql = "SELECT title, count FROM count_race_admin WHERE status = false ORDER BY end_date";
         return jdbcTemplate.query(sql, this::mapRowToRace);
     }
 
@@ -48,5 +48,31 @@ public class JDBCHomeImplementation implements HomeRepository {
             resultSet.getInt("count")
         );
     }
-}
 
+    public List<MonthlyActivity> getMonthlyActivities() {
+        String sql = "SELECT TO_CHAR(date, 'Month YYYY') as month, COUNT(*) as activity_count " +
+                    "FROM Activity " +
+                    "GROUP BY TO_CHAR(date, 'Month YYYY'), DATE_TRUNC('month', date) " +
+                    "ORDER BY DATE_TRUNC('month', MIN(date))";
+        return jdbcTemplate.query(sql, this::mapRowToMonthlyActivity);
+    }
+
+    private MonthlyActivity mapRowToMonthlyActivity(ResultSet resultSet, int rowNum) throws SQLException {
+        return new MonthlyActivity(
+            resultSet.getString("month"),
+            resultSet.getInt("activity_count")
+        );
+    }
+
+    public List<ActivityTypeCount> getActivityTypeCounts() {
+        String sql = "SELECT kind as activity_type, COUNT(*) as count FROM Activity GROUP BY kind";
+        return jdbcTemplate.query(sql, this::mapRowToActivityTypeCount);
+    }
+
+    private ActivityTypeCount mapRowToActivityTypeCount(ResultSet resultSet, int rowNum) throws SQLException {
+        return new ActivityTypeCount(
+            resultSet.getString("activity_type"),
+            resultSet.getInt("count")
+        );
+    }
+}

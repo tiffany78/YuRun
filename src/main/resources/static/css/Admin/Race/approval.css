@@ -166,6 +166,22 @@ a.page{
     font-size: 50px;
     color: #7f190f;
 }
+.winner{
+    background-color: #ccffcc; /* Warna hijau muda */
+    color: #006400; /* Warna hijau gelap */
+    padding: 5px 10px;
+    border-radius: 10px;
+    text-align: center;
+    font-weight: bold;
+}
+.currWinner{
+    background-color: #ccdfff; /* Warna hijau muda */
+    color: #001e64; /* Warna hijau gelap */
+    padding: 5px 10px;
+    border-radius: 10px;
+    text-align: center;
+    font-weight: bold;
+}
 
 /* BAGIAN CONTENT */
 .body{
@@ -263,6 +279,10 @@ a.page{
     justify-content: space-evenly;
     cursor: pointer;
 }
+.button2.disabled {
+    pointer-events: none;
+    opacity: 0.5;
+}
 .approve {
     background: #69e88f;
     border: none;
@@ -356,4 +376,22 @@ button.save[disabled] {
     pointer-events: none;  
     opacity: 0.5; 
     cursor: not-allowed; 
+}
+
+.approved {
+    color: white;
+    background-color: green;
+    font-size: 14px;
+    padding: 5px 10px;
+    border-radius: 5px;
+    text-transform: uppercase;
+}
+
+.rejected {
+    color: white;
+    background-color: red;
+    font-size: 14px;
+    padding: 5px 10px;
+    border-radius: 5px;
+    text-transform: uppercase;
 }

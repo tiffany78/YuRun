@@ -1,10 +1,8 @@
 package com.example.YuRun.Admin.RaceService;
 
 import java.sql.Date;
-import java.sql.Time;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
-import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
 import java.util.List;
 import java.util.Map;
@@ -73,21 +71,15 @@ public class RaceController {
     @RequiredRole("admin")
     public String addRace(
         @RequestParam("title") String title,
-        @RequestParam("time") String time,
         @RequestParam("date") String date,
         @RequestParam("distance") Double distance,
         @RequestParam("desc") String desc) {
 
-        time += ":00";
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("HH:mm:ss");
-        LocalTime localTime = LocalTime.parse(time, formatter);
-        Time sqlTime = Time.valueOf(localTime);
-
-        formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
         LocalDate localDate = LocalDate.parse(date, formatter);
         Date sqlDate = Date.valueOf(localDate);
 
-        this.repo.addRace(title, sqlTime, sqlDate, distance, desc);
+        this.repo.addRace(title, sqlDate, distance, desc);
 
         return "redirect:/admin/race";
     }
@@ -104,27 +96,23 @@ public class RaceController {
     @RequiredRole("admin")
     public String updateRace(
         @RequestParam("title") String title,
-        @RequestParam("time") String time,
-        @RequestParam("startDate") String date,
+        @RequestParam("endDate") String date,
         @RequestParam("distance") Double distance,
         @RequestParam("description") String desc,
         @PathVariable("idRace") int idRace
     ){
-        time += ":00";
-            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("HH:mm:ss");
-            LocalTime localTime = LocalTime.parse(time, formatter);
-            Time sqlTime = Time.valueOf(localTime);
 
-            formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
             LocalDate localDate = LocalDate.parse(date, formatter);
             Date sqlDate = Date.valueOf(localDate);
 
-            this.repo.updateRace(title, sqlTime, sqlDate, distance, desc, idRace);
+            this.repo.updateRace(title, sqlDate, distance, desc, idRace);
 
             return "redirect:/admin/race";
     }
 
     @GetMapping("/race/approval/{idRace}")
+    @RequiredRole("admin")
     public String indexApproval(@PathVariable("idRace") int idRace, Model model,
     @RequestParam(value = "filter", required = false, defaultValue = "") String filter,
     @RequestParam(value = "statusMember", required = false, defaultValue = "") String statusMember){
@@ -147,7 +135,13 @@ public class RaceController {
             model.addAttribute("message", "No member found for the given filter.");
         }
         else{
-            model.addAttribute("winner", list.get(0).getName());
+            if(status) {
+                String name = this.repo.getWinner(idRace);
+                model.addAttribute("winner", name);
+            }
+            else {
+                model.addAttribute("winner", list.get(0).getName());
+            }
         }
 
         return "/Admin/Race/approval";
@@ -171,11 +165,13 @@ public class RaceController {
             this.repo.updateStatus(idRace, idUser, statusValue);
         }
         this.repo.updateStatusRace(idRace);
+        this.repo.setWinner(idRace);
 
         return "redirect:/admin/race";
     }
 
     @GetMapping("/race/close/{idRace}")
+    @RequiredRole("admin")
     public String deleteRace(@PathVariable int idRace){
         this.repo.deleteRace(idRace);
         return "redirect:/admin/race";

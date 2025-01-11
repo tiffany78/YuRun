@@ -37,8 +37,7 @@
                 <a th:text="${race.description != null ? race.description : 'desc'}"></a>
                 <a th:text="${race.distance} + ' km'"></a>
                 <div class="detailTime">
-                    <a th:text="${#dates.format(race.start_date, 'dd/MM/yyyy')}"></a>
-                    <a th:text="${#dates.format(race.time, 'HH:mm:ss')}"></a>
+                    <a th:text="${#dates.format(race.end_date, 'd MMMM yyyy')}"></a>
                 </div>                
             </div>
             <div class="actionButton">

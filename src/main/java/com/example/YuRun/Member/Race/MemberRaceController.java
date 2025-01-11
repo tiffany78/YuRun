@@ -14,8 +14,6 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.example.YuRun.RequiredRole;
-import com.example.YuRun.Member.ActivityMember.ActivityMember;
-
 import jakarta.servlet.http.HttpSession;
 
 import java.io.IOException;
@@ -24,6 +22,7 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.nio.file.StandardCopyOption;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -42,34 +41,42 @@ public class MemberRaceController {
     }
 
     @GetMapping("/race")
+    @RequiredRole("member")
     public String race(Model model, 
                     HttpSession session,
                     @RequestParam(value = "filter", required = false, defaultValue = "") String filter,
-                    @RequestParam(value = "sort", required = false, defaultValue = "null") String sort) {
+                    @RequestParam(value = "sort", required = false, defaultValue = "null") String sort,
+                    @RequestParam(value = "status", required = false, defaultValue = "") String status) {
         Integer currentUserId = (Integer) session.getAttribute("id_user");
-        
-        if (currentUserId != null) {
-            // Get filtered and sorted races for the user
-            List<Race> races = raceService.getAvailableRaces(currentUserId, filter, sort);
-            model.addAttribute("races", races);
-
-            Map<Integer, Boolean> raceStatuses = new HashMap<>();
-            for (Race race : races) {
-                boolean isJoined = raceService.isUserJoinedRace(race.getId_race(), currentUserId);
-                raceStatuses.put(race.getId_race(), isJoined);
-            }
-
-            model.addAttribute("currentUserId", currentUserId);
-            model.addAttribute("raceStatuses", raceStatuses);
-            model.addAttribute("filter", filter);
-            model.addAttribute("sort", sort);
-        } else {
-            model.addAttribute("races", new ArrayList<>());
-            model.addAttribute("currentUserId", 0);
-            model.addAttribute("raceStatuses", new HashMap<>());
-            model.addAttribute("filter", "");
-            model.addAttribute("sort", "null");
+        if (currentUserId == null) {
+            return "/ErrorLogin/errorPage";
         }
+        
+        // Get filtered and sorted races for the user
+        List<Race> races = raceService.getAvailableRaces(currentUserId, filter, sort, status);
+        model.addAttribute("races", races);
+
+        Map<Integer, Boolean> raceStatuses = new HashMap<>();
+        for (Race race : races) {
+            boolean isJoined = raceService.isUserJoinedRace(race.getId_race(), currentUserId);
+            raceStatuses.put(race.getId_race(), isJoined);
+        }
+
+        Map<Integer, Boolean> uploadStatus = new HashMap<>();
+        for (Race race : races) {
+            boolean isUpload = raceService.isUserUpload(race.getId_race(), currentUserId);
+            uploadStatus.put(race.getId_race(), isUpload);
+        }
+
+        LocalDateTime now = LocalDateTime.now();
+        model.addAttribute("currentDate", now);
+
+        model.addAttribute("currentUserId", currentUserId);
+        model.addAttribute("raceStatuses", raceStatuses);
+        model.addAttribute("uploadStatus", uploadStatus);
+        model.addAttribute("filter", filter);
+        model.addAttribute("sort", sort);
+        model.addAttribute("status", status);
 
         return "/Member/Race/index";
     }
@@ -168,38 +175,22 @@ public class MemberRaceController {
     @RequiredRole("member")
     public String raceActivityHistory(HttpSession session, Model model,
         @RequestParam(value = "filter", required = false, defaultValue = "") String filter,
-        @RequestParam(value = "entries", required = false, defaultValue = "0") int entries,
-        @RequestParam(value = "page", required = false, defaultValue = "1") int page,
-        @RequestParam(value = "sort", required = false, defaultValue = "null") String sort) {
+        @RequestParam(value = "sort", required = false, defaultValue = "null") String sort,
+        @RequestParam(value = "status", required = false, defaultValue = "") String status) {
 
         Integer idUserObj = (Integer) session.getAttribute("id_user");
         if (idUserObj == null) {
             return "/ErrorLogin/errorPage";
         }
-        
-        // Hitung offset berdasarkan halaman dan jumlah entri
-        int offset = (page - 1) * entries;
 
         // Dapatkan daftar aktivitas race
-        List<RaceActivity> activities = raceRepository.getRaceActivities(idUserObj, filter, sort, entries, offset);
-        
-        // Hitung total entries untuk pagination
-        int totalEntries = raceRepository.getTotalRaceActivities(idUserObj, filter);
-        
-        if (entries == 0) {
-            entries = totalEntries;
-        }
-
-        int currEntries = Math.min(page * entries, totalEntries);
+        List<RaceActivity> activities = raceRepository.getRaceActivities(idUserObj, filter, sort, status);
 
         // Kirim data ke view
         model.addAttribute("activity", activities);
         model.addAttribute("filter", filter);
         model.addAttribute("sort", sort);
-        model.addAttribute("entries", entries);
-        model.addAttribute("currEntries", currEntries);
-        model.addAttribute("totalEntries", totalEntries);
-        model.addAttribute("currentPage", page);
+        model.addAttribute("status", status);
 
         return "Member/Race/raceActivityHistory";
     }

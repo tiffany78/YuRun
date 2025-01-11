@@ -12,8 +12,9 @@ public class RaceActivity {
     private String title;
     private String duration;
     private String path_pict;
-    private Date start_date;
+    private boolean statusmember;
+    private Date end_date;
     private Double distance;
     private String description;
-    private boolean status;
+    private boolean statusrace;
 }

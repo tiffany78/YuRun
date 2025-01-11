@@ -69,9 +69,8 @@
                     <!-- Status NEED APPROVAL atau ON GOING -->
                     <a th:if="${!race.status}" th:classappend="${!race.startDateTime.isAfter(currentDate) ? 'status-rejected' : 'status-ongoing'}" th:text="${race.startDateTime.isAfter(currentDate) ? 'ON GOING' : 'NEED APPROVAL'}"></a>
                     
-                    <!-- Tanggal dan Waktu -->
-                    <a th:text="${#dates.format(race.start_date, 'dd/MM/yyyy')}"></a>
-                    <a th:text="${#dates.format(race.time, 'HH:mm:ss')}"></a>
+                    <!-- Tanggal -->
+                    <a th:text="${#dates.format(race.end_date, 'dd/MM/yyyy')}"></a>
                 </div>                
             </div>
             <div class="actionButton">

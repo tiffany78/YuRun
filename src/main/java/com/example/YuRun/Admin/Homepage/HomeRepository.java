@@ -6,4 +6,6 @@ public interface HomeRepository {
     List<Race> findRace();
     List<JoinRace> countRace();
     List<Race> getRaceLandingPage();
+    List<MonthlyActivity> getMonthlyActivities();
+    List<ActivityTypeCount> getActivityTypeCounts();
 }

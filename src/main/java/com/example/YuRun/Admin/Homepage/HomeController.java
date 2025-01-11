@@ -17,6 +17,7 @@ import com.example.YuRun.RequiredRole;
 @Controller
 @RequestMapping("/admin")
 public class HomeController {
+    
     @Autowired
     private HomeRepository repo;
     
@@ -29,42 +30,65 @@ public class HomeController {
     }
 
     @RestController
+    @RequestMapping("/admin")
     public class ChartController {
+
         @Autowired
         private HomeRepository repo;
 
         @GetMapping("/getGraph1Admin")
         public Map<String, Object> getChartData1() {
+            List<JoinRace> raceData = repo.countRace();
             ArrayList<String> titles = new ArrayList<>();
             ArrayList<Integer> members = new ArrayList<>();
 
-            List<JoinRace> list2 = this.repo.countRace();
-            for(JoinRace currRace : list2){
-                titles.add(currRace.getTitle());
-                members.add(currRace.getCount());
+            for (JoinRace race : raceData) {
+                titles.add(race.getTitle());
+                members.add(race.getCount());
             }
 
             Map<String, Object> response = new HashMap<>();
-            response.put("categories", titles); 
-            response.put("data", members); 
+            response.put("categories", titles);
+            response.put("data", members);
 
             return response;
         }
 
         @GetMapping("/getGraph2Admin")
-        public Map<String, Object> getChartData2() {
-            ArrayList<String> titles = new ArrayList<>();
-            ArrayList<Integer> members = new ArrayList<>();
+        public Map<String, Object> getMonthlyActivities() {
+            List<MonthlyActivity> activities = repo.getMonthlyActivities();
+            ArrayList<String> months = new ArrayList<>();
+            ArrayList<Integer> counts = new ArrayList<>();
 
-            List<JoinRace> list2 = this.repo.countRace();
-            for(JoinRace currRace : list2){
-                titles.add(currRace.getTitle());
-                members.add(currRace.getCount());
+            for (MonthlyActivity activity : activities) {
+                months.add(activity.getMonth());
+                counts.add(activity.getActivityCount());
             }
 
             Map<String, Object> response = new HashMap<>();
-            response.put("categories", titles); 
-            response.put("data", members); 
+            response.put("categories", months);
+            response.put("data", counts);
+
+            return response;
+        }
+
+        @GetMapping("/getGraph3Admin")
+        public Map<String, Object> getActivityTypeData() {
+            List<ActivityTypeCount> activityCounts = repo.getActivityTypeCounts();
+            ArrayList<String> types = new ArrayList<>();
+            ArrayList<Map<String, Object>> pieData = new ArrayList<>();
+
+            for (ActivityTypeCount count : activityCounts) {
+                types.add(count.getActivityType());
+                Map<String, Object> dataPoint = new HashMap<>();
+                dataPoint.put("name", count.getActivityType());
+                dataPoint.put("y", count.getCount());
+                pieData.add(dataPoint);
+            }
+
+            Map<String, Object> response = new HashMap<>();
+            response.put("types", types);
+            response.put("data", pieData);
 
             return response;
         }

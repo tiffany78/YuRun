@@ -5,7 +5,38 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Profile</title>
-    <link rel="stylesheet" href="/css/Profile/styles.css">
+    <link rel="stylesheet" href="/css/Profile/style.css">
+    <script defer>
+        function toggleEditName() {
+            var form = document.getElementById("editNameForm");
+            form.style.display = form.style.display === "none" ? "block" : "none";
+        }
+
+        function toggleEditEmail() {
+            var form = document.getElementById("editEmailForm");
+            form.style.display = form.style.display === "none" ? "block" : "none";
+        }
+
+        function toggleEditPassword() {
+            var form = document.getElementById("editPasswordForm");
+            form.style.display = form.style.display === "none" ? "block" : "none";
+        }
+
+        function togglePasswordVisibility() {
+            var passwordInput = document.getElementById("currentPassword");
+            var passwordType = passwordInput.type === "password" ? "text" : "password";
+            passwordInput.type = passwordType;
+        }
+        document.addEventListener('DOMContentLoaded', function () {
+            const errorMessage = document.getElementById('error-message');
+            if (errorMessage) {
+                setTimeout(() => {
+                    errorMessage.style.display = 'none';
+                }, 3000);
+            }
+        });
+    </script>
+    
 </head>
 
 <body class="containerBody">
@@ -29,8 +60,10 @@
             </a>
         </div>
     </nav>
-
     <div class="biodata">
+        <div id="error-message" th:if="${error}" class="error-message" style="color: red;">
+            <p th:text="${error}"></p>
+        </div>
         <table>
             <thead>
                 <tr>
@@ -43,7 +76,9 @@
                         <!-- Edit Name Section -->
                         <span>Name: <span th:text="${user.name}"></span></span>
                         <button class="edit-btn" onclick="toggleEditName()">Edit</button>
-
+                        <div id="error-message" th:if="${error1}" class="error-message" style="color: red;">
+                            <p th:text="${error1}"></p>
+                        </div>                                                
                         <form id="editNameForm" th:action="@{/profile/updateName}" method="post" style="display:none;">
                             <input type="hidden" name="email" th:value="${user.email}">
                             <label for="newName">New Name: </label>
@@ -61,7 +96,9 @@
                         <!-- Edit Email Section -->
                         <span class="email-container">Email: <span th:text="${user.email}"></span></span>
                         <button class="edit-btn" onclick="toggleEditEmail()">Edit</button>
-
+                        <div id="error-message" th:if="${error2}" class="error-message" style="color: red;">
+                            <p th:text="${error2}"></p>
+                        </div> 
                         <form id="editEmailForm" th:action="@{/profile/updateEmail}" method="post"
                             style="display:none;">
                             <input type="hidden" name="email" th:value="${user.email}">
@@ -86,14 +123,16 @@
                             <button class="edit-btn" onclick="toggleEditPassword()">Edit</button>
                             <button class="edit-btn" onclick="togglePasswordVisibility()">Show Password</button>
                         </div>
-
+                        <div id="error-message" th:if="${error3}" class="error-message" style="color: red;">
+                            <p th:text="${error3}"></p>
+                        </div> 
                         <form id="editPasswordForm" th:action="@{/profile/updatePassword}" method="post"
                             style="display:none;">
                             <input type="hidden" name="email" th:value="${user.email}">
                             <label for="newPassword">New Password: </label>
                             <input type="password" id="newPassword" name="newPassword" required><br>
 
-                            <label for="oldPassword">Confirm Password: </label>
+                            <label for="oldPassword">Confirm Old Password: </label>
                             <input type="password" id="oldPassword" name="oldPassword" required><br>
 
                             <button type="submit">Save</button>
@@ -127,29 +166,6 @@
             </div>
         </div>
     </footer>
-
-    <script>
-        function toggleEditName() {
-            var form = document.getElementById("editNameForm");
-            form.style.display = form.style.display === "none" ? "block" : "none";
-        }
-
-        function toggleEditEmail() {
-            var form = document.getElementById("editEmailForm");
-            form.style.display = form.style.display === "none" ? "block" : "none";
-        }
-
-        function toggleEditPassword() {
-            var form = document.getElementById("editPasswordForm");
-            form.style.display = form.style.display === "none" ? "block" : "none";
-        }
-
-        function togglePasswordVisibility() {
-            var passwordInput = document.getElementById("currentPassword");
-            var passwordType = passwordInput.type === "password" ? "text" : "password";
-            passwordInput.type = passwordType;
-        }
-    </script>
 </body>
 
 </html>

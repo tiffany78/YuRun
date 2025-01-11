@@ -181,7 +181,6 @@ public class ActivityController {
     @RequestParam("kind") String kind,
     @RequestParam("fileImage") MultipartFile fileImage,
     @PathVariable("idActivity") int idActivity,
-    @RequestParam(value = "pictureOld", required = false) String pictureOldBase64,
     HttpSession session) throws IOException {
 
     Integer idUserObj = (Integer) session.getAttribute("id_user");
@@ -208,12 +207,27 @@ public class ActivityController {
     String uploadDir = "upload/activity-member/";
     Path uploadPath = Paths.get(uploadDir);
 
+    ActivityMember currAct = this.repoAdd.getById(idActivity);
+    String oldfileName = currAct.getPath_pict();
+
     // Buat direktori jika belum ada
     if (!Files.exists(uploadPath)) {
         Files.createDirectories(uploadPath);
     }
 
     if (fileImage != null && !fileImage.isEmpty()) {
+        // Jika ada file baru, hapus file lama
+        if (oldfileName != null && !oldfileName.isEmpty()) {
+            Path oldFilePath = uploadPath.resolve(oldfileName);
+            if (Files.exists(oldFilePath)) {
+                try {
+                    Files.delete(oldFilePath); // Hapus file lama
+                } catch (IOException e) {
+                    throw new IOException("Could not delete old file: " + oldfileName, e);
+                }
+            }
+        }
+
         // Jika ada file baru, simpan file baru
         fileName = "idUser_" + id_user + "_" + timestamp + ".jpg";
 
@@ -224,8 +238,7 @@ public class ActivityController {
             throw new IOException("Could not save file: " + fileName, e);
         }
     } else {
-        ActivityMember currAct = this.repoAdd.getById(idActivity);
-        fileName = currAct.getPath_pict();
+        fileName = oldfileName;
     }
 
     // Update database

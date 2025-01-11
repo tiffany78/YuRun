@@ -17,20 +17,21 @@ INSERT INTO Users (name, email, password, isAdmin, status) VALUES
 
 
 -- Dummy data for Race (with end_date removed)
-INSERT INTO Race (title, start_date, time, distance, status) VALUES
-('Sunrise Marathon', '2024-12-10', '06:00:00', 40.00, FALSE),
-('Twilight Run', '2024-12-08', '18:00:00', 20.00, FALSE),
-('Night Owl Sprint', '2024-12-06', '22:00:00', 5.00, FALSE),
-('City Lights Race', '2024-12-12', '20:00:00', 10.00, FALSE),
-('Beachside Dash', '2024-12-07', '07:30:00', 15.50, FALSE); 
+INSERT INTO Race (title, end_date, distance, status, description) VALUES
+('Sunrise Marathon', '2025-01-13', 40.00, FALSE, 'Run through scenic sunrise views.'),
+('Twilight Run', '2025-01-07', 20.00, FALSE, 'An evening run with a beautiful twilight backdrop.'),
+('Night Owl Sprint', '2024-12-06', 5.00, FALSE, 'A short and fast sprint for night runners.'),
+('City Lights Race', '2024-12-12', 10.00, FALSE, 'Experience the city glow as you race under the lights.'),
+('Beachside Dash', '2025-01-25', 15.50, FALSE, 'A refreshing dash along the serene beachside.');
 
 -- Dummy data for Activity
-INSERT INTO Activity (id_user, title, kind, distance, duration, date, time, description) VALUES
+INSERT INTO Activity (id_user, title, kind, distance, duration, date, time, description, path_pict) VALUES
 -- Activities for Member 1 (id_user = 3)
-(3, 'Morning Jog', 'Fun-Run', 5.50, '00:35:00', '2024-12-03', '06:30:00', 'A refreshing morning jog to start the day.'),
-(3, 'Evening Marathon Prep', 'Marathon', 25.00, '02:15:00', '2024-12-05', '17:00:00', 'A long run as preparation for an upcoming marathon.'),
-(3, 'Park Run', 'Half-Marathon', 12.30, '01:10:00', '2024-12-07', '07:00:00', 'A fun half-marathon at the local park.'),
+(3, 'Morning Jog', 'Fun-Run', 5.50, '00:35:00', '2024-12-03', '06:30:00', 'A refreshing morning jog to start the day.', 'laripagi.jpg'),
+(3, 'Evening Marathon Prep', 'Marathon', 25.00, '02:15:00', '2024-12-05', '17:00:00', 'A long run as preparation for an upcoming marathon.', 'larisore.jpg'),
+(3, 'Park Run', 'Half-Marathon', 12.30, '01:10:00', '2024-12-07', '07:00:00', 'A fun half-marathon at the local park.', 'laritaman.jpg');
 
+INSERT INTO Activity (id_user, title, kind, distance, duration, date, time, description) VALUES
 -- Activities for Member 2 (id_user = 4)
 (4, 'City Sprint', 'Fun-Run', 4.80, '00:28:00', '2024-12-04', '08:00:00', 'A quick sprint through the city streets.'),
 (4, 'Beach Run', 'Half-Marathon', 14.00, '01:20:00', '2024-12-06', '06:45:00', 'A relaxing run along the beach.'),
@@ -45,16 +46,6 @@ INSERT INTO Activity (id_user, title, kind, distance, duration, date, time, desc
 (6, 'Morning Sprint', 'Fun-Run', 5.20, '00:33:00', '2024-12-04', '06:30:00', 'A quick morning sprint to start the day.'),
 (6, 'Trail Challenge', 'Half-Marathon', 16.50, '01:40:00', '2024-12-06', '07:00:00', 'A challenging run on a rugged trail.'),
 (6, 'City Marathon', 'Marathon', 42.20, '04:20:00', '2024-12-08', '05:45:00', 'A full marathon run through city streets.'),
-
--- Activities for Member 1 (id_user = 1)
-(1, 'Morning Run', 'Fun-Run', 5.00, '00:30:00', '2024-12-02', '06:00:00', 'A quick morning run through the neighborhood.'),
-(1, 'Weekend Half-Marathon', 'Half-Marathon', 21.10, '02:00:00', '2024-12-04', '08:00:00', 'A weekend half-marathon for endurance training.'),
-(1, 'Evening Marathon', 'Marathon', 42.20, '03:30:00', '2024-12-06', '18:00:00', 'An evening marathon around the city.'),
-
--- Activities for Member 2 (id_user = 2)
-(2, 'Morning Walk', 'Fun-Run', 4.00, '00:25:00', '2024-12-02', '07:00:00', 'A light walk to start the day.'),
-(2, 'City Marathon', 'Marathon', 42.20, '03:15:00', '2024-12-05', '16:00:00', 'A marathon through the bustling city streets.'),
-(2, 'Track Day', 'Half-Marathon', 21.10, '01:55:00', '2024-12-07', '09:00:00', 'Training day with a half-marathon around the track.'),
 
 -- Activities for Member 7 (id_user = 7)
 (7, 'Sunset Jog', 'Fun-Run', 6.00, '00:38:00', '2024-12-03', '18:30:00', 'A relaxing jog at sunset to unwind after work.'),
@@ -77,30 +68,31 @@ INSERT INTO Activity (id_user, title, kind, distance, duration, date, time, desc
 (10, 'Morning Half-Marathon', 'Half-Marathon', 21.10, '02:00:00', '2024-12-06', '06:30:00', 'A morning half-marathon with scenic views of the city.');
 
 -- Dummy data for JoinRace
-INSERT INTO JoinRace (id_race, id_user) VALUES
--- Sunrise Marathon (Upcoming)
-(1, 4),
-(1, 5),
-(1, 3),
--- Twilight Run (Ongoing)
-(2, 4),
-(2, 5),
-(2, 6),
--- City Lights Race (Upcoming)
-(4, 10),
-(4, 4),
-(4, 5),
+INSERT INTO JoinRace (id_race, id_user, status) VALUES
 -- Beachside Dash (Ongoing)
-(5, 3),
-(5, 4),
-(5, 5);
+(5, 3, TRUE),
+(5, 4, TRUE),
+(5, 5, TRUE);
 
-INSERT INTO JoinRace (id_race, id_user, duration, status) VALUES
--- Night Owl Sprint (Finished)
-(3, 7, '2:10:00', FALSE),
-(3, 8, '1:05:10', FALSE),
-(3, 9, '0:56:50', FALSE);
+INSERT INTO JoinRace (id_race, id_user, duration, status, path_pict) VALUES
+-- Sunrise Marathon
+(1, 7, '3:10:00', TRUE, 'sunrise1.jpg'),
+(1, 8, '4:05:10', TRUE, 'sunrise2.jpg'),
+(1, 9, '4:56:50', TRUE, 'sunrise3.jpg'),
+-- Twilight Run
+(2, 4, '1:30:55', TRUE, 'twilight1.jpg'),
+(2, 5, '1:40:50', TRUE, 'twilight2.jpg'),
+(2, 6, '2:20:50', TRUE, 'twilight3.jpg'),
+-- City Lights Race
+(4, 10, '0:30:50', TRUE, 'city1.jpg'),
+(4, 4, '0:48:50', TRUE, 'city2.jpg'),
+(4, 5, '0:37:38', TRUE, 'city3.jpg'),
+-- Night Owl Sprint
+(3, 7, '1:10:00', TRUE, 'night1.jpg'),
+(3, 8, '1:05:10', TRUE, 'night2.jpg'),
+(3, 9, '0:59:50', TRUE, 'night3.jpg');
 
+-- BEBERAPA BUTUH GAMBAR
 INSERT INTO Activity (id_user, title, kind, distance, duration, date, time, description) VALUES
 (3, 'Morning Jog', 'Fun-Run', 5.50, '00:35:00', '2024-12-03', '06:30:00', 'A refreshing morning jog to start the day.'),
 (3, 'Evening Marathon Prep', 'Marathon', 25.00, '02:15:00', '2024-12-05', '17:00:00', 'A long run as preparation for an upcoming marathon.'),
@@ -108,7 +100,9 @@ INSERT INTO Activity (id_user, title, kind, distance, duration, date, time, desc
 (3, 'Trail Run', 'Fun-Run', 8.20, '00:50:00', '2024-12-08', '06:45:00', 'A challenging trail run with scenic views.'),
 (3, 'Interval Training', 'Half-Marathon', 6.00, '00:30:00', '2024-12-10', '18:30:00', 'High-intensity interval training to improve speed.'),
 (3, 'Sunset Beach Run', 'Fun-Run', 7.50, '00:45:00', '2024-12-12', '17:15:00', 'Relaxing run along the beach during sunset.'),
-(3, 'Long Weekend Run', 'Marathon', 30.00, '02:40:00', '2024-12-14', '06:00:00', 'Endurance run for the weekend.'),
+(3, 'Long Weekend Run', 'Marathon', 30.00, '02:40:00', '2024-12-14', '06:00:00', 'Endurance run for the weekend.');
+
+INSERT INTO Activity (id_user, title, kind, distance, duration, date, time, description) VALUES
 (3, 'Morning Tempo Run', 'Fun-Run', 10.00, '00:55:00', '2024-12-15', '06:15:00', 'Steady tempo run to build stamina.'),
 (3, 'Evening Fun-Run', 'Fun-Run', 5.00, '00:30:00', '2024-12-16', '17:30:00', 'Short and easy evening fun-run.'),
 (3, 'Pre-Marathon Long Run', 'Marathon', 28.00, '02:20:00', '2024-12-18', '07:00:00', 'Preparation for the marathon event.'),
