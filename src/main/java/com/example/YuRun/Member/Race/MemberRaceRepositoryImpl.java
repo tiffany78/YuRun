@@ -18,12 +18,6 @@ public class MemberRaceRepositoryImpl implements MemberRaceRepository {
     private JdbcTemplate jdbcTemplate;
 
     @Override
-    public List<Race> findAllRaces() {
-        String sql = "SELECT id_race, title, end_date, distance, description, status FROM race";
-        return jdbcTemplate.query(sql, this::mapRowToRace);
-    }
-
-    @Override
     public boolean addJoinRace(int id_race, int id_user) {
         try {
             // First check if entry exists
@@ -80,9 +74,33 @@ public class MemberRaceRepositoryImpl implements MemberRaceRepository {
     }
 
     @Override
+    public boolean checkUploadRace(int id_race, int id_user) {
+        String sql = "SELECT duration FROM joinrace WHERE id_race = ? AND id_user = ?";
+        Boolean result = jdbcTemplate.query(sql, 
+            rs -> rs.next() ? rs.getString("duration") != null : false,
+            id_race, id_user);
+        return result;
+    }       
+
+    @Override
     public Race findRaceById(int idRace) {
         String sql = "SELECT id_race, title, end_date, distance, description, status FROM race WHERE id_race = ?";
-        return jdbcTemplate.queryForObject(sql, this::mapRowToRace, idRace);
+        return jdbcTemplate.queryForObject(sql, this::mapRowToRaceMember, idRace);
+    }
+
+    private Race mapRowToRaceMember(ResultSet resultSet, int rowNum) throws SQLException {
+        LocalDateTime startDateTime = resultSet.getDate("end_date").toLocalDate().atStartOfDay();
+
+        return new Race(
+            resultSet.getInt("id_race"),
+            resultSet.getString("title"),
+            resultSet.getDate("end_date"),
+            resultSet.getDouble("distance"),
+            resultSet.getString("description"),
+            resultSet.getBoolean("status"),
+            resultSet.getBoolean("status"),
+            startDateTime
+        );
     }
 
     @Override
@@ -93,7 +111,7 @@ public class MemberRaceRepositoryImpl implements MemberRaceRepository {
 
     @Override
     public void updateRaceStatus(int idRace, int idUser) {
-        String sql = "UPDATE joinrace SET status = false WHERE id_race = ? AND id_user = ?";
+        String sql = "UPDATE joinrace SET status = true WHERE id_race = ? AND id_user = ?";
         jdbcTemplate.update(sql, idRace, idUser);
     }
 

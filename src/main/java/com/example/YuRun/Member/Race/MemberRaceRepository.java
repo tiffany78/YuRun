@@ -5,7 +5,6 @@ import java.util.List;
 
 @Repository
 public interface MemberRaceRepository {
-    List<Race> findAllRaces();
     void exitRace(int id_race, int id_user);
     boolean addJoinRace(int id_race, int id_user);
     boolean checkJoinStatus(int id_race, int id_user);
@@ -15,4 +14,5 @@ public interface MemberRaceRepository {
     List<Race> findAvailableRacesForUser(int idUser, String filter, String sort, String status);
     List<RaceActivity> getRaceActivities(int id_user, String filter, String sort, String status);
     int getTotalRaceActivities(int id_user, String filter);
+    boolean checkUploadRace(int id_race, int id_user);
 }

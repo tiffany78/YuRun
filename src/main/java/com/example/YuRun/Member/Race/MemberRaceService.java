@@ -12,10 +12,6 @@ public class MemberRaceService {
         this.raceRepository = raceRepository;
     }
 
-    public List<Race> getAllRaces() {
-        return raceRepository.findAllRaces();
-    }
-
     public boolean joinRace(int id_race, int id_user) {
         return raceRepository.addJoinRace(id_race, id_user);
     }
@@ -26,6 +22,10 @@ public class MemberRaceService {
 
     public boolean isUserJoinedRace(int id_race, int id_user) {
         return raceRepository.checkJoinStatus(id_race, id_user);
+    }
+
+    public boolean isUserUpload(int id_race, int id_user) {
+        return raceRepository.checkUploadRace(id_race, id_user);
     }
 
     public Race getRaceById(int idRace) {

@@ -59,11 +59,18 @@ public class MemberRaceController {
                 raceStatuses.put(race.getId_race(), isJoined);
             }
 
+            Map<Integer, Boolean> uploadStatus = new HashMap<>();
+            for (Race race : races) {
+                boolean isUpload = raceService.isUserUpload(race.getId_race(), currentUserId);
+                uploadStatus.put(race.getId_race(), isUpload);
+            }
+
             LocalDateTime now = LocalDateTime.now();
             model.addAttribute("currentDate", now);
 
             model.addAttribute("currentUserId", currentUserId);
             model.addAttribute("raceStatuses", raceStatuses);
+            model.addAttribute("uploadStatus", uploadStatus);
             model.addAttribute("filter", filter);
             model.addAttribute("sort", sort);
             model.addAttribute("status", status);
@@ -71,6 +78,7 @@ public class MemberRaceController {
             model.addAttribute("races", new ArrayList<>());
             model.addAttribute("currentUserId", 0);
             model.addAttribute("raceStatuses", new HashMap<>());
+            model.addAttribute("uploadStatus", new HashMap<>());
             model.addAttribute("filter", "");
             model.addAttribute("sort", "null");
             model.addAttribute("status", "null");
