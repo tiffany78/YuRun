@@ -68,6 +68,9 @@ public class JDBCActivityMember implements AddActivityRepo{
                     break;
             }
         }
+        else{
+            sql += " ORDER BY id_activity";
+        }
 
         if(entries > 0){
             sql += " LIMIT ? OFFSET ?";

@@ -96,7 +96,7 @@ public class RaceController {
     @RequiredRole("admin")
     public String updateRace(
         @RequestParam("title") String title,
-        @RequestParam("startDate") String date,
+        @RequestParam("endDate") String date,
         @RequestParam("distance") Double distance,
         @RequestParam("description") String desc,
         @PathVariable("idRace") int idRace

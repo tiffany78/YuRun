@@ -96,7 +96,7 @@
                 <div class="headerMyRace" th:text="${race.title}"></div>
                 <div class="infoMyRace">
                     <img src="/css/Member/HomePage/calendar-010.svg">
-                    <span th:text="${#dates.format(race.start_date, 'd MMMM yyyy')}"></span> <!-- Format tanggal -->
+                    <span th:text="${#dates.format(race.end_date, 'd MMMM yyyy')}"></span> <!-- Format tanggal -->
                 </div>
                 <div class="infoMyRace">
                     <span th:text="${race.description != null ? race.description : ''}"></span>
@@ -110,7 +110,7 @@
                 <div class="headerMyRace" th:text="${upRace.title}"></div>
                 <div class="infoMyRace">
                     <img src="/css/Member/HomePage/calendar-010.svg">
-                    <span th:text="${#dates.format(upRace.start_date, 'd MMMM yyyy')}"></span> <!-- Format tanggal -->
+                    <span th:text="${#dates.format(upRace.end_date, 'd MMMM yyyy')}"></span> <!-- Format tanggal -->
                 </div>
                 <div class="infoMyRace">
                     <span th:text="${upRace.description != null ? upRace.description : ''}"></span>

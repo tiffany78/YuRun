@@ -74,7 +74,7 @@
                 <a th:text="${'Distance: ' + activity.distance + ' km'}">Distance</a>
                 <a th:text="${'Duration: ' + activity.duration}">Duration</a>
                 <div class="detailTime">
-                    <a th:text="${#dates.format(activity.start_date, 'd MMMM yyyy')}">Date</a>
+                    <a th:text="${#dates.format(activity.end_date, 'd MMMM yyyy')}">Date</a>
                 </div>
             </div>
         </div>        

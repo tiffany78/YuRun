@@ -11,7 +11,7 @@ import lombok.Data;
 public class CountRace {
     private int idRace; 
     private String title;       
-    private Date start_date; 
+    private Date end_date; 
     private Double distance;
     private String description;
     private int count;    

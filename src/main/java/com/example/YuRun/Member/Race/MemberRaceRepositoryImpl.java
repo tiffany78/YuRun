@@ -18,7 +18,7 @@ public class MemberRaceRepositoryImpl implements MemberRaceRepository {
 
     @Override
     public List<Race> findAllRaces() {
-        String sql = "SELECT id_race, title, start_date, distance, description, status FROM race";
+        String sql = "SELECT id_race, title, end_date, distance, description, status FROM race";
         return jdbcTemplate.query(sql, this::mapRowToRace);
     }
 
@@ -55,12 +55,12 @@ public class MemberRaceRepositoryImpl implements MemberRaceRepository {
     }
 
     private Race mapRowToRace(ResultSet resultSet, int rowNum) throws SQLException {
-        LocalDateTime startDateTime = resultSet.getDate("start_date").toLocalDate().atStartOfDay();
+        LocalDateTime startDateTime = resultSet.getDate("end_date").toLocalDate().atStartOfDay();
 
         return new Race(
             resultSet.getInt("id_race"),
             resultSet.getString("title"),
-            resultSet.getDate("start_date"),
+            resultSet.getDate("end_date"),
             resultSet.getDouble("distance"),
             resultSet.getString("description"),
             resultSet.getBoolean("status"),
@@ -80,7 +80,7 @@ public class MemberRaceRepositoryImpl implements MemberRaceRepository {
 
     @Override
     public Race findRaceById(int idRace) {
-        String sql = "SELECT id_race, title, start_date, distance, description, status FROM race WHERE id_race = ?";
+        String sql = "SELECT id_race, title, end_date, distance, description, status FROM race WHERE id_race = ?";
         return jdbcTemplate.queryForObject(sql, this::mapRowToRace, idRace);
     }
 
@@ -124,16 +124,16 @@ public class MemberRaceRepositoryImpl implements MemberRaceRepository {
                     sql.append("ORDER BY r.distance DESC ");
                     break;
                 case "Date-Asc":
-                    sql.append("ORDER BY r.start_date ASC ");
+                    sql.append("ORDER BY r.end_date ASC ");
                     break;
                 case "Date-Desc":
-                    sql.append("ORDER BY r.start_date DESC ");
+                    sql.append("ORDER BY r.end_date DESC ");
                     break;
                 default:
-                    sql.append("ORDER BY r.start_date DESC "); // Default sort
+                    sql.append("ORDER BY r.end_date DESC "); // Default sort
             }
         } else {
-            sql.append("ORDER BY COALESCE(jr.iswinner, FALSE) DESC, r.start_date DESC "); // Prioritize isWinner
+            sql.append("ORDER BY COALESCE(jr.iswinner, FALSE) DESC, r.end_date DESC "); // Prioritize isWinner
         }
 
         return jdbcTemplate.query(sql.toString(), params.toArray(), this::mapRowToRace);
@@ -142,7 +142,7 @@ public class MemberRaceRepositoryImpl implements MemberRaceRepository {
     @Override
     public List<RaceActivity> getRaceActivities(int id_user, String filter, String sort, String status) {
         StringBuilder sql = new StringBuilder(
-            "SELECT r.id_race, r.title, jr.duration, jr.path_pict, jr.status as statusMember, r.start_date, r.distance, r.description, r.status as statusRace " +
+            "SELECT r.id_race, r.title, jr.duration, jr.path_pict, jr.status as statusMember, r.end_date, r.distance, r.description, r.status as statusRace " +
             "FROM race r " +
             "JOIN joinrace jr ON r.id_race = jr.id_race " +
             "WHERE jr.id_user = ? "
@@ -180,13 +180,13 @@ public class MemberRaceRepositoryImpl implements MemberRaceRepository {
                     sql.append("ORDER BY jr.duration DESC ");
                     break;
                 case "Date-Asc":
-                    sql.append("ORDER BY r.start_date ASC ");
+                    sql.append("ORDER BY r.end_date ASC ");
                     break;
                 case "Date-Desc":
-                    sql.append("ORDER BY r.start_date DESC ");
+                    sql.append("ORDER BY r.end_date DESC ");
                     break;
                 default:
-                    sql.append("ORDER BY r.start_date DESC ");
+                    sql.append("ORDER BY r.end_date DESC ");
             }
         }
 
@@ -196,7 +196,7 @@ public class MemberRaceRepositoryImpl implements MemberRaceRepository {
             rs.getString("duration"),
             rs.getString("path_pict"),
             rs.getBoolean("statusmember"),
-            rs.getDate("start_date"),
+            rs.getDate("end_date"),
             rs.getDouble("distance"),
             rs.getString("description"),
             rs.getBoolean("statusrace")
