@@ -11,14 +11,6 @@ body {
     height: 100vh;
     margin: 0;
     padding: 0;
-    display: grid;
-    grid-template-rows: 50px auto auto auto;
-    grid-template-columns: 550px auto auto;
-    grid-template-areas:
-        ". . addActivity"
-        "graph1 graph2 recap"
-        "activity activity recap"
-        "footer footer footer";
     padding-top: 80px;
     width: 100%;
 }
@@ -90,54 +82,6 @@ a.page {
     line-height: 150%;
     font-weight: 600;
     column-gap: 20px;
-}
-
-/* BUTTON ADD ACTIVITY */
-.addActivity {
-    grid-area: addActivity;
-    display: flex;
-    justify-content: flex-end;
-    margin-right: 20px;
-}
-
-.buttonAdd {
-    background: #ff5722;
-    border-radius: 16px;
-    width: 179px;
-    height: 50px;
-    color: #ffffff;
-    text-align: left;
-    font-family: "Roboto-Regular", sans-serif;
-    font-size: 20px;
-    line-height: 16px;
-    font-weight: 400;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    text-decoration: none;
-}
-
-.graph1 {
-    grid-area: graph1;
-    border-radius: 10px;
-    display: flex;
-    flex-direction: column;
-    align-items: flex-end;
-    justify-content: flex-end;
-    margin-right: 20px;
-}
-
-.left {
-    font-family: "Poppins-Regular", sans-serif;
-    font-weight: 600;
-    color: #FF5722;
-    padding-left: 10px;
-    font-size: 40px;
-    letter-spacing: 0.13em;
-    font-style: italic;
-    text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.15);
-    display: flex;
-    align-items: center;
 }
 
 /* BAGIAN BIODATA */
@@ -275,12 +219,8 @@ form button {
 
 /* BAGIAN FOOTER */
 .footer {
-    grid-area: footer;
     background: var(--background-color-primary, #ffffff);
     padding: 10px 20px;
-    /* Berikan sedikit padding */
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    /* Tambahkan bayangan untuk kesan floating */
     display: flex;
     flex-direction: column;
     height: 110px;

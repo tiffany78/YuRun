@@ -51,11 +51,12 @@ public class ProfileController {
 
             // Pengecekan password
             if (!currentUser.getPassword().equals(password)) {
-                model.addAttribute("error", "Incorrect password");
+                model.addAttribute("error1", "Incorrect password");
+                model.addAttribute("user", currentUser); 
                 return "Profile/index";
             }
 
-            userRepository.updateName(userEmail, newName); // Memanggil metode untuk update nama
+            userRepository.updateName(userEmail, newName); 
             return "redirect:/profile";
         } catch (Exception e) {
             model.addAttribute("error", "Failed to update name: " + e.getMessage());
@@ -80,7 +81,8 @@ public class ProfileController {
 
             // Pengecekan password
             if (!currentUser.getPassword().equals(password)) {
-                model.addAttribute("error", "Incorrect password");
+                model.addAttribute("error2", "Incorrect password");
+                model.addAttribute("user", currentUser); 
                 return "Profile/index";
             }
 
@@ -109,7 +111,8 @@ public class ProfileController {
 
             // Pengecekan password
             if (!currentUser.getPassword().equals(oldPassword)) {
-                model.addAttribute("error", "Incorrect old password");
+                model.addAttribute("error3", "Incorrect old password");
+                model.addAttribute("user", currentUser); 
                 return "Profile/index";
             }
 
