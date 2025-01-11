@@ -25,11 +25,11 @@ INSERT INTO Race (title, end_date, distance, status) VALUES
 ('Beachside Dash', '2025-01-25', 15.50, FALSE); 
 
 -- Dummy data for Activity
-INSERT INTO Activity (id_user, title, kind, distance, duration, date, time, description) VALUES
--- Activities for Member 1 (id_user = 3) BUTUH GAMBAR
-(3, 'Morning Jog', 'Fun-Run', 5.50, '00:35:00', '2024-12-03', '06:30:00', 'A refreshing morning jog to start the day.'),
-(3, 'Evening Marathon Prep', 'Marathon', 25.00, '02:15:00', '2024-12-05', '17:00:00', 'A long run as preparation for an upcoming marathon.'),
-(3, 'Park Run', 'Half-Marathon', 12.30, '01:10:00', '2024-12-07', '07:00:00', 'A fun half-marathon at the local park.');
+INSERT INTO Activity (id_user, title, kind, distance, duration, date, time, description, path_pict) VALUES
+-- Activities for Member 1 (id_user = 3)
+(3, 'Morning Jog', 'Fun-Run', 5.50, '00:35:00', '2024-12-03', '06:30:00', 'A refreshing morning jog to start the day.', 'laripagi.jpg'),
+(3, 'Evening Marathon Prep', 'Marathon', 25.00, '02:15:00', '2024-12-05', '17:00:00', 'A long run as preparation for an upcoming marathon.', 'larisore.jpg'),
+(3, 'Park Run', 'Half-Marathon', 12.30, '01:10:00', '2024-12-07', '07:00:00', 'A fun half-marathon at the local park.', 'laritaman.jpg');
 
 INSERT INTO Activity (id_user, title, kind, distance, duration, date, time, description) VALUES
 -- Activities for Member 2 (id_user = 4)

@@ -7,7 +7,7 @@ $(document).ready(function () {
                 backgroundColor: null
             },
             title: {
-                text: 'Partisipant Join The Race'
+                text: 'Race Participant'
             },
             xAxis: {
                 categories: response.categories, // Kategori dari backend
