@@ -208,5 +208,45 @@ body {
     cursor: pointer;
 }
 
+.input-pass-reg{
+    display: flex;
+    /* align-items: center; */
+    position: relative;
+}
+
+.input-pass-reg input{
+    background: var(--secondary-secondary100, #e7ebef);
+    border-radius: 12px;
+    border: 1px solid var(--secondary-secondary100, #e7ebef);
+    width: 350px;
+    /* width: 100%; */
+    height: 50px;
+    /* padding: 0 12px; */
+    padding: 0 50px 0 12px; 
+    box-sizing: border-box;
+    font-size: 16px;
+    color: #333;
+    outline: none;
+}
+
+.input-pass-reg img{
+    /* width: 35px;
+    cursor: pointer; */
+
+    position: absolute;
+    right: 12px; /* Jarak ikon dari sisi kanan */
+    width: 25px; /* Ukuran ikon */
+    height: 25px;
+    top: 25%;
+    cursor: pointer;
+}
+
+#pesan{
+    position: absolute;
+    bottom: -35px;
+    color: #fff;
+    font-size: 15px;
+    display: none;
+}
 
 
