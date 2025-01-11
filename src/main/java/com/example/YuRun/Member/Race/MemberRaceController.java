@@ -44,12 +44,13 @@ public class MemberRaceController {
     public String race(Model model, 
                     HttpSession session,
                     @RequestParam(value = "filter", required = false, defaultValue = "") String filter,
-                    @RequestParam(value = "sort", required = false, defaultValue = "null") String sort) {
+                    @RequestParam(value = "sort", required = false, defaultValue = "null") String sort,
+                    @RequestParam(value = "status", required = false, defaultValue = "") String status) {
         Integer currentUserId = (Integer) session.getAttribute("id_user");
         
         if (currentUserId != null) {
             // Get filtered and sorted races for the user
-            List<Race> races = raceService.getAvailableRaces(currentUserId, filter, sort);
+            List<Race> races = raceService.getAvailableRaces(currentUserId, filter, sort, status);
             model.addAttribute("races", races);
 
             Map<Integer, Boolean> raceStatuses = new HashMap<>();
@@ -58,19 +59,29 @@ public class MemberRaceController {
                 raceStatuses.put(race.getId_race(), isJoined);
             }
 
+            Map<Integer, Boolean> uploadStatus = new HashMap<>();
+            for (Race race : races) {
+                boolean isUpload = raceService.isUserUpload(race.getId_race(), currentUserId);
+                uploadStatus.put(race.getId_race(), isUpload);
+            }
+
             LocalDateTime now = LocalDateTime.now();
             model.addAttribute("currentDate", now);
 
             model.addAttribute("currentUserId", currentUserId);
             model.addAttribute("raceStatuses", raceStatuses);
+            model.addAttribute("uploadStatus", uploadStatus);
             model.addAttribute("filter", filter);
             model.addAttribute("sort", sort);
+            model.addAttribute("status", status);
         } else {
             model.addAttribute("races", new ArrayList<>());
             model.addAttribute("currentUserId", 0);
             model.addAttribute("raceStatuses", new HashMap<>());
+            model.addAttribute("uploadStatus", new HashMap<>());
             model.addAttribute("filter", "");
             model.addAttribute("sort", "null");
+            model.addAttribute("status", "null");
         }
 
         return "/Member/Race/index";

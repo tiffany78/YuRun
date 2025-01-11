@@ -12,10 +12,6 @@ public class MemberRaceService {
         this.raceRepository = raceRepository;
     }
 
-    public List<Race> getAllRaces() {
-        return raceRepository.findAllRaces();
-    }
-
     public boolean joinRace(int id_race, int id_user) {
         return raceRepository.addJoinRace(id_race, id_user);
     }
@@ -28,6 +24,10 @@ public class MemberRaceService {
         return raceRepository.checkJoinStatus(id_race, id_user);
     }
 
+    public boolean isUserUpload(int id_race, int id_user) {
+        return raceRepository.checkUploadRace(id_race, id_user);
+    }
+
     public Race getRaceById(int idRace) {
         return raceRepository.findRaceById(idRace);
     }
@@ -37,7 +37,7 @@ public class MemberRaceService {
         raceRepository.updateRaceStatus(idRace, idUser);
     }
     
-    public List<Race> getAvailableRaces(int idUser, String filter, String sort) {
-        return raceRepository.findAvailableRacesForUser(idUser, filter, sort);
+    public List<Race> getAvailableRaces(int idUser, String filter, String sort, String status) {
+        return raceRepository.findAvailableRacesForUser(idUser, filter, sort, status);
     }
 }
