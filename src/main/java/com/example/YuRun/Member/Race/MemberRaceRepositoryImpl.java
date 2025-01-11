@@ -6,6 +6,7 @@ import org.springframework.stereotype.Repository;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
@@ -97,7 +98,7 @@ public class MemberRaceRepositoryImpl implements MemberRaceRepository {
     }
 
     @Override
-    public List<Race> findAvailableRacesForUser(int idUser, String filter, String sort) {
+    public List<Race> findAvailableRacesForUser(int idUser, String filter, String sort, String status) {
         StringBuilder sql = new StringBuilder(
             "SELECT r.*, COALESCE(jr.iswinner, FALSE) AS iswinner " +
             "FROM race r " +
@@ -112,6 +113,17 @@ public class MemberRaceRepositoryImpl implements MemberRaceRepository {
         if (filter != null && !filter.isEmpty()) {
             sql.append("AND LOWER(r.title) LIKE LOWER(?) ");
             params.add("%" + filter + "%");
+        }
+
+        LocalDate currDate = LocalDate.now(); 
+        if (status != null && !status.isEmpty()) {
+            if (status.equals("Open")) {
+                sql.append("AND end_date >= ? ");
+            } 
+            else {
+                sql.append("AND end_date < ? ");
+            }
+            params.add(currDate);
         }
 
         // Add sorting
@@ -133,7 +145,7 @@ public class MemberRaceRepositoryImpl implements MemberRaceRepository {
                     sql.append("ORDER BY r.end_date DESC "); // Default sort
             }
         } else {
-            sql.append("ORDER BY COALESCE(jr.iswinner, FALSE) DESC, r.end_date DESC "); // Prioritize isWinner
+            sql.append("ORDER BY r.end_date DESC "); // Prioritize isWinner
         }
 
         return jdbcTemplate.query(sql.toString(), params.toArray(), this::mapRowToRace);

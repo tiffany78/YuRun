@@ -8,12 +8,11 @@ body {
 }
 .containerBody{
   display: grid;
-  grid-template-rows: 60px 103px 25px auto auto;
+  grid-template-rows: 60px 103px 1fr auto;
   grid-template-columns: 1fr;
   grid-template-areas: 
       "navbar"
       "header"
-      "note"
       "contentBody"
       "footer";
   min-height: 100vh;
@@ -64,6 +63,7 @@ body {
 text-decoration: none;
 color: var(--neutral-colors-950, #141414);
 }
+
 a.page{
 color: var(--primary-color-500, #ff5722);
 font-weight: 1000;

@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Home Race</title>
-    <link rel="stylesheet" href="/css/Member/Race/style.css">
+    <link rel="stylesheet" href="/css/Member/Race/styles.css">
     <link rel="stylesheet" href="/css/vars.css">
 </head>
 <body class="containerBody">
@@ -40,6 +40,11 @@
                 <option th:value="Distance-Desc" th:selected="${sort == 'Distance-Desc'}">Distance: Long - Short</option>
                 <option th:value="Date-Asc" th:selected="${sort == 'Date-Asc'}">Date: Oldest - Newest</option>
                 <option th:value="Date-Desc" th:selected="${sort == 'Date-Desc'}">Date: Newest - Oldest</option>
+            </select>
+            <select class="dropdown" id="status" name="status" onchange="this.form.submit()">
+                <option th:value="null" th:selected="${status == null}">Filtered by: Status Race</option>
+                <option th:value="Open" th:selected="${status == 'Open'}">Status: Open</option>
+                <option th:value="Closed" th:selected="${status == 'Closed'}">Status: Closed</option>
             </select>
         </form>
         <a class="add" th:href="@{/member/raceActivityHistory}">Race Activity History</a>

@@ -37,7 +37,7 @@ public class MemberRaceService {
         raceRepository.updateRaceStatus(idRace, idUser);
     }
     
-    public List<Race> getAvailableRaces(int idUser, String filter, String sort) {
-        return raceRepository.findAvailableRacesForUser(idUser, filter, sort);
+    public List<Race> getAvailableRaces(int idUser, String filter, String sort, String status) {
+        return raceRepository.findAvailableRacesForUser(idUser, filter, sort, status);
     }
 }
