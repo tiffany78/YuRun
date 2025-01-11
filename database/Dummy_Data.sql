@@ -78,7 +78,7 @@ INSERT INTO JoinRace (id_race, id_user, duration, status, path_pict) VALUES
 -- Sunrise Marathon BUTUH GAMBAR
 (3, 7, '2:10:00', TRUE),
 (3, 8, '1:05:10', TRUE),
-(3, 9, '0:56:50', TRUE);
+(3, 9, '0:56:50', TRUE),
 -- Twilight Run BUTUH GAMBAR
 (2, 4, '0:30:55', TRUE),
 (2, 5, '0:40:50', TRUE),
