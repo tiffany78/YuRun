@@ -2,19 +2,20 @@ body {
     margin: 0;
     padding: 0;
     min-height: 100vh;
-    display: flex;
-    flex-direction: column;
-    padding-top: 80px;
     font-family: "Roboto-Medium", sans-serif;
+    overflow: auto;
 }
 .containerBody{
-    display: flex;
-    flex-direction: column;
+    display: grid;
+    grid-template-rows: 60px 1fr auto;
+    grid-template-columns: 1fr;
+    grid-template-areas: "navbar" "content" "footer";
     min-height: 100vh;
     overflow: auto;
     row-gap: 50px;
 }
 .navbar {
+  grid-area: navbar;
     position: fixed; /* Tetap di posisi atas */
     top: 0; /* Pastikan di bagian paling atas */
     left: 0; /* Mulai dari kiri layar */
