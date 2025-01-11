@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.example.YuRun.RequiredRole;
 import com.example.YuRun.Member.ActivityMember.ActivityMember;
 
 import jakarta.servlet.http.HttpSession;
@@ -26,6 +27,7 @@ public class ProgressController {
     private ProgressRepo repo;
 
     @GetMapping("/progress")
+    @RequiredRole("member")
     public String index(
         @RequestParam(value = "filterType", required = false, defaultValue = "All") String filterType,
         @RequestParam(value = "startDate", required = false) String startDateStr,

@@ -112,6 +112,7 @@ public class RaceController {
     }
 
     @GetMapping("/race/approval/{idRace}")
+    @RequiredRole("admin")
     public String indexApproval(@PathVariable("idRace") int idRace, Model model,
     @RequestParam(value = "filter", required = false, defaultValue = "") String filter,
     @RequestParam(value = "statusMember", required = false, defaultValue = "") String statusMember){
@@ -170,6 +171,7 @@ public class RaceController {
     }
 
     @GetMapping("/race/close/{idRace}")
+    @RequiredRole("admin")
     public String deleteRace(@PathVariable int idRace){
         this.repo.deleteRace(idRace);
         return "redirect:/admin/race";
