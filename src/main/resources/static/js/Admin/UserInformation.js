@@ -3,7 +3,6 @@ document.addEventListener("DOMContentLoaded", () => {
 
     buttons.forEach(button => {
         button.addEventListener("click", (event) => {
-            // Cegah pengiriman form otomatis
             event.preventDefault();
 
             const userName = button.closest("tr").querySelector("td:nth-child(2)").textContent;
