@@ -69,7 +69,7 @@ public class JDBCActivityMember implements AddActivityRepo{
             }
         }
         else{
-            sql += " ORDER BY id_activity";
+            sql += " ORDER BY date DESC";
         }
 
         if(entries > 0){

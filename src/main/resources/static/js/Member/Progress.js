@@ -1,7 +1,7 @@
 $(document).ready(function () {
     // Ambil parameter filterType, startDate, endDate, dan sort dari URL
     const params = new URLSearchParams(window.location.search);
-    let filterType = params.get('filterType') || 'All';
+    let filterType = params.get('filterType') || 'All'; // Gunakan nilai awal dari URL
     const startDate = params.get('startDate');
     const endDate = params.get('endDate');
     let sort = params.get('sort') || 'null';
@@ -29,15 +29,15 @@ $(document).ready(function () {
                 yAxis: {
                     min: 0,
                     title: {
-                        text: 'Distance (km)' 
+                        text: 'Distance (km)'
                     }
                 },
                 legend: {
-                    enabled: false // Menonaktifkan legenda
+                    enabled: false
                 },
                 series: [{
                     name: 'Distance (km)',
-                    data: response.data, // Data dari backend
+                    data: response.data,
                     color: 'rgba(255, 111, 55, 0.5)'
                 }],
                 exporting: {
@@ -50,9 +50,16 @@ $(document).ready(function () {
     // Panggil updateChart untuk menggambar grafik pertama kali
     updateChart();
 
+    // Event listener untuk perubahan pada dropdown sort
     $('#id').change(function() {
-        sort = $(this).val(); // Ambil nilai dari dropdown
-        updateChart(); // Update grafik setelah perubahan
+        sort = $(this).val(); 
+        updateChart(); 
+    });
+
+    // Event listener untuk perubahan pada filterType (jika ada dropdown terkait)
+    $('#filterTypeDropdown').change(function () {
+        filterType = $(this).val(); 
+        updateChart(); 
     });
 });
 

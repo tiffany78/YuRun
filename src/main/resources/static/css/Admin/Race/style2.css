@@ -7,7 +7,7 @@ body {
     padding-top: 80px;
     font-family: "Roboto-Medium", sans-serif;
 }
-.containerBody{
+.containerBody {
     display: grid;
     grid-template-rows: auto auto auto auto auto;
     grid-template-columns: auto;
@@ -20,36 +20,36 @@ body {
     row-gap: 50px;
 }
 .navbar {
-    position: fixed; /* Tetap di posisi atas */
-    top: 0; /* Pastikan di bagian paling atas */
-    left: 0; /* Mulai dari kiri layar */
-    width: 100%; /* Penuhi lebar layar */
-    z-index: 1000; /* Letakkan di atas elemen lain */
-    background: var(--background-color-primary, #ffffff); /* Pastikan ada warna latar */
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 1000;
+    background: #ffffff;
     display: flex;
     justify-content: space-around;
     align-items: center;
-    padding: 10px 20px; /* Berikan sedikit padding */
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Tambahkan bayangan untuk kesan floating */
+    padding: 10px 20px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
     height: 40px;
 }
-.logo{
+.logo {
     display: flex;
     width: 220px;
 }
-.yurun{
+.yurun {
     display: flex;
-    color: var(--neutral-colors-950, #141414);
+    color: #141414;
     font-family: "Roboto-Medium", sans-serif;
     font-size: 21px;
     line-height: 120%;
     font-weight: 500;
     align-items: center;
 }
-.textNavbar{
+.textNavbar {
     display: flex;
     gap: 30px;
-    color: var(--neutral-colors-950, #141414);
+    color: #141414;
     font-family: "Roboto-Medium", sans-serif;
     font-size: 16px;
     font-weight: 500;
@@ -57,13 +57,13 @@ body {
 }
 .textNavbar a {
     text-decoration: none;
-    color: var(--neutral-colors-950, #141414);
+    color: #141414;
 }
-a.page{
-    color: var(--primary-color-500, #ff5722);
+a.page {
+    color: #ff5722;
     font-weight: 1000;
 }
-.button{
+.button {
     display: flex;
     align-items: center;
     justify-content: center;
@@ -73,9 +73,7 @@ a.page{
     font-weight: 600;
     column-gap: 20px;
 }
-
-/* BAGIAN CONTENT */
-.content{
+.content {
     grid-area: content;
 }
 .frameinput {
@@ -87,8 +85,8 @@ a.page{
     font-family: "Roboto-Medium", sans-serif;
 }
 input {
-  padding-left: 10px;
-  font-size: large;
+    padding-left: 10px;
+    font-size: large;
 }
 .add-new-activity {
     grid-area: header;
@@ -97,28 +95,28 @@ input {
     font-size: 32px;
     font-weight: 600;
 }
-.input1{
+.input1 {
     grid-area: input1;
     display: flex;
     flex-direction: row;
     column-gap: 15px;
 }
 .divInput {
-  display: flex;
-  flex-direction: column;
-  gap: 5px;
-  align-items: flex-start;
-  justify-content: flex-start;
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    align-items: flex-start;
+    justify-content: flex-start;
 }
 .headInput {
-  color: #000000;
-  text-align: left;
-  font-family: "Roboto-SemiBold", sans-serif;
-  font-size: 24px;
-  font-weight: 600;
-  position: relative;
-  align-self: stretch;
-  height: 28px;
+    color: #000000;
+    text-align: left;
+    font-family: "Roboto-SemiBold", sans-serif;
+    font-size: 24px;
+    font-weight: 600;
+    position: relative;
+    align-self: stretch;
+    height: 28px;
 }
 .groupFrame {
     display: flex;
@@ -138,14 +136,14 @@ input {
     justify-content: center;
     font-family: "Roboto-Medium", sans-serif;
 }
-.textFrame{
+.textFrame {
     color: #000000;
     font-family: "Roboto-SemiBold", sans-serif;
     font-size: 14px;
     font-weight: 600;
     align-self: center;
 }
-.input2{
+.input2 {
     grid-area: input2;
     display: flex;
     flex-direction: row;
@@ -171,79 +169,79 @@ input {
     height: 20px;
     position: relative;
 }
-.input3{
+.input3 {
     grid-area: input3;
     display: flex;
     flex-direction: row;
     column-gap: 15px;
 }
 .frame5 {
-  border-radius: 6px;
-  border-style: solid;
-  border-color: #ff5722;
-  border-width: 1px;
-  flex-shrink: 0;
-  width: 500px;
-  height: 230px;
-  text-align: left; /* Menjaga teks rata kiri */
-  vertical-align: top; /* Membuat teks rata atas */
-  line-height: 1.5;
-  font-family: "Roboto-Medium", sans-serif;
+    border-radius: 6px;
+    border-style: solid;
+    border-color: #ff5722;
+    border-width: 1px;
+    flex-shrink: 0;
+    width: 500px;
+    height: 230px;
+    text-align: left;
+    vertical-align: top;
+    line-height: 1.5;
+    font-family: "Roboto-Medium", sans-serif;
 }
 textarea {
-  padding-left: 10px;
-  font-size: large;
+    padding-left: 10px;
+    font-size: large;
 }
-.button2{
+.button2 {
     grid-area: button2;
     display: flex;
     flex-direction: row;
     column-gap: 15px;
 }
 .cancel {
-  border-radius: 10px;
-  border-style: solid;
-  border-color: #ff7347;
-  border-width: 3px;
-  flex-shrink: 0;
-  width: 179px;
-  height: 40px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  text-decoration: none;
+    border-radius: 10px;
+    border-style: solid;
+    border-color: #ff7347;
+    border-width: 3px;
+    flex-shrink: 0;
+    width: 179px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
 }
 .cancel2 {
-  color: #141414;
-  text-align: left;
-  font-family: "Roboto-Regular", sans-serif;
-  font-size: 20px;
-  line-height: 16px;
-  font-weight: 400;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+    color: #141414;
+    text-align: left;
+    font-family: "Roboto-Regular", sans-serif;
+    font-size: 20px;
+    line-height: 16px;
+    font-weight: 400;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 .save {
-  border-radius: 10px;
-  background-color: #ff7347;
-  flex-shrink: 0;
-  width: 179px;
-  height: 45px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  text-decoration: none;
-  border: none;
+    border-radius: 10px;
+    background-color: #ff7347;
+    flex-shrink: 0;
+    width: 179px;
+    height: 45px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
+    border: none;
 }
 .save2 {
-  color: #ffffff;
-  text-align: left;
-  font-family: "Roboto-Regular", sans-serif;
-  font-size: 20px;
-  line-height: 16px;
-  font-weight: 400;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+    color: #ffffff;
+    text-align: left;
+    font-family: "Roboto-Regular", sans-serif;
+    font-size: 20px;
+    line-height: 16px;
+    font-weight: 400;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }

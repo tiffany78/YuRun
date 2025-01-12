@@ -5,7 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Home Race</title>
     <link rel="stylesheet" href="/css/Member/Race/styles.css">
-    <link rel="stylesheet" href="/css/vars.css">
 </head>
 <body class="containerBody">
     <nav class="navbar">
@@ -32,7 +31,7 @@
         <form class="filter">            
             <div class="search">
                 <img class="search-bar" src="/css/Admin/Race/search0.svg"/>
-                <input type="text" name="filter" th:value="${filter}" placeholder="Search Title Activity" class="search-race" onkeyup=this.form.submit()/>
+                <input type="text" name="filter" th:value="${filter}" placeholder="Search Title Race" class="search-race" onkeyup=this.form.submit()/>
             </div>
             <select class="dropdown" id="sort" name="sort" onchange="this.form.submit()">
                 <option th:value="null" th:selected="${sort == null}">Sort by: Featured</option>
