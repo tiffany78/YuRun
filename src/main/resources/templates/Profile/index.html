@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Profile</title>
+    <link rel="stylesheet" href="/css/Profile/style.css">
+    <script defer>
+        function toggleEditName() {
+            var form = document.getElementById("editNameForm");
+            form.style.display = form.style.display === "none" ? "block" : "none";
+        }
+
+        function toggleEditEmail() {
+            var form = document.getElementById("editEmailForm");
+            form.style.display = form.style.display === "none" ? "block" : "none";
+        }
+
+        function toggleEditPassword() {
+            var form = document.getElementById("editPasswordForm");
+            form.style.display = form.style.display === "none" ? "block" : "none";
+        }
+
+        function togglePasswordVisibility() {
+            var passwordInput = document.getElementById("currentPassword");
+            var passwordType = passwordInput.type === "password" ? "text" : "password";
+            passwordInput.type = passwordType;
+        }
+        document.addEventListener('DOMContentLoaded', function () {
+            const errorMessage = document.getElementById('error-message');
+            if (errorMessage) {
+                setTimeout(() => {
+                    errorMessage.style.display = 'none';
+                }, 3000);
+            }
+        });
+    </script>
+    
+</head>
+
+<body class="containerBody">
+    <nav class="navbar">
+        <div class="logo">
+            <img src="/css/LandingPage/logo1.svg">
+            <a class="yurun">YuRun</a>
+        </div>
+        <div class="textNavbar">
+            <a class="page" th:href="@{/member}">Home</a>
+            <a th:href="@{/member/activity}">My Activity</a>
+            <a th:href="@{/member/race}">Race</a>
+            <a th:href="@{/member/progress}">Progress</a>
+        </div>
+        <div class="button">
+            <a th:href="@{/profile}">
+                <img src="/css/Admin/HomePage/account-circle0.svg" />
+            </a>
+            <a th:href="@{/logout}">
+                <img src="/css/Admin/HomePage/logout.svg" />
+            </a>
+        </div>
+    </nav>
+    <div class="biodata">
+        <div id="error-message" th:if="${error}" class="error-message" style="color: red;">
+            <p th:text="${error}"></p>
+        </div>
+        <table>
+            <thead>
+                <tr>
+                    <th>Details</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr th:each="user : ${user}">
+                    <td>
+                        <!-- Edit Name Section -->
+                        <span>Name: <span th:text="${user.name}"></span></span>
+                        <button class="edit-btn" onclick="toggleEditName()">Edit</button>
+                        <div id="error-message" th:if="${error1}" class="error-message" style="color: red;">
+                            <p th:text="${error1}"></p>
+                        </div>                                                
+                        <form id="editNameForm" th:action="@{/profile/updateName}" method="post" style="display:none;">
+                            <input type="hidden" name="email" th:value="${user.email}">
+                            <label for="newName">New Name: </label>
+                            <input type="text" id="newName" name="newName" required><br>
+
+                            <label for="password">Confirm Password: </label>
+                            <input type="password" id="password" name="password" required><br>
+
+                            <button type="submit">Save</button>
+                            <button type="button" onclick="toggleEditName()">Cancel</button>
+                        </form>
+
+                        <br>
+
+                        <!-- Edit Email Section -->
+                        <span class="email-container">Email: <span th:text="${user.email}"></span></span>
+                        <button class="edit-btn" onclick="toggleEditEmail()">Edit</button>
+                        <div id="error-message" th:if="${error2}" class="error-message" style="color: red;">
+                            <p th:text="${error2}"></p>
+                        </div> 
+                        <form id="editEmailForm" th:action="@{/profile/updateEmail}" method="post"
+                            style="display:none;">
+                            <input type="hidden" name="email" th:value="${user.email}">
+                            <label for="newEmail">New Email: </label>
+                            <input type="email" id="newEmail" name="newEmail" required><br>
+
+                            <label for="emailPassword">Confirm Password: </label>
+                            <input type="password" id="emailPassword" name="password" required><br>
+
+                            <button type="submit">Save</button>
+                            <button type="button" onclick="toggleEditEmail()">Cancel</button>
+                        </form>
+
+                        <br>
+
+                        <!-- Edit Password Section -->
+                        <span>Password: </span>
+                        <input type="password" id="currentPassword" name="currentPassword" th:value="${user.password}"
+                            readonly><br>
+                        <!-- Menggunakan Flexbox container untuk menata tombol edit dan show password -->
+                        <div class="password-action-container">
+                            <button class="edit-btn" onclick="toggleEditPassword()">Edit</button>
+                            <button class="edit-btn" onclick="togglePasswordVisibility()">Show Password</button>
+                        </div>
+                        <div id="error-message" th:if="${error3}" class="error-message" style="color: red;">
+                            <p th:text="${error3}"></p>
+                        </div> 
+                        <form id="editPasswordForm" th:action="@{/profile/updatePassword}" method="post"
+                            style="display:none;">
+                            <input type="hidden" name="email" th:value="${user.email}">
+                            <label for="newPassword">New Password: </label>
+                            <input type="password" id="newPassword" name="newPassword" required><br>
+
+                            <label for="oldPassword">Confirm Old Password: </label>
+                            <input type="password" id="oldPassword" name="oldPassword" required><br>
+
+                            <button type="submit">Save</button>
+                            <button type="button" onclick="toggleEditPassword()">Cancel</button>
+                        </form>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <footer class="footer">
+        <div class="content2">
+            <div class="logo">
+                <img class="logo3" src="/css/LandingPage/logo3.svg" />
+                <div class="fit-life-studio">YuRun</div>
+            </div>
+            <div class="links">
+                <div class="about2">About</div>
+                <div class="contact">Contact</div>
+            </div>
+            <img class="social" src="/css/LandingPage/social0.svg" />
+        </div>
+        <div class="divider"></div>
+        <div class="credits">
+            <div class="row">
+                <div class="text-1">© 2024 Shipon. All rights reserved.</div>
+                <div class="text-2">Privacy Policy</div>
+                <div class="text-2">Terms of Service</div>
+                <div class="text-2">Cookies Settings</div>
+            </div>
+        </div>
+    </footer>
+</body>
+
+</html>

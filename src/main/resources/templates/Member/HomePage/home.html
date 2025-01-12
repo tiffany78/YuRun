@@ -6,13 +6,15 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Home Page</title>
     <link rel="stylesheet" href="/css/vars.css">
-    <link rel="stylesheet" href="/css/Member/HomePage/styles.css">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-    <script src="https://code.highcharts.com/highcharts.js"></script>
+    <link rel="stylesheet" href="/css/Member/HomePage/styles2.css">
+    <script  src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    <script  src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <script  src="https://code.highcharts.com/highcharts.js"></script>
+    <script src="https://code.highcharts.com/highcharts-3d.js"></script>
     <script src="https://code.highcharts.com/modules/exporting.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.4.0/jspdf.umd.min.js"></script>
     <script src="/js/Member/HomePage.js" defer></script>
 
 </head>
@@ -30,7 +32,7 @@
             <a th:href="@{/member/progress}">Progress</a>
         </div>
         <div class="button">
-            <a th:href="@{/member/profile}">
+            <a th:href="@{/profile}">
                 <img src="/css/Admin/HomePage/account-circle0.svg" />
             </a>
             <a th:href="@{/logout}">
@@ -47,7 +49,10 @@
         <div>
             <div id="container"></div>
         </div>
-        <a id="download">Download PNG</a>
+        <div class="buttonDownload">
+            <a id="download" style="cursor: pointer;">Download PNG</a>
+            <a id="downloadPdf" style="cursor: pointer;">Download PDF</a>
+        </div>
     </div>
     <div class="graph1" th:if="${graphList == null or graphList.isEmpty()}">
         <a class="left">Track Your Strides <br> Achieve Your Goals</a>
@@ -94,8 +99,7 @@
                     <span th:text="${#dates.format(race.start_date, 'd MMMM yyyy')}"></span> <!-- Format tanggal -->
                 </div>
                 <div class="infoMyRace">
-                    <img src="/css/Member/HomePage/alarm-010.svg">
-                    <span th:text="${race.time}"></span>
+                    <span th:text="${race.description != null ? race.description : ''}"></span>
                 </div>
             </div>
         </div>
@@ -109,8 +113,7 @@
                     <span th:text="${#dates.format(upRace.start_date, 'd MMMM yyyy')}"></span> <!-- Format tanggal -->
                 </div>
                 <div class="infoMyRace">
-                    <img src="/css/Member/HomePage/alarm-010.svg">
-                    <span th:text="${upRace.time}"></span> <!-- Format waktu -->
+                    <span th:text="${upRace.description != null ? upRace.description : ''}"></span>
                 </div>
             </div>
         </div>
@@ -129,7 +132,6 @@
                     <th>Distance</th>
                     <th>Duration</th>
                     <th>Date</th>
-                    <th>Time</th>
                 </tr>
             </thead>
             <tbody>
@@ -139,7 +141,6 @@
                     <td th:text="${activity.distance} + ' km'"></td>
                     <td th:text="${activity.duration}"></td>
                     <td th:text="${#dates.format(activity.date, 'd MMMM yyyy')}"></td>
-                    <td th:text="${activity.time}"></td>
                 </tr>
             </tbody>
         </table>
@@ -167,5 +168,4 @@
         </div>
     </footer>
 </body>
-
 </html>

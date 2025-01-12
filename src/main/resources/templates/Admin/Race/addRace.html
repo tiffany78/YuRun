@@ -39,10 +39,9 @@
                     </div>
                 </div>
                 <div class="divInput">
-                    <div class="headInput">Start Date & Time</div>
+                    <div class="headInput">Start Date</div>
                     <div class="groupFrame">
                         <input type="date" class="frame1" name="date" th:value="${date}" th:attr="min=${#dates.format(#dates.createNow(), 'yyyy-MM-dd')}" required>
-                        <input type="time" class="frame1" name="time" th:value="${time}" required> 
                     </div>
                 </div>
             </div>

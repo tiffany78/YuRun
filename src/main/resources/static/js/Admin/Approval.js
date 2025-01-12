@@ -1,7 +1,17 @@
+function resetButtons(parentNode) {
+    // Hapus semua kelas "approve" dan "reject"
+    const buttons = parentNode.querySelectorAll('.button2');
+    buttons.forEach(button => {
+        button.classList.remove('approve', 'reject');
+    });
+}
+
 function setApprove(element) {
     resetButtons(element.parentNode);
+
+    // Tambahkan kelas "approve"
     element.classList.add('approve');
-    
+
     // Set hidden field status to "true"
     const statusField = element.closest('.detailText').querySelector('.statusField');
     statusField.value = 'true';
@@ -9,24 +19,15 @@ function setApprove(element) {
 
 function setReject(element) {
     resetButtons(element.parentNode);
+
+    // Tambahkan kelas "reject"
     element.classList.add('reject');
-    
+
     // Set hidden field status to "false"
     const statusField = element.closest('.detailText').querySelector('.statusField');
     statusField.value = 'false';
 }
 
-function resetButtons(container) {
-    const buttons = container.querySelectorAll('.button2, .approve, .reject');
-    buttons.forEach(button => {
-        button.classList.remove('approve', 'reject');
-        button.classList.add('button2');
-    });
-
-    // Reset status field to "null"
-    const statusField = container.closest('.detailText').querySelector('.statusField');
-    statusField.value = 'null';
-}
 // Fungsi untuk menampilkan pop-up
 function showPopup(event) {
     event.preventDefault(); // Mencegah form langsung dikirimkan

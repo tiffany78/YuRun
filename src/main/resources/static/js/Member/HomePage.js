@@ -18,7 +18,7 @@ $(document).ready(function () {
             yAxis: {
                 min: 0,
                 title: {
-                    text: 'Distance (km)' 
+                    text: 'Distance (km)'
                 }
             },
             legend: {
@@ -43,5 +43,31 @@ document.getElementById('download').addEventListener('click', function () {
         link.download = 'chart.png';
         link.href = canvas.toDataURL();
         link.click();
+    });
+});
+
+// Fungsi untuk mengunduh PDF
+document.getElementById('downloadPdf').addEventListener('click', function () {
+    const element = document.getElementById('container');
+    const elementWidth = element.offsetWidth;
+    const elementHeight = element.offsetHeight;
+
+    // Hitung ukuran PDF berdasarkan dimensi elemen (dalam mm)
+    const pdfWidth = elementWidth * 0.264583; // Konversi px ke mm
+    const pdfHeight = elementHeight * 0.264583; // Konversi px ke mm
+
+    html2canvas(element).then(canvas => {
+        const { jsPDF } = window.jspdf; // Pastikan jsPDF sudah di-load
+        const pdf = new jsPDF({
+            orientation: pdfWidth > pdfHeight ? 'landscape' : 'portrait', // Orientasi otomatis
+            unit: 'mm',
+            format: [pdfWidth, pdfHeight], // Ukuran PDF sesuai elemen
+        });
+
+        // Tambahkan canvas ke PDF
+        pdf.addImage(canvas.toDataURL(), 'PNG', 0, 0, pdfWidth, pdfHeight);
+        pdf.save('chart.pdf');
+    }).catch(error => {
+        console.error('Error during PDF download:', error);
     });
 });
