@@ -33,7 +33,6 @@ $(document).ready(function () {
         });
     });
 
-    // Second chart - Monthly activities
     $.getJSON('/admin/getGraph2Admin', function (response) {
         Highcharts.chart('container2', {
             chart: {
@@ -68,7 +67,6 @@ $(document).ready(function () {
         });
     });
 
-    // Third chart - Activity type distribution
     $.getJSON('/admin/getGraph3Admin', function (response) {
         Highcharts.chart('container3', {
             chart: {

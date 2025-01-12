@@ -1,7 +1,5 @@
 $(document).ready(function () {
-    // Ambil data dari endpoint Spring Boot
     $.getJSON('/getGraph1', function (response) {
-        // Inisialisasi grafik setelah data diterima
         Highcharts.chart('container', {
             chart: {
                 type: 'areaspline',
@@ -57,14 +55,13 @@ document.getElementById('downloadPdf').addEventListener('click', function () {
     const pdfHeight = elementHeight * 0.264583; // Konversi px ke mm
 
     html2canvas(element).then(canvas => {
-        const { jsPDF } = window.jspdf; // Pastikan jsPDF sudah di-load
+        const { jsPDF } = window.jspdf;
         const pdf = new jsPDF({
-            orientation: pdfWidth > pdfHeight ? 'landscape' : 'portrait', // Orientasi otomatis
+            orientation: pdfWidth > pdfHeight ? 'landscape' : 'portrait',
             unit: 'mm',
             format: [pdfWidth, pdfHeight], // Ukuran PDF sesuai elemen
         });
 
-        // Tambahkan canvas ke PDF
         pdf.addImage(canvas.toDataURL(), 'PNG', 0, 0, pdfWidth, pdfHeight);
         pdf.save('chart.pdf');
     }).catch(error => {

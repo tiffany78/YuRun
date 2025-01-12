@@ -1,5 +1,4 @@
 $(document).ready(function () {
-    // Ambil parameter filterType, startDate, endDate, dan sort dari URL
     const params = new URLSearchParams(window.location.search);
     let filterType = params.get('filterType') || 'All'; // Gunakan nilai awal dari URL
     const startDate = params.get('startDate');
@@ -107,7 +106,7 @@ document.getElementById('download-pdf').addEventListener('click', function () {
 
     // Gunakan html2canvas untuk menangkap elemen gabungan
     html2canvas(container, {
-        scale: 2, // Resolusi tinggi
+        scale: 2, // Resolusi
         backgroundColor: null
     }).then((canvas) => {
         // Konversi canvas menjadi gambar PNG
