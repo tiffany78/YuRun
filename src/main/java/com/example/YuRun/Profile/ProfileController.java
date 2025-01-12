@@ -162,6 +162,7 @@ public class ProfileController {
                 return "Profile/index";
             }
 
+            newPassword = passEncoder.encode(newPassword);
             userRepository.updatePassword(userEmail, newPassword); // Metode ini sudah menangani pengecekan password di
                                                                    // repository
             return "redirect:/profile";
@@ -223,7 +224,7 @@ public class ProfileController {
                 model.addAttribute("user", currentUser);
                 return "Profile/indexAdmin";
             }
-
+            
             userRepository.updateEmail(userEmail, newEmail); // Metode ini sudah menangani pengecekan password di
                                                              // repository
             session.setAttribute("email", newEmail);
@@ -257,6 +258,7 @@ public class ProfileController {
                 return "Profile/indexAdmin";
             }
 
+            newPassword = passEncoder.encode(newPassword);
             userRepository.updatePassword(userEmail, newPassword); // Metode ini sudah menangani pengecekan password di
                                                                    // repository
             return "redirect:/profileAdmin";

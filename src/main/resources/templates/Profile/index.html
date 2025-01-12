@@ -22,11 +22,6 @@
             form.style.display = form.style.display === "none" ? "block" : "none";
         }
 
-        function togglePasswordVisibility() {
-            var passwordInput = document.getElementById("currentPassword");
-            var passwordType = passwordInput.type === "password" ? "text" : "password";
-            passwordInput.type = passwordType;
-        }
         document.addEventListener('DOMContentLoaded', function () {
             const errorMessage = document.getElementById('error-message');
             if (errorMessage) {
@@ -124,7 +119,6 @@
                         <!-- Menggunakan Flexbox container untuk menata tombol edit dan show password -->
                         <div class="password-action-container">
                             <button class="edit-btn" onclick="toggleEditPassword()">Edit</button>
-                            <button class="edit-btn" onclick="togglePasswordVisibility()">Show Password</button>
                         </div>
                         <div id="error-message" th:if="${error3}" class="error-message" style="color: red;">
                             <p th:text="${error3}"></p>
