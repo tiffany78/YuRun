@@ -7,7 +7,7 @@ body {
     background-color: #F5F5F5;
     font-family: "Roboto-Medium", sans-serif;
 }
-.containerBody{
+.containerBody {
     display: grid;
     grid-template-rows: 60px 110px 103px auto;
     grid-template-columns: 1fr;
@@ -29,7 +29,7 @@ body {
     left: 0; 
     width: 100%; 
     z-index: 1000; 
-    background: var(--background-color-primary, #ffffff); 
+    background: #ffffff; 
     display: flex;
     justify-content: space-around;
     align-items: center;
@@ -37,38 +37,37 @@ body {
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); 
     height: 40px;
 }
-.logo{
+.logo {
     display: flex;
     width: 220px;
 }
-.yurun{
+.yurun {
     display: flex;
-    color: var(--neutral-colors-950, #141414);
+    color: #141414;
     font-family: "Roboto-Medium", sans-serif;
     font-size: 21px;
     line-height: 120%;
     font-weight: 500;
     align-items: center;
 }
-.textNavbar{
+.textNavbar {
     display: flex;
     gap: 30px;
-    color: var(--neutral-colors-950, #141414);
+    color: #141414;
     font-family: "Roboto-Medium", sans-serif;
     font-size: 16px;
     font-weight: 500;
     align-items: center;
 }
 .textNavbar a {
-  text-decoration: none;
-  color: var(--neutral-colors-950, #141414);
+    text-decoration: none;
+    color: #141414;
 }
-a.page{
-  color: var(--primary-color-500, #ff5722);
-  font-weight: 1000;
+a.page {
+    color: #ff5722;
+    font-weight: 1000;
 }
-
-.button{
+.button {
     display: flex;
     align-items: center;
     justify-content: center;
@@ -94,9 +93,7 @@ a.page{
     justify-content: center;
     text-decoration: none;
 }
-
-/* BAGIAN HEADER */
-.header{
+.header {
     grid-area: header;
     display: flex;
     flex-direction: row;
@@ -107,7 +104,7 @@ a.page{
     padding-left: 20px;
     column-gap: 10px;
 }
-.search{
+.search {
     padding-right: 10px;
     display: flex;
     flex-direction: row;
@@ -117,7 +114,7 @@ a.page{
     position: relative;
     overflow: hidden;
     border-style: solid;
-    border-color: var(--grey-40, #d0d0d0);
+    border-color: #d0d0d0;
     border-width: 1px;
     border-radius: 10px;
 }
@@ -128,7 +125,7 @@ a.page{
     position: relative;
     overflow: visible;
 }
-.search-member{
+.search-member {
     border: none;
     flex-shrink: 0;
     width: 300px;
@@ -137,10 +134,10 @@ a.page{
     padding-right: 20px;
     background: none;
 }
-.dropdown{
+.dropdown {
     border-radius: 10px;
     border-style: solid;
-    border-color: var(--grey-40, #d0d0d0);
+    border-color: #d0d0d0;
     border-width: 1px;
     flex-shrink: 0;
     width: 200px;
@@ -150,9 +147,7 @@ a.page{
     padding-right: 20px;
     background: none;
 }
-
-/* BAGIAN INFO */
-.information{
+.information {
     grid-area: information;
     display: flex;
     flex-direction: column;
@@ -166,25 +161,23 @@ a.page{
     font-size: 50px;
     color: #7f190f;
 }
-.winner{
-    background-color: #ccffcc; /* Warna hijau muda */
-    color: #006400; /* Warna hijau gelap */
+.winner {
+    background-color: #ccffcc;
+    color: #006400;
     padding: 5px 10px;
     border-radius: 10px;
     text-align: center;
     font-weight: bold;
 }
-.currWinner{
-    background-color: #ccdfff; /* Warna hijau muda */
-    color: #001e64; /* Warna hijau gelap */
+.currWinner {
+    background-color: #ccdfff;
+    color: #001e64;
     padding: 5px 10px;
     border-radius: 10px;
     text-align: center;
     font-weight: bold;
 }
-
-/* BAGIAN CONTENT */
-.body{
+.body {
     grid-area: body;
     display: flex;
     flex-direction: column;
@@ -196,7 +189,7 @@ a.page{
     flex-direction: row;
     column-gap: 10px;
 }
-.back{
+.back {
     text-decoration: none;
     font-size: medium;
     color: #454545;
@@ -206,7 +199,7 @@ a.page{
     padding: 5px;
     text-align: center;
 }
-.save{
+.save {
     text-decoration: none;
     border: none;
     font-size: medium;
@@ -219,7 +212,6 @@ a.page{
     text-align: center;
     cursor: pointer;
 }
-
 .contentBody {
     justify-content: flex-start;
     justify-self: center;
@@ -254,7 +246,7 @@ a.page{
     border: 1px solid #ccc;
     align-items: flex-start;
 }
-.detailText{
+.detailText {
     display: flex;
     flex-direction: column;
     row-gap: 10px;
@@ -265,7 +257,7 @@ a.page{
     flex-direction: row;
     column-gap: 10px;
 }
-.imgButton{
+.imgButton {
     max-height: 20px;
 }
 .button2 {
@@ -318,11 +310,9 @@ a.page{
     z-index: 1000;
     border-radius: 10px;
 }
-
 .popup.hidden {
     display: none; 
 }
-
 .popup-content {
     display: flex;
     flex-direction: column;
@@ -331,13 +321,11 @@ a.page{
     row-gap: 6px;
     font-size: 16px;
 }
-
 .popup-actions {
     display: flex;
     justify-content: space-around;
     column-gap: 5px;
 }
-
 .popup-actions .noAction, .popup-actions .confirm {
     cursor: pointer;
     padding: 10px 20px;
@@ -348,15 +336,12 @@ a.page{
     text-decoration: none;
     font-size: 14px;
 }
-
 .popup-actions .noAction {
     background: #dc3545;
 }
-
 .popup-actions .confirm {
     background: #28a745;
 }
-
 button.save[disabled] {
     background-color: #cccccc; 
     color: #666666; 
@@ -364,20 +349,17 @@ button.save[disabled] {
     cursor: not-allowed; 
     opacity: 0.6; 
 }
-
 .no-results-message {
     color: #ff5722;
     font-size: 18px;
     text-align: center;
     margin: 20px 0;
 }
-
 .disabled {
     pointer-events: none;  
     opacity: 0.5; 
     cursor: not-allowed; 
 }
-
 .approved {
     color: white;
     background-color: green;
@@ -386,7 +368,6 @@ button.save[disabled] {
     border-radius: 5px;
     text-transform: uppercase;
 }
-
 .rejected {
     color: white;
     background-color: red;
