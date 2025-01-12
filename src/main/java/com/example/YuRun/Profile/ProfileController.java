@@ -222,6 +222,8 @@ public class ProfileController {
 
             userRepository.updateEmail(userEmail, newEmail); // Metode ini sudah menangani pengecekan password di
                                                              // repository
+            session.setAttribute("email", newEmail);
+            
             return "redirect:/profileAdmin";
         } catch (Exception e) {
             model.addAttribute("error", "Failed to update email: " + e.getMessage());
