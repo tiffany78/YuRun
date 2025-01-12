@@ -1,6 +1,7 @@
 package com.example.YuRun.Profile;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -14,6 +15,9 @@ public class ProfileController {
 
     @Autowired
     private UserRepository userRepository;
+
+    @Autowired
+    private PasswordEncoder passEncoder;
 
     @GetMapping("/profile")
     @RequiredRole({ "member"}) // Membatasi akses untuk member dan admin
@@ -87,7 +91,7 @@ public class ProfileController {
             }
 
             // Pengecekan password
-            if (!currentUser.getPassword().equals(password)) {
+            if (!passEncoder.matches(password, currentUser.getPassword())) {
                 model.addAttribute("error1", "Incorrect password");
                 model.addAttribute("user", currentUser);
                 return "Profile/index";
@@ -117,7 +121,7 @@ public class ProfileController {
             }
     
             // Pengecekan password
-            if (!currentUser.getPassword().equals(password)) {
+            if (!passEncoder.matches(password, currentUser.getPassword())) {
                 model.addAttribute("error2", "Incorrect password");
                 model.addAttribute("user", currentUser);
                 return "Profile/index";
@@ -152,7 +156,7 @@ public class ProfileController {
             }
 
             // Pengecekan password
-            if (!currentUser.getPassword().equals(oldPassword)) {
+            if (!passEncoder.matches(oldPassword, currentUser.getPassword())) {
                 model.addAttribute("error3", "Incorrect old password");
                 model.addAttribute("user", currentUser);
                 return "Profile/index";
@@ -184,7 +188,7 @@ public class ProfileController {
             }
 
             // Pengecekan password
-            if (!currentUser.getPassword().equals(password)) {
+            if (!passEncoder.matches(password, currentUser.getPassword())) {
                 model.addAttribute("error1", "Incorrect password");
                 model.addAttribute("user", currentUser);
                 return "Profile/indexAdmin";
@@ -214,7 +218,7 @@ public class ProfileController {
             }
 
             // Pengecekan password
-            if (!currentUser.getPassword().equals(password)) {
+            if (!passEncoder.matches(password, currentUser.getPassword())) {
                 model.addAttribute("error2", "Incorrect password");
                 model.addAttribute("user", currentUser);
                 return "Profile/indexAdmin";
@@ -247,7 +251,7 @@ public class ProfileController {
             }
 
             // Pengecekan password
-            if (!currentUser.getPassword().equals(oldPassword)) {
+            if (!passEncoder.matches(oldPassword, currentUser.getPassword())) {
                 model.addAttribute("error3", "Incorrect old password");
                 model.addAttribute("user", currentUser);
                 return "Profile/indexAdmin";

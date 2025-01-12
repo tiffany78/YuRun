@@ -21,7 +21,7 @@ public class LoginService {
         if(userOpt.isPresent()){
             LoginUser user = userOpt.get();
             // Versi pake encoder
-            if(!passEncoder.matches(password, user.getPassword())){//password sesuai
+            if(!passEncoder.matches(password, user.getPassword())){ //password sesuai
                 model.addAttribute("error", "Incorrect password. Please try again.");
                 return null;
             }
