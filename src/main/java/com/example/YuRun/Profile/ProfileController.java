@@ -33,7 +33,6 @@ public class ProfileController {
 
             // Tambahkan user ke model untuk akses di view
             model.addAttribute("user", user);
-            System.out.println(user.getIsAdmin());
             // Arahkan ke HTML berdasarkan role pengguna
 
             return "Profile/index"; // View untuk member
@@ -61,7 +60,6 @@ public class ProfileController {
 
             // Tambahkan user ke model untuk akses di view
             model.addAttribute("user", user);
-            System.out.println(user.getIsAdmin());
             // Arahkan ke HTML berdasarkan role pengguna
 
             return "Profile/indexAdmin"; // View untuk admin

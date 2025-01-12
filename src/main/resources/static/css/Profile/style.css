@@ -58,11 +58,6 @@ body {
     color: #141414;
 }
 
-a.page {
-    color: #ff5722;
-    font-weight: 1000;
-}
-
 .button {
     display: flex;
     align-items: center;
