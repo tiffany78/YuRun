@@ -1,19 +1,19 @@
 -- Dummy data for Users
 INSERT INTO Users (name, email, password, isAdmin, status) VALUES
 -- Admins
-('Admin One', 'admin1@example.com', 'admin123', B'1', TRUE),
-('Admin Two', 'admin2@example.com', 'admin456', B'1', TRUE),
+('Admin One', 'admin1@example.com', '$2a$10$RE1VUWAGwSiNR6hS8hwHrOgJ0lUzgV4ztA7WuxxnpogEELQVSOB8i', B'1', TRUE),
+('Admin Two', 'admin2@example.com', '$2a$10$RE1VUWAGwSiNR6hS8hwHrOgJ0lUzgV4ztA7WuxxnpogEELQVSOB8i', B'1', TRUE),
 -- Members
-('Adji Ganteng', 'sigantengadji@example.com', 'adji123', B'0', TRUE),
-('Cler Ganteng', 'sigantengcler@example.com', 'cler123', B'0', TRUE),
-('Edo Cute', 'sicuteedo@example.com', 'edo123', B'0', TRUE),
-('Tifanny Imut', 'sitipanoiimut@example.com', 'tifanny123', B'0', TRUE),
-('Charlie Davis', 'charlied@example.com', 'charlie123', B'0', TRUE),
-('Diana Evans', 'dianae@example.com', 'diana123', B'0', TRUE),
-('Ethan Foster', 'ethanf@example.com', 'ethan123', B'0', TRUE),
-('Fiona Green', 'fionag@example.com', 'fiona123', B'0', TRUE),
-('George Harris', 'georgeh@example.com', 'george123', B'0', TRUE),
-('Hannah White', 'hannahw@example.com', 'hannah123', B'0', TRUE);
+('Adji Ganteng', 'sigantengadji@example.com', '$2a$10$RE1VUWAGwSiNR6hS8hwHrOgJ0lUzgV4ztA7WuxxnpogEELQVSOB8i', B'0', TRUE),
+('Cler Ganteng', 'sigantengcler@example.com', '$2a$10$RE1VUWAGwSiNR6hS8hwHrOgJ0lUzgV4ztA7WuxxnpogEELQVSOB8i', B'0', TRUE),
+('Edo Cute', 'sicuteedo@example.com', '$2a$10$RE1VUWAGwSiNR6hS8hwHrOgJ0lUzgV4ztA7WuxxnpogEELQVSOB8i', B'0', TRUE),
+('Tifanny Imut', 'sitipanoiimut@example.com', '$2a$10$RE1VUWAGwSiNR6hS8hwHrOgJ0lUzgV4ztA7WuxxnpogEELQVSOB8i', B'0', TRUE),
+('Charlie Davis', 'charlied@example.com', '$2a$10$RE1VUWAGwSiNR6hS8hwHrOgJ0lUzgV4ztA7WuxxnpogEELQVSOB8i', B'0', TRUE),
+('Diana Evans', 'dianae@example.com', '$2a$10$RE1VUWAGwSiNR6hS8hwHrOgJ0lUzgV4ztA7WuxxnpogEELQVSOB8i', B'0', TRUE),
+('Ethan Foster', 'ethanf@example.com', '$2a$10$RE1VUWAGwSiNR6hS8hwHrOgJ0lUzgV4ztA7WuxxnpogEELQVSOB8i', B'0', TRUE),
+('Fiona Green', 'fionag@example.com', '$2a$10$RE1VUWAGwSiNR6hS8hwHrOgJ0lUzgV4ztA7WuxxnpogEELQVSOB8i', B'0', TRUE),
+('George Harris', 'georgeh@example.com', '$2a$10$RE1VUWAGwSiNR6hS8hwHrOgJ0lUzgV4ztA7WuxxnpogEELQVSOB8i', B'0', TRUE),
+('Hannah White', 'hannahw@example.com', '$2a$10$RE1VUWAGwSiNR6hS8hwHrOgJ0lUzgV4ztA7WuxxnpogEELQVSOB8i', B'0', TRUE);
 
 
 -- Dummy data for Race (with end_date removed)

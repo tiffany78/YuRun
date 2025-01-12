@@ -16,7 +16,7 @@ public class RegisterService {
 
     public boolean register(RegisterUser user) throws Exception {
         // Enkripsi password sebelum disimpan
-        // user.setPassword(passEncoder.encode(user.getPassword()));
+        user.setPassword(passEncoder.encode(user.getPassword()));
         
         if (!isUserValid(user)) {
             return false;
