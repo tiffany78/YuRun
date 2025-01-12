@@ -19,7 +19,7 @@ body {
     left: 6%;
     width: 40%;
     opacity: 0.3;
-    z-index: -1; 
+    z-index: -1;
 }
 
 .content {
@@ -33,7 +33,7 @@ body {
     column-gap: 10px;
 }
 
-.left{
+.left {
     grid-area: left;
     font-family: "Poppins-Regular", sans-serif;
     font-weight: 600;
@@ -50,6 +50,7 @@ body {
     text-align: center;
     animation: fadeIn 1s ease-in-out;
 }
+
 @keyframes fadeIn {
     from {
         opacity: 0;
@@ -61,7 +62,7 @@ body {
     }
 }
 
-.right{
+.right {
     background: rgba(250, 179, 98, 0.3);
     backdrop-filter: blur(10.67px);
     border-radius: 24px;
@@ -73,7 +74,7 @@ body {
 }
 
 .header {
-    color: var(--primary-primary900, #8a2100);
+    color: #8a2100;
     text-align: left;
     font-family: "Poppins-SemiBold", sans-serif;
     font-size: 32px;
@@ -81,6 +82,7 @@ body {
     letter-spacing: 0.01em;
     font-weight: 600;
 }
+
 .form {
     display: flex;
     align-items: center;
@@ -90,7 +92,7 @@ body {
 }
 
 .label {
-    color: var(--primary-primary900, #8a2100);
+    color: #8a2100;
     text-align: left;
     font-family: "Roboto-Regular", sans-serif;
     font-size: 16px;
@@ -101,13 +103,13 @@ body {
     display: flex;
     align-items: center;
     justify-content: flex-start;
-    margin-bottom: 10px; /* Tambahkan jarak antara label dan input */
+    margin-bottom: 10px;
 }
 
 .input input {
-    background: var(--secondary-secondary100, #e7ebef);
+    background: #e7ebef;
     border-radius: 12px;
-    border: 1px solid var(--secondary-secondary100, #e7ebef);
+    border: 1px solid #e7ebef;
     width: 350px;
     height: 50px;
     padding: 0 12px;
@@ -116,16 +118,16 @@ body {
     color: #333;
     outline: none;
 }
-  
+
 .input input:focus {
-    border-color: var(--secondary-secondary200, #c3c9cf);
-    background: var(--secondary-secondary50, #ffffff);
+    border-color: #c3c9cf;
+    background: #ffffff;
 }
-  
+
 .button button {
-    background: var(--primary-primary, #ff5722);
+    background: #ff5722;
     border: none;
-    color: var(--primary, #333);
+    color: #333;
     border-radius: 12px;
     width: 350px;
     height: 50px;
@@ -133,22 +135,24 @@ body {
     cursor: pointer;
     text-align: center;
 }
+
 .signin {
-    color: var(--secondary-secondary1000, #323f49);
+    color: #323f49;
     font-family: "Roboto-Regular", sans-serif;
     font-size: 18px;
     line-height: 160%;
     letter-spacing: 0.01em;
     font-weight: 400;
 }
+
 .text2 {
-    color: var(--primary-primary1000, #651800);
+    color: #651800;
     font-family: "Roboto-Bold", sans-serif;
     font-weight: 700;
     text-decoration: underline;
 }
 
-.error{
+.error {
     font-family: "Roboto-Regular", sans-serif;
     color: #cc0000;
     margin-top: 2px;
@@ -175,13 +179,41 @@ body {
     display: block;
 }
 
-
-.input-pass{
+.input-pass {
     display: flex;
     position: relative;
     flex-direction: column;
 }
-.input-pass input{
+
+.input-pass input {
+    background: #e7ebef;
+    border-radius: 12px;
+    border: 1px solid #e7ebef;
+    width: 350px;
+    height: 50px;
+    padding: 0 50px 0 12px;
+    box-sizing: border-box;
+    font-size: 16px;
+    color: #333;
+    outline: none;
+}
+
+.input-pass img {
+    position: absolute;
+    right: 12px;
+    width: 25px;
+    height: 25px;
+    top: 20%;
+    cursor: pointer;
+}
+
+.input-pass-reg{
+    display: flex;
+    /* align-items: center; */
+    position: relative;
+}
+
+.input-pass-reg input{
     background: var(--secondary-secondary100, #e7ebef);
     border-radius: 12px;
     border: 1px solid var(--secondary-secondary100, #e7ebef);
@@ -195,14 +227,25 @@ body {
     color: #333;
     outline: none;
 }
-.input-pass img{
+
+.input-pass-reg img{
+    /* width: 35px;
+    cursor: pointer; */
+
     position: absolute;
     right: 12px; /* Jarak ikon dari sisi kanan */
     width: 25px; /* Ukuran ikon */
     height: 25px;
-    top: 20%;
+    top: 25%;
     cursor: pointer;
 }
 
+#pesan{
+    position: absolute;
+    bottom: -35px;
+    color: #fff;
+    font-size: 15px;
+    display: none;
+}
 
 

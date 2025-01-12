@@ -5,7 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Progress</title>
     <link rel="stylesheet" href="/css/Member/Progress/style.css">
-    <link rel="stylesheet" href="/css/vars.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
     <script src="https://code.highcharts.com/highcharts.js"></script>
@@ -67,7 +66,7 @@
             <label for="start-date">Start Date:</label>
             <input type="date" name="startDate" id="start-date" th:value="${startDate}" required>
             <label for="end-date">End Date:</label>
-            <input type="date" name="endDate" id="end-date" th:value="${endDate}" required>
+            <input type="date" name="endDate" id="end-date" th:value="${endDate}" th:attr="max=${#dates.format(#dates.createNow(), 'yyyy-MM-dd')}" required>
             <button type="submit" class="filter-button">Custom</button>
         </form>
         <form action="/member/progress" method="GET" class="sort" id="sort">

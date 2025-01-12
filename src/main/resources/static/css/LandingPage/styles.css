@@ -24,17 +24,17 @@ body {
 
 .navbar {
     grid-area: navbar;
-    position: fixed; 
+    position: fixed;
     top: 0;
-    left: 0; 
-    width: 100%; 
-    z-index: 1000; 
-    background: var(--background-color-primary, #ffffff); 
+    left: 0;
+    width: 100%;
+    z-index: 1000;
+    background: #ffffff;
     display: flex;
     justify-content: space-around;
     align-items: center;
-    padding: 10px 20px; 
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); 
+    padding: 10px 20px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
 
 .logo {
@@ -44,32 +44,36 @@ body {
 
 .yurun {
     display: flex;
-    color: var(--neutral-colors-950, #141414);
+    color: #141414;
     font-family: "Roboto-Medium", sans-serif;
     font-size: 21px;
     line-height: 120%;
     font-weight: 500;
     align-items: center;
 }
-.textNavbar{
+
+.textNavbar {
     display: flex;
     gap: 30px;
-    color: var(--neutral-colors-950, #141414);
+    color: #141414;
     font-family: "Roboto-Medium", sans-serif;
     font-size: 16px;
     font-weight: 500;
     align-items: center;
 }
+
 .textNavbar a {
     text-decoration: none;
-    color: var(--neutral-colors-950, #141414);
+    color: #141414;
 }
-a.page{
-    color: var(--primary-color-500, #ff5722);
+
+a.page {
+    color: #ff5722;
     font-weight: 1000;
 }
-.button{
-    background: var(--primary-color-500, #ff5722);
+
+.button {
+    background: #ff5722;
     border-radius: 8px;
     display: flex;
     align-items: center;
@@ -116,7 +120,7 @@ a.page{
 }
 
 .a2 {
-    color: var(--primary-primary300, #ffab91);
+    color: #ffab91;
     text-align: left;
     font-family: "JockeyOne-Regular", sans-serif;
     font-size: 120px;
@@ -130,7 +134,7 @@ a.page{
 }
 
 .a3 {
-    color: var(--primary-primary800, #b02a00);
+    color: #b02a00;
     text-align: left;
     font-family: "JockeyOne-Regular", sans-serif;
     font-size: 25px;
@@ -152,7 +156,7 @@ a.page{
 }
 
 .getStarted {
-    background: var(--primary-color-500, #ff5722);
+    background: #ff5722;
     border-color: #ff5722;
     border-radius: 8px;
     padding: 12px 20px 12px 20px;
@@ -176,7 +180,7 @@ a.page{
 
 .frame2 {
     grid-area: frame2;
-    background: var(--primary-primary1000, #651800);
+    background: #651800;
     display: flex;
     flex-direction: row;
     row-gap: 10px;
@@ -213,7 +217,7 @@ a.page{
 }
 
 .header-item {
-    color: var(--secondary-secondary100, #e7ebef);
+    color: #e7ebef;
     text-align: left;
     font-family: "-", sans-serif;
     font-size: 20px;
@@ -223,7 +227,7 @@ a.page{
 }
 
 .text-item {
-    color: var(--secondary-secondary100, #e7ebef);
+    color: #e7ebef;
     text-align: left;
     font-family: "Roboto-Regular", sans-serif;
     font-size: 16px;
@@ -235,7 +239,7 @@ a.page{
 .image2 {
     border-radius: 50%;
     border-style: solid;
-    border-color: var(--primary-primary500, #ff7347);
+    border-color: #ff7347;
     border-width: 20px;
     flex-shrink: 0;
     width: 394.09px;
@@ -331,7 +335,7 @@ a.page{
 }
 
 .text3 {
-    color: var(--primary-primary1000, #651800);
+    color: #651800;
     font-family: "Roboto-Medium", sans-serif;
     font-size: 28px;
     line-height: 150%;
@@ -348,11 +352,9 @@ a.page{
 
 .footer {
     grid-area: footer;
-    background: var(--background-color-primary, #ffffff);
+    background: #ffffff;
     padding: 10px 20px;
-    /* Berikan sedikit padding */
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    /* Tambahkan bayangan untuk kesan floating */
     display: flex;
     flex-direction: column;
 }
@@ -376,7 +378,7 @@ a.page{
 }
 
 .fit-life-studio {
-    color: var(--primary-color-500, #ff5722);
+    color: #ff5722;
     text-align: left;
     font-family: "Roboto-SemiBold", sans-serif;
     font-size: 21px;
@@ -397,17 +399,18 @@ a.page{
 }
 
 .about2 {
-    color: var(--neutral-colors-900, #3d3d3d);
+    color: #3d3d3d;
     text-align: left;
     font-family: "Roboto-Medium", sans-serif;
     font-size: 16px;
     line-height: 150%;
     font-weight: 500;
     position: relative;
+    text-decoration: none;
 }
 
 .contact {
-    color: var(--neutral-colors-900, #3d3d3d);
+    color: #3d3d3d;
     text-align: left;
     font-family: "Roboto-Medium", sans-serif;
     font-size: 16px;
@@ -430,9 +433,9 @@ a.page{
 }
 
 .divider {
-    background: var(--neutral-colors-500, #6d6d6d);
+    background: #6d6d6d;
     border-style: solid;
-    border-color: var(--neutral-colors-800, #454545);
+    border-color: #454545;
     border-width: 1px;
     align-self: stretch;
     flex-shrink: 0;
@@ -462,7 +465,7 @@ a.page{
 }
 
 .text-1 {
-    color: var(--neutral-colors-900, #3d3d3d);
+    color: #3d3d3d;
     text-align: left;
     font-family: "Roboto-Regular", sans-serif;
     font-size: 14px;
@@ -472,40 +475,18 @@ a.page{
 }
 
 .text-2 {
-    color: var(--neutral-colors-900, #3d3d3d);
+    color: #3d3d3d;
     text-align: left;
-    font-family: var(--text-small-link-font-family, "Roboto-Regular", sans-serif);
-    font-size: var(--text-small-link-font-size, 14px);
-    line-height: var(--text-small-link-line-height, 150%);
-    font-weight: var(--text-small-link-font-weight, 400);
-    text-decoration: underline;
-    position: relative;
-}
-
-.text-3 {
-    color: var(--neutral-colors-900, #3d3d3d);
-    text-align: left;
-    font-family: var(--text-small-link-font-family, "Roboto-Regular", sans-serif);
-    font-size: var(--text-small-link-font-size, 14px);
-    line-height: var(--text-small-link-line-height, 150%);
-    font-weight: var(--text-small-link-font-weight, 400);
-    text-decoration: underline;
-    position: relative;
-}
-
-.text-4 {
-    color: var(--neutral-colors-900, #3d3d3d);
-    text-align: left;
-    font-family: var(--text-small-link-font-family, "Roboto-Regular", sans-serif);
-    font-size: var(--text-small-link-font-size, 14px);
-    line-height: var(--text-small-link-line-height, 150%);
-    font-weight: var(--text-small-link-font-weight, 400);
+    font-family: "Roboto-Regular", sans-serif;
+    font-size: 14px;
+    line-height: 150%;
+    font-weight: 400;
     text-decoration: underline;
     position: relative;
 }
 
 .ellipse-4 {
-    background: var(--primary-primary400, #ff8f6c);
+    background: #ff8f6c;
     border-radius: 50%;
     width: 564px;
     height: 518px;
@@ -542,7 +523,5 @@ a.page{
 .left2,
 .right2 {
     opacity: 0;
-    /* Mulai tersembunyi */
     animation-fill-mode: forwards;
-    /* Tetap dalam kondisi akhir */
 }

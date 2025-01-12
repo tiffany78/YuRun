@@ -7,7 +7,8 @@ body {
     background-color: #F5F5F5;
     font-family: "Roboto-Medium", sans-serif;
 }
-.containerBody{
+
+.containerBody {
     display: grid;
     grid-template-rows: 60px 103px auto;
     grid-template-columns: 1fr;
@@ -20,7 +21,8 @@ body {
     overflow: auto;
     justify-content: flex-start;
     align-items: flex-start;
-}    
+}
+
 .navbar {
     grid-area: navbar;
     position: fixed;
@@ -28,62 +30,70 @@ body {
     left: 0;
     width: 100%;
     z-index: 1000;
-    background: var(--background-color-primary, #ffffff);
+    background: #ffffff;
     display: flex;
     justify-content: space-around;
     align-items: center;
     padding: 10px 20px;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
+
 .logo {
     display: flex;
     width: 220px;
 }
+
 .yurun {
     display: flex;
-    color: var(--neutral-colors-950, #141414);
+    color: #141414;
     font-size: 21px;
     line-height: 120%;
     font-weight: 500;
     align-items: center;
 }
+
 .textNavbar {
     display: flex;
     gap: 30px;
-    color: var(--neutral-colors-950, #141414);
+    color: #141414;
     font-size: 16px;
     font-weight: 500;
     align-items: center;
     justify-content: center;
 }
+
 .textNavbar a {
     text-decoration: none;
-    color: var(--neutral-colors-950, #141414);
+    color: #141414;
 }
-a.page{
-    color: var(--primary-color-500, #ff5722);
+
+a.page {
+    color: #ff5722;
     font-weight: 1000;
 }
-.button{
-    background: var(--primary-color-500, #ff5722);
+
+.button {
+    background: #ff5722;
     border-radius: 8px;
     display: flex;
     align-items: center;
     justify-content: center;
     color: white;
-    padding: 8px 24px 8px 24px;
+    padding: 8px 24px;
     font-family: "Roboto-SemiBold", sans-serif;
     font-size: 16px;
     line-height: 150%;
     font-weight: 600;
     border-color: #ff5722;
 }
+
 .buttonText {
     text-decoration: none;
     color: white;
 }
+
 /* BAGIAN SEARCH */
-.search{
+.search {
     grid-area: search;
     padding-right: 10px;
     margin: 20px;
@@ -94,12 +104,13 @@ a.page{
     position: relative;
     overflow: hidden;
     border-style: solid;
-    border-color: var(--grey-40, #d0d0d0);
+    border-color: #d0d0d0;
     border-width: 1px;
     border-radius: 10px;
     width: 350px;
     height: 30px;
 }
+
 .search-bar {
     flex-shrink: 0;
     width: 20px;
@@ -107,7 +118,8 @@ a.page{
     position: relative;
     overflow: visible;
 }
-.search-race{
+
+.search-race {
     border: none;
     flex-shrink: 0;
     padding-left: 10px;
@@ -116,7 +128,6 @@ a.page{
     width: 300px;
     height: 25px;
 }
-
 
 /* BAGIAN CONTENT */
 .contentBody {
@@ -129,11 +140,12 @@ a.page{
     gap: 10px;
     font-family: "Roboto-Medium", sans-serif;
 }
+
 .square {
     display: grid;
     grid-template-rows: auto 1fr auto;
-    grid-template-columns: 1fr; /* Semua elemen dalam satu kolom */
-    gap: 10px; /* Jarak antar elemen */
+    grid-template-columns: 1fr;
+    gap: 10px;
     background: #fefaf7;
     border: #ff5722 3px solid;
     width: 300px;
@@ -141,27 +153,32 @@ a.page{
     border-radius: 10px;
     padding: 15px;
 }
+
 .kindText {
     font-weight: 600;
     font-size: larger;
-    text-align: center; /* Lurus di tengah */
+    text-align: center;
 }
+
 .detailText {
     display: flex;
     flex-direction: column;
     justify-content: center;
-    gap: 5px; /* Jarak antar teks */
-    text-align: left; /* Lurus di kiri */
+    gap: 5px;
+    text-align: left;
     font-weight: 500;
     font-size: large;
 }
+
 .title {
-    font-weight: bold; /* Membuat teks title lebih tebal */
+    font-weight: bold;
 }
+
 .description {
-    font-weight: normal; /* Membuat teks description normal */
-    color: #666; /* Opsional: Gunakan warna abu-abu untuk membedakan */
+    font-weight: normal;
+    color: #666;
 }
+
 .detailTime {
     display: flex;
     flex-direction: row;
@@ -171,13 +188,12 @@ a.page{
     align-items: center;
 }
 
-
 .actionButton {
     display: flex;
     justify-content: center;
     gap: 10px;
     align-items: center;
-    margin-top: auto; 
+    margin-top: auto;
     cursor: pointer;
 }
 
@@ -196,5 +212,3 @@ a.page{
     height: 40px;
     text-decoration: none;
 }
-
-

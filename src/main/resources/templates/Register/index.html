@@ -3,7 +3,6 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="/css/vars.css">
     <link rel="stylesheet" href="/css/Register/styles.css">
     <script src="/js/Register/passwordEye.js" defer ></script>
     <title>Register</title>
@@ -40,11 +39,10 @@
                 </div>
                 <div class="password">
                     <div class="label">Password</div>
-                    <div class="input-pass">
-                        <div>
-                            <input type="password" name="password" id="passwordInput" th:field="*{password}" placeholder="Enter your password" required>
-                            <img src="/images/eye-close.png" id="eyeiconPass"> 
-                        </div>
+                    <div class="input-pass-reg">
+                        <input type="password" name="password" id="passwordInput" th:field="*{password}" placeholder="Enter your password"  required>
+                        <img src="/images/eye-close.png" id="eyeiconPass" > 
+                        <p id="pesan">Password is <span id="strenght"></span></p>
                         <div th:if="${#fields.hasErrors('password')}" th:errors="*{password}" class="error"></div>
                     </div>
                 </div>

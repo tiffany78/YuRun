@@ -6,7 +6,7 @@ body {
     flex-direction: column;
     background-color: #F5F5F5;
 }
-.containerBody{
+.containerBody {
     display: grid;
     grid-template-rows: auto auto auto auto auto;
     grid-template-columns: 1fr 1fr 1fr;
@@ -23,36 +23,36 @@ body {
     align-items: center;
 }    
 .navbar {
-    position: fixed; /* Tetap di posisi atas */
-    top: 0; /* Pastikan di bagian paling atas */
-    left: 0; /* Mulai dari kiri layar */
-    width: 100%; /* Penuhi lebar layar */
-    z-index: 1000; /* Letakkan di atas elemen lain */
-    background: var(--background-color-primary, #ffffff); /* Pastikan ada warna latar */
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 1000;
+    background: #ffffff;
     display: flex;
     justify-content: space-around;
     align-items: center;
-    padding: 10px 20px; /* Berikan sedikit padding */
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Tambahkan bayangan untuk kesan floating */
+    padding: 10px 20px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
     height: 40px;
 }
-.logo{
+.logo {
     display: flex;
     width: 220px;
 }
-.yurun{
+.yurun {
     display: flex;
-    color: var(--neutral-colors-950, #141414);
+    color: #141414;
     font-family: "Roboto-Medium", sans-serif;
     font-size: 21px;
     line-height: 120%;
     font-weight: 500;
     align-items: center;
 }
-.textNavbar{
+.textNavbar {
     display: flex;
     gap: 30px;
-    color: var(--neutral-colors-950, #141414);
+    color: #141414;
     font-family: "Roboto-Medium", sans-serif;
     font-size: 16px;
     font-weight: 500;
@@ -60,13 +60,13 @@ body {
 }
 .textNavbar a {
     text-decoration: none;
-    color: var(--neutral-colors-950, #141414);
+    color: #141414;
 }
-a.page{
-    color: var(--primary-color-500, #ff5722);
+a.page {
+    color: #ff5722;
     font-weight: 1000;
 }
-.button{
+.button {
     display: flex;
     align-items: center;
     justify-content: center;
@@ -76,7 +76,6 @@ a.page{
     font-weight: 600;
     column-gap: 20px;
 }
-/* BAGIAN FRAME 1 */
 .frame1 {
     grid-area: frame1;
     border-radius: 10px;
@@ -85,7 +84,6 @@ a.page{
     flex-direction: column;
     align-items: center;
 }
-/* BAGIAN FRAME 2 */
 .frame2 {
     grid-area: frame2;
     border-radius: 10px;
@@ -94,7 +92,6 @@ a.page{
     flex-direction: column;
     align-items: center;
 }
-/* BAGIAN FRAME 4 */
 .frame4 {
     grid-area: frame4;
     border-radius: 10px;
@@ -103,14 +100,12 @@ a.page{
     flex-direction: column;
     align-items: center;
 }
-
 #container {
-  width: 1000px; 
-  height: 250px; 
-  margin: 10px auto;
+    width: 1000px; 
+    height: 250px; 
+    margin: 10px auto;
 }
-
-#download, #download2, #download3{
+#download, #download2, #download3 {
     background: #ff5722;
     border-radius: 13px;
     padding: 10px;
@@ -121,8 +116,6 @@ a.page{
     left: 0;
     width: fit-content;
 }
-
-/* BAGIAN FRAME 3 */
 .frame3 {
     grid-area: frame3;
     padding: 20px;
@@ -130,7 +123,7 @@ a.page{
     box-sizing: border-box;
 }
 .text3 {
-    color: var(--primary-color-500, #ff5722);
+    color: #ff5722;
     text-align: left;
     font-family: "Roboto-SemiBold", sans-serif;
     font-size: 21px;
@@ -145,7 +138,6 @@ a.page{
     text-decoration: none;
     color: inherit;
 }
-
 .table_race {
     width: 100%;
     margin: 20px auto;
@@ -166,7 +158,6 @@ thead th {
 thead th:first-child {
     border-radius: 10px 0 0 10px;
 }
-
 thead th:last-child {
     border-radius: 0 10px 10px 0;
 }
