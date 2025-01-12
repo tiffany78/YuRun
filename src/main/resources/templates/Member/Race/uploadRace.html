@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -8,6 +9,7 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <script src="/js/Member/AddActivity.js" defer></script>
 </head>
+
 <body class="containerBody">
     <nav class="navbar">
         <div class="logo">
@@ -21,14 +23,16 @@
             <a th:href="@{/member/progress}">Progress</a>
         </div>
         <div class="button">
-            <img src="/css/Admin/HomePage/account-circle0.svg"/>
+            <a th:href="@{/profile}">
+                <img src="/css/Admin/HomePage/account-circle0.svg" />
+            </a>
             <a th:href="@{/logout}">
-                <img src="/css/Admin/HomePage/logout.svg"/>
+                <img src="/css/Admin/HomePage/logout.svg" />
             </a>
         </div>
     </nav>
     <div class="content">
-        <form class="frameinput" method="post" th:action="@{/member/uploadRace}" enctype="multipart/form-data">    
+        <form class="frameinput" method="post" th:action="@{/member/uploadRace}" enctype="multipart/form-data">
             <div class="add-new-activity">Upload Race Activity</div>
             <div class="input1">
                 <a>Race: <span th:text="${race.title}"></span></a>
@@ -39,11 +43,11 @@
                 <div class="divInput">
                     <div class="headInput">Duration</div>
                     <div class="groupFrame">
-                        <input type="number" min="0" max="100" id="hour" name="hour" required class="frame2"/>
+                        <input type="number" min="0" max="100" id="hour" name="hour" required class="frame2" />
                         <span class="textFrame">Hour</span>
-                        <input type="number" min="0" max="59" id="minute" name="minute" required class="frame2"/>
+                        <input type="number" min="0" max="59" id="minute" name="minute" required class="frame2" />
                         <span class="textFrame">Minute</span>
-                        <input type="number" min="0" max="59" id="second" name="second" required class="frame2"/>
+                        <input type="number" min="0" max="59" id="second" name="second" required class="frame2" />
                         <span class="textFrame">Second</span>
                     </div>
                 </div>
@@ -63,29 +67,30 @@
                     <div class="save2">Save</div>
                 </button>
             </div>
-        </div>
+    </div>
     </div>
     <footer class="footer">
         <div class="content2">
             <div class="logo">
-              <img class="logo3" src="/css/LandingPage/logo3.svg" />
-              <div class="fit-life-studio">YuRun</div>
+                <img class="logo3" src="/css/LandingPage/logo3.svg" />
+                <div class="fit-life-studio">YuRun</div>
             </div>
             <div class="links">
-              <div class="about2">About</div>
-              <div class="contact">Contact</div>
+                <div class="about2">About</div>
+                <div class="contact">Contact</div>
             </div>
             <img class="social" src="/css/LandingPage/social0.svg" />
         </div>
         <div class="divider"></div>
         <div class="credits">
             <div class="row">
-              <div class="text-1">© 2024 Shipon. All rights reserved.</div>
-              <div class="text-2">Privacy Policy</div>
-              <div class="text-2">Terms of Service</div>
-              <div class="text-2">Cookies Settings</div>
+                <div class="text-1">© 2024 Shipon. All rights reserved.</div>
+                <div class="text-2">Privacy Policy</div>
+                <div class="text-2">Terms of Service</div>
+                <div class="text-2">Cookies Settings</div>
             </div>
-          </div>
+        </div>
     </footer>
 </body>
+
 </html>

@@ -46,13 +46,12 @@
             <a class="yurun">YuRun</a>
         </div>
         <div class="textNavbar">
-            <a class="page" th:href="@{/member}">Home</a>
-            <a th:href="@{/member/activity}">My Activity</a>
-            <a th:href="@{/member/race}">Race</a>
-            <a th:href="@{/member/progress}">Progress</a>
+            <a th:href="@{/admin/home}" class="page">Home</a>
+            <a th:href="@{/admin/userInfo}">User Information</a>
+            <a th:href="@{/admin/race}">Race</a>
         </div>
         <div class="button">
-            <a th:href="@{/profile}">
+            <a th:href="@{/profileAdmin}">
                 <img src="/css/Admin/HomePage/account-circle0.svg" />
             </a>
             <a th:href="@{/logout}">
@@ -62,7 +61,7 @@
     </nav>
     <div class="biodata">
         <div class="back-button">
-            <a href="/member" class="back-btn">← Back</a>
+            <a href="/admin/home" class="back-btn">← Back</a>
         </div>
         <div id="error-message" th:if="${error}" class="error-message" style="color: red;">
             <p th:text="${error}"></p>
@@ -82,7 +81,7 @@
                         <div id="error-message" th:if="${error1}" class="error-message" style="color: red;">
                             <p th:text="${error1}"></p>
                         </div>
-                        <form id="editNameForm" th:action="@{/profile/updateName}" method="post" style="display:none;">
+                        <form id="editNameForm" th:action="@{/profileAdmin/updateName}" method="post" style="display:none;">
                             <input type="hidden" name="email" th:value="${user.email}">
                             <label for="newName">New Name: </label>
                             <input type="text" id="newName" name="newName" required><br>
@@ -102,7 +101,7 @@
                         <div id="error-message" th:if="${error2}" class="error-message" style="color: red;">
                             <p th:text="${error2}"></p>
                         </div>
-                        <form id="editEmailForm" th:action="@{/profile/updateEmail}" method="post"
+                        <form id="editEmailForm" th:action="@{/profileAdmin/updateEmail}" method="post"
                             style="display:none;">
                             <input type="hidden" name="email" th:value="${user.email}">
                             <label for="newEmail">New Email: </label>
@@ -129,7 +128,7 @@
                         <div id="error-message" th:if="${error3}" class="error-message" style="color: red;">
                             <p th:text="${error3}"></p>
                         </div>
-                        <form id="editPasswordForm" th:action="@{/profile/updatePassword}" method="post"
+                        <form id="editPasswordForm" th:action="@{/profileAdmin/updatePassword}" method="post"
                             style="display:none;">
                             <input type="hidden" name="email" th:value="${user.email}">
                             <label for="newPassword">New Password: </label>
