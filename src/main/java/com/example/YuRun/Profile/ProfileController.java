@@ -109,28 +109,32 @@ public class ProfileController {
             if (userEmail == null) {
                 return "redirect:/login";
             }
-
+    
             User currentUser = userRepository.findByEmail(userEmail);
             if (currentUser == null) {
                 model.addAttribute("error", "User not found");
                 return "error";
             }
-
+    
             // Pengecekan password
             if (!currentUser.getPassword().equals(password)) {
                 model.addAttribute("error2", "Incorrect password");
                 model.addAttribute("user", currentUser);
                 return "Profile/index";
             }
-
-            userRepository.updateEmail(userEmail, newEmail); // Metode ini sudah menangani pengecekan password di
-                                                             // repository
+    
+            userRepository.updateEmail(userEmail, newEmail); // Metode ini sudah menangani pengecekan password di repository
+    
+            // Update session email
+            session.setAttribute("email", newEmail);
+    
             return "redirect:/profile";
         } catch (Exception e) {
             model.addAttribute("error", "Failed to update email: " + e.getMessage());
             return "error";
         }
     }
+    
 
     @PostMapping("/profile/updatePassword")
     public String updatePassword(@RequestParam("newPassword") String newPassword,

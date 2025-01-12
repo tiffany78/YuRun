@@ -217,6 +217,33 @@ form button {
     background-color: #f1f1f1;
 }
 
+.popup-message {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: #4CAF50;
+    color: white;
+    padding: 20px;
+    border-radius: 5px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    text-align: center;
+    display: none;
+}
+
+.popup-message button {
+    background-color: white;
+    color: #4CAF50;
+    border: none;
+    padding: 10px 20px;
+    cursor: pointer;
+}
+
+.popup-message button:hover {
+    background-color: #f1f1f1;
+}
+
+
 .footer {
     background: #ffffff;
     padding: 10px 20px;
