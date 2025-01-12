@@ -1,10 +1,10 @@
 DROP VIEW IF EXISTS show_race_admin;
 DROP VIEW IF EXISTS count_race_admin;
 DROP VIEW IF EXISTS show_race_member;
-DROP TABLE JoinRace;
-DROP TABLE Activity;
-DROP TABLE Race;
-DROP TABLE Users;
+DROP TABLE IF EXISTS JoinRace;
+DROP TABLE IF EXISTS Activity;
+DROP TABLE IF EXISTS Race;
+DROP TABLE IF EXISTS Users;
 
 CREATE TABLE Users (
     id_user SERIAL PRIMARY KEY,
