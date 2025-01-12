@@ -4,8 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Home Race</title>
-    <link rel="stylesheet" href="/css/Member/Race/style.css">
-    <link rel="stylesheet" href="/css/vars.css">
+    <link rel="stylesheet" href="/css/Member/Race/styles.css">
 </head>
 <body class="containerBody">
     <nav class="navbar">
@@ -32,7 +31,7 @@
         <form class="filter">            
             <div class="search">
                 <img class="search-bar" src="/css/Admin/Race/search0.svg"/>
-                <input type="text" name="filter" th:value="${filter}" placeholder="Search Title Activity" class="search-race" onkeyup=this.form.submit()/>
+                <input type="text" name="filter" th:value="${filter}" placeholder="Search Title Race" class="search-race" onkeyup=this.form.submit()/>
             </div>
             <select class="dropdown" id="sort" name="sort" onchange="this.form.submit()">
                 <option th:value="null" th:selected="${sort == null}">Sort by: Featured</option>
@@ -40,6 +39,11 @@
                 <option th:value="Distance-Desc" th:selected="${sort == 'Distance-Desc'}">Distance: Long - Short</option>
                 <option th:value="Date-Asc" th:selected="${sort == 'Date-Asc'}">Date: Oldest - Newest</option>
                 <option th:value="Date-Desc" th:selected="${sort == 'Date-Desc'}">Date: Newest - Oldest</option>
+            </select>
+            <select class="dropdown" id="status" name="status" onchange="this.form.submit()">
+                <option th:value="null" th:selected="${status == null}">Filtered by: Status Race</option>
+                <option th:value="Open" th:selected="${status == 'Open'}">Status: Open</option>
+                <option th:value="Closed" th:selected="${status == 'Closed'}">Status: Closed</option>
             </select>
         </form>
         <a class="add" th:href="@{/member/raceActivityHistory}">Race Activity History</a>
@@ -50,7 +54,7 @@
                 <tr>
                     <th>No.</th>
                     <th>Title</th>
-                    <th>Date</th>
+                    <th>Due Date</th>
                     <th>Distance</th>
                     <th>Description</th>
                     <th>Status</th>
@@ -63,10 +67,11 @@
                         <img th:if="${race.iswinner}" src="/css/Member/Race/crown.png" alt="Crown" style="width:20px; height:20px; margin-right:4px;">
                         <span th:text="${race.title}"></span>
                     </td>                    
-                    <td th:text="${#dates.format(race.start_date, 'dd/MM/yyyy')}"></td>
+                    <td th:text="${#dates.format(race.end_date, 'd MMMM yyyy')}"></td>
                     <td th:text="${race.distance} + ' km'"></td>
                     <td th:text="${race.description}"></td>
-                    <td>
+                    <!-- Jika member belum upload bukti race -->
+                    <td th:if="${!uploadStatus[race.id_race]}">
                         <!-- Ikon "Join" jika belum bergabung -->
                         <img th:if="${!raceStatuses[race.id_race] && race.startDateTime.isAfter(currentDate)}" class="join" style="cursor: pointer;" src="/css/Member/Race/join.svg" alt="Join Race"
                             th:onclick="'updateRaceStatus(' + ${race.id_race} + ', true)'"/>
@@ -79,9 +84,14 @@
                             width="22" height="22"
                             th:onclick="'uploadRaceActivity(' + ${race.id_race} + ')'"/>
 
-                        <!-- Ikon "Exit" dan "Upload" jika sudah bergabung -->
+                        <!-- Jika race sudah melewati due date -->
                         <a th:if="${!race.startDateTime.isAfter(currentDate)}">Closed</a>
-                    </td>             
+                    </td>  
+                    <!-- Jika member sudah upload bukti race -->
+                    <td th:if="${uploadStatus[race.id_race]}">
+                        <a th:if="${raceStatuses[race.id_race]}">Join & Finished</a>
+                        <a th:if="${!raceStatuses[race.id_race]}">Closed</a>
+                    </td>           
                 </tr>
             </tbody>
         </table>

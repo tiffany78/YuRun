@@ -5,7 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Home Page</title>
     <link rel="stylesheet" href="/css/Admin/HomePage/styles.css">
-    <link rel="stylesheet" href="/css/vars.css">
     <script  src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
     <script  src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
     <script  src="https://code.highcharts.com/highcharts.js"></script>
@@ -70,7 +69,7 @@
             <tbody>
                 <tr th:each="race : ${race}">
                     <td th:text="${race.title}"></td>
-                    <td th:text="${#dates.format(race.start_date, 'dd/MM/yyyy')}"></td>
+                    <td th:text="${#dates.format(race.end_date, 'dd/MM/yyyy')}"></td>
                     <td th:text="${race.distance} + ' km'"></td>
                 </tr>                
             </tbody>

@@ -48,7 +48,7 @@ public class JDBCRace implements RaceRepository{
             filterList.add(statusRaceBool);
         }
     
-        sql += " ORDER BY status ASC, start_date";
+        sql += " ORDER BY status ASC, end_date";
 
         if(entries > 0){
             sql += " LIMIT ? OFFSET ?";
@@ -86,19 +86,19 @@ public class JDBCRace implements RaceRepository{
             filterList.add(statusRaceBool);
         }
     
-        sql += " ORDER BY status ASC, start_date";
+        sql += " ORDER BY status ASC, end_date";
 
         List<CountRace> list = jdbcTemplate.query(sql, this::mapRowToCountrace, filterList.toArray());
         return list.size();
     }
 
     private CountRace mapRowToCountrace(ResultSet resultSet, int rowNum) throws SQLException {
-        LocalDateTime startDateTime = resultSet.getDate("start_date").toLocalDate().atStartOfDay();
+        LocalDateTime startDateTime = resultSet.getDate("end_date").toLocalDate().atStartOfDay();
 
         return new CountRace(
             resultSet.getInt("id_race"),
             resultSet.getString("title"),
-            resultSet.getDate("start_date"),
+            resultSet.getDate("end_date"),
             resultSet.getDouble("distance"),
             resultSet.getString("description"), 
             resultSet.getInt("count"),
@@ -108,12 +108,12 @@ public class JDBCRace implements RaceRepository{
     }
 
     private Race mapRowToRace(ResultSet resultSet, int rowNum) throws SQLException {
-        LocalDateTime startDateTime = resultSet.getDate("start_date").toLocalDate().atStartOfDay();
+        LocalDateTime startDateTime = resultSet.getDate("end_date").toLocalDate().atStartOfDay();
 
         return new Race(
             resultSet.getInt("id_race"),
             resultSet.getString("title"),
-            resultSet.getDate("start_date"),
+            resultSet.getDate("end_date"),
             resultSet.getDouble("distance"),
             resultSet.getString("description"), 
             startDateTime
@@ -121,7 +121,7 @@ public class JDBCRace implements RaceRepository{
     }
 
     public void addRace(String title, Date date, Double distance, String desc) {
-        String sql = "INSERT INTO public.race(title, start_date, distance, description, status) VALUES (?, ?, ?, ?, FALSE)";
+        String sql = "INSERT INTO public.race(title, end_date, distance, description, status) VALUES (?, ?, ?, ?, FALSE)";
         jdbcTemplate.update(sql, title, date, distance, desc);
     }
 
@@ -132,7 +132,7 @@ public class JDBCRace implements RaceRepository{
     }
 
     public void updateRace(String title, Date date, Double distance, String desc, int idRace){
-        String sql = "UPDATE race SET distance = ?, start_date = ?, title = ?, description = ? WHERE id_race = ?";
+        String sql = "UPDATE race SET distance = ?, end_date = ?, title = ?, description = ? WHERE id_race = ?";
 
         jdbcTemplate.update(sql, distance, date, title, desc, idRace);
     }

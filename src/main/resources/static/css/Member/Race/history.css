@@ -6,7 +6,7 @@ body {
   flex-direction: column;
   font-family: "Roboto-Medium", sans-serif;
 }
-.containerBody{
+.containerBody {
   display: grid;
   grid-template-rows: 60px 103px 1fr auto;
   grid-template-columns: 1fr;
@@ -20,39 +20,39 @@ body {
   overflow: auto;
   justify-content: flex-start;
   align-items: flex-start;
-}    
+}
 .navbar {
   grid-area: navbar;
-  position: fixed; /* Tetap di posisi atas */
-  top: 0; /* Pastikan di bagian paling atas */
-  left: 0; /* Mulai dari kiri layar */
-  width: 100%; /* Penuhi lebar layar */
-  z-index: 1000; /* Letakkan di atas elemen lain */
-  background: var(--background-color-primary, #ffffff); /* Pastikan ada warna latar */
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 1000;
+  background: #ffffff;
   display: flex;
   justify-content: space-around;
   align-items: center;
-  padding: 10px 20px; /* Berikan sedikit padding */
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Tambahkan bayangan untuk kesan floating */
+  padding: 10px 20px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
   height: 40px;
 }
-.logo{
+.logo {
   display: flex;
   width: 220px;
 }
-.yurun{
+.yurun {
   display: flex;
-  color: var(--neutral-colors-950, #141414);
+  color: #141414;
   font-family: "Roboto-Medium", sans-serif;
   font-size: 21px;
   line-height: 120%;
   font-weight: 500;
   align-items: center;
 }
-.textNavbar{
+.textNavbar {
   display: flex;
   gap: 30px;
-  color: var(--neutral-colors-950, #141414);
+  color: #141414;
   font-family: "Roboto-Medium", sans-serif;
   font-size: 16px;
   font-weight: 500;
@@ -60,14 +60,13 @@ body {
 }
 .textNavbar a {
   text-decoration: none;
-  color: var(--neutral-colors-950, #141414);
+  color: #141414;
 }
-a.home{
-  color: var(--primary-color-500, #ff5722);
+a.home {
+  color: #ff5722;
   font-weight: 1000;
 }
-
-.button{
+.button {
   display: flex;
   align-items: center;
   justify-content: center;
@@ -93,9 +92,7 @@ a.home{
   justify-content: center;
   text-decoration: none;
 }
-
-/* BAGIAN HEADER */
-.header{
+.header {
   grid-area: header;
   display: flex;
   flex-direction: row;
@@ -106,15 +103,14 @@ a.home{
   padding-left: 20px;
   column-gap: 30px;
 }
-.filter{
+.filter {
   display: flex;
   flex-direction: row;
   justify-content: left;
   align-items: center;
   column-gap: 10px;
 }
-
-.search{
+.search {
   padding-right: 10px;
   display: flex;
   flex-direction: row;
@@ -124,7 +120,7 @@ a.home{
   position: relative;
   overflow: hidden;
   border-style: solid;
-  border-color: var(--grey-40, #d0d0d0);
+  border-color: #d0d0d0;
   border-width: 1px;
   border-radius: 10px;
 }
@@ -135,7 +131,7 @@ a.home{
   position: relative;
   overflow: visible;
 }
-.search-race{
+.search-race {
   border: none;
   flex-shrink: 0;
   width: 300px;
@@ -144,20 +140,20 @@ a.home{
   padding-right: 20px;
   background: none;
 }
-.dropdown{
-    border-radius: 10px;
-    border-style: solid;
-    border-color: var(--grey-40, #d0d0d0);
-    border-width: 1px;
-    flex-shrink: 0;
-    width: 200px;
-    height: 35px;
-    position: relative;
-    padding-left: 10px;
-    padding-right: 20px;
-    background: none;
+.dropdown {
+  border-radius: 10px;
+  border-style: solid;
+  border-color: #d0d0d0;
+  border-width: 1px;
+  flex-shrink: 0;
+  width: 200px;
+  height: 35px;
+  position: relative;
+  padding-left: 10px;
+  padding-right: 20px;
+  background: none;
 }
-.back{
+.back {
   text-decoration: none;
   font-size: medium;
   color: #454545;
@@ -168,238 +164,198 @@ a.home{
   text-align: center;
   align-items: center;
 }
-
 .contentBody {
-    grid-area: contentBody;
-    justify-content: center;
-    justify-self: center;
-    display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
-    gap: 10px;
-    font-family: "Roboto-Medium", sans-serif;
+  grid-area: contentBody;
+  justify-content: center;
+  justify-self: center;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  gap: 10px;
+  font-family: "Roboto-Medium", sans-serif;
 }
 .square {
-    display: grid;
-    grid-template-rows: 20px 150px auto auto;
-    grid-template-columns: 1fr;
-    gap: 10px; 
-    border: #ff5722 3px solid;
-    width: 300px;
-    height: auto;
-    border-radius: 10px;
-    padding: 15px;
+  display: grid;
+  grid-template-rows: 20px 150px auto auto;
+  grid-template-columns: 1fr;
+  gap: 10px;
+  border: #ff5722 3px solid;
+  width: 300px;
+  height: auto;
+  border-radius: 10px;
+  padding: 15px;
 }
-
 .kindText {
-    font-weight: 600;
-    font-size: larger;
-    text-align: center; /* Lurus di tengah */
+  font-weight: 600;
+  font-size: larger;
+  text-align: center;
 }
-
 .imageContainer {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    max-width: 150px;
-    max-height: 150px;
-    margin: 0 auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  max-width: 150px;
+  max-height: 150px;
+  margin: 0 auto;
 }
-
 .image {
-    max-width: 100%;
-    max-height: 100%;
-    object-fit: contain; /* Pastikan gambar tetap proporsional */
-    border-radius: 5px;
-    border: 1px solid #ccc;
-    cursor: pointer;
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: contain;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+  cursor: pointer;
 }
-
 .detailText {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    gap: 5px; /* Jarak antar teks */
-    text-align: left; /* Lurus di kiri */
-    font-weight: 500;
-    font-size: large;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 5px;
+  text-align: left;
+  font-weight: 500;
+  font-size: large;
 }
 .title {
-    font-weight: bold; /* Membuat teks title lebih tebal */
+  font-weight: bold;
 }
 .description {
-    font-weight: normal; /* Membuat teks description normal */
-    color: #666; /* Opsional: Gunakan warna abu-abu untuk membedakan */
+  font-weight: normal;
+  color: #666;
 }
 .detailTime {
-    display: flex;
-    flex-direction: row;
-    column-gap: 10px;
-    font-size: 15px;
-    color: gray;
+  display: flex;
+  flex-direction: row;
+  column-gap: 10px;
+  font-size: 15px;
+  color: gray;
 }
 .status {
   font-size: 17px;
 }
-
 .status.approve {
-  background-color: #ccffcc; /* Warna hijau muda */
-    color: #006400; /* Warna hijau gelap */
-    padding: 5px 10px;
-    border-radius: 10px;
-    text-align: center;
-    font-weight: bold;
+  background-color: #ccffcc;
+  color: #006400;
+  padding: 5px 10px;
+  border-radius: 10px;
+  text-align: center;
+  font-weight: bold;
 }
-
 .status.rejected {
-  background-color: #ffcccc; /* Warna merah muda */
-    color: #8b0000; /* Warna merah gelap */
-    padding: 5px 10px;
-    border-radius: 10px;
-    text-align: center;
-    font-weight: bold;
+  background-color: #ffcccc;
+  color: #8b0000;
+  padding: 5px 10px;
+  border-radius: 10px;
+  text-align: center;
+  font-weight: bold;
 }
-
 .status.waiting {
-  background-color: #ccecff; /* Warna merah muda */
-    color: #113659; /* Warna merah gelap */
-    padding: 5px 10px;
-    border-radius: 10px;
-    text-align: center;
-    font-weight: bold;
+  background-color: #ccecff;
+  color: #113659;
+  padding: 5px 10px;
+  border-radius: 10px;
+  text-align: center;
+  font-weight: bold;
 }
-
 .status.upload {
-  background-color: #ffccf9; /* Warna merah muda */
-    color: #591130; /* Warna merah gelap */
-    padding: 5px 10px;
-    border-radius: 10px;
-    text-align: center;
-    font-weight: bold;
+  background-color: #ffccf9;
+  color: #591130;
+  padding: 5px 10px;
+  border-radius: 10px;
+  text-align: center;
+  font-weight: bold;
 }
-
-
-/* BAGIAN FOOTER */
 .footer {
   grid-area: footer;
-  background: var(--background-color-primary, #ffffff);
+  background: #ffffff;
   padding: 10px 20px;
   display: flex;
   flex-direction: column;
   height: 110px;
-  min-height: 110px; 
+  min-height: 110px;
   margin-top: 20px;
 }
-  .content2 {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    justify-content: space-between;
-    align-self: stretch;
-    flex-shrink: 0;
-    position: relative;
-  }
-  .logo3 {
-    flex-shrink: 0;
-    width: 22.48px;
-    height: 25px;
-    position: relative;
-    overflow: visible;
-  }
-  .fit-life-studio {
-    color: var(--primary-color-500, #ff5722);
-    text-align: left;
-    font-family: "Roboto-SemiBold", sans-serif;
-    font-size: 21px;
-    line-height: 120%;
-    font-weight: 600;
-    position: relative;
-    width: 200px;
-  }
-  .links {
-    display: flex;
-    flex-direction: row;
-    gap: 40px;
-    align-items: flex-start;
-    justify-content: flex-start;
-    flex-shrink: 0;
-    position: relative;
-  }
-  .about2 {
-    color: var(--neutral-colors-900, #3d3d3d);
-    text-align: left;
-    font-family: "Roboto-Medium", sans-serif;
-    font-size: 16px;
-    line-height: 150%;
-    font-weight: 500;
-    position: relative;
-  }
-  .contact {
-    color: var(--neutral-colors-900, #3d3d3d);
-    text-align: left;
-    font-family: "Roboto-Medium", sans-serif;
-    font-size: 16px;
-    line-height: 150%;
-    font-weight: 500;
-    position: relative;
-  }
-  .social {
-    display: flex;
-    flex-direction: row;
-    gap: 12px;
-    align-items: center;
-    justify-content: flex-end;
-    flex-shrink: 0;
-    width: 171px;
-    height: auto;
-    position: relative;
-    overflow: visible;
-  }
-  .divider {
-    background: var(--neutral-colors-500, #6d6d6d);
-    border-style: solid;
-    border-color: var(--neutral-colors-800, #454545);
-    border-width: 1px;
-    align-self: stretch;
-    flex-shrink: 0;
-    height: 1px;
-    margin: 20px 0;
-  } 
-  .credits {
-    display: flex;
-    flex-direction: column;
-    gap: 32px;
-    align-items: center;
-    justify-content: flex-start;
-    align-self: stretch;
-    flex-shrink: 0;
-    position: relative;
-  }
-  .row {
-    display: flex;
-    flex-direction: row;
-    gap: 24px;
-    align-items: flex-start;
-    justify-content: flex-start;
-    flex-shrink: 0;
-    position: relative;
-  }
-  .text-1 {
-    color: var(--neutral-colors-900, #3d3d3d);
-    text-align: left;
-    font-family: "Roboto-Regular", sans-serif;
-    font-size: 14px;
-    line-height: 150%;
-    font-weight: 400;
-    position: relative;
-  }
-  .text-2 {
-    color: var(--neutral-colors-900, #3d3d3d);
-    text-align: left;
-    font-family: var(--text-small-link-font-family, "Roboto-Regular", sans-serif);
-    font-size: var(--text-small-link-font-size, 14px);
-    line-height: var(--text-small-link-line-height, 150%);
-    font-weight: var(--text-small-link-font-weight, 400);
-    text-decoration: underline;
-    position: relative;
-  }
+.content2 {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+}
+.logo3 {
+  flex-shrink: 0;
+  width: 22.48px;
+  height: 25px;
+}
+.fit-life-studio {
+  color: #ff5722;
+  text-align: left;
+  font-family: "Roboto-SemiBold", sans-serif;
+  font-size: 21px;
+  line-height: 120%;
+  font-weight: 600;
+}
+.links {
+  display: flex;
+  flex-direction: row;
+  gap: 40px;
+  align-items: flex-start;
+}
+.about2 {
+  color: #3d3d3d;
+  text-align: left;
+  font-family: "Roboto-Medium", sans-serif;
+  font-size: 16px;
+  line-height: 150%;
+  font-weight: 500;
+}
+.contact {
+  color: #3d3d3d;
+  text-align: left;
+  font-family: "Roboto-Medium", sans-serif;
+  font-size: 16px;
+  line-height: 150%;
+  font-weight: 500;
+}
+.social {
+  display: flex;
+  flex-direction: row;
+  gap: 12px;
+  align-items: center;
+  justify-content: flex-end;
+}
+.divider {
+  background: #6d6d6d;
+  border-style: solid;
+  border-color: #454545;
+  border-width: 1px;
+  height: 1px;
+  margin: 20px 0;
+}
+.credits {
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+  align-items: center;
+}
+.row {
+  display: flex;
+  flex-direction: row;
+  gap: 24px;
+  align-items: flex-start;
+}
+.text-1 {
+  color: #3d3d3d;
+  text-align: left;
+  font-family: "Roboto-Regular", sans-serif;
+  font-size: 14px;
+  line-height: 150%;
+  font-weight: 400;
+}
+.text-2 {
+  color: #3d3d3d;
+  text-align: left;
+  font-family: "Roboto-Regular", sans-serif;
+  font-size: 14px;
+  line-height: 150%;
+  font-weight: 400;
+  text-decoration: underline;
+}

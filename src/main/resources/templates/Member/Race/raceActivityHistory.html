@@ -3,9 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Home Activity</title>
+    <title>Race History</title>
     <link rel="stylesheet" href="/css/Member/Race/history.css">
-    <link rel="stylesheet" href="/css/vars.css">
 </head>
 <body class="containerBody">
     <nav class="navbar">
@@ -74,7 +73,7 @@
                 <a th:text="${'Distance: ' + activity.distance + ' km'}">Distance</a>
                 <a th:text="${'Duration: ' + activity.duration}">Duration</a>
                 <div class="detailTime">
-                    <a th:text="${#dates.format(activity.start_date, 'd MMMM yyyy')}">Date</a>
+                    <a th:text="${#dates.format(activity.end_date, 'd MMMM yyyy')}">Date</a>
                 </div>
             </div>
         </div>        

@@ -29,7 +29,7 @@ body {
     left: 0; 
     width: 100%; 
     z-index: 1000; 
-    background: var(--background-color-primary, #ffffff); 
+    background: #ffffff; 
     display: flex;
     justify-content: space-around;
     align-items: center;
@@ -44,17 +44,17 @@ body {
 
 .yurun {
     display: flex;
-    color: var(--neutral-colors-950, #141414);
+    color: #141414;
     font-family: "Roboto-Medium", sans-serif;
     font-size: 21px;
     line-height: 120%;
     font-weight: 500;
     align-items: center;
 }
-.textNavbar{
+.textNavbar {
     display: flex;
     gap: 30px;
-    color: var(--neutral-colors-950, #141414);
+    color: #141414;
     font-family: "Roboto-Medium", sans-serif;
     font-size: 16px;
     font-weight: 500;
@@ -62,14 +62,14 @@ body {
 }
 .textNavbar a {
     text-decoration: none;
-    color: var(--neutral-colors-950, #141414);
+    color: #141414;
 }
-a.page{
-    color: var(--primary-color-500, #ff5722);
+a.page {
+    color: #ff5722;
     font-weight: 1000;
 }
-.button{
-    background: var(--primary-color-500, #ff5722);
+.button {
+    background: #ff5722;
     border-radius: 8px;
     display: flex;
     align-items: center;
@@ -88,8 +88,7 @@ a.page{
     color: white;
 }
 
-/* BAGIAN PROLOG */
-.prolog{
+.prolog {
     grid-area: prolog;
     background-color: #fefaf4;
     padding: 50px;
@@ -108,17 +107,17 @@ a.page{
     row-gap: 15px;
 }
 
-.text p{
+.text p {
     font-size: 20px;
     font-weight: 300;
 }
 
-.picture{
+.picture {
     max-height: 350px;
 }
 
 .getStarted {
-    background: var(--primary-color-500, #ff5722);
+    background: #ff5722;
     border-color: #ff5722;
     border-radius: 8px;
     padding: 12px 20px 12px 20px;
@@ -137,14 +136,13 @@ a.page{
     text-decoration: none;
 }
 
-/* DEVELOPER */
 .our-teams-container {
     grid-area: our-teams-container;
     text-align: center;
     margin-bottom: 40px;
 }
 
-.header  {
+.header {
     font-size: 2rem;
     font-weight: bold;
     color: #333;
@@ -205,7 +203,6 @@ a.page{
     margin: 0;
 }
 
-/* SLIDER */
 .slider-container {
     grid-area: slider-container;
     width: 100%;
@@ -324,7 +321,6 @@ a.page{
     justify-content: center;
     gap: 10px;
     margin-top: 10px;
-    /* Ensure some spacing between slider content and dots */
 }
 
 .dot {
@@ -381,10 +377,9 @@ a.page{
     }
 }
 
-/* FOOTER */
 .footer {
     grid-area: footer;
-    background: var(--background-color-primary, #ffffff);
+    background: #ffffff;
     padding: 10px 20px;
     display: flex;
     flex-direction: column;
@@ -410,7 +405,7 @@ a.page{
 }
 
 .fit-life-studio {
-    color: var(--primary-color-500, #ff5722);
+    color: #ff5722;
     text-align: left;
     font-size: 21px;
     line-height: 120%;
@@ -430,7 +425,7 @@ a.page{
 }
 
 .about2 {
-    color: var(--neutral-colors-900, #3d3d3d);
+    color: #3d3d3d;
     text-align: left;
     font-size: 16px;
     line-height: 150%;
@@ -439,7 +434,7 @@ a.page{
 }
 
 .contact {
-    color: var(--neutral-colors-900, #3d3d3d);
+    color: #3d3d3d;
     text-align: left;
     font-size: 16px;
     line-height: 150%;
@@ -461,9 +456,9 @@ a.page{
 }
 
 .divider {
-    background: var(--neutral-colors-500, #6d6d6d);
+    background: #6d6d6d;
     border-style: solid;
-    border-color: var(--neutral-colors-800, #454545);
+    border-color: #454545;
     border-width: 1px;
     align-self: stretch;
     flex-shrink: 0;
@@ -493,7 +488,7 @@ a.page{
 }
 
 .text-1 {
-    color: var(--neutral-colors-900, #3d3d3d);
+    color: #3d3d3d;
     text-align: left;
     font-size: 14px;
     line-height: 150%;
@@ -502,15 +497,15 @@ a.page{
 }
 
 .text-2 {
-    color: var(--neutral-colors-900, #3d3d3d);
+    color: #3d3d3d;
     text-align: left;
-    font-family: var(--text-small-link-font-family, "Roboto-Medium", sans-serif);
-    font-size: var(--text-small-link-font-size, 14px);
-    line-height: var(--text-small-link-line-height, 150%);
-    font-weight: var(--text-small-link-font-weight, 400);
+    font-family: "Roboto-Medium", sans-serif;
+    font-size: 14px;
+    line-height: 150%;
+    font-weight: 400;
     text-decoration: underline;
     position: relative;
 }
-a{
+a {
     text-decoration: none;
 }

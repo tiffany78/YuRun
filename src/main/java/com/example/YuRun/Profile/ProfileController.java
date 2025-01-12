@@ -4,6 +4,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+
+import com.example.YuRun.RequiredRole;
+
 import jakarta.servlet.http.HttpSession;
 
 @Controller
@@ -13,6 +16,7 @@ public class ProfileController {
     private UserRepository userRepository;
 
     @GetMapping("/profile")
+    @RequiredRole({"member", "admin"})
     public String showProfile(Model model, HttpSession session) {
         try {
             String userEmail = (String) session.getAttribute("email");

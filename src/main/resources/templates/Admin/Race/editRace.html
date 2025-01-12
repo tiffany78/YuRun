@@ -4,7 +4,6 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Edit Race</title>
-    <link rel="stylesheet" href="/css/vars.css">
     <link rel="stylesheet" href="/css/Admin/Race/style2.css">
 </head>
 <body class="containerBody">
@@ -30,12 +29,13 @@
             <div class="add-new-activity">Edit Race</div>
             <div class="input1">
                 <div class="divInput">
-                    <div class="headInput">Distance</div>
+                    <div class="headInput">Distance (km)</div>
                     <input type="number" class="frame1" name="distance" th:value="${race.distance}" required>
                 </div>
                 <div class="divInput">
-                    <div class="headInput">Start Date</div>
-                    <input type="date" class="frame1" name="startDate" th:value="${#dates.format(race.start_date, 'yyyy-MM-dd')}">
+                    <div class="headInput">Due Date</div>
+                    <input type="date" class="frame1" name="endDate" th:value="${#dates.format(race.end_date, 'yyyy-MM-dd')}" 
+                        th:attr="min=${#dates.format(#dates.createNow(), 'yyyy-MM-dd')}" required>
                 </div>
             </div>
             <div class="input2">

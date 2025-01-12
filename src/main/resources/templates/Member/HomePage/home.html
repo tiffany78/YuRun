@@ -5,7 +5,6 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Home Page</title>
-    <link rel="stylesheet" href="/css/vars.css">
     <link rel="stylesheet" href="/css/Member/HomePage/styles2.css">
     <script  src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
     <script  src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
@@ -96,7 +95,7 @@
                 <div class="headerMyRace" th:text="${race.title}"></div>
                 <div class="infoMyRace">
                     <img src="/css/Member/HomePage/calendar-010.svg">
-                    <span th:text="${#dates.format(race.start_date, 'd MMMM yyyy')}"></span> <!-- Format tanggal -->
+                    <span th:text="${#dates.format(race.end_date, 'd MMMM yyyy')}"></span> <!-- Format tanggal -->
                 </div>
                 <div class="infoMyRace">
                     <span th:text="${race.description != null ? race.description : ''}"></span>
@@ -110,7 +109,7 @@
                 <div class="headerMyRace" th:text="${upRace.title}"></div>
                 <div class="infoMyRace">
                     <img src="/css/Member/HomePage/calendar-010.svg">
-                    <span th:text="${#dates.format(upRace.start_date, 'd MMMM yyyy')}"></span> <!-- Format tanggal -->
+                    <span th:text="${#dates.format(upRace.end_date, 'd MMMM yyyy')}"></span> <!-- Format tanggal -->
                 </div>
                 <div class="infoMyRace">
                     <span th:text="${upRace.description != null ? upRace.description : ''}"></span>

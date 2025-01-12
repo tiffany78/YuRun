@@ -1,4 +1,3 @@
-/* CSS MEMBER */
 html, body {
   margin: 0;
   padding: 0;
@@ -23,38 +22,37 @@ html, body {
   width: 100%;
 }
 
-/* BAGIAN NAVBAR */
 .navbar {
-  position: fixed; /* Tetap di posisi atas */
-  top: 0; /* Pastikan di bagian paling atas */
-  left: 0; /* Mulai dari kiri layar */
-  width: 100%; /* Penuhi lebar layar */
-  z-index: 1000; /* Letakkan di atas elemen lain */
-  background: var(--background-color-primary, #ffffff); /* Pastikan ada warna latar */
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 1000;
+  background: #ffffff;
   display: flex;
   justify-content: space-around;
   align-items: center;
-  padding: 10px 20px; /* Berikan sedikit padding */
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Tambahkan bayangan untuk kesan floating */
+  padding: 10px 20px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
   height: 40px;
 }
-.logo{
+.logo {
   display: flex;
   width: 220px;
 }
-.yurun{
+.yurun {
   display: flex;
-  color: var(--neutral-colors-950, #141414);
+  color: #141414;
   font-family: "Roboto-Medium", sans-serif;
   font-size: 21px;
   line-height: 120%;
   font-weight: 500;
   align-items: center;
 }
-.textNavbar{
+.textNavbar {
   display: flex;
   gap: 30px;
-  color: var(--neutral-colors-950, #141414);
+  color: #141414;
   font-family: "Roboto-Medium", sans-serif;
   font-size: 16px;
   font-weight: 500;
@@ -62,13 +60,13 @@ html, body {
 }
 .textNavbar a {
   text-decoration: none;
-  color: var(--neutral-colors-950, #141414);
+  color: #141414;
 }
-a.page{
-  color: var(--primary-color-500, #ff5722);
+a.page {
+  color: #ff5722;
   font-weight: 1000;
 }
-.button{
+.button {
   display: flex;
   align-items: center;
   justify-content: center;
@@ -78,14 +76,14 @@ a.page{
   font-weight: 600;
   column-gap: 20px;
 }
-/* BUTTON ADD ACTIVITY */
+
 .addActivity {
   grid-area: addActivity;
   display: flex;
   justify-content: flex-end;
   margin-right: 20px;
 }
-.buttonAdd{
+.buttonAdd {
   background: #ff5722;
   border-radius: 16px;
   width: 179px;
@@ -110,7 +108,7 @@ a.page{
   justify-content: flex-end;
   margin-right: 20px;
 }
-.left{
+.left {
   font-family: "Poppins-Regular", sans-serif;
   font-weight: 600;
   color: #FF5722;
@@ -127,26 +125,25 @@ a.page{
   height: 400px; 
   margin-left: 10px;
 }
-.buttonDownload{
+.buttonDownload {
   display: flex;
   flex-direction: row;
 }
 #download, #downloadPdf {
   display: flex;
-  background: #ff5722; /* Warna latar belakang yang sama dengan tombol PNG */
+  background: #ff5722;
   border-radius: 13px;
   padding: 10px;
   color: #ffffff;
   font-family: "Roboto-Regular", sans-serif;
   font-size: 13px;
   width: auto;
-  margin-left: 10px; /* Memberi jarak antara tombol PNG dan tombol PDF */
+  margin-left: 10px;
   justify-content: center;
   align-items: center;
   text-decoration: none;
   margin-top: 20px;
 }
-
 .graph2 {
   grid-area: graph2;
 }
@@ -162,7 +159,7 @@ a.page{
   flex-direction: column;
   row-gap: 10px;
 }
-.info1{
+.info1 {
   background: #f09564;
   border-radius: 91.49px;
   padding: 23.79px 21.96px 23.79px 21.96px;
@@ -181,7 +178,7 @@ a.page{
 .listInfo .info1:nth-child(2) {
   background-color: #c71e07;
 }
-.info1Text{
+.info1Text {
   color: white;
   font-family: "Roboto-Bold", sans-serif;
   line-height: 140%;
@@ -191,7 +188,7 @@ a.page{
   transform: rotate(0deg) scale(1, 1);
   letter-spacing: 2px;
 }
-.infoText{
+.infoText {
   font-family: "Roboto-Medium", sans-serif;
   color: #fff4ed;
   display: flex;
@@ -212,7 +209,7 @@ a.page{
   flex-direction: column;
   row-gap: 10px;
 }
-.text{
+.text {
   margin-top: 20px;
   font-family: "Roboto-SemiBold", sans-serif;
   color: #8a2100;
@@ -226,43 +223,37 @@ a.page{
   font-size: 20px;
   font-weight: 700;
 }
-.myRaceList{
+.myRaceList {
   border-radius: 24px;
-  border-style: solid;
-  border-color: #8a2100;
-  border-width: 3px;
+  border: 3px solid #8a2100;
   padding: 20px;
   display: flex;
   flex-direction: column;
   gap: 10px;
   align-items: flex-start;
   justify-content: flex-start;
-  align-self: stretch;
-  flex-shrink: 0;
-  position: relative;
   font-family: "Roboto-SemiBold", sans-serif;
 }
-.headerMyRace{
+.headerMyRace {
   color: #452f02;
   text-align: left;
   font-size: 16px;
   line-height: 16px;
   font-weight: 400;
 }
-.infoMyRace{
-  position: relative;
+.infoMyRace {
   display: flex;
   align-items: center;
   justify-content: flex-start;
 }
-.activity{
+.activity {
   grid-area: activity;
   padding-left: 20px;
   width: 95%;
   box-sizing: border-box;
 }
 .text3 {
-  color: var(--primary-color-500, #ff5722);
+  color: #ff5722;
   text-align: left;
   font-family: "Roboto-SemiBold", sans-serif;
   font-size: 21px;
@@ -277,7 +268,6 @@ a.page{
   text-decoration: none;
   color: inherit;
 }
-
 .table_race {
   width: 100%;
   margin: 20px auto;
@@ -298,7 +288,6 @@ thead th {
 thead th:first-child {
   border-radius: 10px 0 0 10px;
 }
-
 thead th:last-child {
   border-radius: 0 10px 10px 0;
 }
@@ -314,11 +303,9 @@ thead th:last-child {
 .table_race tbody td:last-child {
   border-radius: 0 10px 10px 0;
 }
-
-/* BAGIAN FOOTER */
-.footer{
+.footer {
   grid-area: footer;
-  background: var(--background-color-primary, #ffffff);
+  background: #ffffff;
   padding: 10px 20px;
   display: flex;
   flex-direction: column;
@@ -329,111 +316,67 @@ thead th:last-child {
   flex-direction: row;
   align-items: center;
   justify-content: space-between;
-  align-self: stretch;
-  flex-shrink: 0;
-  position: relative;
 }
 .logo3 {
   flex-shrink: 0;
   width: 22.48px;
   height: 25px;
-  position: relative;
-  overflow: visible;
 }
 .fit-life-studio {
-  color: var(--primary-color-500, #ff5722);
-  text-align: left;
+  color: #ff5722;
   font-family: "Roboto-SemiBold", sans-serif;
   font-size: 21px;
-  line-height: 120%;
   font-weight: 600;
-  position: relative;
-  width: 200px;
 }
 .links {
   display: flex;
   flex-direction: row;
   gap: 40px;
   align-items: flex-start;
-  justify-content: flex-start;
-  flex-shrink: 0;
-  position: relative;
 }
 .about2 {
-  color: var(--neutral-colors-900, #3d3d3d);
-  text-align: left;
+  color: #3d3d3d;
   font-family: "Roboto-Medium", sans-serif;
   font-size: 16px;
-  line-height: 150%;
   font-weight: 500;
-  position: relative;
 }
 .contact {
-  color: var(--neutral-colors-900, #3d3d3d);
-  text-align: left;
+  color: #3d3d3d;
   font-family: "Roboto-Medium", sans-serif;
   font-size: 16px;
-  line-height: 150%;
   font-weight: 500;
-  position: relative;
 }
 .social {
   display: flex;
   flex-direction: row;
   gap: 12px;
-  align-items: center;
-  justify-content: flex-end;
-  flex-shrink: 0;
-  width: 171px;
-  height: auto;
-  position: relative;
-  overflow: visible;
 }
 .divider {
-  background: var(--neutral-colors-500, #6d6d6d);
-  border-style: solid;
-  border-color: var(--neutral-colors-800, #454545);
-  border-width: 1px;
-  align-self: stretch;
-  flex-shrink: 0;
+  background: #6d6d6d;
+  border: 1px solid #454545;
   height: 1px;
   margin: 20px 0;
-} 
+}
 .credits {
   display: flex;
   flex-direction: column;
   gap: 32px;
   align-items: center;
-  justify-content: flex-start;
-  align-self: stretch;
-  flex-shrink: 0;
-  position: relative;
 }
 .row {
   display: flex;
   flex-direction: row;
   gap: 24px;
-  align-items: flex-start;
-  justify-content: flex-start;
-  flex-shrink: 0;
-  position: relative;
 }
 .text-1 {
-  color: var(--neutral-colors-900, #3d3d3d);
-  text-align: left;
+  color: #3d3d3d;
   font-family: "Roboto-Regular", sans-serif;
   font-size: 14px;
-  line-height: 150%;
   font-weight: 400;
-  position: relative;
 }
 .text-2 {
-  color: var(--neutral-colors-900, #3d3d3d);
-  text-align: left;
-  font-family: var(--text-small-link-font-family, "Roboto-Regular", sans-serif);
-  font-size: var(--text-small-link-font-size, 14px);
-  line-height: var(--text-small-link-line-height, 150%);
-  font-weight: var(--text-small-link-font-weight, 400);
+  color: #3d3d3d;
+  font-family: "Roboto-Regular", sans-serif;
+  font-size: 14px;
   text-decoration: underline;
-  position: relative;
 }

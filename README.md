@@ -6,9 +6,6 @@ Topik 3 PBW : Aplikasi Track Running - YURUN
 3. ⁠6182201002 - FERNANDO INDRAWAN
 4. ⁠6182201017 - TIFFANY TASYA AGATHA 
 
-## Deskripsi User dan Fitur
-menyusul
-
 ## Spesifikasi Sistem
 - **Gradle** - sistem build pada proyek
 - **Java** - bahasa pemrograman utama

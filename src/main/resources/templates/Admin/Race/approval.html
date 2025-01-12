@@ -5,7 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Approval Race</title>
     <link rel="stylesheet" href="/css/Admin/Race/approval.css">
-    <link rel="stylesheet" href="/css/vars.css">
     <script src="/js/Admin/Approval.js" defer></script>
 </head>
 <body class="containerBody">
@@ -69,7 +68,7 @@
                     <div class="buttonApprove">
                         <!-- Tombol Approve -->
                         <a th:if="${!statusRace}" 
-                           th:class="${resultRace.status == true ? 'button2 approve' : 'button2'}"
+                           class="button2"
                            onclick="setApprove(this)">
                             <img class="imgButton" src="/css/Admin/Race/mark.png" alt="Approve"> Approve
                         </a>
@@ -83,7 +82,8 @@
                     
                         <!-- Status Tampilan Ketika statusRace = true -->
                         <div th:if="${statusRace}">
-                            <span th:text="${resultRace.status == true ? 'Approved' : 'Rejected'}"></span>
+                            <span th:class="${resultRace.status == true ? 'approved' : 'rejected'}"
+                                  th:text="${resultRace.status == true ? 'Approved' : 'Rejected'}"></span>
                         </div>
                     </div>                               
                 </div>

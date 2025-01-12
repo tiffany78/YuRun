@@ -5,30 +5,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>YuRun</title>
-    <link rel="stylesheet" href="/css/vars.css">
     <link rel="stylesheet" href="/css/LandingPage/styles.css">
     <script src="/js/LandingPage/script.js" defer></script>
-    <style>
-        .textNavbar {
-            display: flex;
-            gap: 30px;
-            color: var(--neutral-colors-950, #141414);
-            font-family: "Roboto-Medium", sans-serif;
-            font-size: 16px;
-            font-weight: 500;
-        }
-
-        .textNavbar a {
-            text-decoration: none;
-            color: var(--neutral-colors-950, #141414);
-        }
-
-        a.page {
-            color: var(--primary-color-500, #ff5722);
-            font-weight: 1000;
-        }
-    </style>
-
 </head>
 
 <body class="container">
@@ -110,11 +88,7 @@
                 <a class="right3-item1" th:text="${race.title}" th:href="@{/race}"></a>
                 <div class="right3-item2">
                     <img class="icon3" src="/css/LandingPage/icon0.svg" />
-                    <div class="text3" th:text="${#dates.format(race.start_date, 'd MMMM yyyy')}"></div>
-                </div>
-                <div class="right3-item2">
-                    <img class="icon3" src="/css/LandingPage/icon1.svg" />
-                    <div class="text3" th:text="${race.time}"></div>
+                    <div class="text3" th:text="${#dates.format(race.end_date, 'd MMMM yyyy')}"></div>
                 </div>
                 <div class="right3-item2">
                     <img class="icon3" src="/css/LandingPage/vector5.svg" />
@@ -140,8 +114,8 @@
             <div class="row">
                 <div class="text-1">© 2024 Shipon. All rights reserved.</div>
                 <div class="text-2">Privacy Policy</div>
-                <div class="text-3">Terms of Service</div>
-                <div class="text-4">Cookies Settings</div>
+                <div class="text-2">Terms of Service</div>
+                <div class="text-2">Cookies Settings</div>
             </div>
         </div>
     </footer>

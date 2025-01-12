@@ -16,12 +16,12 @@ public class JDBCHomeImplementation implements HomeRepository {
 
     public List<Race> findRace() {
         LocalDate currDate = LocalDate.now();
-        String sql = "SELECT * FROM race WHERE start_date > ? ORDER BY start_date LIMIT 3";
+        String sql = "SELECT * FROM race WHERE end_date > ? ORDER BY end_date LIMIT 3";
         return jdbcTemplate.query(sql, this::mapRowToRaceHome, currDate);
     } 
 
     public List<Race> getRaceLandingPage() {
-        String sql = "SELECT * FROM race ORDER BY start_date DESC LIMIT 3";
+        String sql = "SELECT * FROM race ORDER BY end_date DESC LIMIT 3";
         return jdbcTemplate.query(sql, this::mapRowToRaceHome);
     }
 
@@ -29,7 +29,7 @@ public class JDBCHomeImplementation implements HomeRepository {
         return new Race(
             resultSet.getInt("id_race"),
             resultSet.getString("title"),
-            resultSet.getDate("start_date"),
+            resultSet.getDate("end_date"),
             resultSet.getDouble("distance"),
             resultSet.getString("description"),
             null
@@ -38,7 +38,7 @@ public class JDBCHomeImplementation implements HomeRepository {
 
     @Override
     public List<JoinRace> countRace() {
-        String sql = "SELECT title, count FROM count_race_admin WHERE status = false ORDER BY start_date";
+        String sql = "SELECT title, count FROM count_race_admin WHERE status = false ORDER BY end_date";
         return jdbcTemplate.query(sql, this::mapRowToRace);
     }
 

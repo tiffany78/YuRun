@@ -3,8 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Add Activity</title>
-    <link rel="stylesheet" href="/css/vars.css">
+    <title>Upload Race</title>
     <link rel="stylesheet" href="/css/Member/Race/uploadRace.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <script src="/js/Member/AddActivity.js" defer></script>
@@ -34,7 +33,7 @@
             <div class="input1">
                 <a>Race: <span th:text="${race.title}"></span></a>
                 <a>Distance: <span th:text="${race.distance} + ' km'"></span></a>
-                <a>Date: <span th:text="${#dates.format(race.start_date, 'd MMMM yyyy')}"></span></a>
+                <a>Date: <span th:text="${#dates.format(race.end_date, 'd MMMM yyyy')}"></span></a>
             </div>
             <div class="input2">
                 <div class="divInput">
@@ -52,7 +51,7 @@
             <div class="input3">
                 <div class="divInput">
                     <div class="headInput">Upload Your Picture</div>
-                    <input type="file" class="frame7" name="fileImage" id="fileImage" accept="image/*">
+                    <input type="file" class="frame7" name="fileImage" id="fileImage" accept="image/*" required>
                     <img id="thumbnail" src="" alt="Preview Your Picture">
                 </div>
             </div>

@@ -6,7 +6,7 @@ body {
   flex-direction: column;
   font-family: "Roboto-Medium", sans-serif;
 }
-.containerBody{
+.containerBody {
   display: grid;
   grid-template-rows: 70px 120px 80px auto 1fr auto;
   grid-template-columns: 1fr;
@@ -23,54 +23,53 @@ body {
   justify-content: flex-start;
   align-items: flex-start;
   font-family: "Roboto-Medium", sans-serif;
-}    
+}
 .navbar {
   grid-area: navbar;
-  position: fixed; 
-  top: 0; 
-  left: 0; 
-  width: 100%; 
-  z-index: 1000; /* Letakkan di atas elemen lain */
-  background: var(--background-color-primary, #ffffff); /* Pastikan ada warna latar */
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 1000;
+  background: #ffffff;
   display: flex;
   justify-content: space-around;
   align-items: center;
-  padding: 10px 20px; /* Berikan sedikit padding */
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Tambahkan bayangan untuk kesan floating */
+  padding: 10px 20px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
   height: 40px;
 }
-.logo{
+.logo {
   display: flex;
   width: 220px;
 }
-.yurun{
+.yurun {
   display: flex;
-  color: var(--neutral-colors-950, #141414);
+  color: #141414;
   font-family: "Roboto-Medium", sans-serif;
   font-size: 21px;
   line-height: 120%;
   font-weight: 500;
   align-items: center;
 }
-.textNavbar{
+.textNavbar {
   display: flex;
   gap: 30px;
-  color: var(--neutral-colors-950, #141414);
+  color: #141414;
   font-family: "Roboto-Medium", sans-serif;
   font-size: 16px;
   font-weight: 500;
   align-items: center;
 }
 .textNavbar a {
-text-decoration: none;
-color: var(--neutral-colors-950, #141414);
+  text-decoration: none;
+  color: #141414;
 }
-a.page{
-color: var(--primary-color-500, #ff5722);
-font-weight: 1000;
+a.page {
+  color: #ff5722;
+  font-weight: 1000;
 }
-
-.button{
+.button {
   display: flex;
   align-items: center;
   justify-content: center;
@@ -96,21 +95,18 @@ font-weight: 1000;
   justify-content: center;
   text-decoration: none;
 }
-
-/* BAGIAN FILTER */
 .title {
   font-weight: 600;
   color: #7f190f;
   font-size: larger;
 }
-
-.filter{
+.filter {
   grid-area: filter;
   display: grid;
   grid-template-areas: 
-  "filter1 download"
-  "custom download"
-  "sort download";
+      "filter1 download"
+      "custom download"
+      "sort download";
   grid-template-columns: 600px auto;
   margin: 0 20px 0 20px;
   height: 110px;
@@ -123,10 +119,9 @@ font-weight: 1000;
   flex-direction: row;
   column-gap: 10px;
 }
-input[type="date"]{
+input[type="date"] {
   font-family: "Roboto-Medium", sans-serif;
 }
-
 .filter-button {
   background-color: #fdb19a;
   width: 100px;
@@ -136,10 +131,9 @@ input[type="date"]{
   cursor: pointer;
 }
 .filter-button.active {
-  background-color: #ff6f37; /* Warna tombol aktif */
-  color: white; /* Ubah warna teks jika diperlukan */
+  background-color: #ff6f37;
+  color: white;
 }
-
 .download {
   grid-area: download;
   background-color: #7f190f;
@@ -154,9 +148,9 @@ input[type="date"]{
   cursor: pointer;
 }
 .disabled {
-  background-color: #d3d3d3; /* Warna abu-abu */
-  cursor: not-allowed; /* Cursor menjadi tanda larangan */
-  pointer-events: none; /* Menonaktifkan interaksi dengan tombol */
+  background-color: #d3d3d3;
+  cursor: not-allowed;
+  pointer-events: none;
 }
 .custom {
   grid-area: custom;
@@ -164,47 +158,37 @@ input[type="date"]{
 .sort {
   grid-area: sort;
 }
-
-/* BAGIAN ACTIVITY */
 .activity {
   grid-area: activity;
   margin-left: 20px;
 }
-
 .recap {
   display: flex;
   flex-direction: row;
-  column-gap: 15px;
-  margin-top: 10px 0 10px 0;
   column-gap: 30px;
+  margin-top: 10px;
 }
-
 .title2 {
   font-weight: 600;
   color: #141414;
   font-size: large;
 }
-
-/* BAGIAN GRAFIK */
 .graph {
   grid-area: graph;
   margin-left: 20px;
 }
-
 #container {
   height: 300px;
   width: 80%;
   margin-top: 10px;
 }
-
-/* BAGIAN CONTENT */
-.contentBody{
+.contentBody {
   grid-area: contentBody;
   width: 95%;
   justify-self: center;
 }
 .text3 {
-  color: var(--primary-color-500, #ff5722);
+  color: #ff5722;
   text-align: left;
   font-family: "Roboto-SemiBold", sans-serif;
   font-size: 21px;
@@ -219,14 +203,12 @@ input[type="date"]{
   text-decoration: none;
   color: inherit;
 }
-
 .table_race {
   width: 100%;
-  /* margin: 20px auto; */
   text-align: center;
   font-family: "Roboto-Medium", sans-serif;
   border-spacing: 0;
-  border-collapse: separate; 
+  border-collapse: separate;
   border-radius: 10px;
   margin: 10px 0 20px 0;
 }
@@ -240,7 +222,6 @@ thead th {
 thead th:first-child {
   border-radius: 10px 0 0 10px;
 }
-
 thead th:last-child {
   border-radius: 0 10px 10px 0;
 }
@@ -250,81 +231,67 @@ thead th:last-child {
   border: 1px solid #F5F5F5;
 }
 .table_race tbody td:first-child {
-  border-radius: 10px 0 0 10px; 
+  border-radius: 10px 0 0 10px;
 }
 .table_race tbody td:last-child {
   border-radius: 0 10px 10px 0;
 }
 th a img {
-  width: 16px; /* Ubah sesuai kebutuhan */
+  width: 16px;
   height: 16px;
-  vertical-align: middle; /* Agar sejajar dengan teks */
-  margin-left: 5px; /* Memberi jarak antara teks dan gambar */
+  vertical-align: middle;
+  margin-left: 5px;
 }
-
-/* BAGIAN FOOTER */
-.footer{
+.footer {
   grid-area: footer;
-    background: var(--background-color-primary, #ffffff);
-    padding: 10px 20px;
-    display: flex;
-    flex-direction: column;
-    height: 110px;
-    min-height: 110px;
-    margin-top: 20px;
+  background: #ffffff;
+  padding: 10px 20px;
+  display: flex;
+  flex-direction: column;
+  height: 110px;
+  min-height: 110px;
+  margin-top: 20px;
 }
 .content2 {
   display: flex;
   flex-direction: row;
   align-items: center;
   justify-content: space-between;
-  align-self: stretch;
-  flex-shrink: 0;
-  position: relative;
 }
 .logo3 {
   flex-shrink: 0;
   width: 22.48px;
   height: 25px;
-  position: relative;
-  overflow: visible;
 }
 .fit-life-studio {
-  color: var(--primary-color-500, #ff5722);
+  color: #ff5722;
   text-align: left;
   font-family: "Roboto-SemiBold", sans-serif;
   font-size: 21px;
   line-height: 120%;
   font-weight: 600;
-  position: relative;
-  width: 200px;
 }
 .links {
   display: flex;
   flex-direction: row;
   gap: 40px;
   align-items: flex-start;
-  justify-content: flex-start;
-  flex-shrink: 0;
-  position: relative;
 }
 .about2 {
-  color: var(--neutral-colors-900, #3d3d3d);
+  color: #3d3d3d;
   text-align: left;
   font-family: "Roboto-Medium", sans-serif;
   font-size: 16px;
   line-height: 150%;
   font-weight: 500;
-  position: relative;
 }
 .contact {
-  color: var(--neutral-colors-900, #3d3d3d);
+  color: #3d3d3d;
   text-align: left;
   font-family: "Roboto-Medium", sans-serif;
   font-size: 16px;
   line-height: 150%;
   font-weight: 500;
-  position: relative;
 }
 .social {
   display: flex;
@@ -332,57 +299,41 @@ th a img {
   gap: 12px;
   align-items: center;
   justify-content: flex-end;
-  flex-shrink: 0;
-  width: 171px;
-  height: auto;
-  position: relative;
-  overflow: visible;
 }
 .divider {
-  background: var(--neutral-colors-500, #6d6d6d);
+  background: #6d6d6d;
   border-style: solid;
-  border-color: var(--neutral-colors-800, #454545);
+  border-color: #454545;
   border-width: 1px;
-  align-self: stretch;
-  flex-shrink: 0;
   height: 1px;
   margin: 20px 0;
-} 
+}
 .credits {
   display: flex;
   flex-direction: column;
   gap: 32px;
   align-items: center;
-  justify-content: flex-start;
-  align-self: stretch;
-  flex-shrink: 0;
-  position: relative;
 }
 .row {
   display: flex;
   flex-direction: row;
   gap: 24px;
   align-items: flex-start;
-  justify-content: flex-start;
-  flex-shrink: 0;
-  position: relative;
 }
 .text-1 {
-  color: var(--neutral-colors-900, #3d3d3d);
+  color: #3d3d3d;
   text-align: left;
   font-family: "Roboto-Regular", sans-serif;
   font-size: 14px;
   line-height: 150%;
   font-weight: 400;
-  position: relative;
 }
 .text-2 {
-  color: var(--neutral-colors-900, #3d3d3d);
+  color: #3d3d3d;
   text-align: left;
-  font-family: var(--text-small-link-font-family, "Roboto-Regular", sans-serif);
-  font-size: var(--text-small-link-font-size, 14px);
-  line-height: var(--text-small-link-line-height, 150%);
-  font-weight: var(--text-small-link-font-weight, 400);
+  font-family: "Roboto-Regular", sans-serif;
+  font-size: 14px;
+  line-height: 150%;
+  font-weight: 400;
   text-decoration: underline;
-  position: relative;
 }
