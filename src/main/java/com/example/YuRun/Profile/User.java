@@ -11,6 +11,6 @@ public class User {
     private String name;
     private String email;
     private String password;
-    private Boolean isAdmin;  // Kolom isAdmin
+    private int isAdmin;  // Kolom isAdmin
     private Boolean status;   // Kolom status
 }
