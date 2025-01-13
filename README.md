@@ -29,6 +29,7 @@ Pindah ke dalam direktori proyek SiapSidang
 1. Masuk ke dalam PostgreSQL menggunakan terminal atau pgAdmin
 2. Membuat database dengan nama `YURUN`
 3. Run Tabel, View, dan Dummy Data yang sudah tersedia pada folder `database`. Lakukan proses run `Create_Table` terlebih dahulu, kemudian `Dummy_Data` 
+Note: Seluruh plain text atribut password adalah 'password'
 ## 2. Konfigurasi dengan Database
 Buka file `src/main/resources/application.properties` dan sesuaikan dengan pengaturan database Anda.
 ```

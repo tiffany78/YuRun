@@ -1,9 +1,9 @@
 -- Dummy data for Users
 INSERT INTO Users (name, email, password, isAdmin, status) VALUES
--- Admins
+-- Admins (password = 'password')
 ('Admin One', 'admin1@example.com', '$2a$10$RE1VUWAGwSiNR6hS8hwHrOgJ0lUzgV4ztA7WuxxnpogEELQVSOB8i', B'1', TRUE),
 ('Admin Two', 'admin2@example.com', '$2a$10$RE1VUWAGwSiNR6hS8hwHrOgJ0lUzgV4ztA7WuxxnpogEELQVSOB8i', B'1', TRUE),
--- Members
+-- Members (password = 'password')
 ('Adji Ganteng', 'sigantengadji@example.com', '$2a$10$RE1VUWAGwSiNR6hS8hwHrOgJ0lUzgV4ztA7WuxxnpogEELQVSOB8i', B'0', TRUE),
 ('Cler Ganteng', 'sigantengcler@example.com', '$2a$10$RE1VUWAGwSiNR6hS8hwHrOgJ0lUzgV4ztA7WuxxnpogEELQVSOB8i', B'0', TRUE),
 ('Edo Cute', 'sicuteedo@example.com', '$2a$10$RE1VUWAGwSiNR6hS8hwHrOgJ0lUzgV4ztA7WuxxnpogEELQVSOB8i', B'0', TRUE),
